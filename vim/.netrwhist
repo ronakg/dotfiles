@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/local/jail/adbu-waas-tools'
+let g:netrw_dirhist_2='/nobackup/rogandhi/hr2/product/waasnet/sil/waas/dpp'
+let g:netrw_dirhist_3='/nobackup/rogandhi/hr2/product/waasnet/sil/waas'
+let g:netrw_dirhist_4='/nobackup/rogandhi/hr2/product/waasnet/sil'
+let g:netrw_dirhist_5='/nobackup/rogandhi/hr2/product/waasnet'
+let g:netrw_dirhist_6='/nobackup/rogandhi/hr1/bfc/linux/initscripts-5.0'
