@@ -1,7 +1,7 @@
 # bash-env-config
 
-My Bash Environment Configuration
-=================================
+My Dot Files
+============
 
 * Bash configuration
 * Vim configuration
