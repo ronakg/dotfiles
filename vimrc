@@ -47,7 +47,6 @@ set complete=.,b,u,]
 " Better autocomplete
 set wildmode=longest,list:longest
 
-set laststatus=2
 
 " find files in vim using cscope
 noremap " :vert scscope find f<space>
@@ -59,3 +58,11 @@ hi DiffChange ctermbg=228
 hi DiffText cterm=bold ctermbg=189 ctermfg=17
 hi DiffDelete cterm=bold ctermbg=224 ctermfg=252
 
+set laststatus=2
+
+let g:airline_theme='molokai'
+let g:airline_powerline_fonts=0
+let g:airline_section_warning=0
+let g:airline#extensions#tabline#fnamemod = ':p:.'
+
+set noshowmode
