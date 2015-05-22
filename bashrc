@@ -1,3 +1,8 @@
+# Check if a command exists
+command_exists () {
+    type "$1" &> /dev/null ;
+}
+
 # Handy options
 alias ls='ls -GFh'
 alias ll='ls -lGFh'
@@ -24,10 +29,12 @@ export CLICOLOR=1
 alias newtmux='tmux new -s ${PWD##*/}'
 
 # Use vimdiff as git difftool
-git config --global diff.tool vimdiff
-git config --global merge.tool vimdiff
-git config --global difftool.prompt false
-alias gitdiff='git difftool'
+if command_exists git ; then
+    git config --global diff.tool vimdiff
+    git config --global merge.tool vimdiff
+    git config --global difftool.prompt false
+    alias gitdiff='git difftool'
+fi
 
 # Source other rc files after this line.
 [ -f ~/.bashrc_work ] && . ~/.bashrc_work
