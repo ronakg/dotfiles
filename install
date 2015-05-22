@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Install script
+
+files="bashrc bash_profile vimrc vim tmux.conf" 
+
+mydotdir=~/my-dot-files
+olddotdir=~/old-dot-files
+
+# create dotfiles_old in homedir
+echo "Creating $olddotdir for backup of any existing dotfiles in ~"
+mkdir -p $olddotdir
+echo "...done"
+
+# change to the my-dot-files directory
+echo "Changing to the $mydotdir directory"
+cd $mydotdir
+echo "...done"
+
+# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
+for file in $files; do
+    echo "Moving any existing dotfiles from ~ to $olddotdir"
+    mv ~/.$file $olddotdir/
+    echo "Creating symlink to $file in home directory."
+    ln -s $mydotdir/$file ~/.$file
+done
+
+echo "...done"
