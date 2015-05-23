@@ -7,22 +7,46 @@ files="bashrc bash_profile vimrc vim tmux.conf"
 mydotdir=~/my-dot-files
 olddotdir=~/old-dot-files
 
+if [ $1 == "clean" ]; then
+    echo -e "Cleaning up..."
+    for file in $files; do
+        if [ -e ~/.$file ]; then
+            rm -v ~/.$file
+        fi
+    done
+
+    echo -e "...done"
+    exit 0
+fi
+
 # create dotfiles_old in homedir
-echo "Creating $olddotdir for backup of any existing dotfiles in ~"
+echo -e "Creating $olddotdir for backup of any existing dotfiles in ~"
 mkdir -p $olddotdir
-echo "...done"
+echo -e "...done\n"
 
 # change to the my-dot-files directory
 echo "Changing to the $mydotdir directory"
 cd $mydotdir
-echo "...done"
+echo -e "...done\n"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
+echo -e "Moving any existing dotfiles from ~ to $olddotdir\n"
 for file in $files; do
-    echo "Moving any existing dotfiles from ~ to $olddotdir"
-    mv ~/.$file $olddotdir/$file
-    echo "Creating symlink to $file in home directory."
-    ln -s $mydotdir/$file ~/.$file
+    if [ -e ~/.$file ]; then
+        mv -v ~/.$file $olddotdir/$file
+    fi
 done
 
+# Create symlinks
+echo -e "Creating symlinks in home directory."
+for file in $files; do
+    ln -sv $mydotdir/$file ~/.$file
+done
+
+# Install terminfo
+echo -e "Install terminfo"
+tic xterm-256color-italic.terminfo
+tic screen-256color-italic.terminfo
+
+# Hurray...
 echo "...done"
