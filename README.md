@@ -1,5 +1,3 @@
-# bash-env-config
-
 My Dot Files
 ============
 
