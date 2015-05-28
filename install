@@ -53,7 +53,7 @@ echo -n "${reset}"
 
 # Create symlinks
 echo -n "${green}"
-echo -e "Creating symlinks in home directory."
+echo -e "\nCreating symlinks in home directory."
 for file in $files; do
     ln -sv $mydotdir/$file ~/.$file
 done
@@ -64,6 +64,12 @@ echo -n "${red}"
 echo -e "\nInstall terminfo"
 tic xterm-256color-italic.terminfo
 tic screen-256color-italic.terminfo
+echo -n "${reset}"
+
+# Install vim-airline submodule
+echo -n "${blue}"
+echo -e "\nUpdating vim-airline..."
+git submodule update --init
 echo -n "${reset}"
 
 # Hurray...
