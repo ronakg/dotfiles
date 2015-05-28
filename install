@@ -2,12 +2,22 @@
 
 # Install script
 
-files="bashrc bash_profile vimrc vim tmux.conf" 
+# Colors
+red=`tput setaf 1`
+green=`tput setaf 2`
+blue=`tput setaf 4`
+reset=`tput sgr 0`
 
+# List of files to be installed
+files="bashrc bash_profile vimrc vim tmux.conf screenrc" 
+
+# Directories to install from and backup to
 mydotdir=~/my-dot-files
 olddotdir=~/old-dot-files
 
-if [ $1 == "clean" ]; then
+# ./install clean
+echo -n "${red}"
+if [ "$1" == "clean" ]; then
     echo -e "Cleaning up..."
     for file in $files; do
         if [ -e ~/.$file ]; then
@@ -16,10 +26,13 @@ if [ $1 == "clean" ]; then
     done
 
     echo -e "...done"
+    echo -n "${reset}"
     exit 0
 fi
+echo -n "${reset}"
 
 # create dotfiles_old in homedir
+echo -n "${blue}"
 echo -e "Creating $olddotdir for backup of any existing dotfiles in ~"
 mkdir -p $olddotdir
 echo -e "...done\n"
@@ -36,17 +49,22 @@ for file in $files; do
         mv -v ~/.$file $olddotdir/$file
     fi
 done
+echo -n "${reset}"
 
 # Create symlinks
+echo -n "${green}"
 echo -e "Creating symlinks in home directory."
 for file in $files; do
     ln -sv $mydotdir/$file ~/.$file
 done
+echo -n "${reset}"
 
 # Install terminfo
-echo -e "Install terminfo"
+echo -n "${red}"
+echo -e "\nInstall terminfo"
 tic xterm-256color-italic.terminfo
 tic screen-256color-italic.terminfo
+echo -n "${reset}"
 
 # Hurray...
-echo "...done"
+echo -e "\n...done"
