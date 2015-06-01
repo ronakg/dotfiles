@@ -47,7 +47,6 @@ set complete=.,b,u,]
 " Better autocomplete
 set wildmode=longest,list:longest
 
-
 " find files in vim using cscope
 noremap " :vert scscope find f<space>
 
@@ -66,3 +65,12 @@ let g:airline_section_warning=0
 let g:airline#extensions#tabline#fnamemod = ':p:.'
 
 set noshowmode
+
+" Make space the leader key
+let mapleader = "\<Space>"
+
+" Leader-w to save a file
+nnoremap <Leader>w :w<CR>
+
+" Leader-q to close a file
+nnoremap <Leader>q :q<CR>
