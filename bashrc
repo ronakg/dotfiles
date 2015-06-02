@@ -5,8 +5,11 @@ command_exists () {
 
 # Handy options
 alias ls='ls -GFh'
-alias ll='ls -lGFh'
 export GREP_OPTIONS='--color=auto'
+
+#for *BSD/darwin
+export CLICOLOR=1
+ls --color=auto &> /dev/null && alias ls='ls -Fh --color=auto' || alias ls='ls -GFh'
 
 # Editor
 export EDITOR=vim
@@ -21,9 +24,6 @@ export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000               # big big history
 shopt -s histappend                      # append to history, don't overwrite it
-
-#ls colors
-export CLICOLOR=1
 
 # Shortcut to create new tmux with pwd as session name
 alias newtmux='tmux new -s ${PWD##*/}'
