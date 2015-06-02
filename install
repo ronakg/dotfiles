@@ -72,5 +72,11 @@ echo -e "\nUpdating vim-airline..."
 git submodule update --init
 echo -n "${reset}"
 
+# Install promptline
+echo -n "${green}"
+echo -e "\nInstalling shell promptline..."
+source ./shell_prompt.sh
+echo -n "${reset}"
+
 # Hurray...
 echo -e "\n...done"
