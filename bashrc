@@ -37,5 +37,12 @@ if command_exists git ; then
     alias gitdiff='git difftool'
 fi
 
+# Bind up and down array to do backward and forward history search 
+if [[ $- == *i* ]]
+then
+    bind '"\e[A": history-search-backward'
+    bind '"\e[B": history-search-forward'
+fi
+
 # Source other rc files after this line.
 [ -f ~/.bashrc_work ] && . ~/.bashrc_work
