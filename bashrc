@@ -37,4 +37,5 @@ if command_exists git ; then
 fi
 
 # Source other rc files after this line.
+[ -f ~/.shell_prompt.sh ] && . ~/.shell_prompt.sh
 [ -f ~/.bashrc_work ] && . ~/.bashrc_work

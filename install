@@ -9,7 +9,7 @@ blue=`tput setaf 4`
 reset=`tput sgr 0`
 
 # List of files to be installed
-files="bashrc bash_profile vimrc vim tmux.conf screenrc" 
+files="bashrc bash_profile vimrc vim tmux.conf screenrc shell_prompt.sh" 
 
 # Directories to install from and backup to
 mydotdir=~/my-dot-files
@@ -70,12 +70,6 @@ echo -n "${reset}"
 echo -n "${blue}"
 echo -e "\nUpdating vim-airline..."
 git submodule update --init
-echo -n "${reset}"
-
-# Install promptline
-echo -n "${green}"
-echo -e "\nInstalling shell promptline..."
-source ./shell_prompt.sh
 echo -n "${reset}"
 
 # Hurray...
