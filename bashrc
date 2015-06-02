@@ -26,7 +26,7 @@ shopt -s histappend                      # append to history, don't overwrite it
 export CLICOLOR=1
 
 # Shortcut to create new tmux with pwd as session name
-alias newtmux='tmux new -s ${PWD##*/}'
+alias newtmux='tmux -u new -s ${PWD##*/}'
 
 # Use vimdiff as git difftool
 if command_exists git ; then
