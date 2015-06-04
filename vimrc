@@ -70,8 +70,8 @@ set noshowmode
 " Make space the leader key
 let mapleader = "\<Space>"
 
-" Leader-w to save a file
-nnoremap <Leader>w :w<CR>
+" Leader-s to save a file
+nnoremap <Leader>s :w<CR>
 
 " Leader-q to close a file
 nnoremap <Leader>q :q<CR>

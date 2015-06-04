@@ -10,6 +10,7 @@ export GREP_OPTIONS='--color=auto'
 #for *BSD/darwin
 export CLICOLOR=1
 ls --color=auto &> /dev/null && alias ls='ls -Fh --color=auto' || alias ls='ls -GFh'
+export PATH=$PATH:/usr/local/git/bin:/usr/local/bin
 
 # Editor
 export EDITOR=vim
