@@ -15,6 +15,7 @@ export PATH=$PATH:/usr/local/git/bin:/usr/local/bin
 # Editor
 export EDITOR=vim
 export VISUAL=vim
+export CSCOPE_EDITOR=vim
 alias vi=vim
 
 # Prompt [hostname [time] pwd]
