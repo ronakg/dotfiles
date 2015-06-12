@@ -46,5 +46,8 @@ then
     bind '"\e[B": history-search-forward'
 fi
 
+# ssh with normal terminal
+alias myssh='TERM=xterm-256color ssh'
+
 # Source other rc files after this line.
 [ -f ~/.bashrc_work ] && . ~/.bashrc_work
