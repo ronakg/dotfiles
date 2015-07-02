@@ -1,7 +1,9 @@
 set nocompatible
 set encoding=utf-8
 
-execute pathogen#infect()
+"execute pathogen#infect()
+
+set t_Co=256
 
 set incsearch       "increamental search
 set hlsearch        "highlight search
@@ -58,14 +60,9 @@ hi DiffChange ctermbg=228
 hi DiffText cterm=bold ctermbg=189 ctermfg=17
 hi DiffDelete cterm=bold ctermbg=224 ctermfg=252
 
+hi User1 term=underline cterm=bold ctermfg=yellow ctermbg=darkblue guifg=#40ffff guibg=#0000aa
+set statusline=%1*%F%m%r%h%w%=%(%c%V\ %l/%L\ %P%)
 set laststatus=2
-
-let g:airline_theme='molokai'
-let g:airline_powerline_fonts=0
-let g:airline_section_warning=0
-let g:airline#extensions#tabline#fnamemod = ':p:.'
-
-set noshowmode
 
 " Make space the leader key
 let mapleader = "\<Space>"
