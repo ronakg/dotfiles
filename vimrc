@@ -1,8 +1,3 @@
-set nocompatible
-set encoding=utf-8
-
-"execute pathogen#infect()
-
 set t_Co=256
 
 set incsearch       "increamental search
@@ -38,8 +33,6 @@ endif
 
 " ctags path
 set tags=./tags;/
-"Ctrl + \ -> open tag lookup in vertical split
-"map « :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " open vertical split on right, instead of left
 set splitright
@@ -64,11 +57,4 @@ hi User1 term=underline cterm=bold ctermfg=yellow ctermbg=darkblue guifg=#40ffff
 set statusline=%1*%F%m%r%h%w%=%(%c%V\ %l/%L\ %P%)
 set laststatus=2
 
-" Make space the leader key
-let mapleader = "\<Space>"
-
-" Leader-s to save a file
-nnoremap <Leader>s :w<CR>
-
-" Leader-q to close a file
-nnoremap <Leader>q :q<CR>
+hi Search cterm=none ctermfg=yellow ctermbg=black
