@@ -45,10 +45,10 @@ noremap " :vert scscope find f<space>
 
 highlight Comment cterm=italic
 
-hi DiffAdd ctermbg=150
-hi DiffChange ctermbg=228
-hi DiffText cterm=bold ctermbg=189 ctermfg=17
-hi DiffDelete cterm=bold ctermbg=224 ctermfg=252
+hi DiffAdd ctermbg=darkgreen ctermfg=black
+hi DiffChange ctermbg=black
+hi DiffText ctermbg=brown ctermfg=yellow
+hi DiffDelete ctermbg=darkred ctermfg=black
 
 hi User1 term=underline cterm=bold ctermfg=black ctermbg=darkblue guifg=#40ffff guibg=#0000aa
 set statusline=%1*%F%m%r%h%w%=%(%c%V\ %l/%L\ %P%)
@@ -108,3 +108,5 @@ set noshowmode
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_section_warning=''
+
+autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif

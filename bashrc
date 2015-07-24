@@ -49,5 +49,8 @@ fi
 # ssh with normal terminal
 alias myssh='TERM=xterm-256color ssh'
 
+# Set terminal
+export TERM='xterm-256color-italic'
+
 # Source other rc files after this line.
 [ -f ~/.bashrc_work ] && . ~/.bashrc_work
