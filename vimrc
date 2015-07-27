@@ -1,4 +1,6 @@
 execute pathogen#infect()
+call pathogen#helptags()
+let gutentags_project_root=["tags"]
 
 set nocp
 set t_Co=256
@@ -74,9 +76,6 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 highlight Pmenu ctermbg=black ctermfg=red
 highlight PmenuSel ctermbg=white ctermfg=red
 
-let g:tagbar_usearrows = 1
-nnoremap <leader>l :TagbarToggle<CR>
-
 function! Smart_TabComplete()
   let line = getline('.')                         " current line
 
@@ -110,3 +109,8 @@ let g:airline_right_sep=''
 let g:airline_section_warning=''
 
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
+let g:tagbar_usearrows = 1
+let mapleader=" "
+nnoremap <leader>l :TagbarToggle<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
