@@ -74,6 +74,8 @@ set cscopeverbose
 
 " find files in vim using cscope
 noremap " :vert scscope find f<space>
+noremap s :vert scscope find s<space>
+nmap <C-@> :cs find s <C-R>=expand("<cword>")<CR><CR>
 
 " Italics comments
 highlight Comment cterm=italic
@@ -148,7 +150,7 @@ autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
 let g:tagbar_usearrows = 1
 let g:NERDTreeDirArrows=0
 let NERDTreeShowBookmarks=1
-nnoremap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
+map <leader>n :NERDTreeToggle<CR>
 
 set nobackup                    " Don't need backup and swap files
 set noswapfile
