@@ -1,19 +1,26 @@
 filetype off
+call pathogen#helptags()
 call pathogen#infect()
+
+" , is my leader
+let mapleader=","
 
 set nocp
 set incsearch       "increamental search
 set hlsearch        "highlight search
-"set nu              "line numbers
 set backspace=indent,eol,start  "makes backspace working
 set ignorecase      "ignore case in searching
 set smartcase       "dont ignore case if capital letters present
 
 "vertical/horizontal scroll off settings
-set scrolloff=2
+set scrolloff=4
 
-" Reload file if edited outside of vim
-set autoread
+set autoread                    " automatically reload files changed outside of Vim
+
+" Thanks to Steve Losh for this liberating tip
+" See http://stevelosh.com/blog/2010/09/coming-home-to-vim
+nnoremap / /\v
+vnoremap / /\v
 
 syntax on
 filetype on
@@ -36,6 +43,8 @@ set autoindent
 set ttyfast
 set lazyredraw
 
+set gdefault                    " search/replace "globally" (on a line) by default
+
 " Remember cursor position between vim sessions
 if has("autocmd")
     autocmd BufReadPost *
@@ -52,15 +61,15 @@ set splitright
 
 set cscopetag
 set csto=0
-set cscopeverbose  
+set cscopeverbose
 
 " find files in vim using cscope
 noremap " :vert scscope find f<space>
 
-"nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-
+" Italics comments
 highlight Comment cterm=italic
 
+" Use different colors for diff
 hi DiffAdd ctermbg=darkgreen ctermfg=black
 hi DiffChange ctermbg=black
 hi DiffText ctermbg=brown ctermfg=yellow
@@ -70,11 +79,11 @@ hi User1 term=underline cterm=bold ctermfg=black ctermbg=darkblue guifg=#40ffff 
 set statusline=%1*%F%m%r%h%w%=%(%c%V\ %l/%L\ %P%)
 set laststatus=2
 
+" Highlight search and visual blocks
 hi Search cterm=none ctermfg=yellow ctermbg=black
 hi Visual cterm=none ctermfg=yellow ctermbg=brown
 
 " ============= AUTO COMPLETE OPTIONS ================
-
 set wildmenu
 set wildmode=longest,list,full
 set omnifunc=syntaxcomplete#Complete
@@ -92,29 +101,31 @@ highlight Pmenu ctermbg=black ctermfg=red
 highlight PmenuSel ctermbg=white ctermfg=red
 
 function! Smart_TabComplete()
-  let line = getline('.')                         " current line
+    let line = getline('.')                         " current line
 
-  let substr = strpart(line, -1, col('.')+1)      " from the start of the current
-                                                  " line to one character right
-                                                  " of the cursor
-  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
-  if (strlen(substr)==0)                          " nothing to match on empty string
-    return "\<tab>"
-  endif
-  let has_period = match(substr, '\.') != -1      " position of period, if any
-  let has_slash = match(substr, '\/') != -1       " position of slash, if any
-  let has_pointer = match(substr, '\->') != -1       " position of pointer, if any
-  if (has_period || has_pointer)
-    return "\<C-X>\<C-O>"                         " plugin matching
-  elseif ( has_slash )
-    return "\<C-X>\<C-F>"                         " file matching
-  else
-    return "\<C-P>"                         " existing text matching
-  endif
+    let substr = strpart(line, -1, col('.')+1)      " from the start of the current
+    " line to one character right
+    " of the cursor
+    let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
+    if (strlen(substr)==0)                          " nothing to match on empty string
+        return "\<tab>"
+    endif
+    let has_period = match(substr, '\.') != -1      " position of period, if any
+    let has_slash = match(substr, '\/') != -1       " position of slash, if any
+    let has_pointer = match(substr, '\->') != -1       " position of pointer, if any
+    if (has_period || has_pointer)
+        return "\<C-X>\<C-O>"                         " plugin matching
+    elseif ( has_slash )
+        return "\<C-X>\<C-F>"                         " file matching
+    else
+        return "\<C-P>"                         " existing text matching
+    endif
 endfunction
 
 imap <tab> <c-r>=Smart_TabComplete()<CR>
-noremap <tab> <C-w><C-w>
+
+" Tab to switch between vertical splits
+nnoremap <leader>w <C-w><C-w>
 set formatoptions=qrn1
 set noshowmode
 
@@ -123,16 +134,14 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_section_warning=''
 
+" If can't find extention of a file, assume it's a C file
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
 let g:tagbar_usearrows = 1
-let mapleader=" "
-nnoremap <leader>l :TagbarToggle<CR>
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
-
 let g:NERDTreeDirArrows=0
+let NERDTreeShowBookmarks=1
+nnoremap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
 
-set nobackup
+set nobackup                    " Don't need backup and swap files
 set noswapfile
 
 " Get used to vim movement keys
@@ -151,5 +160,17 @@ nnoremap <leader>v V`]
 " Clear highlighted searches
 nmap <silent> ,/ :nohlsearch<CR>
 
-" No need to press Shift for command prompt
+" Easier to get command prompt
 map ; :
+set nomodeline                  " disable mode lines (security measure)
+
+
+" Highlight trailing whitespaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
+" Easier matching
+map <tab> %
+
+set encoding=utf-8
+set showcmd                     " display incomplete commands
