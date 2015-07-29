@@ -3,8 +3,6 @@ call pathogen#helptags()
 let gutentags_project_root=["tags"]
 
 set nocp
-set t_Co=256
-
 set incsearch       "increamental search
 set hlsearch        "highlight search
 "set nu              "line numbers
@@ -19,6 +17,10 @@ syntax on
 filetype on
 filetype plugin on
 filetype indent on
+
+" During searching via n and N, keep the search result line in center
+map N Nzz
+map n nzz
 
 set softtabstop=4
 set shiftwidth=4
@@ -42,8 +44,18 @@ set tags=./tags;/
 " open vertical split on right, instead of left
 set splitright
 
+set cscopetag
+set csto=0
+set cscopeverbose  
+
 " find files in vim using cscope
-noremap " :vert scscope find f<space>
+if bufname("%") == ""
+    noremap " :next scscope find f<space>
+else
+    noremap " :vert scscope find f<space>
+endif
+
+"nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 
 highlight Comment cterm=italic
 
@@ -57,11 +69,12 @@ set statusline=%1*%F%m%r%h%w%=%(%c%V\ %l/%L\ %P%)
 set laststatus=2
 
 hi Search cterm=none ctermfg=yellow ctermbg=black
+hi Visual cterm=none ctermfg=yellow ctermbg=brown
 
 " ============= AUTO COMPLETE OPTIONS ================
 
-set wildmode=longest,list,full
 set wildmenu
+set wildmode=longest,list,full
 set omnifunc=syntaxcomplete#Complete
 
 set completeopt=longest,menuone
@@ -103,7 +116,7 @@ noremap <tab> <C-w><C-w>
 
 set noshowmode
 
-" Don't show seperators
+" vim-arline Don't show seperators
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_section_warning=''
@@ -114,3 +127,5 @@ let mapleader=" "
 nnoremap <leader>l :TagbarToggle<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
+
+set cscopequickfix=s-,c-,d-,i-,t-,e-
