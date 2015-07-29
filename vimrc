@@ -1,9 +1,18 @@
 filetype off
 call pathogen#helptags()
 call pathogen#infect()
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " , is my leader
 let mapleader=","
+
+let g:ctrlp_user_command = ['cscope.files', 'cat %s/cscope.files']
+let g:ctrlp_root_markers = ['cscope.files']
+let g:ctrlp_by_filename = 1
+let g:ctrlp_regexp = 1
+let g:ctrlp_prompt_mappings = { 'PrtAdd(".*")': ['<space>'] }
+nnoremap <leader>f :CtrlP<CR>
+
 
 set nocp
 set incsearch       "increamental search
