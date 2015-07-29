@@ -1,6 +1,5 @@
-execute pathogen#infect()
-call pathogen#helptags()
-let gutentags_project_root=["tags"]
+filetype off
+call pathogen#infect()
 
 set nocp
 set incsearch       "increamental search
@@ -12,6 +11,9 @@ set smartcase       "dont ignore case if capital letters present
 
 "vertical/horizontal scroll off settings
 set scrolloff=2
+
+" Reload file if edited outside of vim
+set autoread
 
 syntax on
 filetype on
@@ -27,8 +29,12 @@ set shiftwidth=4
 set smarttab
 set expandtab
 
+set cursorline
+
 set cindent
 set autoindent
+set ttyfast
+set lazyredraw
 
 " Remember cursor position between vim sessions
 if has("autocmd")
@@ -49,11 +55,7 @@ set csto=0
 set cscopeverbose  
 
 " find files in vim using cscope
-if bufname("%") == ""
-    noremap " :next scscope find f<space>
-else
-    noremap " :vert scscope find f<space>
-endif
+noremap " :vert scscope find f<space>
 
 "nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 
@@ -113,7 +115,7 @@ endfunction
 
 imap <tab> <c-r>=Smart_TabComplete()<CR>
 noremap <tab> <C-w><C-w>
-
+set formatoptions=qrn1
 set noshowmode
 
 " vim-arline Don't show seperators
@@ -128,4 +130,34 @@ nnoremap <leader>l :TagbarToggle<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 
-set cscopequickfix=s-,c-,d-,i-,t-,e-
+let g:NERDTreeDirArrows=0
+
+set nobackup
+set noswapfile
+
+" Get used to vim movement keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Don't skip wrapped lines in editor
+nnoremap j gj
+nnoremap k gk
+
+" Visually select just pasted paragraph, for indentation etc
+nnoremap <leader>v V`]
+
+" Clear highlighted searches
+nmap <silent> ,/ :nohlsearch<CR>
+
+" No need to press Shift for command prompt
+nnoremap ; :
+
+" NERDCommenter key mappings
+nnoremap <C-c> <plug>NERDComToggleComment
+nnoremap <C-x> <plug>NERDComUncommentLine
