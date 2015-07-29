@@ -66,9 +66,9 @@ tic xterm-256color-italic.terminfo
 tic screen-256color-italic.terminfo
 echo -n "${reset}"
 
-# Install vim-airline submodule
+# Install submodules
 echo -n "${blue}"
-echo -e "\nUpdating vim-airline..."
+echo -e "\nUpdating submodules..."
 git submodule update --init
 echo -n "${reset}"
 
