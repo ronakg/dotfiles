@@ -136,14 +136,10 @@ set nobackup
 set noswapfile
 
 " Get used to vim movement keys
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
 " Don't skip wrapped lines in editor
 nnoremap j gj
@@ -156,8 +152,4 @@ nnoremap <leader>v V`]
 nmap <silent> ,/ :nohlsearch<CR>
 
 " No need to press Shift for command prompt
-nnoremap ; :
-
-" NERDCommenter key mappings
-nnoremap <C-c> <plug>NERDComToggleComment
-nnoremap <C-x> <plug>NERDComUncommentLine
+map ; :
