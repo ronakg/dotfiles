@@ -3,16 +3,18 @@ call pathogen#helptags()
 call pathogen#infect()
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-" , is my leader
-let mapleader=","
+" Space is my leader
+let mapleader=" "
 
+let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_user_command = ['cscope.files', 'cat %s/cscope.files']
 let g:ctrlp_root_markers = ['cscope.files']
-let g:ctrlp_by_filename = 1
+let g:ctrlp_by_filename = 0
 let g:ctrlp_regexp = 1
-let g:ctrlp_prompt_mappings = { 'PrtAdd(".*")': ['<space>'] }
-nnoremap <leader>f :CtrlP<CR>
-
+let g:ctrlp_prompt_mappings = {
+            \ 'PrtAdd(".*")': ['<space>'],
+            \ }
+nnoremap <leader>p :CtrlP<CR>
 
 set nocp
 set incsearch       "increamental search
@@ -45,8 +47,6 @@ set shiftwidth=4
 set smarttab
 set expandtab
 
-set cursorline
-
 set cindent
 set autoindent
 set ttyfast
@@ -74,7 +74,7 @@ set cscopeverbose
 
 " find files in vim using cscope
 noremap " :vert scscope find f<space>
-noremap s :vert scscope find s<space>
+noremap <leader>f :vert scscope find s<space>
 nmap <C-@> :cs find s <C-R>=expand("<cword>")<CR><CR>
 
 " Italics comments
@@ -155,12 +155,6 @@ map <leader>n :NERDTreeToggle<CR>
 set nobackup                    " Don't need backup and swap files
 set noswapfile
 
-" Get used to vim movement keys
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
 " Don't skip wrapped lines in editor
 nnoremap j gj
 nnoremap k gk
@@ -185,3 +179,31 @@ map <tab> %
 
 set encoding=utf-8
 set showcmd                     " display incomplete commands
+
+nnoremap <leader>,         :bprevious<CR>
+nnoremap <leader>.        :bnext<CR>
+inoremap <leader>,    <Esc>:bprevious<CR>i
+inoremap <leader>.   <Esc>:bnext<CR>i
+nnoremap <leader>q      :bd<CR>
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Shhow tabline only when at least 2 files are open
+let g:airline#extensions#tabline#tab_min_count = 2
+let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+let g:airline#extensions#tabline#buffer_nr_show = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_tab_type = 1
