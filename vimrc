@@ -174,6 +174,7 @@ imap jj <Esc>
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
-nmap <Leader>v :source $MYVIMRC
-
+nmap <Leader>v :source $MYVIMRC<CR>
 let g:autocscope_menus = 1
+
+colorscheme myown
