@@ -132,10 +132,6 @@ nmap <silent> ,/ :nohlsearch<CR>
 " Easier to get command prompt
 map ; :
 
-" Highlight trailing whitespaces
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-
 nnoremap <leader>,         :bprevious<CR>
 nnoremap <leader>.        :bnext<CR>
 inoremap <leader>,    <Esc>:bprevious<CR>i

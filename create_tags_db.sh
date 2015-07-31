@@ -28,18 +28,15 @@ rm -rfv tags*
 for dir in "${dirs[@]}"
 do
     if [ -d $dir ]; then
-        cd "$dir"
         echo "Finding files in: `pwd`"
 
         if [ "$2" == "include" ]; then
             echo "Including kernel files too..."
-            find `pwd` -type f -print | egrep -i "\.(c|h|cpp)$" >> $rootdir/cscope.files
+            find ./$dir -type f -print | egrep -i "\.(c|h|cpp)$" >> $rootdir/cscope.files
         else
             # Don't include kernel and stub files
-            find `pwd` -type f -and -not -iwholename "*/*kernel*/*" -and -not -iwholename "*stub*" -print | egrep -i "\.(c|h|cpp)$" >> $rootdir/cscope.files
+            find ./$dir -type f -and -not -iwholename "*/*kernel*/*" -and -not -iwholename "*stub*" -print | egrep -i "\.(c|h|cpp)$" >> $rootdir/cscope.files
         fi
-
-        cd $rootdir
     else
         echo "Invalid $dir"
     fi

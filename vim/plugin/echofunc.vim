@@ -270,8 +270,7 @@ function! s:GetFunctions(fun, fn_only)
         endif
         if has_key(i,'kind')
             " p: prototype/procedure; f: function; m: member
-            " if (!a:fn_only || (i.kind=='p' || i.kind=='f') ||
-            if (!a:fn_only || (i.kind=='f') ||
+            if (!a:fn_only || (i.kind=='p' || i.kind=='f') ||
                         \(i.kind == 'm' && has_key(i,'cmd') &&
                         \                  match(i.cmd,'(') != -1)) &&
                         \i.name=~funpat
