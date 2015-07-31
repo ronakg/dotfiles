@@ -97,7 +97,7 @@ set wildmenu
 set wildmode=longest,list,full
 set omnifunc=syntaxcomplete#Complete
 
-set completeopt=longest,menu,menuone
+set completeopt=longest,menu
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
