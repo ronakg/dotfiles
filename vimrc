@@ -27,11 +27,7 @@ set smartcase       "dont ignore case if capital letters present
 set scrolloff=4
 
 set autoread                    " automatically reload files changed outside of Vim
-
-" Thanks to Steve Losh for this liberating tip
-" See http://stevelosh.com/blog/2010/09/coming-home-to-vim
-nnoremap / /\v
-vnoremap / /\v
+autocmd CursorHold * checktime
 
 syntax on
 filetype on
@@ -73,16 +69,18 @@ set csto=0
 set cscopeverbose
 
 " find files in vim using cscope
-noremap " :vert scscope find f<space>
-noremap <leader>f :vert scscope find s<space>
-nmap <C-@> :cs find s <C-R>=expand("<cword>")<CR><CR>
+nnoremap " :vert scscope find s<space>
+nnoremap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>t <c-t>
 
 " Italics comments
 highlight Comment cterm=italic
 
 " Use different colors for diff
 hi DiffAdd ctermbg=darkgreen ctermfg=black
-hi DiffChange ctermbg=black
+hi DiffChange ctermbg=cyan ctermfg=black
 hi DiffText ctermbg=brown ctermfg=yellow
 hi DiffDelete ctermbg=darkred ctermfg=black
 
@@ -99,7 +97,7 @@ set wildmenu
 set wildmode=longest,list,full
 set omnifunc=syntaxcomplete#Complete
 
-set completeopt=longest,menuone
+set completeopt=longest,menu,menuone
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
@@ -111,39 +109,13 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 highlight Pmenu ctermbg=black ctermfg=red
 highlight PmenuSel ctermbg=white ctermfg=red
 
-function! Smart_TabComplete()
-    let line = getline('.')                         " current line
-
-    let substr = strpart(line, -1, col('.')+1)      " from the start of the current
-    " line to one character right
-    " of the cursor
-    let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
-    if (strlen(substr)==0)                          " nothing to match on empty string
-        return "\<tab>"
-    endif
-    let has_period = match(substr, '\.') != -1      " position of period, if any
-    let has_slash = match(substr, '\/') != -1       " position of slash, if any
-    let has_pointer = match(substr, '\->') != -1       " position of pointer, if any
-    if (has_period || has_pointer)
-        return "\<C-X>\<C-O>"                         " plugin matching
-    elseif ( has_slash )
-        return "\<C-X>\<C-F>"                         " file matching
-    else
-        return "\<C-P>"                         " existing text matching
-    endif
-endfunction
-
-imap <tab> <c-r>=Smart_TabComplete()<CR>
-
 " Tab to switch between vertical splits
-nnoremap <leader>w <C-w><C-w>
+nnoremap <tab> <C-w><C-w>
 set formatoptions=qrn1
 set noshowmode
 
 " vim-arline Don't show seperators
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_section_warning=''
+let g:airline_section_warning = ''
 
 " If can't find extention of a file, assume it's a C file
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
@@ -175,10 +147,7 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
 " Easier matching
-map <tab> %
-
 set encoding=utf-8
-set showcmd                     " display incomplete commands
 
 nnoremap <leader>,         :bprevious<CR>
 nnoremap <leader>.        :bnext<CR>
@@ -201,9 +170,28 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
-let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_nr_show = 0
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tab_type = 1
+" don't count trailing whitespace since it lags in huge files
+let g:airline#extensions#whitespace#enabled = 0
+" disable to improve fugitive performance
+let g:airline#extensions#branch#enabled = 0
+" put a buffer list at the top
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_left_sep = ""
+let g:airline_right_sep = ""
+
+imap jj <Esc>
+
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+set pumheight=10
+
+nmap <Leader>v :source $MYVIMRC
+
+let g:autocscope_menus = 1
