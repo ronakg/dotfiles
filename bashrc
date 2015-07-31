@@ -12,7 +12,7 @@ export GREP_OPTIONS='--color=auto'
 
 #for *BSD/darwin
 export CLICOLOR=1
-export PATH=$PATH:/usr/local/git/bin:/usr/local/bin
+export PATH=/usr/local/git/bin:/usr/local/bin:$PATH
 
 # Editor
 export EDITOR=vim

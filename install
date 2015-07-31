@@ -73,5 +73,10 @@ echo -e "\nUpdating submodules..."
 git submodule update --init
 echo -n "${reset}"
 
+echo -n "${green}"
+echo -e "\n Sourcing ~/.bashrc"
+source ~/.bashrc
+echo -n "${reset}"
+
 # Hurray...
 echo -e "\n...done"
