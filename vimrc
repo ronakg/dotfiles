@@ -1,54 +1,52 @@
+" Turn off legacy stuff
+set nocompatible
+
+" Pathogen docs say turn filetype off before calling
 filetype off
-call pathogen#helptags()
 call pathogen#infect()
+call pathogen#helptags()
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Space is my leader
 let mapleader=" "
 
+" Search everywhere, files, tabs, buffers
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_user_command = ['cscope.files', 'cat %s/cscope.files']
 let g:ctrlp_root_markers = ['cscope.files']
-let g:ctrlp_by_filename = 0
+nnoremap <leader>p :CtrlP<CR>
+
+" Covert space to .* tokens in search words
 let g:ctrlp_regexp = 1
 let g:ctrlp_prompt_mappings = {
             \ 'PrtAdd(".*")': ['<space>'],
             \ }
-nnoremap <leader>p :CtrlP<CR>
 
-set nocp
-set incsearch       "increamental search
-set hlsearch        "highlight search
-set backspace=indent,eol,start  "makes backspace working
-set ignorecase      "ignore case in searching
-set smartcase       "dont ignore case if capital letters present
-
-"vertical/horizontal scroll off settings
-set scrolloff=4
-
+set incsearch       " increamental search
+set hlsearch        " highlight search
+set backspace=indent,eol,start  " makes backspace working
+set ignorecase      " ignore case in searching
+set smartcase       " dont ignore case if capital letters present
+set scrolloff=4     " keep cursor off screen edges
 set autoread                    " automatically reload files changed outside of Vim
-autocmd CursorHold * checktime
-
-syntax on
+autocmd CursorHold * checktime  " checktime triggers auto reload when cursor is pressed
+syntax on           " Pretty syntax highlighting
 filetype on
-filetype plugin on
-filetype indent on
-
-" During searching via n and N, keep the search result line in center
-map N Nzz
-map n nzz
-
+filetype plugin on  " filetype plugins for file specific settings
+filetype indent on  " filetype specific indentation
+map N Nzz           " During searching via n and N, keep 
+map n nzz           " the search result line in center
 set softtabstop=4
 set shiftwidth=4
 set smarttab
 set expandtab
-
 set cindent
 set autoindent
 set ttyfast
 set lazyredraw
-
-set gdefault                    " search/replace "globally" (on a line) by default
+set gdefault        " search/replace globally (on a line) by default
+set splitright      " Open split on right, not left
+set splitbelow      " Open split below, not above
 
 " Remember cursor position between vim sessions
 if has("autocmd")
@@ -58,25 +56,17 @@ if has("autocmd")
                 \ endif
 endif
 
-" ctags path
-set tags=./tags;/
+set tags=./tags;/   " ctags path, search upwards till tags file is found
+set cscopetag       " Use both cscope and ctags as database
 
-" open vertical split on right, instead of left
-set splitright
-
-set cscopetag
-set csto=0
-set cscopeverbose
-
-" find files in vim using cscope
+" Find instances of a symbol from command line
 nnoremap " :vert scscope find s<space>
-nnoremap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>   " Find defintion
+nnoremap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>   " Find calls to this symbol
+nnoremap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>   " Find all instances of this symbol
 nnoremap <leader>t <c-t>
 
-" Italics comments
-highlight Comment cterm=italic
+highlight Comment cterm=italic          " italics comments
 
 " Use different colors for diff
 hi DiffAdd ctermbg=darkgreen ctermfg=black

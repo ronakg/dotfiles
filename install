@@ -9,7 +9,7 @@ blue=`tput setaf 4`
 reset=`tput sgr 0`
 
 # List of files to be installed
-files="bashrc bash_profile vimrc vim tmux.conf screenrc" 
+files="bashrc bash_profile vimrc vim tmux.conf screenrc bash_aliases"
 
 # Directories to install from and backup to
 mydotdir=~/my-dot-files
@@ -42,7 +42,8 @@ echo "Changing to the $mydotdir directory"
 cd $mydotdir
 echo -e "...done\n"
 
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
+# move any existing dotfiles in homedir to dotfiles_old directory, then create
+# symlinks
 echo -e "Moving any existing dotfiles from ~ to $olddotdir\n"
 for file in $files; do
     if [ -e ~/.$file ]; then
