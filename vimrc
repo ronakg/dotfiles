@@ -22,6 +22,7 @@ let g:ctrlp_prompt_mappings = {
             \ 'PrtAdd(".*")': ['<space>'],
             \ }
 
+set nomodeline      " disable mode lines (security measure)
 set incsearch       " increamental search
 set hlsearch        " highlight search
 set backspace=indent,eol,start  " makes backspace working
@@ -34,8 +35,6 @@ syntax on           " Pretty syntax highlighting
 filetype on
 filetype plugin on  " filetype plugins for file specific settings
 filetype indent on  " filetype specific indentation
-map N Nzz           " During searching via n and N, keep 
-map n nzz           " the search result line in center
 set softtabstop=4
 set shiftwidth=4
 set smarttab
@@ -47,6 +46,14 @@ set lazyredraw
 set gdefault        " search/replace globally (on a line) by default
 set splitright      " Open split on right, not left
 set splitbelow      " Open split below, not above
+set wildmenu
+set wildmode=longest,list,full
+set omnifunc=syntaxcomplete#Complete
+set completeopt=longest,menu,menuone
+set noshowmode      " Airline shows mode, so hide default mode
+set nobackup        " Don't need backup and swap files
+set noswapfile
+set pumheight=10    " Completion menu height
 
 " Remember cursor position between vim sessions
 if has("autocmd")
@@ -58,6 +65,10 @@ endif
 
 set tags=./tags;/   " ctags path, search upwards till tags file is found
 set cscopetag       " Use both cscope and ctags as database
+
+" During searching via n and N, keep the search result line in center
+map N Nzz
+map n nzz
 
 " Find instances of a symbol from command line
 nnoremap " :vert scscope find s<space>
@@ -83,11 +94,6 @@ hi Search cterm=none ctermfg=yellow ctermbg=black
 hi Visual cterm=none ctermfg=yellow ctermbg=brown
 
 " ============= AUTO COMPLETE OPTIONS ================
-set wildmenu
-set wildmode=longest,list,full
-set omnifunc=syntaxcomplete#Complete
-
-set completeopt=longest,menu
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
@@ -101,8 +107,6 @@ highlight PmenuSel ctermbg=white ctermfg=red
 
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w><C-w>
-set formatoptions=qrn1
-set noshowmode
 
 " vim-arline Don't show seperators
 let g:airline_section_warning = ''
@@ -114,8 +118,6 @@ let g:NERDTreeDirArrows=0
 let NERDTreeShowBookmarks=1
 map <leader>n :NERDTreeToggle<CR>
 
-set nobackup                    " Don't need backup and swap files
-set noswapfile
 
 " Don't skip wrapped lines in editor
 nnoremap j gj
@@ -129,15 +131,10 @@ nmap <silent> ,/ :nohlsearch<CR>
 
 " Easier to get command prompt
 map ; :
-set nomodeline                  " disable mode lines (security measure)
-
 
 " Highlight trailing whitespaces
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
-
-" Easier matching
-set encoding=utf-8
 
 nnoremap <leader>,         :bprevious<CR>
 nnoremap <leader>.        :bnext<CR>
@@ -180,7 +177,6 @@ imap jj <Esc>
 
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
-set pumheight=10
 
 nmap <Leader>v :source $MYVIMRC
 

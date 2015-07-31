@@ -1,11 +1,11 @@
 #! /bin/sh
 # Backup current working directory for later
-pwd = `pwd`
-rootdir = ""
+cwd=`pwd`
+rootdir=""
 
 if [ $1 ]; then
     if [ -d $1 ]; then
-        rootdir = $1
+        rootdir=$1
         echo "Running on - $1"
         cd $1
     else
@@ -13,12 +13,11 @@ if [ $1 ]; then
         exit
     fi
 else
-    rootdir = `pwd`
+    rootdir=`pwd`
     echo "Running on - `pwd`"
 fi
 
 # List of root level directories we are interested in.
-#declare -a dirs=("product" "bfc" "ao" "comp" "infra")
 declare -a dirs=("product" "ao" "comp")
 
 echo 'Deleting existing cscope files...'
@@ -52,5 +51,5 @@ cscope -b -q
 echo 'Building ctags database...'
 ctags --extra=+f --c-kinds=+p --fields=+lS -L $rootdir/cscope.files
 
-cd $pwd
+cd $cwd
 echo 'All done.'
