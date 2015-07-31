@@ -47,7 +47,12 @@ echo -e "...done\n"
 echo -e "Moving any existing dotfiles from ~ to $olddotdir\n"
 for file in $files; do
     if [ -e ~/.$file ]; then
-        mv -v ~/.$file $olddotdir/$file
+        if [ -d ~/.$file ]; then
+            # Move entire folder
+            mv -v ~/.$file $olddotdir/
+        else
+            mv -v ~/.$file $olddotdir/.$file
+        fi
     fi
 done
 echo -n "${reset}"
