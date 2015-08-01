@@ -180,3 +180,7 @@ set bg=dark
 colorscheme myown
 highlight Comment cterm=italic          " italics comments
 let g:airline_theme='bubblegum'
+
+" Change cursor based on mode, THIS IS NOT PORTABLE
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
