@@ -75,7 +75,7 @@ echo -n "${reset}"
 # Install submodules
 echo -n "${blue}"
 echo -e "\nUpdating submodules..."
-git submodule update --init
+git submodule update --init --recursive     # Sumodules might've submodules of their own
 echo -n "${reset}"
 
 echo -n "${green}"
