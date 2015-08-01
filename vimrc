@@ -77,7 +77,6 @@ nnoremap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>   " Find calls to 
 nnoremap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>   " Find all instances of this symbol
 nnoremap <leader>t <c-t>
 
-highlight Comment cterm=italic          " italics comments
 
 " Use different colors for diff
 hi DiffAdd ctermbg=darkgreen ctermfg=black
@@ -177,4 +176,7 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 nmap <Leader>v :source $MYVIMRC<CR>
 let g:autocscope_menus = 1
 
+set bg=dark
 colorscheme myown
+highlight Comment cterm=italic          " italics comments
+let g:airline_theme='bubblegum'

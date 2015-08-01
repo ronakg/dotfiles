@@ -140,7 +140,7 @@ if &t_Co > 255
       hi CursorLine               ctermbg=235   cterm=none
       hi CursorLineNr ctermfg=208               cterm=none
    else
-      hi Normal       ctermfg=252 ctermbg=230
+      hi Normal       ctermfg=252 ctermbg=233
       hi CursorLine               ctermbg=234   cterm=none
       hi CursorLineNr ctermfg=208               cterm=none
    endif
@@ -233,7 +233,7 @@ if &t_Co > 255
    hi SpecialKey      ctermfg=59
 
    if exists("g:rehash256") && g:rehash256 == 1
-       hi Normal       ctermfg=252 ctermbg=224
+       hi Normal       ctermfg=252 ctermbg=234
        hi CursorLine               ctermbg=236   cterm=none
        hi CursorLineNr ctermfg=208               cterm=none
 
@@ -241,15 +241,11 @@ if &t_Co > 255
        hi Character       ctermfg=222
        hi Number          ctermfg=141
        hi String          ctermfg=222
-       hi Conditional     ctermfg=197               cterm=italic,bold
-       hi Constant        ctermfg=141               cterm=italic,bold
+       hi Conditional     ctermfg=197               cterm=bold
+       hi Constant        ctermfg=141               cterm=bold
 
-       hi Macro           cterm=italic
-       hi DiffText        cterm=italic,bold
        hi DiffDelete      ctermfg=125 ctermbg=233
 
-       hi StorageClass    cterm=italic
-       hi Special         ctermbg=bg      cterm=italic
        hi Directory       ctermfg=154               cterm=bold
        hi Error           ctermfg=222 ctermbg=233
        hi Exception       ctermfg=154               cterm=bold
@@ -257,21 +253,21 @@ if &t_Co > 255
        hi Function        ctermfg=154
        hi Identifier      ctermfg=208
 
-       hi Keyword         ctermfg=197               cterm=italic,bold
+       hi Keyword         ctermfg=197               cterm=bold
        hi Operator        ctermfg=197
        hi PreCondit       ctermfg=154               cterm=bold
        hi PreProc         ctermfg=154
        hi Repeat          ctermfg=197               cterm=bold
 
        hi Statement       ctermfg=197               cterm=bold
-       hi Tag             ctermfg=197               cterm=italic
+       hi Tag             ctermfg=197
        hi Title           ctermfg=203
        hi Visual                      ctermbg=238
 
-       hi Comment         ctermfg=244 cterm=italic,bold
+       hi Comment         ctermfg=244
        hi LineNr          ctermfg=239 ctermbg=235
        hi NonText         ctermfg=239
-       hi SpecialKey      ctermfg=239  cterm=italic
+       hi SpecialKey      ctermfg=239
    endif
 end
 
