@@ -77,7 +77,6 @@ nnoremap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>   " Find calls to 
 nnoremap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>   " Find all instances of this symbol
 nnoremap <leader>t <c-t>
 
-
 " Use different colors for diff
 hi DiffAdd ctermbg=darkgreen ctermfg=black
 hi DiffChange ctermbg=cyan ctermfg=black
@@ -87,10 +86,6 @@ hi DiffDelete ctermbg=darkred ctermfg=black
 hi User1 term=underline cterm=bold ctermfg=black ctermbg=darkblue guifg=#40ffff guibg=#0000aa
 set statusline=%1*%F%m%r%h%w%=%(%c%V\ %l/%L\ %P%)
 set laststatus=2
-
-" Highlight search and visual blocks
-hi Search cterm=none ctermfg=yellow ctermbg=black
-hi Visual cterm=none ctermfg=yellow ctermbg=brown
 
 " ============= AUTO COMPLETE OPTIONS ================
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -116,7 +111,6 @@ let g:tagbar_usearrows = 1
 let g:NERDTreeDirArrows=0
 let NERDTreeShowBookmarks=1
 map <leader>n :NERDTreeToggle<CR>
-
 
 " Don't skip wrapped lines in editor
 nnoremap j gj
@@ -174,13 +168,20 @@ let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 nmap <Leader>v :source $MYVIMRC<CR>
-let g:autocscope_menus = 1
 
 set bg=dark
 colorscheme myown
-highlight Comment cterm=italic          " italics comments
 let g:airline_theme='bubblegum'
 
 " Change cursor based on mode, THIS IS NOT PORTABLE
 let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+
+" NERDCommenter
+" Ctrl-C to comment a block/line of code
+nmap <C-c> :call NERDComment(0,"sexy")<CR>
+vmap <C-c> :call NERDComment(0,"sexy")<CR>
+
+" Ctrl-X to uncomment a block/line of code
+nmap <C-x> :call NERDComment(0,"uncomment")<CR>
+vmap <C-x> :call NERDComment(0,"uncomment")<CR>
