@@ -77,12 +77,6 @@ nnoremap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>   " Find calls to 
 nnoremap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>   " Find all instances of this symbol
 nnoremap <leader>t <c-t>
 
-" Use different colors for diff
-hi DiffAdd ctermbg=darkgreen ctermfg=black
-hi DiffChange ctermbg=cyan ctermfg=black
-hi DiffText ctermbg=brown ctermfg=yellow
-hi DiffDelete ctermbg=darkred ctermfg=black
-
 hi User1 term=underline cterm=bold ctermfg=black ctermbg=darkblue guifg=#40ffff guibg=#0000aa
 set statusline=%1*%F%m%r%h%w%=%(%c%V\ %l/%L\ %P%)
 set laststatus=2
@@ -95,9 +89,6 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
-" Popup menu colors
-highlight Pmenu ctermbg=black ctermfg=red
-highlight PmenuSel ctermbg=white ctermfg=red
 
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w><C-w>
@@ -108,7 +99,7 @@ let g:airline_section_warning = ''
 " If can't find extention of a file, assume it's a C file
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
 let g:tagbar_usearrows = 1
-let g:NERDTreeDirArrows=0
+let g:NERDTreeCommentDirArrows=0
 let NERDTreeShowBookmarks=1
 map <leader>n :NERDTreeToggle<CR>
 
