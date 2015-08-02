@@ -160,10 +160,6 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 nmap <Leader>v :source $MYVIMRC<CR>
 
-set bg=dark
-colorscheme myown
-let g:airline_theme='bubblegum'
-
 " Change cursor based on mode, THIS IS NOT PORTABLE
 let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
@@ -176,3 +172,6 @@ vmap <C-c> :call NERDComment(0,"sexy")<CR>
 " Ctrl-X to uncomment a block/line of code
 nmap <C-x> :call NERDComment(0,"uncomment")<CR>
 vmap <C-x> :call NERDComment(0,"uncomment")<CR>
+
+let g:airline_theme='bubblegum'
+colorscheme myown
