@@ -54,10 +54,12 @@ if &t_Co > 255
     hi PreProc	        ctermfg=green
     hi Delimiter	ctermfg=241
     hi Visual           ctermfg=black  ctermbg=grey
+
     hi DiffAdd          ctermfg=black   ctermbg=114 
     hi DiffChange       ctermfg=black   ctermbg=cyan
     hi DiffText         ctermfg=white   ctermbg=darkred     cterm=italic
     hi DiffDelete       ctermfg=black   ctermbg=145
+
     hi Pmenu            ctermfg=red     ctermbg=black 
     hi PmenuSel         ctermfg=red     ctermbg=white 
 endif
