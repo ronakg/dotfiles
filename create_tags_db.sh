@@ -28,7 +28,7 @@ rm -rfv tags*
 for dir in "${dirs[@]}"
 do
     if [ -d $dir ]; then
-        echo "Finding files in: `pwd`"
+        echo "Finding files in: `pwd`/$dir"
 
         if [ "$2" == "include" ]; then
             echo "Including kernel files too..."
