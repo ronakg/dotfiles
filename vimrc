@@ -55,10 +55,7 @@ set nobackup        " Don't need backup and swap files
 set noswapfile
 set pumheight=10    " Completion menu height
 set nofoldenable    " disable folding
-
-if &diff                             " only for diff mode/vimdiff
-    set diffopt=filler,context:1000000 " filler is default and inserts empty lines for sync
-endif
+"set cursorline      " Show a horizontal line on cursor
 
 " Remember cursor position between vim sessions
 if has("autocmd")

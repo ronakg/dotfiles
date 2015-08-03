@@ -3,30 +3,6 @@
 " Author: Ronak Gandhi <ronak.gandhi@ronakg.com>
 "
 
-hi Conditional	guifg=#ffaf00	            gui=italic
-hi Statement	guifg=#ffaf00	            gui=italic
-hi Type	        guifg=darkgreen	            gui=italic
-hi Storageclass	guifg=#d7005f	            gui=italic
-hi String	guifg=red
-hi Number	guifg=#d7005f	            gui=italic
-hi Boolean	guifg=#d7005f	            gui=italic
-hi Debug	guifg=yellow	            gui=bold
-hi Identifier	guifg=yellow	            gui=italic
-hi Label	guifg=red	            gui=none
-hi Directory	guifg=cyan	            gui=italic
-hi Comment	guifg=darkgrey
-hi Function	guifg=#87d7ff
-hi Operator	guifg=grey	            gui=none
-hi Keyword	guifg=blue
-hi Constant	guifg=yellow	            gui=italic
-hi Macro	guifg=darkyellow	    gui=italic
-hi Tag	        guifg=black
-hi PreCondit	guifg=darkyellow	    gui=italic
-hi Character	guifg=#ffd787
-hi SpecialChar	guifg=yellow	
-hi PreProc	guifg=blue
-hi Delimiter	guifg=#626262
-
 if &t_Co > 255
     hi Conditional	ctermfg=214	                    
     hi Statement	ctermfg=214	            
@@ -61,4 +37,7 @@ if &t_Co > 255
 
     hi Pmenu            ctermfg=red         ctermbg=black 
     hi PmenuSel         ctermfg=red         ctermbg=white 
+
+    hi Folded           ctermfg=black
+    hi MatchParen          ctermfg=white       ctermbg=red
 endif
