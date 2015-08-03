@@ -1,6 +1,6 @@
 # Check if a command exists
 command_exists () {
-    type "$1" &> /dev/null ;
+    type $1 &> /dev/null
 }
 
 if [ -f ~/.bash_aliases ]; then
@@ -29,7 +29,6 @@ export HISTFILESIZE=100000              # big big history
 shopt -s histappend                     # append to history, don't overwrite it
 shopt -s cmdhist                        # Store multi-line commands as one-line in history
 
-
 # Use vimdiff as git difftool
 if command_exists git ; then
     git config --global diff.tool vimdiff
@@ -45,6 +44,8 @@ then
     bind '"\e[B": history-search-forward'
 fi
 
+# Device specific settings should be in .bashrc_local
+[ -f ~/.bashrc_local ] && . ~/.bashrc_local
 
-# Source other rc files after this line
+# Work related settings should be in .bashrc_work
 [ -f ~/.bashrc_work ] && . ~/.bashrc_work

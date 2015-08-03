@@ -54,6 +54,11 @@ set noshowmode      " Airline shows mode, so hide default mode
 set nobackup        " Don't need backup and swap files
 set noswapfile
 set pumheight=10    " Completion menu height
+set nofoldenable    " disable folding
+
+if &diff                             " only for diff mode/vimdiff
+    set diffopt=filler,context:1000000 " filler is default and inserts empty lines for sync
+endif
 
 " Remember cursor position between vim sessions
 if has("autocmd")
@@ -88,7 +93,6 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
 
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
 
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w><C-w>
