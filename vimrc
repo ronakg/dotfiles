@@ -31,10 +31,10 @@ set smartcase       " dont ignore case if capital letters present
 set scrolloff=4     " keep cursor off screen edges
 set autoread                    " automatically reload files changed outside of Vim
 autocmd CursorHold * checktime  " checktime triggers auto reload when cursor is pressed
-syntax on           " Pretty syntax highlighting
 filetype on
 filetype plugin on  " filetype plugins for file specific settings
 filetype indent on  " filetype specific indentation
+syntax on           " Pretty syntax highlighting
 set softtabstop=4
 set shiftwidth=4
 set smarttab
@@ -173,5 +173,6 @@ vmap <C-c> :call NERDComment(0,"sexy")<CR>
 nmap <C-x> :call NERDComment(0,"uncomment")<CR>
 vmap <C-x> :call NERDComment(0,"uncomment")<CR>
 
+autocmd BufEnter * colorscheme myown
+autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
 let g:airline_theme='bubblegum'
-colorscheme myown
