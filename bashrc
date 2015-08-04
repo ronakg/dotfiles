@@ -20,7 +20,7 @@ export VISUAL=vim
 export CSCOPE_EDITOR=vim
 
 # Prompt [hostname [time] pwd]
-export PS1='\[\e[32m\][\h [\A] \w]$ \[\e[0m\]'
+export PS1='\[\e[32m\][\h \w]$ \[\e[0m\]'
 
 # Moar history for me
 export HISTCONTROL=ignoredups:erasedups # no duplicate entries

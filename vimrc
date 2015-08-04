@@ -7,8 +7,9 @@ call pathogen#infect()
 call pathogen#helptags()
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-" Space is my leader
-let mapleader=" "
+" Space is my leader, don't assign leader to space - that causes latency
+" issues
+nmap <space> <leader>
 
 " Search everywhere, files, tabs, buffers
 let g:ctrlp_cmd = 'CtrlPMixed'
@@ -49,7 +50,7 @@ set splitbelow      " Open split below, not above
 set wildmenu
 set wildmode=longest,list,full
 set omnifunc=syntaxcomplete#Complete
-set completeopt=longest,menu,menuone
+set completeopt=longest,menuone
 set noshowmode      " Airline shows mode, so hide default mode
 set nobackup        " Don't need backup and swap files
 set noswapfile
@@ -141,17 +142,12 @@ let g:airline#extensions#tabline#buffer_nr_show = 0
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#show_tab_type = 1
+let g:airline#extensions#tabline#tab_nr_type = 0
+let g:airline#extensions#tabline#show_tab_type = 0
 " don't count trailing whitespace since it lags in huge files
 let g:airline#extensions#whitespace#enabled = 0
-" disable to improve fugitive performance
-let g:airline#extensions#branch#enabled = 0
-" put a buffer list at the top
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_left_sep = ""
-let g:airline_right_sep = ""
+"let g:airline_left_sep = ""
+"let g:airline_right_sep = ""
 
 imap jj <Esc>
 
@@ -175,4 +171,4 @@ vmap <C-x> :call NERDComment(0,"uncomment")<CR>
 
 autocmd BufEnter * colorscheme myown
 autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
-let g:airline_theme='bubblegum'
+let g:airline_theme='molokai'
