@@ -5,7 +5,6 @@ set nocompatible
 filetype off
 call pathogen#infect()
 call pathogen#helptags()
-set rtp+=~/.fzf
 
 " Space is my leader, don't assign leader to space - that causes latency
 " issues
@@ -162,3 +161,23 @@ autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
 let g:airline_theme='molokai'
 
 nnoremap <leader>f :FZF! -x<CR>
+
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+nnoremap <silent> <Leader><Enter> :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })<CR>
+
+cnoreabbrev FZF FZF!

@@ -48,7 +48,7 @@ fi
 [ -f ~/.bashrc_work ] && . ~/.bashrc_work
 
 
-export FZF_DEFAULT_COMMAND='if [ -e cscope.files]; then cat cscope.files; else find * -type f; fi'
+export FZF_DEFAULT_COMMAND='if [ -e cscope.files ]; then cat cscope.files; else find ./ -type f ; fi'
 export FZF_COMPLETION_OPTS='+c -x'
 export FZF_TMUX=0
 export FZF_DEFAULT_OPTS='

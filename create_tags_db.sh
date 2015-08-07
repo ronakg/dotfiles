@@ -1,7 +1,7 @@
 #! /bin/sh
 
 # List of root level directories we are interested in.
-declare -a dirs=("product" "ao" "comp" "bfc")
+declare -a dirs=("product" "ao" "comp" "infra")
 
 # Backup current working directory for later
 cwd=`pwd`
