@@ -5,23 +5,11 @@ set nocompatible
 filetype off
 call pathogen#infect()
 call pathogen#helptags()
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+set rtp+=~/.fzf
 
 " Space is my leader, don't assign leader to space - that causes latency
 " issues
 nmap <space> <leader>
-
-" Search everywhere, files, tabs, buffers
-let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_user_command = ['cscope.files', 'cat %s/cscope.files']
-let g:ctrlp_root_markers = ['cscope.files']
-nnoremap <leader>p :CtrlP<CR>
-
-" Covert space to .* tokens in search words
-let g:ctrlp_regexp = 1
-let g:ctrlp_prompt_mappings = {
-            \ 'PrtAdd(".*")': ['<space>'],
-            \ }
 
 set nomodeline      " disable mode lines (security measure)
 set incsearch       " increamental search
@@ -48,7 +36,7 @@ set gdefault        " search/replace globally (on a line) by default
 set splitright      " Open split on right, not left
 set splitbelow      " Open split below, not above
 set wildmenu
-set wildmode=longest,list,full
+set wildmode=longest:full,list:full
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menuone
 set noshowmode      " Airline shows mode, so hide default mode
@@ -172,3 +160,5 @@ vmap <C-x> :call NERDComment(0,"uncomment")<CR>
 autocmd BufEnter * colorscheme myown
 autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
 let g:airline_theme='molokai'
+
+nnoremap <leader>f :FZF! -x<CR>

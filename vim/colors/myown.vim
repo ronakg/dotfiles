@@ -4,6 +4,7 @@
 "
 
 if &t_Co > 255
+    hi LineNr           ctermfg=darkgrey
     hi Conditional	ctermfg=214	                    
     hi Statement	ctermfg=214	            
     hi Type	        ctermfg=darkgreen	            
@@ -28,7 +29,7 @@ if &t_Co > 255
     hi PreProc	        ctermfg=green
     hi Delimiter	ctermfg=241
     hi Visual           ctermfg=black       ctermbg=grey
-    hi Search           ctermfg=darkred     ctermbg=white
+    hi Search           ctermfg=brown    ctermbg=grey
 
     hi DiffAdd          ctermfg=black       ctermbg=114 
     hi DiffChange       ctermfg=black       ctermbg=cyan

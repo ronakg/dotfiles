@@ -7,9 +7,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# Handy options
-export GREP_OPTIONS='--color=auto'
-
 #for *BSD/darwin
 export CLICOLOR=1
 export PATH=/usr/local/git/bin:/usr/local/bin:$PATH
@@ -49,3 +46,41 @@ fi
 
 # Work related settings should be in .bashrc_work
 [ -f ~/.bashrc_work ] && . ~/.bashrc_work
+
+
+export FZF_DEFAULT_COMMAND='cat cscope.files'
+export FZF_COMPLETION_OPTS='+c -x'
+export FZF_TMUX=0
+export FZF_DEFAULT_OPTS='
+  --extended
+  --bind ctrl-f:page-down,ctrl-b:page-up
+  --color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:121
+  --color info:144,prompt:161,spinner:135,pointer:135,marker:118
+'
+
+# Modified version where you can press
+#   - CTRL-O to open with `open` command,
+#   - CTRL-E or Enter key to open with the $EDITOR
+fo() {
+  local out file key
+  out=$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)
+  key=$(head -1 <<< "$out")
+  file=$(head -2 <<< "$out" | tail -1)
+  if [ -n "$file" ]; then
+    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+  fi
+}
+
+# ftags - search ctags
+ftags() {
+  local line
+  [ -e tags ] &&
+  line=$(
+    awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' tags |
+    cut -c1-80 | fzf --nth=1,2
+  ) && $EDITOR $(cut -f3 <<< "$line") -c "set nocst" \
+                                      -c "silent tag $(cut -f2 <<< "$line")"
+}
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

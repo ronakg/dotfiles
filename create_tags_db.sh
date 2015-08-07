@@ -1,4 +1,8 @@
 #! /bin/sh
+
+# List of root level directories we are interested in.
+declare -a dirs=("product" "ao" "comp" "bfc")
+
 # Backup current working directory for later
 cwd=`pwd`
 rootdir=""
@@ -16,9 +20,6 @@ else
     rootdir=`pwd`
     echo "Running on - `pwd`"
 fi
-
-# List of root level directories we are interested in.
-declare -a dirs=("product" "ao" "comp")
 
 echo 'Deleting existing cscope files...'
 rm -rfv cscope.*
