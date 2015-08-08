@@ -1,6 +1,6 @@
 # Check if a command exists
 command_exists () {
-    type $1 &> /dev/null
+    ! type $1 &> /dev/null
 }
 
 if [ -f ~/.bash_aliases ]; then
