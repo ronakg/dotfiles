@@ -54,10 +54,6 @@ endif
 set tags=./tags;/   " ctags path, search upwards till tags file is found
 set cscopetag       " Use both cscope and ctags as database
 
-" During searching via n and N, keep the search result line in center
-map N Nzz
-map n nzz
-
 " Find instances of a symbol from command line
 nnoremap " :vert scscope find s<space>
 nnoremap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>   " Find defintion
