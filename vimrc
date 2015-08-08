@@ -20,9 +20,7 @@ set scrolloff=4     " keep cursor off screen edges
 set autoread                    " automatically reload files changed outside of Vim
 autocmd CursorHold * checktime  " checktime triggers auto reload when cursor is pressed
 filetype on
-filetype plugin on  " filetype plugins for file specific settings
-filetype indent on  " filetype specific indentation
-syntax on           " Pretty syntax highlighting
+syntax enable           " Pretty syntax highlighting
 set softtabstop=4
 set shiftwidth=4
 set smarttab
@@ -156,10 +154,6 @@ vmap <C-c> :call NERDComment(0,"sexy")<CR>
 nmap <C-x> :call NERDComment(0,"uncomment")<CR>
 vmap <C-x> :call NERDComment(0,"uncomment")<CR>
 
-autocmd BufEnter * colorscheme myown
-autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
-let g:airline_theme='molokai'
-
 nnoremap <leader>f :FZF! -x<CR>
 
 function! s:buflist()
@@ -181,3 +175,10 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 \ })<CR>
 
 cnoreabbrev FZF FZF!
+
+let g:airline_theme='molokai'
+colorscheme myown
+autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
+
+filetype plugin on  " filetype plugins for file specific settings
+filetype indent on  " filetype specific indentation
