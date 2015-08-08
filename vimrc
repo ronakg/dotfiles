@@ -10,6 +10,7 @@ call pathogen#helptags()
 " issues
 nmap <space> <leader>
 
+set t_Co=256
 set nomodeline      " disable mode lines (security measure)
 set incsearch       " increamental search
 set hlsearch        " highlight search
@@ -18,9 +19,6 @@ set ignorecase      " ignore case in searching
 set smartcase       " dont ignore case if capital letters present
 set scrolloff=4     " keep cursor off screen edges
 set autoread                    " automatically reload files changed outside of Vim
-autocmd CursorHold * checktime  " checktime triggers auto reload when cursor is pressed
-filetype on
-syntax enable           " Pretty syntax highlighting
 set softtabstop=4
 set shiftwidth=4
 set smarttab
@@ -41,7 +39,11 @@ set nobackup        " Don't need backup and swap files
 set noswapfile
 set pumheight=10    " Completion menu height
 set nofoldenable    " disable folding
-"set cursorline      " Show a horizontal line on cursor
+set cursorline      " Show a horizontal line on cursor
+autocmd CursorHold * checktime  " checktime triggers auto reload when cursor is pressed
+filetype plugin on  " filetype plugins for file specific settings
+filetype indent on  " filetype specific indentation
+syntax enable           " Pretty syntax highlighting
 
 " Remember cursor position between vim sessions
 if has("autocmd")
@@ -98,11 +100,11 @@ nmap <silent> ,/ :nohlsearch<CR>
 " Easier to get command prompt
 map ; :
 
-nnoremap <leader>,         :bprevious<CR>
-nnoremap <leader>.        :bnext<CR>
-inoremap <leader>,    <Esc>:bprevious<CR>i
-inoremap <leader>.   <Esc>:bnext<CR>i
-nnoremap <leader>q      :bd<CR>
+nnoremap   <leader>,   :bprevious<CR>
+nnoremap   <leader>.   :bnext<CR>
+inoremap   <leader>,   <Esc>:bprevious<CR>i
+inoremap   <leader>.   <Esc>:bnext<CR>i
+nnoremap   <leader>q   :bd<CR>
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -119,21 +121,21 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
-let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#tabline#buffer_nr_show               = 0
 " Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#tab_nr_type = 0
-let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#fnamemod                     = ':t'
+let g:airline#extensions#tabline#show_buffers                 = 1
+let g:airline#extensions#tabline#tab_nr_type                  = 0
+let g:airline#extensions#tabline#show_tab_type                = 0
 " don't count trailing whitespace since it lags in huge files
-let g:airline#extensions#whitespace#enabled = 0
-"let g:airline_left_sep = ""
-"let g:airline_right_sep = ""
+let g:airline#extensions#whitespace#enabled                   = 0
+"let g:airline_left_sep                                       = ""
+"let g:airline_right_sep                                      = ""
 
 imap jj <Esc>
 
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+let   g:SuperTabDefaultCompletionType          =   "context"
+let   g:SuperTabContextDefaultCompletionType   =   "<c-n>"
 
 nmap <Leader>v :source $MYVIMRC<CR>
 
@@ -163,18 +165,8 @@ function! s:bufopen(e)
   execute 'buffer' matchstr(a:e, '^[ 0-9]*')
 endfunction
 
-nnoremap <silent> <Leader><Enter> :call fzf#run({
-\   'source':  reverse(<sid>buflist()),
-\   'sink':    function('<sid>bufopen'),
-\   'options': '+m',
-\   'down':    len(<sid>buflist()) + 2
-\ })<CR>
-
 cnoreabbrev FZF FZF!
 
 let g:airline_theme='molokai'
 colorscheme myown
 autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
-
-filetype plugin on  " filetype plugins for file specific settings
-filetype indent on  " filetype specific indentation
