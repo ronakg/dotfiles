@@ -12,7 +12,7 @@ alias vi=vim
 alias newtmux="tmux -u new -s ${PWD##*/}"
 
 # ssh with normal terminal
-alias myssh="TERM=xterm-256color ssh"
+alias myssh="TERM=xterm ssh"
 
 # Create cscope and ctags database
 alias create_tags_db=". ~/my-dot-files/create_tags_db.sh"
