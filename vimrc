@@ -167,6 +167,7 @@ endfunction
 
 cnoreabbrev FZF FZF!
 
+set bg=dark
 let g:airline_theme='molokai'
 colorscheme myown
 autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
