@@ -1,6 +1,6 @@
 # Check if a command exists
 command_exists () {
-    ! type $1 &> /dev/null
+    type $1 &> /dev/null
 }
 
 if [ -f ~/.bash_aliases ]; then
@@ -26,14 +26,6 @@ export HISTFILESIZE=100000              # big big history
 shopt -s histappend                     # append to history, don't overwrite it
 shopt -s cmdhist                        # Store multi-line commands as one-line in history
 
-# Use vimdiff as git difftool
-if command_exists git ; then
-    git config --global diff.tool vimdiff
-    git config --global merge.tool vimdiff
-    git config --global difftool.prompt false
-    alias gitdiff='git difftool'
-fi
-
 # Bind up and down array to do backward and forward history search
 if [[ $- == *i* ]]
 then
@@ -47,6 +39,13 @@ fi
 # Work related settings should be in .bashrc_work
 [ -f ~/.bashrc_work ] && . ~/.bashrc_work
 
+# Use vimdiff as git difftool
+if command_exists git ; then
+    git config --global diff.tool vimdiff
+    git config --global merge.tool vimdiff
+    git config --global difftool.prompt false
+    alias gitdiff='git difftool'
+fi
 
 export FZF_DEFAULT_COMMAND='if [ -e cscope.files ]; then cat cscope.files; else find ./ -type f ; fi'
 export FZF_COMPLETION_OPTS='+c -x'
@@ -81,7 +80,5 @@ ftags() {
   ) && $EDITOR $(cut -f3 <<< "$line") -c "set nocst" \
                                       -c "silent tag $(cut -f2 <<< "$line")"
 }
-
-
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
