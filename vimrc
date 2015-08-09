@@ -125,12 +125,23 @@ nnoremap <leader>f :FZF! -x<CR>
 
 cnoreabbrev FZF FZF!
 
+" Change cursor shape based on mode.
+" https://gist.github.com/andyfowler/1195581
+set gcr=a:blinkon0
 if exists('$TMUX')
-    let &t_SI = "\<Esc>[3 q"
-    let &t_EI = "\<Esc>[0 q"
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 else
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+func DiffSettings()
+    nmap q :qa<CR>
+endfun
+
+if &diff
+    autocmd VimEnter * call DiffSettings()
 endif
 
 set bg=dark
@@ -138,6 +149,7 @@ let g:airline_theme='PaperColor'
 colorscheme myown
 autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
 
+"======================== PROMPTLINE =============================
 let g:promptline_preset = {
         \'a' : [ promptline#slices#host({'only_if_ssh': 1}) ],
         \'b' : [ promptline#slices#cwd() ],
