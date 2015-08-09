@@ -1,3 +1,5 @@
+" vimrc by Ronak Gandhi
+
 set termencoding=utf-8
 set encoding=utf-8
 
@@ -113,7 +115,6 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 "========================= SUPERTAB ===============================
 let   g:SuperTabDefaultCompletionType          =   "context"
 let   g:SuperTabContextDefaultCompletionType   =   "<c-n>"
-
 
 " ======================= NERDCommenter ===========================
 " Ctrl-C to comment a block/line of code
