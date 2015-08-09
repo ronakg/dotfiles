@@ -47,6 +47,22 @@ syntax enable                        " Pretty syntax highlighing
 set laststatus=2                     " Always show statusline     
 " set cursorline                     " Show a horizontal line on cursor
 
+" Tab to switch between vertical splits
+nnoremap <tab> <C-w><C-w>
+
+" If can't find extention of a file, assume it's a C file
+autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
+
+" Clear highlighted searches
+nmap <silent> ,/ :nohlsearch<CR>
+
+" Easier to get command prompt
+map ; :
+imap jj <Esc>
+
+" Source vimrc
+nmap <Leader>v :source $MYVIMRC<CR>
+
 " Remember cursor position between vim sessions
 if has("autocmd")
     autocmd BufReadPost *
@@ -54,6 +70,13 @@ if has("autocmd")
                 \   exe "normal! g'\"" |
                 \ endif
 endif
+
+" Buffer selection and movement
+nnoremap   <leader>,   :bprevious<CR>
+nnoremap   <leader>.   :bnext<CR>
+inoremap   <leader>,   <Esc>:bprevious<CR>i
+inoremap   <leader>.   <Esc>:bnext<CR>i
+nnoremap   <leader>q   :bd<CR>
 
 "===================== CTAGS/CSCOPE ==========================
 set tags=./tags;/   " ctags path, search upwards till tags file is found
@@ -65,32 +88,18 @@ nnoremap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>   " Find calls to 
 nnoremap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>   " Find all instances of this symbol
 nnoremap <leader>t <c-t>
 
-" Tab to switch between vertical splits
-nnoremap <tab> <C-w><C-w>
-
-let g:airline_powerline_fonts = 1
-
-" If can't find extention of a file, assume it's a C file
-autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
-
-" Clear highlighted searches
-nmap <silent> ,/ :nohlsearch<CR>
-
-" Easier to get command prompt
-map ; :
-
-" Buffer selection and movement
-nnoremap   <leader>,   :bprevious<CR>
-nnoremap   <leader>.   :bnext<CR>
-inoremap   <leader>,   <Esc>:bprevious<CR>i
-inoremap   <leader>.   <Esc>:bnext<CR>i
-nnoremap   <leader>q   :bd<CR>
-
+"========================== VIM-AIRLINE ==========================
 " Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_min_count = 2
-let g:airline#extensions#tabline#tab_min_count = 2
-let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#enabled                      = 1
+let g:airline#extensions#tabline#buffer_min_count             = 2
+let g:airline#extensions#tabline#tab_min_count                = 2
+let g:airline#extensions#tabline#buffer_idx_mode              = 1
+let g:airline#extensions#tabline#buffer_nr_show               = 0
+let g:airline#extensions#tabline#show_buffers                 = 1
+let g:airline_powerline_fonts                                 = 1
+" don't count trailing whitespace since it lags in huge files
+let g:airline#extensions#whitespace#enabled                   = 0
+let g:airline_theme                                           = 'PaperColor'
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -100,17 +109,11 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
-let g:airline#extensions#tabline#buffer_nr_show               = 0
-let g:airline#extensions#tabline#show_buffers                 = 1
-" don't count trailing whitespace since it lags in huge files
-let g:airline#extensions#whitespace#enabled                   = 0
 
-imap jj <Esc>
-
+"========================= SUPERTAB ===============================
 let   g:SuperTabDefaultCompletionType          =   "context"
 let   g:SuperTabContextDefaultCompletionType   =   "<c-n>"
 
-nmap <Leader>v :source $MYVIMRC<CR>
 
 " ======================= NERDCommenter ===========================
 " Ctrl-C to comment a block/line of code
@@ -121,8 +124,8 @@ vmap <C-c> :call NERDComment(0,"sexy")<CR>
 nmap <C-x> :call NERDComment(0,"uncomment")<CR>
 vmap <C-x> :call NERDComment(0,"uncomment")<CR>
 
+"========================== FZF ===================================
 nnoremap <leader>f :FZF! -x<CR>
-
 cnoreabbrev FZF FZF!
 
 " Change cursor shape based on mode.
@@ -136,6 +139,7 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+"=========================== DIFF ===============================
 func DiffSettings()
     nmap q :qa<CR>
 endfun
@@ -144,15 +148,15 @@ if &diff
     autocmd VimEnter * call DiffSettings()
 endif
 
+"=========================== COLORSCHEME ========================
 set bg=dark
-let g:airline_theme='PaperColor'
 colorscheme myown
 autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
 
 "======================== PROMPTLINE =============================
 let g:promptline_preset = {
-        \'a' : [ promptline#slices#host({'only_if_ssh': 1}) ],
-        \'b' : [ promptline#slices#cwd() ],
-        \'c' : [ promptline#slices#vcs_branch() ],
-        \'y' : [ promptline#slices#git_status() ],
+        \'a'    : [ promptline#slices#host({'only_if_ssh' : 1}) ],
+        \'b'    : [ promptline#slices#cwd() ],
+        \'c'    : [ promptline#slices#vcs_branch() ],
+        \'y'    : [ promptline#slices#git_status() ],
         \'warn' : [ promptline#slices#last_exit_code() ]}
