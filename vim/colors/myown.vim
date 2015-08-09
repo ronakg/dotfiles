@@ -29,8 +29,8 @@ hi Character       ctermfg = 222
 hi SpecialChar     ctermfg = magenta
 hi PreProc         ctermfg = green
 hi Delimiter       ctermfg = 241
-hi Visual          ctermfg = black      ctermbg = grey
-hi Search          ctermfg = brown      ctermbg = grey
+hi Visual          ctermfg = brown      ctermbg = grey
+hi Search          ctermfg = darkred      ctermbg = white
 
 hi DiffAdd         ctermfg = black      ctermbg = 114
 hi DiffChange      ctermfg = black      ctermbg = cyan
