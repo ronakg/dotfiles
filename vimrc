@@ -10,15 +10,16 @@ call pathogen#helptags()
 " issues
 nmap <space> <leader>
 
+" Standard vim options
 set t_Co=256
-set nomodeline      " disable mode lines (security measure)
-set incsearch       " increamental search
-set hlsearch        " highlight search
-set backspace=indent,eol,start  " makes backspace working
-set ignorecase      " ignore case in searching
-set smartcase       " dont ignore case if capital letters present
-set scrolloff=4     " keep cursor off screen edges
-set autoread                    " automatically reload files changed outside of Vim
+set nomodeline                       " disable mode lines (security measure)
+set incsearch                        " increamental search
+set hlsearch                         " highlight search
+set backspace=indent,eol,start       " makes backspace working
+set ignorecase                       " ignore case in searching
+set smartcase                        " dont ignore case if capital letters present
+set scrolloff=4                      " keep cursor off screen edges
+set autoread                         " automatically reload files changed outside of Vim
 set softtabstop=4
 set shiftwidth=4
 set smarttab
@@ -27,23 +28,24 @@ set cindent
 set autoindent
 set ttyfast
 set lazyredraw
-set gdefault        " search/replace globally (on a line) by default
-set splitright      " Open split on right, not left
-set splitbelow      " Open split below, not above
+set gdefault                         " search/replace globally (on a line) by default
+set splitright                       " Open split on right, not left
+set splitbelow                       " Open split below, not above
 set wildmenu
 set wildmode=longest:full,list:full
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menuone
-set noshowmode      " Airline shows mode, so hide default mode
-set nobackup        " Don't need backup and swap files
+set noshowmode                       " Airline shows mode, so hide default mode
+set nobackup                         " Don't need backup and swap files
 set noswapfile
-set pumheight=10    " Completion menu height
-set nofoldenable    " disable folding
-"set cursorline      " Show a horizontal line on cursor
-autocmd CursorHold * checktime  " checktime triggers auto reload when cursor is pressed
-filetype plugin on  " filetype plugins for file specific settings
-filetype indent on  " filetype specific indentation
-syntax enable           " Pretty syntax highlighting
+set pumheight=10                     " Completion menu height
+set nofoldenable                     " disable folding
+autocmd CursorHold * checktime       " checktime triggers auto reload when cursor is pressed
+filetype plugin on                   " filetype plugins for file specific settings
+filetype indent on                   " filetype specific indentation
+syntax enable                        " Pretty syntax highlighing
+set laststatus=2                     " Always show statusline     
+" set cursorline                     " Show a horizontal line on cursor
 
 " Remember cursor position between vim sessions
 if has("autocmd")
@@ -53,48 +55,23 @@ if has("autocmd")
                 \ endif
 endif
 
+"===================== CTAGS/CSCOPE ==========================
 set tags=./tags;/   " ctags path, search upwards till tags file is found
 set cscopetag       " Use both cscope and ctags as database
 
 " Find instances of a symbol from command line
 nnoremap " :vert scscope find s<space>
-nnoremap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>   " Find defintion
 nnoremap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>   " Find calls to this symbol
 nnoremap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>   " Find all instances of this symbol
 nnoremap <leader>t <c-t>
 
-set statusline=%1*%F%m%r%h%w%=%(%c%V\ %l/%L\ %P%)
-set laststatus=2
-
-" ============= AUTO COMPLETE OPTIONS ================
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w><C-w>
 
-" vim-arline Don't show seperators
-let g:airline_section_warning = ''
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#branch#enabled=1
 
 " If can't find extention of a file, assume it's a C file
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
-let g:tagbar_usearrows = 1
-let g:NERDTreeCommentDirArrows=0
-let NERDTreeShowBookmarks=1
-map <leader>n :NERDTreeToggle<CR>
-
-" Don't skip wrapped lines in editor
-nnoremap j gj
-nnoremap k gk
-
-" Visually select just pasted paragraph, for indentation etc
-nnoremap <leader>v V`]
 
 " Clear highlighted searches
 nmap <silent> ,/ :nohlsearch<CR>
@@ -102,6 +79,7 @@ nmap <silent> ,/ :nohlsearch<CR>
 " Easier to get command prompt
 map ; :
 
+" Buffer selection and movement
 nnoremap   <leader>,   :bprevious<CR>
 nnoremap   <leader>.   :bnext<CR>
 inoremap   <leader>,   <Esc>:bprevious<CR>i
@@ -123,13 +101,9 @@ nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 let g:airline#extensions#tabline#buffer_nr_show               = 0
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod                     = ':t'
 let g:airline#extensions#tabline#show_buffers                 = 1
-let g:airline#extensions#tabline#tab_nr_type                  = 0
-let g:airline#extensions#tabline#show_tab_type                = 0
 " don't count trailing whitespace since it lags in huge files
-let g:airline#extensions#whitespace#enabled                   = 1
+let g:airline#extensions#whitespace#enabled                   = 0
 
 imap jj <Esc>
 
@@ -138,11 +112,7 @@ let   g:SuperTabContextDefaultCompletionType   =   "<c-n>"
 
 nmap <Leader>v :source $MYVIMRC<CR>
 
-" Change cursor based on mode, THIS IS NOT PORTABLE
-let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-
-" NERDCommenter
+" ======================= NERDCommenter ===========================
 " Ctrl-C to comment a block/line of code
 nmap <C-c> :call NERDComment(0,"sexy")<CR>
 vmap <C-c> :call NERDComment(0,"sexy")<CR>
@@ -153,18 +123,15 @@ vmap <C-x> :call NERDComment(0,"uncomment")<CR>
 
 nnoremap <leader>f :FZF! -x<CR>
 
-function! s:buflist()
-  redir => ls
-  silent ls
-  redir END
-  return split(ls, '\n')
-endfunction
-
-function! s:bufopen(e)
-  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
-endfunction
-
 cnoreabbrev FZF FZF!
+
+if exists('$TMUX')
+    let &t_SI = "\<Esc>[3 q"
+    let &t_EI = "\<Esc>[0 q"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
 set bg=dark
 let g:airline_theme='PaperColor'
@@ -177,4 +144,3 @@ let g:promptline_preset = {
         \'c' : [ promptline#slices#vcs_branch() ],
         \'y' : [ promptline#slices#git_status() ],
         \'warn' : [ promptline#slices#last_exit_code() ]}
-
