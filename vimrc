@@ -1,5 +1,5 @@
-" Turn off legacy stuff
-set nocompatible
+set termencoding=utf-8
+set encoding=utf-8
 
 " Pathogen docs say turn filetype off before calling
 filetype off
@@ -130,8 +130,6 @@ let g:airline#extensions#tabline#tab_nr_type                  = 0
 let g:airline#extensions#tabline#show_tab_type                = 0
 " don't count trailing whitespace since it lags in huge files
 let g:airline#extensions#whitespace#enabled                   = 1
-"let g:airline_left_sep                                       = ""
-"let g:airline_right_sep                                      = ""
 
 imap jj <Esc>
 
@@ -169,7 +167,7 @@ endfunction
 cnoreabbrev FZF FZF!
 
 set bg=dark
-let g:airline_theme='molokai'
+let g:airline_theme='PaperColor'
 colorscheme myown
 autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
 
@@ -178,3 +176,4 @@ let g:promptline_preset = {
         \'c' : [ promptline#slices#cwd() ],
         \'y' : [ promptline#slices#vcs_branch() ],
         \'warn' : [ promptline#slices#last_exit_code() ]}
+
