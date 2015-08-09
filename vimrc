@@ -172,3 +172,9 @@ set bg=dark
 let g:airline_theme='molokai'
 colorscheme myown
 autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
+
+let g:promptline_preset = {
+        \'a' : [ promptline#slices#host() ],
+        \'c' : [ promptline#slices#cwd() ],
+        \'y' : [ promptline#slices#vcs_branch() ],
+        \'warn' : [ promptline#slices#last_exit_code() ]}

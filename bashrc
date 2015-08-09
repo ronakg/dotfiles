@@ -82,3 +82,4 @@ ftags() {
 }
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.shell_prompt.sh ] && source ~/.shell_prompt.sh
