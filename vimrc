@@ -39,7 +39,7 @@ set nobackup        " Don't need backup and swap files
 set noswapfile
 set pumheight=10    " Completion menu height
 set nofoldenable    " disable folding
-set cursorline      " Show a horizontal line on cursor
+"set cursorline      " Show a horizontal line on cursor
 autocmd CursorHold * checktime  " checktime triggers auto reload when cursor is pressed
 filetype plugin on  " filetype plugins for file specific settings
 filetype indent on  " filetype specific indentation
@@ -79,6 +79,7 @@ nnoremap <tab> <C-w><C-w>
 
 " vim-arline Don't show seperators
 let g:airline_section_warning = ''
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled=1
 
 " If can't find extention of a file, assume it's a C file
@@ -109,9 +110,8 @@ nnoremap   <leader>q   :bd<CR>
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-" Shhow tabline only when at least 2 files are open
-let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -129,7 +129,7 @@ let g:airline#extensions#tabline#show_buffers                 = 1
 let g:airline#extensions#tabline#tab_nr_type                  = 0
 let g:airline#extensions#tabline#show_tab_type                = 0
 " don't count trailing whitespace since it lags in huge files
-let g:airline#extensions#whitespace#enabled                   = 0
+let g:airline#extensions#whitespace#enabled                   = 1
 "let g:airline_left_sep                                       = ""
 "let g:airline_right_sep                                      = ""
 
