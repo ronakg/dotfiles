@@ -10,7 +10,7 @@ blue=`tput setaf 4`
 reset=`tput sgr 0`
 
 # List of files to be installed
-files="bashrc bash_profile vimrc vim tmux.conf screenrc bash_aliases"
+files="bashrc bash_profile vimrc vim tmux.conf screenrc bash_aliases shell_prompt.sh"
 
 # Directories to install from and backup to
 mydotdir=~/my-dot-files
