@@ -173,7 +173,8 @@ autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
 
 let g:promptline_preset = {
         \'a' : [ promptline#slices#host({'only_if_ssh': 1}) ],
-        \'c' : [ promptline#slices#cwd() ],
-        \'y' : [ promptline#slices#vcs_branch() ],
+        \'b' : [ promptline#slices#cwd() ],
+        \'c' : [ promptline#slices#vcs_branch() ],
+        \'z' : [ promptline#slices#git_status() ],
         \'warn' : [ promptline#slices#last_exit_code() ]}
 
