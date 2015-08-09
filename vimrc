@@ -79,6 +79,7 @@ nnoremap <tab> <C-w><C-w>
 
 " vim-arline Don't show seperators
 let g:airline_section_warning = ''
+let g:airline#extensions#branch#enabled=1
 
 " If can't find extention of a file, assume it's a C file
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
