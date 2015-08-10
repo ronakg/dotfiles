@@ -42,6 +42,7 @@ set nobackup                         " Don't need backup and swap files
 set noswapfile
 set pumheight=10                     " Completion menu height
 set nofoldenable                     " disable folding
+set nu                               " Line numbers
 autocmd CursorHold * checktime       " checktime triggers auto reload when cursor is pressed
 filetype plugin on                   " filetype plugins for file specific settings
 filetype indent on                   " filetype specific indentation
