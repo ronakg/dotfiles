@@ -42,7 +42,9 @@ set nobackup                         " Don't need backup and swap files
 set noswapfile
 set pumheight=10                     " Completion menu height
 set nofoldenable                     " disable folding
+set rnu                              " Line numbers
 set nu                               " Line numbers
+set cursorline                       " Cursor line
 autocmd CursorHold * checktime       " checktime triggers auto reload when cursor is pressed
 filetype plugin on                   " filetype plugins for file specific settings
 filetype indent on                   " filetype specific indentation
@@ -154,6 +156,22 @@ endfun
 if &diff
     autocmd VimEnter * call DiffSettings()
 endif
+
+"========================== LINE NUMBERS =========================
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-l> :call NumberToggle()<cr>
+:au FocusLost * :set number
+:au FocusGained * :set relativenumber
+
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
 
 "=========================== COLORSCHEME ========================
 set bg=dark
