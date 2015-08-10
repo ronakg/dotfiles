@@ -16,8 +16,18 @@ export EDITOR=vim
 export VISUAL=vim
 export CSCOPE_EDITOR=vim
 
-# Prompt [hostname [time] pwd]
-export PS1='\[\e[32m\][\h \w]$ \[\e[0m\]'
+#export PS1='\e[48;5;238;39m \h \e[48;5;24;39m \w \e[0m $ '
+#export PS1='[\e[39m\h \e[38;5;39m\w\e[38;5;252m] $ \e[0m'
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM="auto,verbose,name"
+GIT_PS1_SHOWCOLORHINTS=1
+STATUS_EMOTICON="if [ \$? = 0  ]; then echo \"$\"; else echo \"\e[31m(\$?) $\"; fi"
+PROMPT_COMMAND='__git_ps1 "[\e[39m\h \e[38;5;39m\w\e[38;5;252m]" " \`${STATUS_EMOTICON}\` \e[0m"'
+
+if [ -f ~/.git-prompt.sh ]; then
+    source ~/.git-prompt.sh
+fi
 
 # Moar history for me
 export HISTCONTROL=ignoredups:erasedups # no duplicate entries
@@ -86,4 +96,3 @@ bind -r '\C-s'
 stty -ixon
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f ~/.shell_prompt.sh ] && source ~/.shell_prompt.sh
