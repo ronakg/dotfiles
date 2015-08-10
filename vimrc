@@ -75,6 +75,9 @@ imap jj <Esc>
 " Source vimrc
 nmap <Leader>v :source $MYVIMRC<CR>
 
+" Build with vim-dispatch
+map <F9>    :Make<CR>
+
 " Remember cursor position between vim sessions
 if has("autocmd")
     autocmd BufReadPost *
@@ -89,7 +92,7 @@ nnoremap   <leader>.   :bnext<CR>
 inoremap   <leader>,   <Esc>:bprevious<CR>i
 inoremap   <leader>.   <Esc>:bnext<CR>i
 nnoremap   <leader>q   :bd<CR>
-nnoremap   <tab>       :cn<CR>
+nnoremap   <tab>       :w<CR>:cn<CR>
 
 "===================== CTAGS/CSCOPE ==========================
 set tags=./tags;/   " ctags path, search upwards till tags file is found
@@ -110,12 +113,15 @@ let g:airline#extensions#tabline#tab_min_count                = 2
 let g:airline#extensions#tabline#buffer_idx_mode              = 1
 let g:airline#extensions#tabline#buffer_nr_show               = 0
 let g:airline#extensions#tabline#show_buffers                 = 1
-let g:airline_powerline_fonts                                 = 1
+let g:airline_powerline_fonts                                 = 0
 " don't count trailing whitespace since it lags in huge files
 let g:airline#extensions#whitespace#enabled                   = 0
 let g:airline_theme                                           = 'PaperColor'
 " Just show the filename (no path) in the tab
 let g:airline#extensions#tabline#fnamemod                     = ':t'
+let g:airline_left_sep                                        = ''
+let g:airline_right_sep                                       = ''
+" Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -138,6 +144,8 @@ vmap <C-c> :call NERDComment(0,"sexy")<CR>
 " Ctrl-X to uncomment a block/line of code
 nmap <C-x> :call NERDComment(0,"uncomment")<CR>
 vmap <C-x> :call NERDComment(0,"uncomment")<CR>
+
+map <C-n> :NERDTreeToggle<CR>
 
 "========================== FZF ===================================
 nnoremap <leader>f :FZF! -x<CR>
@@ -179,16 +187,6 @@ nnoremap <C-l> :call NumberToggle()<CR>
 set bg=dark
 colorscheme myown
 autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
-
-"======================== PROMPTLINE =============================
-let g:promptline_preset = {
-        \'a'    : [ promptline#slices#host({'only_if_ssh' : 1}) ],
-        \'b'    : [ promptline#slices#cwd() ],
-        \'c'    : [ promptline#slices#vcs_branch() ],
-        \'y'    : [ promptline#slices#git_status() ],
-        \'warn' : [ promptline#slices#last_exit_code() ]}
-
-map <F9>    :Make<CR>
 
 "====================== WORK VIMRC ===============================
 try
