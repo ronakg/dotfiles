@@ -21,8 +21,8 @@ export PS1='\[\e[32m\][\h \w]$ \[\e[0m\]'
 
 # Moar history for me
 export HISTCONTROL=ignoredups:erasedups # no duplicate entries
-export HISTSIZE=100000                  # big big history
-export HISTFILESIZE=100000              # big big history
+export HISTSIZE=1000                  # big big history
+export HISTFILESIZE=1000              # big big history
 shopt -s histappend                     # append to history, don't overwrite it
 shopt -s cmdhist                        # Store multi-line commands as one-line in history
 

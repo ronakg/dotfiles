@@ -37,6 +37,7 @@ set wildmenu
 set wildmode=longest:full,list:full
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menuone
+set complete-=i                      " Searching includes can be slow
 set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
@@ -50,7 +51,9 @@ filetype plugin on                   " filetype plugins for file specific settin
 filetype indent on                   " filetype specific indentation
 syntax enable                        " Pretty syntax highlighing
 set laststatus=2                     " Always show statusline     
-" set cursorline                     " Show a horizontal line on cursor
+set showcmd
+set shiftround                       " Round off shiftwidth when using >
+set ttimeoutlen=50                   " Make Esc work faster
 
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w><C-w>
@@ -181,6 +184,8 @@ let g:promptline_preset = {
         \'c'    : [ promptline#slices#vcs_branch() ],
         \'y'    : [ promptline#slices#git_status() ],
         \'warn' : [ promptline#slices#last_exit_code() ]}
+
+map <F9>    :Make<CR>
 
 "====================== WORK VIMRC ===============================
 try
