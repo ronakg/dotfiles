@@ -57,7 +57,7 @@ nnoremap <tab> <C-w><C-w>
 
 " Ctrl-s to save a file, in both normal and insert mode
 :nmap <c-s> :w<CR>
-:imap <c-s> <Esc>:w<CR>a
+:imap <c-s> <Esc>:w<CR>
 
 " If can't find extention of a file, assume it's a C file
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
@@ -167,7 +167,7 @@ function! NumberToggle()
   endif
 endfunc
 
-nnoremap <C-l> :call NumberToggle()<cr>
+nnoremap <C-l> :call NumberToggle()<CR>
 
 "=========================== COLORSCHEME ========================
 set bg=dark
@@ -181,3 +181,10 @@ let g:promptline_preset = {
         \'c'    : [ promptline#slices#vcs_branch() ],
         \'y'    : [ promptline#slices#git_status() ],
         \'warn' : [ promptline#slices#last_exit_code() ]}
+
+"====================== WORK VIMRC ===============================
+try
+    source ~/.vimrc_work
+catch
+    " No such file? No problem; just ignore it.
+endtry
