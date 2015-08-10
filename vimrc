@@ -56,7 +56,7 @@ set shiftround                       " Round off shiftwidth when using >
 set ttimeoutlen=50                   " Make Esc work faster
 
 " Tab to switch between vertical splits
-nnoremap <leader><tab> <C-w><C-w>
+nnoremap <tab> <C-w><C-w>
 
 " Ctrl-s to save a file, in both normal and insert mode
 :nmap <c-s> :w<CR>
@@ -87,12 +87,12 @@ if has("autocmd")
 endif
 
 " Buffer selection and movement
-nnoremap   <leader>,   :bprevious<CR>
-nnoremap   <leader>.   :bnext<CR>
-inoremap   <leader>,   <Esc>:bprevious<CR>i
-inoremap   <leader>.   <Esc>:bnext<CR>i
-nnoremap   <leader>q   :bd<CR>
-nnoremap   <tab>       :w<CR>:cn<CR>
+nnoremap   <leader>,         :bprevious<CR>
+nnoremap   <leader>.         :bnext<CR>
+inoremap   <leader>,   <Esc> :bprevious<CR>i
+inoremap   <leader>.   <Esc> :bnext<CR>i
+nnoremap   <leader>q         :bd<CR>
+nnoremap   <leader><tab>     :w<CR>: cn<CR>
 
 "===================== CTAGS/CSCOPE ==========================
 set tags=./tags;/   " ctags path, search upwards till tags file is found
