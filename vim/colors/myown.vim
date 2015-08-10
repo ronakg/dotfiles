@@ -4,6 +4,7 @@
 
 let g:colors_name="myown"
 
+hi clear CursorLine
 hi Normal          ctermfg = white      cterm   = none
 hi LineNr          ctermfg = darkgrey
 hi CursorLineNr    ctermfg = 161

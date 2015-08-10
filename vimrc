@@ -161,17 +161,13 @@ endif
 function! NumberToggle()
   if(&relativenumber == 1)
     set number
+    set norelativenumber
   else
     set relativenumber
   endif
 endfunc
 
 nnoremap <C-l> :call NumberToggle()<cr>
-:au FocusLost * :set number
-:au FocusGained * :set relativenumber
-
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
 
 "=========================== COLORSCHEME ========================
 set bg=dark
