@@ -81,5 +81,9 @@ ftags() {
                                       -c "silent tag $(cut -f2 <<< "$line")"
 }
 
+# Don't care about Ctrl-s
+bind -r '\C-s'
+stty -ixon
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.shell_prompt.sh ] && source ~/.shell_prompt.sh

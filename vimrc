@@ -52,6 +52,10 @@ set laststatus=2                     " Always show statusline
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w><C-w>
 
+" Ctrl-s to save a file, in both normal and insert mode
+:nmap <c-s> :w<CR>
+:imap <c-s> <Esc>:w<CR>a
+
 " If can't find extention of a file, assume it's a C file
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
 
