@@ -56,7 +56,7 @@ set shiftround                       " Round off shiftwidth when using >
 set ttimeoutlen=50                   " Make Esc work faster
 
 " Tab to switch between vertical splits
-nnoremap <tab> <C-w><C-w>
+nnoremap <leader><tab> <C-w><C-w>
 
 " Ctrl-s to save a file, in both normal and insert mode
 :nmap <c-s> :w<CR>
@@ -89,6 +89,7 @@ nnoremap   <leader>.   :bnext<CR>
 inoremap   <leader>,   <Esc>:bprevious<CR>i
 inoremap   <leader>.   <Esc>:bnext<CR>i
 nnoremap   <leader>q   :bd<CR>
+nnoremap   <tab>       :cn<CR>
 
 "===================== CTAGS/CSCOPE ==========================
 set tags=./tags;/   " ctags path, search upwards till tags file is found
@@ -113,6 +114,8 @@ let g:airline_powerline_fonts                                 = 1
 " don't count trailing whitespace since it lags in huge files
 let g:airline#extensions#whitespace#enabled                   = 0
 let g:airline_theme                                           = 'PaperColor'
+" Just show the filename (no path) in the tab
+let g:airline#extensions#tabline#fnamemod                     = ':t'
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
