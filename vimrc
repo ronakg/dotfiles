@@ -53,7 +53,9 @@ syntax enable                        " Pretty syntax highlighing
 set laststatus=2                     " Always show statusline     
 set showcmd
 set shiftround                       " Round off shiftwidth when using >
-set ttimeoutlen=50                   " Make Esc work faster
+set ttimeout
+set ttimeoutlen=250                  " Make Esc work faster
+set notimeout
 
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w><C-w>
@@ -77,6 +79,9 @@ nmap <Leader>v :source $MYVIMRC<CR>
 
 " Build with vim-dispatch
 map <F9>    :Make<CR>
+
+" Paste toggle
+nnoremap <leader>p :set invpaste paste?<CR>
 
 " Remember cursor position between vim sessions
 if has("autocmd")
