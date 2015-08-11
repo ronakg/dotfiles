@@ -150,8 +150,6 @@ vmap <C-c> :call NERDComment(0,"sexy")<CR>
 nmap <C-x> :call NERDComment(0,"uncomment")<CR>
 vmap <C-x> :call NERDComment(0,"uncomment")<CR>
 
-map <C-n> :NERDTreeToggle<CR>
-
 "========================== FZF ===================================
 nnoremap <leader>f :FZF! -x<CR>
 cnoreabbrev FZF FZF!
@@ -175,6 +173,9 @@ endfun
 if &diff
     autocmd VimEnter * call DiffSettings()
 endif
+
+" Update diff if changes are written to the file
+autocmd BufWritePost * if &diff == 1 | diffupdate | endif
 
 "========================== LINE NUMBERS =========================
 function! NumberToggle()

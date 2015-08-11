@@ -93,6 +93,6 @@ ftags() {
 
 # Don't care about Ctrl-s
 bind -r '\C-s'
-stty -ixon
+stty -ixon 2>/dev/null
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
