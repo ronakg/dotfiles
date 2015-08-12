@@ -22,7 +22,7 @@ GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="auto,verbose,name"
 GIT_PS1_SHOWCOLORHINTS=1
-STATUS_EMOTICON="if [ \$? = 0  ]; then echo \"$\"; else echo \"\e[31m(\$?) $\"; fi"
+STATUS_EMOTICON="if [ \$? = 0  ]; then echo \"$\"; else echo \"\e[31m<\$?> $\"; fi"
 PROMPT_COMMAND='__git_ps1 "[\e[39m\h \e[38;5;39m\w\e[38;5;252m]" " \`${STATUS_EMOTICON}\` \e[0m"'
 
 if [ -f ~/.git-prompt.sh ]; then

@@ -2,6 +2,7 @@
 
 # List of root level directories we are interested in.
 declare -a dirs=("product" "ao" "comp" "infra")
+extensions="c|h|cpp|mk|e"
 
 # Backup current working directory for later
 cwd=`pwd`
@@ -33,10 +34,10 @@ do
 
         if [ "$2" == "include" ]; then
             echo "Including kernel files too..."
-            find ./$dir -type f -print | egrep -i "\.(c|h|cpp)$" >> $rootdir/cscope.files
+            find ./$dir -type f -print | egrep -i "\.($extensions)$" >> $rootdir/cscope.files
         else
             # Don't include kernel and stub files
-            find ./$dir -type f -and -not -iwholename "*/*kernel*/*" -and -not -iwholename "*stub*" -print | egrep -i "\.(c|h|cpp)$" >> $rootdir/cscope.files
+            find ./$dir -type f -and -not -iwholename "*/*kernel*/*" -and -not -iwholename "*stub*" -print | egrep -i "\.($extensions)$" >> $rootdir/cscope.files
         fi
     else
         echo "Invalid $dir"
@@ -47,7 +48,7 @@ echo 'Building cscope database...'
 cscope -b -q
 
 echo 'Building ctags database...'
-ctags --extra=+f --c-kinds=+p --fields=+S -L $rootdir/cscope.files
+ctags --extra=+f --c-kinds=+p --fields=+S --excmd=p -L $rootdir/cscope.files
 
 cd $cwd
 echo 'All done.'
