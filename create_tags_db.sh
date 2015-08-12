@@ -47,7 +47,7 @@ echo 'Building cscope database...'
 cscope -b -q
 
 echo 'Building ctags database...'
-ctags --extra=+f --c-kinds=+p --fields=+lS -L $rootdir/cscope.files
+ctags --extra=+f --c-kinds=+p --fields=+S -L $rootdir/cscope.files
 
 cd $cwd
 echo 'All done.'

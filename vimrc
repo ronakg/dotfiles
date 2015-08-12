@@ -37,7 +37,6 @@ set wildmenu
 set wildmode=longest:full,list:full
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menuone
-set complete-=i                      " Searching includes can be slow
 set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
@@ -56,6 +55,7 @@ set shiftround                       " Round off shiftwidth when using >
 set ttimeout
 set ttimeoutlen=250                  " Make Esc work faster
 set notimeout
+set wrapscan
 
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w><C-w>
@@ -139,7 +139,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 
 "========================= SUPERTAB ===============================
 let   g:SuperTabDefaultCompletionType          =   "context"
-let   g:SuperTabContextDefaultCompletionType   =   "<c-n>"
+let   g:SuperTabContextDefaultCompletionType   =   "<c-p>"
 
 " ======================= NERDCommenter ===========================
 " Ctrl-C to comment a block/line of code
