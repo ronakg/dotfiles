@@ -40,8 +40,7 @@ set completeopt=longest,menuone
 set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
-set pumheight=10                     " Completion menu height
-set nofoldenable                     " disable folding
+set pumheight=15                     " Completion menu height
 set rnu                              " Line numbers
 set nu                               " Line numbers
 set cursorline                       " Cursor line
@@ -50,7 +49,6 @@ filetype plugin on                   " filetype plugins for file specific settin
 filetype indent on                   " filetype specific indentation
 syntax enable                        " Pretty syntax highlighing
 set laststatus=2                     " Always show statusline     
-set showcmd
 set shiftround                       " Round off shiftwidth when using >
 set ttimeout
 set ttimeoutlen=250                  " Make Esc work faster
