@@ -3,6 +3,11 @@
 set termencoding=utf-8
 set encoding=utf-8
 
+" To disable a plugin, add it's bundle name to the following list
+" For example
+" let g:pathogen_disabled = ['auto-pairs', 'vim-airline']
+let g:pathogen_disabled = []
+
 " Pathogen docs say turn filetype off before calling
 filetype off
 call pathogen#infect()
@@ -198,3 +203,6 @@ try
 catch
     " No such file? No problem; just ignore it.
 endtry
+
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsMultilineClose = 0
