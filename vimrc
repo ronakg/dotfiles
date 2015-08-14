@@ -206,3 +206,9 @@ endtry
 
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsMultilineClose = 0
+
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
