@@ -16,18 +16,20 @@ export EDITOR=vim
 export VISUAL=vim
 export CSCOPE_EDITOR=vim
 
-#export PS1='\e[48;5;238;39m \h \e[48;5;24;39m \w \e[0m $ '
-#export PS1='[\e[39m\h \e[38;5;39m\w\e[38;5;252m] $ \e[0m'
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWUPSTREAM="auto,verbose,name"
-GIT_PS1_SHOWCOLORHINTS=1
-STATUS_EMOTICON="if [ \$? = 0   ]; then echo \"$\"; else echo \"\e[31m\$?>\"; fi"
-PROMPT_COMMAND='__git_ps1 "[\e[39m\h \e[38;5;39m\w\e[38;5;252m]" " \`${STATUS_EMOTICON}\` \e[0m"'
+function prompt_command {
+    RET_CODE=$?
 
-if [ -f ~/.git-prompt.sh ]; then
-    source ~/.git-prompt.sh
-fi
+    PS1='[\e[39m\h \e[38;5;39m\w\e[38;5;252m]'
+
+    if [ $RET_CODE != 0 ]; then
+        PS1+=' \e[91m$?>\e[0m '
+    else
+        PS1+=' $\e[0m '
+    fi
+
+    export PS1
+}
+export PROMPT_COMMAND=prompt_command
 
 # Moar history for me
 export HISTCONTROL=ignoredups:erasedups # no duplicate entries
