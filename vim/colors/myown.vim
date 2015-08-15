@@ -6,8 +6,8 @@ let g:colors_name="myown"
 
 hi CursorLine                                    ctermbg = 237        cterm   = none
 hi Normal                                        ctermfg = white      cterm   = none
-hi LineNr                                        ctermfg = darkgrey   ctermbg =238
-hi CursorLineNr                                  ctermfg = 161        ctermbg =238
+hi LineNr                                        ctermfg = darkgrey   ctermbg = 238
+hi CursorLineNr                                  ctermfg = 214     ctermbg = 238
 hi Conditional                                   ctermfg = 214
 hi Statement                                     ctermfg = 214
 hi Type                                          ctermfg = darkgreen

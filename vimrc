@@ -15,7 +15,7 @@ call pathogen#helptags()
 
 " Space is my leader, don't assign leader to space - that causes latency
 " issues
-nmap <space> <leader>
+nmap , <leader>
 
 " Standard vim options
 set t_Co=256
@@ -73,7 +73,7 @@ autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
 nmap <silent> ,/ :nohlsearch<CR>
 
 " Easier to get command prompt
-map ; :
+nnoremap ; :
 imap jj <Esc>
 
 " Source vimrc
