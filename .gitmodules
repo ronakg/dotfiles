@@ -22,3 +22,9 @@
 [submodule "vim/bundle/auto-pairs"]
 	path = vim/bundle/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs
+[submodule "vim/bundle/echofunc"]
+	path = vim/bundle/echofunc
+	url = https://github.com/mbbill/echofunc
+[submodule "vim/bundle/vim-indexed-search"]
+	path = vim/bundle/vim-indexed-search
+	url = https://github.com/henrik/vim-indexed-search

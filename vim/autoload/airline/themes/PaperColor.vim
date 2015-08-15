@@ -21,13 +21,13 @@ let g:airline#themes#PaperColor#palette.normal_modified = {
 " Insert Mode:
 let s:I1 = [ '#585858' , '#e4e4e4' , 240 , 254 ] " Mode
 let s:I2 = [ '#e4e4e4' , '#0087af' , 254 , 31  ] " Info
-let s:I3 = [ '#eeeeee' , '#005f87' , 255 , 28  ] " StatusLine
+let s:I3 = [ '#eeeeee' , '#005f87' , 255 , 24  ] " StatusLine
 
 
 let g:airline#themes#PaperColor#palette.insert = airline#themes#generate_color_map(s:I1, s:I2, s:I3)
 let g:airline#themes#PaperColor#palette.insert_modified = {
       \ 'airline_a': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
-      \ 'airline_c': [ '#eeeeee' , '#005f87' , 255 , 28 , '' ] ,
+      \ 'airline_c': [ '#eeeeee' , '#005f87' , 255 , 24 , '' ] ,
       \ 'airline_z': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
       \ }
 
@@ -37,7 +37,7 @@ let g:airline#themes#PaperColor#palette.replace = copy(g:airline#themes#PaperCol
 let g:airline#themes#PaperColor#palette.replace.airline_a = [ '#d7005f'   , '#e4e4e4' , 29 , 254, ''     ]
 let g:airline#themes#PaperColor#palette.replace_modified = {
       \ 'airline_a': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
-      \ 'airline_c': [ '#eeeeee' , '#005f87' , 255 , 24 , '' ] ,
+      \ 'airline_c': [ '#eeeeee' , '#005f87' , 255 , 28 , '' ] ,
       \ 'airline_z': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
       \ }
 
@@ -45,12 +45,12 @@ let g:airline#themes#PaperColor#palette.replace_modified = {
 " Visual Mode:
 let s:V1 = [ '#005f87', '#e4e4e4', 24,  254 ]
 let s:V2 = [ '',        '#0087af', '',  31  ]
-let s:V3 = [ '#e4e4e4', '#005f87', 254, 8  ]
+let s:V3 = [ '#e4e4e4', '#005f87', 254, 28  ]
 
 let g:airline#themes#PaperColor#palette.visual = airline#themes#generate_color_map(s:V1, s:V2, s:V3)
 let g:airline#themes#PaperColor#palette.visual_modified = {
       \ 'airline_a': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
-      \ 'airline_c': [ '#e4e4e4', '#005f87', 254, 8  ] ,
+      \ 'airline_c': [ '#e4e4e4', '#005f87', 254, 28  ] ,
       \ 'airline_z': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
       \ }
 

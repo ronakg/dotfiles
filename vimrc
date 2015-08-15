@@ -3,6 +3,7 @@
 set termencoding=utf-8
 set encoding=utf-8
 
+" ======================== PATHOGEN ===============================
 " To disable a plugin, add it's bundle name to the following list
 " For example
 " let g:pathogen_disabled = ['auto-pairs', 'vim-airline']
@@ -12,10 +13,11 @@ let g:pathogen_disabled = []
 filetype off
 call pathogen#infect()
 call pathogen#helptags()
+call pathogen#infect('after/{}')
 
 " Space is my leader, don't assign leader to space - that causes latency
 " issues
-nmap , <leader>
+nmap <space> <leader>
 
 " Standard vim options
 set t_Co=256
@@ -41,7 +43,7 @@ set splitbelow                       " Open split below, not above
 set wildmenu
 set wildmode=longest:full,list:full
 set omnifunc=syntaxcomplete#Complete
-set completeopt=longest,menuone
+set completeopt=longest,menuone,preview
 set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
@@ -58,6 +60,14 @@ set ttimeout
 set ttimeoutlen=250                  " Make Esc work faster
 set notimeout
 set wrapscan
+
+" Better indentation in Visual mode
+vnoremap < <gv
+vnoremap > >gv
+
+" Easier formatting of paragraphs
+vmap Q gq
+nmap Q gqap
 
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w><C-w>
@@ -212,7 +222,5 @@ augroup CursorLine
   au WinLeave * setlocal nocursorline
 augroup END
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" vim-indexed-search
+let g:indexed_search_shortmess=1
