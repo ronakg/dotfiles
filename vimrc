@@ -46,7 +46,6 @@ set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
 set pumheight=15                     " Completion menu height
-set rnu                              " Line numbers
 set nu                               " Line numbers
 set cursorline                       " Cursor line
 autocmd CursorHold * checktime       " checktime triggers auto reload when cursor is pressed
