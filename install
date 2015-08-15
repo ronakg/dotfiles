@@ -82,7 +82,7 @@ echo -n "${reset}"
 # Install FZF
 echo -n "${yellow}"
 echo -e "\n Installing FZF with everything enabled..."
-yes | . $mydotdir/vim/bundle/fzf/install
+yes | $mydotdir/vim/bundle/fzf/install
 echo -n "${reset}"
 
 echo -n "${green}"
