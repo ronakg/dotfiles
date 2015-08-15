@@ -14,7 +14,7 @@ if [ $1 ]; then
         echo "Running on - $1"
         cd $1
     else
-        echo "$1 is not a rootdirectory"
+        echo "$1 is not a directory"
         exit
     fi
 else
