@@ -13,8 +13,8 @@ reset=`tput sgr 0`
 files="bashrc bash_profile vimrc vim tmux.conf screenrc bash_aliases"
 
 # Directories to install from and backup to
-mydotdir=~/my-dot-files
-olddotdir=~/old-dot-files
+mydotdir=`pwd`
+olddotdir=~/.olddotfiles
 
 # ./install clean
 echo -n "${red}"
@@ -82,7 +82,7 @@ echo -n "${reset}"
 # Install FZF
 echo -n "${yellow}"
 echo -e "\n Installing FZF with everything enabled..."
-yes | . ~/my-dot-files/vim/bundle/fzf/install
+yes | . $mydotdir/vim/bundle/fzf/install
 echo -n "${reset}"
 
 echo -n "${green}"
