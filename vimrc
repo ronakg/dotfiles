@@ -46,7 +46,7 @@ set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
 set pumheight=15                     " Completion menu height
-set nu                               " Line numbers
+"set numbers                          " Line numbers
 set cursorline                       " Cursor line
 autocmd CursorHold * checktime       " checktime triggers auto reload when cursor is pressed
 filetype plugin on                   " filetype plugins for file specific settings
@@ -96,6 +96,9 @@ nmap Q gqap
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w><C-w>
 
+" Tree style file explorer
+let g:netrw_liststyle=3
+
 " Ctrl-s to save a file, in both normal and insert mode
 :nmap <c-s> :w<CR>
 :imap <c-s> <Esc>:w<CR>
@@ -119,6 +122,9 @@ imap jj <Esc>
 
 " Open current buffer in vertical split
 nmap <Leader>v :vs %<CR><tab>
+
+" dw in Insert mode
+inoremap <C-d> <C-o>dw
 
 " Paste toggle
 nnoremap <leader>p :set invpaste paste?<CR>
@@ -144,6 +150,9 @@ if has("autocmd")
                 \   exe "normal! g'\"" |
                 \ endif
 endif
+
+" center buffer around cursor when opening files
+autocmd BufRead * normal zz
 
 " Buffer selection and movement
 nnoremap   <leader>,         :bprevious<CR>
