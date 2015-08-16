@@ -20,7 +20,6 @@ call pathogen#infect('after/{}')
 nmap <space> <leader>
 
 " Standard vim options
-set t_Co=256
 set nomodeline                       " disable mode lines (security measure)
 set incsearch                        " increamental search
 set hlsearch                         " highlight search
@@ -28,7 +27,6 @@ set backspace=indent,eol,start       " makes backspace working
 set ignorecase                       " ignore case in searching
 set smartcase                        " dont ignore case if capital letters present
 set scrolloff=4                      " keep cursor off screen edges
-set autoread                         " automatically reload files changed outside of Vim
 set softtabstop=4
 set shiftwidth=4
 set smarttab
@@ -43,7 +41,7 @@ set splitbelow                       " Open split below, not above
 set wildmenu
 set wildmode=longest:full,list:full
 set omnifunc=syntaxcomplete#Complete
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone
 set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
@@ -60,10 +58,36 @@ set ttimeout
 set ttimeoutlen=250                  " Make Esc work faster
 set notimeout
 set wrapscan
+set autoread                         " automatically reload files changed outside of Vim
+
+" Enable paste mode and add a new line
+map <leader>o :set paste<CR>o
+
+" Don't use the arraow keys
+nmap <up> <nop>
+nmap <down> <nop>
+nmap <left> <nop>
+nmap <right> <nop>
+
+" Double space to go to last buffer
+noremap <leader><space> :buffer #<CR>
+
+" Move in insert mode
+imap <C-h> <C-o>h
+imap <C-j> <C-o>j
+imap <C-k> <C-o>k
+imap <C-l> <C-o>l
+
+" Improve up/down movement on wrapped lines
+nnoremap j gj
+nnoremap k gk
 
 " Better indentation in Visual mode
 vnoremap < <gv
 vnoremap > >gv
+
+" Play last recorded macro
+map Q @@
 
 " Easier formatting of paragraphs
 vmap Q gq
@@ -79,21 +103,39 @@ nnoremap <tab> <C-w><C-w>
 " If can't find extention of a file, assume it's a C file
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
 
+" Spellcheck commit messages
+autocmd BufRead COMMIT_EDITMSG setlocal spell!
+
+" Disable pastemode when leaving Insert mode
+au InsertLeave * set nopaste
+
 " Clear highlighted searches
 nmap <silent> ,/ :nohlsearch<CR>
 
 " Easier to get command prompt
 nnoremap ; :
+vnoremap ; :
 imap jj <Esc>
 
-" Source vimrc
-nmap <Leader>v :source $MYVIMRC<CR>
-
-" Build with vim-dispatch
-map <F9>    :Make<CR>
+" Open current buffer in vertical split
+nmap <Leader>v :vs %<CR><tab>
 
 " Paste toggle
 nnoremap <leader>p :set invpaste paste?<CR>
+
+" Jump to start and end of line using the home row keys
+map H ^
+map L $
+
+" Paste from yank register
+noremap yp "0p
+
+" Paste and reindent
+nnoremap p p`]m`v`[=``]`
+nnoremap P P`]m`v`[=``]`
+
+" Insert a new line below and come back to normal mode
+noremap <Return> o<ESC>
 
 " Remember cursor position between vim sessions
 if has("autocmd")
@@ -202,6 +244,7 @@ endfunc
 nnoremap <C-l> :call NumberToggle()<CR>
 
 "=========================== COLORSCHEME ========================
+set t_Co=256
 set bg=dark
 colorscheme myown
 autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
