@@ -7,7 +7,7 @@ set encoding=utf-8
 " To disable a plugin, add it's bundle name to the following list
 " For example
 " let g:pathogen_disabled = ['auto-pairs', 'vim-airline']
-let g:pathogen_disabled = []
+let g:pathogen_disabled = ['']
 
 " Pathogen docs say turn filetype off before calling
 filetype off
@@ -19,7 +19,7 @@ call pathogen#infect('after/{}')
 " issues
 nmap <space> <leader>
 
-" Standard vim options
+" standard vim options
 set nomodeline                       " disable mode lines (security measure)
 set incsearch                        " increamental search
 set hlsearch                         " highlight search
@@ -46,12 +46,8 @@ set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
 set pumheight=15                     " Completion menu height
-"set numbers                          " Line numbers
+set number                           " Line numbers
 set cursorline                       " Cursor line
-autocmd CursorHold * checktime       " checktime triggers auto reload when cursor is pressed
-filetype plugin on                   " filetype plugins for file specific settings
-filetype indent on                   " filetype specific indentation
-syntax enable                        " Pretty syntax highlighing
 set laststatus=2                     " Always show statusline     
 set shiftround                       " Round off shiftwidth when using >
 set ttimeout
@@ -59,6 +55,10 @@ set ttimeoutlen=250                  " Make Esc work faster
 set notimeout
 set wrapscan
 set autoread                         " automatically reload files changed outside of Vim
+autocmd CursorHold * checktime       " checktime triggers auto reload when cursor is pressed
+filetype plugin on                   " filetype plugins for file specific settings
+filetype indent on                   " filetype specific indentation
+syntax enable                        " Pretty syntax highlighing
 
 " Enable paste mode and add a new line
 map <leader>o :set paste<CR>o
@@ -126,22 +126,16 @@ nmap <Leader>v :vs %<CR><tab>
 " dw in Insert mode
 inoremap <C-d> <C-o>dw
 
-" Paste toggle
-nnoremap <leader>p :set invpaste paste?<CR>
-
 " Jump to start and end of line using the home row keys
 map H ^
 map L $
-
-" Paste from yank register
-noremap yp "0p
 
 " Paste and reindent
 nnoremap p p`]m`v`[=``]`
 nnoremap P P`]m`v`[=``]`
 
 " Insert a new line below and come back to normal mode
-noremap <Return> o<ESC>
+noremap O o<ESC>
 
 " Remember cursor position between vim sessions
 if has("autocmd")
@@ -202,7 +196,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 
 "========================= SUPERTAB ===============================
 let   g:SuperTabDefaultCompletionType          =   "context"
-let   g:SuperTabContextDefaultCompletionType   =   "<c-p>"
+let   g:SuperTabContextDefaultCompletionType   =   "<c-n>"
 
 " ======================= NERDCommenter ===========================
 " Ctrl-C to comment a block/line of code
@@ -276,3 +270,10 @@ augroup END
 
 " vim-indexed-search
 let g:indexed_search_shortmess=1
+
+" auto-align
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)

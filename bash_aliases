@@ -15,7 +15,7 @@ alias newtmux="tmux -u new -s ${PWD##*/}"
 alias myssh="TERM=xterm ssh"
 
 # Create cscope and ctags database
-alias create_tags_db=". ~/my-dot-files/create_tags_db.sh"
+alias create_tags_db=". ~/dotfiles/create_tags_db.sh"
 
 # fzf vim
 alias fvim='vim $(fzf -x)'

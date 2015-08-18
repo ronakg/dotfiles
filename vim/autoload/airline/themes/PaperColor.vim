@@ -14,7 +14,6 @@ let g:airline#themes#PaperColor#palette.normal = airline#themes#generate_color_m
 let g:airline#themes#PaperColor#palette.normal_modified = {
       \ 'airline_a': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
       \ 'airline_c': [ '#eeeeee' , '#005f87' , 255 , 24, '' ] ,
-      \ 'airline_z': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
       \ }
 
 
@@ -28,7 +27,6 @@ let g:airline#themes#PaperColor#palette.insert = airline#themes#generate_color_m
 let g:airline#themes#PaperColor#palette.insert_modified = {
       \ 'airline_a': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
       \ 'airline_c': [ '#eeeeee' , '#005f87' , 255 , 24 , '' ] ,
-      \ 'airline_z': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
       \ }
 
 
@@ -38,7 +36,6 @@ let g:airline#themes#PaperColor#palette.replace.airline_a = [ '#d7005f'   , '#e4
 let g:airline#themes#PaperColor#palette.replace_modified = {
       \ 'airline_a': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
       \ 'airline_c': [ '#eeeeee' , '#005f87' , 255 , 28 , '' ] ,
-      \ 'airline_z': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
       \ }
 
 
@@ -51,7 +48,6 @@ let g:airline#themes#PaperColor#palette.visual = airline#themes#generate_color_m
 let g:airline#themes#PaperColor#palette.visual_modified = {
       \ 'airline_a': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
       \ 'airline_c': [ '#e4e4e4', '#005f87', 254, 28  ] ,
-      \ 'airline_z': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
       \ }
 
 " Inactive:
@@ -60,7 +56,6 @@ let g:airline#themes#PaperColor#palette.inactive = airline#themes#generate_color
 let g:airline#themes#PaperColor#palette.inactive_modified = {
       \ 'airline_a': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
       \ 'airline_c': [ '#585858' , '#e4e4e4' , 240 , 254 , '' ] ,
-      \ 'airline_z': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
       \ }
 
 
