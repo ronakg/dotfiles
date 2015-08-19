@@ -2,11 +2,11 @@
 "
 " Author: Ronak Gandhi <ronak.gandhi@ronakg.com>
 
-let g:colors_name="myown"
+let g:colors_name="ronakg"
 
 hi Normal       ctermfg = white      cterm   = none
 hi LineNr       ctermfg = darkgrey   ctermbg = 238
-hi CursorLineNr ctermfg = 214        ctermbg = 235
+hi CursorLineNr ctermfg = red        ctermbg = 235
 hi CursorLine   ctermbg = 235        cterm   = none
 hi Conditional  ctermfg = 214
 hi Statement    ctermfg = 214

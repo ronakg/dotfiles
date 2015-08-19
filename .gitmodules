@@ -16,15 +16,9 @@
 [submodule "vim/bundle/vim-dispatch"]
 	path = vim/bundle/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
-[submodule "vim/bundle/auto-pairs"]
-	path = vim/bundle/auto-pairs
-	url = https://github.com/jiangmiao/auto-pairs
 [submodule "vim/bundle/echofunc"]
 	path = vim/bundle/echofunc
 	url = https://github.com/mbbill/echofunc
-[submodule "vim/bundle/vim-indexed-search"]
-	path = vim/bundle/vim-indexed-search
-	url = https://github.com/henrik/vim-indexed-search
 [submodule "vim/bundle/auto_autoread.vim"]
 	path = vim/bundle/auto_autoread.vim
 	url = https://github.com/vim-scripts/auto_autoread.vim

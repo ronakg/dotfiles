@@ -47,6 +47,7 @@ set nobackup                         " Don't need backup and swap files
 set noswapfile
 set pumheight=15                     " Completion menu height
 set number                           " Line numbers
+set relativenumber                   " Relative line numbers
 set cursorline                       " Cursor line
 set laststatus=2                     " Always show statusline     
 set shiftround                       " Round off shiftwidth when using >
@@ -55,6 +56,7 @@ set ttimeoutlen=250                  " Make Esc work faster
 set notimeout
 set wrapscan
 set autoread                         " automatically reload files changed outside of Vim
+set noshowcmd
 autocmd CursorHold * checktime       " checktime triggers auto reload when cursor is pressed
 filetype plugin on                   " filetype plugins for file specific settings
 filetype indent on                   " filetype specific indentation
@@ -62,6 +64,8 @@ syntax enable                        " Pretty syntax highlighing
 
 " Enable paste mode and add a new line
 map <leader>o :set paste<CR>o
+
+inoremap {<CR> {<CR>}<Esc>==ko
 
 " Don't use the arraow keys
 nmap <up> <nop>
@@ -99,9 +103,11 @@ nnoremap <tab> <C-w><C-w>
 " Tree style file explorer
 let g:netrw_liststyle=3
 
+noremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
+
 " Ctrl-s to save a file, in both normal and insert mode
-:nmap <c-s> :w<CR>
-:imap <c-s> <Esc>:w<CR>
+nmap <c-w> :w<CR>
+imap <c-w> <Esc>:w<CR>
 
 " If can't find extention of a file, assume it's a C file
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
@@ -165,6 +171,8 @@ nnoremap " :vert scscope find s<space>
 nnoremap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>   " Find definition of this symbol
 nnoremap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>   " Find calls to this symbol
 nnoremap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>   " Find all instances of this symbol
+nnoremap <leader>h :cs find f <C-R>=expand("<cfile>:t")<CR><CR>   " Find all instances of this symbol
+nnoremap <leader>i :cs find i <C-R>=expand("<cfile>:t")<CR><CR>   " Find all instances of this symbol
 nnoremap <leader>t <c-t>
 
 "========================== VIM-AIRLINE ==========================
@@ -249,7 +257,7 @@ nnoremap <C-l> :call NumberToggle()<CR>
 "=========================== COLORSCHEME ========================
 set t_Co=256
 set bg=dark
-colorscheme myown
+colorscheme ronakg
 autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
 
 "====================== WORK VIMRC ===============================

@@ -75,4 +75,3 @@ stty -ixon 2>/dev/null
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-set -o vi
