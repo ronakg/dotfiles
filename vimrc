@@ -129,8 +129,8 @@ imap jj <Esc>
 " Open current buffer in vertical split
 nmap <Leader>v :vs %<CR><tab>
 
-" dw in Insert mode
-inoremap <C-d> <C-o>dw
+" x in Insert mode
+inoremap <C-d> <C-o>x
 
 " Jump to start and end of line using the home row keys
 map H ^
@@ -171,8 +171,8 @@ nnoremap " :vert scscope find s<space>
 nnoremap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>   " Find definition of this symbol
 nnoremap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>   " Find calls to this symbol
 nnoremap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>   " Find all instances of this symbol
-nnoremap <leader>h :cs find f <C-R>=expand("<cfile>:t")<CR><CR>   " Find all instances of this symbol
-nnoremap <leader>i :cs find i <C-R>=expand("<cfile>:t")<CR><CR>   " Find all instances of this symbol
+nnoremap <leader>h :cs find f <C-R>=expand("<cfile>:t")<CR><CR>   " Find this file
+nnoremap <leader>i :cs find i <C-R>=expand("<cfile>:t")<CR><CR>   " Find all files including this file
 nnoremap <leader>t <c-t>
 
 "========================== VIM-AIRLINE ==========================

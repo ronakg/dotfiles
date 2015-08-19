@@ -25,3 +25,6 @@
 [submodule "vim/bundle/vim-easy-align"]
 	path = vim/bundle/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align
+[submodule "vim/bundle/papercolor-theme"]
+	path = vim/bundle/papercolor-theme
+	url = https://github.com/NLKNguyen/papercolor-theme
