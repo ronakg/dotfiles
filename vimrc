@@ -65,7 +65,14 @@ syntax enable                        " Pretty syntax highlighing
 " Enable paste mode and add a new line
 map <leader>o :set paste<CR>o
 
+" Disable pastemode when leaving Insert mode
+au InsertLeave * set nopaste
+
+" Expand matching braces only when pressing Enter
 inoremap {<CR> {<CR>}<Esc>==ko
+
+" Don't let x spoil the yank register
+noremap x "_x
 
 " Don't use the arraow keys
 nmap <up> <nop>
@@ -105,18 +112,19 @@ let g:netrw_liststyle=3
 
 noremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 
-" Ctrl-s to save a file, in both normal and insert mode
+" Ctrl-w to save a file, in both normal and insert mode
 nmap <c-w> :w<CR>
 imap <c-w> <Esc>:w<CR>
+imap kk <Esc>:w<CR>
+
+nmap <c-q> :q<CR>
+imap <c-q> <esc>:<CR>
 
 " If can't find extention of a file, assume it's a C file
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
 
 " Spellcheck commit messages
 autocmd BufRead COMMIT_EDITMSG setlocal spell!
-
-" Disable pastemode when leaving Insert mode
-au InsertLeave * set nopaste
 
 " Clear highlighted searches
 nmap <silent> ,/ :nohlsearch<CR>
@@ -135,10 +143,6 @@ inoremap <C-d> <C-o>x
 " Jump to start and end of line using the home row keys
 map H ^
 map L $
-
-" Paste and reindent
-nnoremap p p`]m`v`[=``]`
-nnoremap P P`]m`v`[=``]`
 
 " Insert a new line below and come back to normal mode
 noremap O o<ESC>
