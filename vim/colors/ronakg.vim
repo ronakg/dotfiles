@@ -4,7 +4,7 @@
 
 let g:colors_name="ronakg"
 
-hi Normal       ctermfg = white      ctermbg = 235 cterm   = none
+hi Normal       ctermfg = 252      ctermbg = 235 cterm   = none
 hi LineNr       ctermfg = darkgrey   ctermbg = 237
 hi CursorLineNr ctermfg = red        ctermbg = 235
 hi CursorLine   ctermbg = none       cterm   = none

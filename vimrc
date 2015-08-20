@@ -266,7 +266,6 @@ nnoremap <C-l> :call NumberToggle()<CR>
 set t_Co=256
 set bg=dark
 colorscheme ronakg
-autocmd BufEnter *.py colorscheme molokai
 
 "====================== WORK VIMRC ===============================
 try
@@ -275,17 +274,11 @@ catch
     " No such file? No problem; just ignore it.
 endtry
 
-let g:AutoPairsFlyMode = 0
-let g:AutoPairsMultilineClose = 0
-
 augroup CursorLine
   au!
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 augroup END
-
-" vim-indexed-search
-let g:indexed_search_shortmess=1
 
 " auto-align
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
