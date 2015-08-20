@@ -235,7 +235,7 @@ else
 endif
 
 "=========================== DIFF ===============================
-func DiffSettings()
+function! DiffSettings()
     nmap q :qa<CR>
 endfun
 
@@ -248,10 +248,14 @@ autocmd BufWritePost * if &diff == 1 | diffupdate | endif
 
 "========================== LINE NUMBERS =========================
 function! NumberToggle()
-  if(&relativenumber == 1)
+  if(&relativenumber == 1 && &number == 1)
     set number
     set norelativenumber
+  elseif (&number == 1 && &relativenumber == 0)
+    set norelativenumber
+    set nonumber
   else
+    set number
     set relativenumber
   endif
 endfunc
@@ -262,7 +266,7 @@ nnoremap <C-l> :call NumberToggle()<CR>
 set t_Co=256
 set bg=dark
 colorscheme ronakg
-autocmd BufEnter *.py colorscheme Tomorrow-Night-Eighties
+autocmd BufEnter *.py colorscheme molokai
 
 "====================== WORK VIMRC ===============================
 try

@@ -28,3 +28,6 @@
 [submodule "vim/bundle/papercolor-theme"]
 	path = vim/bundle/papercolor-theme
 	url = https://github.com/NLKNguyen/papercolor-theme
+[submodule "vim/bundle/vim-simple-todo"]
+	path = vim/bundle/vim-simple-todo
+	url = https://github.com/vitalk/vim-simple-todo
