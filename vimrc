@@ -297,10 +297,15 @@ vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+"==================== Simple-todo=================================
 " Disable default key bindings
 let g:simple_todo_map_keys = 0
+let g:simple_todo_tick_symbol = '✓'
 
 " Map your keys
 nmap <leader>x <Plug>(simple-todo-mark-as-done)
 nmap <leader>X <Plug>(simple-todo-mark-as-undone)
 nmap <leader>O <Plug>(simple-todo-new)
+
+"======================== Startify ===============================
+let g:startify_list_order = [['Most recently used files in current directory:'], 'dir',['Most recently used file on the system:'], 'files',['Bookmarks:'], 'bookmarks',['Sessions:'], 'sessions']

@@ -34,3 +34,6 @@
 [submodule "vim/bundle/vim-startify"]
 	path = vim/bundle/vim-startify
 	url = https://github.com/mhinz/vim-startify
+[submodule "vim/bundle/vim-simple-todo"]
+	path = vim/bundle/vim-simple-todo
+	url = https://github.com/ronakg/vim-simple-todo
