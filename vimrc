@@ -48,7 +48,7 @@ set noswapfile
 set pumheight=15                     " Completion menu height
 set number                           " Line numbers
 set relativenumber                   " Relative line numbers
-set cursorline                       " Cursor line
+"set cursorline                       " Cursor line
 set laststatus=2                     " Always show statusline     
 set shiftround                       " Round off shiftwidth when using >
 set ttimeout
@@ -274,11 +274,11 @@ catch
     " No such file? No problem; just ignore it.
 endtry
 
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
+"augroup CursorLine
+  "au!
+  "au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  "au WinLeave * setlocal nocursorline
+"augroup END
 
 " auto-align
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
@@ -286,3 +286,14 @@ vmap <Enter> <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" Treat .md files as markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+" Disable default key bindings
+let g:simple_todo_map_keys = 0
+
+" Map your keys
+nmap <leader>x <Plug>(simple-todo-mark-as-done)
+nmap <leader>X <Plug>(simple-todo-mark-as-undone)
+nmap <leader>O <Plug>(simple-todo-new)
