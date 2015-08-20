@@ -31,3 +31,6 @@
 [submodule "vim/bundle/vim-simple-todo"]
 	path = vim/bundle/vim-simple-todo
 	url = https://github.com/vitalk/vim-simple-todo
+[submodule "vim/bundle/vim-markdown"]
+	path = vim/bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown

@@ -6,8 +6,8 @@ let g:colors_name="ronakg"
 
 hi Normal       ctermfg = 252      ctermbg = 235 cterm   = none
 hi LineNr       ctermfg = darkgrey   ctermbg = 237
-hi CursorLineNr ctermfg = red        ctermbg = 235
-hi CursorLine   ctermbg = none       cterm   = none
+hi CursorLineNr ctermfg = red        ctermbg = 236
+hi CursorLine   ctermbg = 236       cterm   = none
 hi Conditional  ctermfg = 214
 hi Statement    ctermfg = 214
 hi Type         ctermfg = darkgreen

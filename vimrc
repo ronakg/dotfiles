@@ -19,13 +19,16 @@ call pathogen#infect('after/{}')
 " issues
 nmap <space> <leader>
 
-" standard vim options
+" Standard vim options
+"
 set nomodeline                       " disable mode lines (security measure)
+
+" Searching
 set incsearch                        " increamental search
 set hlsearch                         " highlight search
-set backspace=indent,eol,start       " makes backspace working
 set ignorecase                       " ignore case in searching
 set smartcase                        " dont ignore case if capital letters present
+set backspace=indent,eol,start       " makes backspace working
 set scrolloff=4                      " keep cursor off screen edges
 set softtabstop=4
 set shiftwidth=4
@@ -48,7 +51,7 @@ set noswapfile
 set pumheight=15                     " Completion menu height
 set number                           " Line numbers
 set relativenumber                   " Relative line numbers
-"set cursorline                       " Cursor line
+set cursorline                       " Cursor line
 set laststatus=2                     " Always show statusline     
 set shiftround                       " Round off shiftwidth when using >
 set ttimeout
@@ -110,7 +113,11 @@ nnoremap <tab> <C-w><C-w>
 " Tree style file explorer
 let g:netrw_liststyle=3
 
+" Don't jump to next search result on *
 noremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
+
+noremap <leader>v :exe getline(".")<CR>
+vnoremap <leader>v :<C-w>exe join(getline("'<","'>"),'<Bar>')<CR>
 
 " Ctrl-w to save a file, in both normal and insert mode
 nmap <c-w> :w<CR>
@@ -135,7 +142,7 @@ vnoremap ; :
 imap jj <Esc>
 
 " Open current buffer in vertical split
-nmap <Leader>v :vs %<CR><tab>
+"nmap <Leader>v :vs %<CR><tab>
 
 " x in Insert mode
 inoremap <C-d> <C-o>x
@@ -262,6 +269,9 @@ endfunc
 
 nnoremap <C-l> :call NumberToggle()<CR>
 
+" Treat .md files as markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 "=========================== COLORSCHEME ========================
 set t_Co=256
 set bg=dark
@@ -274,11 +284,11 @@ catch
     " No such file? No problem; just ignore it.
 endtry
 
-"augroup CursorLine
-  "au!
-  "au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  "au WinLeave * setlocal nocursorline
-"augroup END
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 " auto-align
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
@@ -286,9 +296,6 @@ vmap <Enter> <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
-" Treat .md files as markdown
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " Disable default key bindings
 let g:simple_todo_map_keys = 0
