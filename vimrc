@@ -113,16 +113,15 @@ let g:netrw_liststyle=3
 " Don't jump to next search result on *
 noremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 
+" Quicker save and quit
+nnoremap ww :w<CR>
+nnoremap ee :q<CR>
+
 noremap <leader>v :exe getline(".")<CR>
 vnoremap <leader>v :<C-w>exe join(getline("'<","'>"),'<Bar>')<CR>
 
 " Ctrl-w to save a file, in both normal and insert mode
-nmap <c-w> :w<CR>
-imap <c-w> <Esc>:w<CR>
 imap kk <Esc>:w<CR>
-
-nmap <c-q> :q<CR>
-imap <c-q> <esc>:<CR>
 
 " If can't find extention of a file, assume it's a C file
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
