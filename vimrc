@@ -83,9 +83,6 @@ nmap <down> <nop>
 nmap <left> <nop>
 nmap <right> <nop>
 
-" Double space to go to last buffer
-noremap <leader><space> :buffer #<CR>
-
 " Move in insert mode
 imap <C-h> <C-o>h
 imap <C-j> <C-o>j
