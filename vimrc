@@ -115,7 +115,7 @@ noremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 
 " Quicker save and quit
 nnoremap ww :w<CR>
-nnoremap ee :q<CR>
+"nnoremap ee :q<CR>
 
 noremap <leader>v :exe getline(".")<CR>
 vnoremap <leader>v :<C-w>exe join(getline("'<","'>"),'<Bar>')<CR>
@@ -167,7 +167,7 @@ nnoremap   <leader>,         :bprevious<CR>
 nnoremap   <leader>.         :bnext<CR>
 inoremap   <leader>,   <Esc> :bprevious<CR>i
 inoremap   <leader>.   <Esc> :bnext<CR>i
-nnoremap   <leader>q         :bd<CR>
+nnoremap   <leader>q         :bw<CR>
 nnoremap   <leader><tab>     :w<CR>: cn<CR>
 
 "===================== CTAGS/CSCOPE ==========================
@@ -179,10 +179,10 @@ set cscopetag       " Use both cscope and ctags as database
 " window, open quickfix window with results, search for the word for
 " highlighting and movement with n and N
 nnoremap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>   " Find definition of this symbol
-nnoremap <leader>c yiw:cs find c <C-R>=expand("<cword>")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find calls to this symbol
-nnoremap <leader>s yiw:cs find s <C-R>=expand("<cword>")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>  " Find all instances of this symbol
-nnoremap <leader>h yiw:cs find f <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find this file
-nnoremap <leader>i yiw:cs find i <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all files including this file
+nnoremap <leader>c yiw:cs find c <C-R>=expand("<cword>")<CR><CR>:bw<CR>:cwindow<CR>/<C-R>0<CR>   " Find calls to this symbol
+nnoremap <leader>s yiw:cs find s <C-R>=expand("<cword>")<CR><CR>:bw<CR>:cwindow<CR>/<C-R>0<CR>  " Find all instances of this symbol
+nnoremap <leader>h yiw:cs find f <C-R>=expand("<cfile>:t")<CR><CR>:bw<CR>:cwindow<CR>/<C-R>0<CR>   " Find this file
+nnoremap <leader>i yiw:cs find i <C-R>=expand("<cfile>:t")<CR><CR>:bw<CR>:cwindow<CR>/<C-R>0<CR>   " Find all files including this file
 nnoremap <leader>t <c-t>
 set cscopequickfix=s-,c-,i-,t-,e-,f-
 
@@ -312,8 +312,27 @@ let g:startify_list_order = [['Most recently used files in current directory:'],
 let g:startify_change_to_dir = 0
 
 "==================== EASYMOTION ================================
-nmap f <Plug>(easymotion-w)
-nmap F <Plug>(easymotion-W)
+nmap f <Plug>(easymotion-f)
+nmap F <Plug>(easymotion-F)
 
 " Grep for word under the cursor
 nnoremap <Leader>vv :grep! -R --include="*.c" --include="*.h" <cword> . <CR>:cw<CR>
+
+function! CloseOnLast()
+    let cnt = 0
+
+    for i in range(0, bufnr("$"))
+        if buflisted(i)
+            let cnt += 1
+        endif
+    endfor
+
+    if cnt <= 1
+        q
+    else
+        bw
+    endif
+
+endfunction
+
+nnoremap qq :call CloseOnLast()<CR>

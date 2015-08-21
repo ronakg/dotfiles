@@ -1,0 +1,1 @@
+nnoremap <space> <return>
