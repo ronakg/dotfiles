@@ -67,6 +67,7 @@ endfunc
 "  Else toss it out.
 "  TODO Maybe I should move this into a seperate plugin?
 let s:menus_loaded = 0
+let g:autocscope_menus = 0
 function s:Cycle_macros_menus()
   if g:autocscope_menus != 1
     return
@@ -175,9 +176,11 @@ endfunc
 augroup autoload_cscope
  au!
  au BufEnter *.[chly]  call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
+ au BufEnter *.cpp      call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
  au BufEnter *.cc      call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
  au BufUnload *.[chly] call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
  au BufUnload *.cc     call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
+ au BufUnload *.cpp     call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
 augroup END
 
 let &cpo = s:save_cpo

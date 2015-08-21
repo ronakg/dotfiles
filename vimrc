@@ -120,8 +120,10 @@ nnoremap ee :q<CR>
 noremap <leader>v :exe getline(".")<CR>
 vnoremap <leader>v :<C-w>exe join(getline("'<","'>"),'<Bar>')<CR>
 
-" Ctrl-w to save a file, in both normal and insert mode
-imap kk <Esc>:w<CR>
+" jj to save the file in insert mode
+" kk to switch to normal mode from insert mode without saving
+imap jj <Esc>:w<CR>
+imap kk <Esc>
 
 " If can't find extention of a file, assume it's a C file
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
@@ -135,7 +137,6 @@ nmap <silent> ,/ :nohlsearch<CR>
 " Easier to get command prompt
 nnoremap ; :
 vnoremap ; :
-imap jj <Esc>
 
 " Open current buffer in vertical split
 "nmap <Leader>v :vs %<CR><tab>
@@ -174,13 +175,16 @@ set tags=./tags;/   " ctags path, search upwards till tags file is found
 set cscopetag       " Use both cscope and ctags as database
 
 " Find instances of a symbol from command line
-nnoremap " :vert scscope find s<space>
+" Yank the word under cursor, search for cscope, close the first result
+" window, open quickfix window with results, search for the word for
+" highlighting and movement with n and N
 nnoremap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>   " Find definition of this symbol
-nnoremap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>   " Find calls to this symbol
-nnoremap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>   " Find all instances of this symbol
-nnoremap <leader>h :cs find f <C-R>=expand("<cfile>:t")<CR><CR>   " Find this file
-nnoremap <leader>i :cs find i <C-R>=expand("<cfile>:t")<CR><CR>   " Find all files including this file
+nnoremap <leader>c yiw:cs find c <C-R>=expand("<cword>")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find calls to this symbol
+nnoremap <leader>s yiw:cs find s <C-R>=expand("<cword>")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>  " Find all instances of this symbol
+nnoremap <leader>h yiw:cs find f <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find this file
+nnoremap <leader>i yiw:cs find i <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all files including this file
 nnoremap <leader>t <c-t>
+set cscopequickfix=s-,c-,i-,t-,e-,f-
 
 "========================== VIM-AIRLINE ==========================
 " Enable the list of buffers
@@ -305,3 +309,11 @@ nmap <leader>O <Plug>(simple-todo-new)
 
 "======================== Startify ===============================
 let g:startify_list_order = [['Most recently used files in current directory:'], 'dir',['Most recently used file on the system:'], 'files',['Bookmarks:'], 'bookmarks',['Sessions:'], 'sessions']
+let g:startify_change_to_dir = 0
+
+"==================== EASYMOTION ================================
+nmap f <Plug>(easymotion-w)
+nmap F <Plug>(easymotion-W)
+
+" Grep for word under the cursor
+nnoremap <Leader>vv :grep! -R --include="*.c" --include="*.h" <cword> . <CR>:cw<CR>
