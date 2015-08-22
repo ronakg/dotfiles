@@ -35,7 +35,12 @@ set shiftwidth=4
 set smarttab
 set expandtab
 set cindent
+set smartindent
 set autoindent
+set listchars=tab:\|\ ,
+set breakindent
+set breakindentopt=sbr
+set nostartofline
 set ttyfast
 set lazyredraw
 set gdefault                         " search/replace globally (on a line) by default
@@ -68,6 +73,9 @@ syntax enable                        " Pretty syntax highlighing
 " Enable paste mode and add a new line
 map <leader>o :set paste<CR>o
 
+noremap <C-F> <C-D>
+noremap <C-B> <C-U>
+
 " Disable pastemode when leaving Insert mode
 au InsertLeave * set nopaste
 
@@ -97,9 +105,6 @@ nnoremap k gk
 vnoremap < <gv
 vnoremap > >gv
 
-" Play last recorded macro
-map Q @@
-
 " Easier formatting of paragraphs
 vmap Q gq
 nmap Q gqap
@@ -115,14 +120,15 @@ noremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 
 " Quicker save and quit
 nnoremap ww :w<CR>
-"nnoremap ee :q<CR>
 
 noremap <leader>v :exe getline(".")<CR>
 vnoremap <leader>v :<C-w>exe join(getline("'<","'>"),'<Bar>')<CR>
 
-" jj to save the file in insert mode
+" jj to save the file in insert mode, switch to normal mode from other modes
+inoremap jj <Esc>:w<CR>
+xnoremap jj <Esc>
+cnoremap jj <C-c>
 " kk to switch to normal mode from insert mode without saving
-imap jj <Esc>:w<CR>
 imap kk <Esc>
 
 " If can't find extention of a file, assume it's a C file
@@ -157,6 +163,7 @@ if has("autocmd")
                 \ if line("'\"") > 0 && line ("'\"") <= line("$") |
                 \   exe "normal! g'\"" |
                 \ endif
+            
 endif
 
 " center buffer around cursor when opening files
@@ -308,16 +315,22 @@ nmap <leader>X <Plug>(simple-todo-mark-as-undone)
 nmap <leader>O <Plug>(simple-todo-new)
 
 "======================== Startify ===============================
-let g:startify_list_order = [['Most recently used files in current directory:'], 'dir',['Most recently used file on the system:'], 'files',['Bookmarks:'], 'bookmarks',['Sessions:'], 'sessions']
+let g:startify_list_order = [['Most recently used files in current directory:'], 'dir',
+            \                ['Most recently used file on the system:'], 'files',
+            \                ['Bookmarks:'], 'bookmarks',
+            \                ['Sessions:'], 'sessions']
 let g:startify_change_to_dir = 0
 
 "==================== EASYMOTION ================================
-nmap f <Plug>(easymotion-f)
-nmap F <Plug>(easymotion-F)
+nmap f <Plug>(easymotion-s)
+let g:EasyMotion_smartcase = 1
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 " Grep for word under the cursor
 nnoremap <Leader>vv :grep! -R --include="*.c" --include="*.h" <cword> . <CR>:cw<CR>
 
+" if nbuffers > 1? bw: q
 function! CloseOnLast()
     let cnt = 0
 
@@ -335,4 +348,4 @@ function! CloseOnLast()
 
 endfunction
 
-nnoremap qq :call CloseOnLast()<CR>
+nnoremap ee :call CloseOnLast()<CR>
