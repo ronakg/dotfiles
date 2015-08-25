@@ -38,8 +38,6 @@ set cindent
 set smartindent
 set autoindent
 set listchars=tab:\|\ ,
-set breakindent
-set breakindentopt=sbr
 set nostartofline
 set ttyfast
 set lazyredraw
@@ -91,12 +89,6 @@ nmap <down> <nop>
 nmap <left> <nop>
 nmap <right> <nop>
 
-" Move in insert mode
-imap <C-h> <C-o>h
-imap <C-j> <C-o>j
-imap <C-k> <C-o>k
-imap <C-l> <C-o>l
-
 " Improve up/down movement on wrapped lines
 nnoremap j gj
 nnoremap k gk
@@ -144,9 +136,6 @@ nmap <silent> ,/ :nohlsearch<CR>
 nnoremap ; :
 vnoremap ; :
 
-" Open current buffer in vertical split
-"nmap <Leader>v :vs %<CR><tab>
-
 " x in Insert mode
 inoremap <C-d> <C-o>x
 
@@ -174,7 +163,6 @@ nnoremap   <leader>,         :bprevious<CR>
 nnoremap   <leader>.         :bnext<CR>
 inoremap   <leader>,   <Esc> :bprevious<CR>i
 inoremap   <leader>.   <Esc> :bnext<CR>i
-nnoremap   <leader>q         :bw<CR>
 nnoremap   <leader><tab>     :w<CR>: cn<CR>
 
 "===================== CTAGS/CSCOPE ==========================
@@ -209,6 +197,8 @@ let g:airline_theme                                           = 'PaperColor'
 let g:airline#extensions#tabline#fnamemod                     = ':t'
 let g:airline_left_sep                                        = ''
 let g:airline_right_sep                                       = ''
+let g:airline_section_b = '%{fnamemodify(getcwd(), ":t")}'
+let g:airline_section_c = '%{fnamemodify(expand("%"), ":~:.")}'
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
