@@ -58,7 +58,7 @@ set cursorline                       " Cursor line
 set laststatus=2                     " Always show statusline     
 set shiftround                       " Round off shiftwidth when using >
 set ttimeout
-set ttimeoutlen=250                  " Make Esc work faster
+set ttimeoutlen=50                  " Make Esc work faster
 set notimeout
 set wrapscan
 set autoread                         " automatically reload files changed outside of Vim
