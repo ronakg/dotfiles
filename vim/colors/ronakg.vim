@@ -46,3 +46,6 @@ hi PmenuSel     ctermfg = red        ctermbg = white
 hi Folded       ctermfg = black
 hi MatchParen   ctermfg = white      ctermbg = red
 hi VertSplit    ctermfg = grey
+
+hi StartifyFile ctermfg=red
+hi Startifypath ctermfg=grey

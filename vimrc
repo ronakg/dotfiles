@@ -287,6 +287,8 @@ augroup CursorLine
   au WinLeave * setlocal nocursorline
 augroup END
 
+autocmd QuickFixCmdPost *grep* cwindow
+
 " auto-align
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
@@ -318,7 +320,12 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 " Grep for word under the cursor
-nnoremap <Leader>vv :grep! -R --include="*.c" --include="*.h" <cword> . <CR>:cw<CR>
+let g:ack_use_dispatch=2
+if filereadable("cscope.files")
+    nnoremap <Leader>vv :Ack! -k <cword> --files-from=cscope.files<CR>
+else
+    nnoremap <Leader>vv :Ack! -k <cword> .<CR>
+endif
 
 " if nbuffers > 1? bw: q
 function! CloseOnLast()
@@ -343,3 +350,7 @@ nnoremap ee :call CloseOnLast()<CR>
 if filereadable(".vim.custom")
     so .vim.custom
 endif
+
+let g:startify_skiplist = [
+                \ '.CC',
+                \ ]
