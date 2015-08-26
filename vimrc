@@ -339,3 +339,7 @@ function! CloseOnLast()
 endfunction
 
 nnoremap ee :call CloseOnLast()<CR>
+
+if filereadable(".vim.custom")
+    so .vim.custom
+endif
