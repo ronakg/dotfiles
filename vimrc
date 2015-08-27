@@ -113,12 +113,8 @@ noremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 " Quicker save and quit
 nnoremap ww :w<CR>
 
-noremap <leader>v :exe getline(".")<CR>
-vnoremap <leader>v :<C-w>exe join(getline("'<","'>"),'<Bar>')<CR>
-
 " jj to save the file in insert mode, switch to normal mode from other modes
 inoremap jj <Esc>:w<CR>
-xnoremap jj <Esc>
 cnoremap jj <C-c>
 " kk to switch to normal mode from insert mode without saving
 imap kk <Esc>

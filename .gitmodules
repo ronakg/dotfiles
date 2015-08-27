@@ -1,58 +1,76 @@
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline.git
+        ignore = untracked
 [submodule "vim/bundle/tagbar"]
 	path = vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar.git
+        ignore = untracked
 [submodule "vim/bundle/nerdcommenter"]
 	path = vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+        ignore = untracked
 [submodule "vim/bundle/supertab"]
 	path = vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
+        ignore = untracked
 [submodule "vim/bundle/fzf"]
 	path = vim/bundle/fzf
 	url = https://github.com/junegunn/fzf.git
+        ignore = untracked
 [submodule "vim/bundle/vim-dispatch"]
 	path = vim/bundle/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
+        ignore = untracked
 [submodule "vim/bundle/echofunc"]
 	path = vim/bundle/echofunc
 	url = https://github.com/mbbill/echofunc
+        ignore = untracked
 [submodule "vim/bundle/auto_autoread.vim"]
 	path = vim/bundle/auto_autoread.vim
 	url = https://github.com/vim-scripts/auto_autoread.vim
+        ignore = untracked
 [submodule "vim/bundle/vim-easy-align"]
 	path = vim/bundle/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align
+        ignore = untracked
 [submodule "vim/bundle/papercolor-theme"]
 	path = vim/bundle/papercolor-theme
 	url = https://github.com/NLKNguyen/papercolor-theme
+        ignore = untracked
 [submodule "vim/bundle/vim-markdown"]
 	path = vim/bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown
+        ignore = untracked
 [submodule "vim/bundle/vim-startify"]
 	path = vim/bundle/vim-startify
 	url = https://github.com/mhinz/vim-startify
-        ignore = dirty
+        ignore = untracked
 [submodule "vim/bundle/vim-simple-todo"]
 	path = vim/bundle/vim-simple-todo
 	url = https://github.com/ronakg/vim-simple-todo
+        ignore = untracked
 [submodule "vim/bundle/jellybeans.vim"]
 	path = vim/bundle/jellybeans.vim
 	url = https://github.com/nanotech/jellybeans.vim
+        ignore = untracked
 [submodule "vim/bundle/vim-easymotion"]
 	path = vim/bundle/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion
+        ignore = untracked
 [submodule "vim/bundle/vim-sneak"]
 	path = vim/bundle/vim-sneak
 	url = https://github.com/justinmk/vim-sneak
+        ignore = untracked
 [submodule "vim/bundle/vim-multiple-cursors"]
 	path = vim/bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors
+        ignore = untracked
 [submodule "vim/bundle/quickfix-reflector.vim"]
 	path = vim/bundle/quickfix-reflector.vim
 	url = https://github.com/stefandtw/quickfix-reflector.vim
+        ignore = untracked
 [submodule "vim/bundle/ack.vim"]
 	path = vim/bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim
+        ignore = untracked
