@@ -73,6 +73,6 @@ export FZF_DEFAULT_OPTS='
 bind -r '\C-s'
 stty -ixon 2>/dev/null
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-set -o vi
-set keymap vi-command
+if [ -f ~/.fzf.bash ]; then
+   source ~/.fzf.bash
+fi
