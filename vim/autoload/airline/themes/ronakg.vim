@@ -18,7 +18,7 @@ let g:airline#themes#ronakg#palette.normal_modified = {
 
 
 " Insert Mode:
-let s:I1 = [ '#585858' , '#e4e4e4' , 240 , 254 ] " Mode
+let s:I1 = [ '#585858' , '#e4e4e4' , 256 , 214 ] " Mode
 let s:I2 = [ '#e4e4e4' , '#0087af' , 254 , 31  ] " Info
 let s:I3 = [ '#eeeeee' , '#005f87' , 255 , 24  ] " StatusLine
 
@@ -32,7 +32,6 @@ let g:airline#themes#ronakg#palette.insert_modified = {
 
 " Replace Mode:
 let g:airline#themes#ronakg#palette.replace = copy(g:airline#themes#ronakg#palette.insert)
-let g:airline#themes#ronakg#palette.replace.airline_a = [ '#d7005f'   , '#e4e4e4' , 161 , 254, ''     ]
 let g:airline#themes#ronakg#palette.replace_modified = {
       \ 'airline_a': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,
       \ 'airline_c': [ '#eeeeee' , '#005f87' , 255 , 24 , '' ] ,
@@ -40,7 +39,7 @@ let g:airline#themes#ronakg#palette.replace_modified = {
 
 
 " Visual Mode:
-let s:V1 = [ '#005f87', '#e4e4e4', 24,  254 ]
+let s:V1 = [ '#005f87', '#e4e4e4', 255, 34 ]
 let s:V2 = [ '',        '#0087af', '',  31  ]
 let s:V3 = [ '#e4e4e4', '#005f87', 254, 24  ]
 
@@ -63,5 +62,6 @@ let g:airline#themes#ronakg#palette.accents = {
       \ }
 
 let g:airline#themes#ronakg#palette.tabline = {
-      \ 'airline_tabmod':  [ '#eeeeee' , '#005f87' , 255, 160, '' ]
+      \ 'airline_tabmod':  [ '#eeeeee' , '#005f87' , 255, 160, '' ],
+      \ 'airline_tabmod_unsel':  [ '#eeeeee' , '#005f87' , 255, 167, '' ]
       \ }
