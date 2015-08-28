@@ -1,5 +1,3 @@
-" vimrc
-
 set termencoding=utf-8
 set encoding=utf-8
 
@@ -9,11 +7,12 @@ set encoding=utf-8
 " let g:pathogen_disabled = ['auto-pairs', 'vim-airline']
 let g:pathogen_disabled = ['']
 
-" Pathogen docs say turn filetype off before calling
+" Pathogen docs say turn filetype off before calling {{{
 filetype off
 call pathogen#infect()
 call pathogen#helptags()
 call pathogen#infect('after/{}')
+" }}}
 
 " Space is my leader, don't assign leader to space - that causes latency
 " issues
@@ -21,8 +20,6 @@ nmap <space> <leader>
 
 " Standard vim options
 "
-set nomodeline                       " disable mode lines (security measure)
-
 " Searching
 set incsearch                        " increamental search
 set hlsearch                         " highlight search
@@ -63,6 +60,7 @@ set notimeout
 set wrapscan
 set autoread                         " automatically reload files changed outside of Vim
 set noshowcmd
+set hidden                           " Allow buffer to be hidden without writing to disk
 autocmd CursorHold * checktime       " checktime triggers auto reload when cursor is pressed
 filetype plugin on                   " filetype plugins for file specific settings
 filetype indent on                   " filetype specific indentation
@@ -80,14 +78,19 @@ au InsertLeave * set nopaste
 " Expand matching braces only when pressing Enter
 inoremap {<CR> {<CR>}<Esc>==ko
 
-" Don't let x spoil the yank register
-noremap x "_x
+" Don't let x and c to spoil the yank register
+nnoremap x "_x
+nnoremap c "_c
 
 " Don't use the arraow keys
 nmap <up> <nop>
 nmap <down> <nop>
 nmap <left> <nop>
 nmap <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
 
 " Improve up/down movement on wrapped lines
 nnoremap j gj
@@ -113,12 +116,8 @@ noremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 " Quicker save and quit
 nnoremap ww :w<CR>
 
-noremap <leader>v :exe getline(".")<CR>
-vnoremap <leader>v :<C-w>exe join(getline("'<","'>"),'<Bar>')<CR>
-
 " jj to save the file in insert mode, switch to normal mode from other modes
 inoremap jj <Esc>:w<CR>
-xnoremap jj <Esc>
 cnoremap jj <C-c>
 " kk to switch to normal mode from insert mode without saving
 imap kk <Esc>
@@ -245,6 +244,9 @@ endfun
 
 if &diff
     autocmd VimEnter * call DiffSettings()
+    " use space and backspace to jump forward/backward through differences
+    nnoremap <space> :normal! ]c<enter>
+    nnoremap <backspace> :normal! [c<enter>
 endif
 
 " Update diff if changes are written to the file
@@ -264,7 +266,7 @@ function! NumberToggle()
   endif
 endfunc
 
-nnoremap <C-l> :call NumberToggle()<CR>
+nnoremap <leader>l :call NumberToggle()<CR>
 
 " Treat .md files as markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -286,8 +288,6 @@ augroup CursorLine
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 augroup END
-
-autocmd QuickFixCmdPost *grep* cwindow
 
 " auto-align
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
@@ -354,3 +354,18 @@ endif
 let g:startify_skiplist = [
                 \ '.CC',
                 \ ]
+
+nnoremap <C-j> :m+<CR>==
+nnoremap <C-k> :m-2<CR>==
+nnoremap <C-h> <<
+nnoremap <C-l> >>
+inoremap <C-j> <Esc>:m+<CR>==gi
+inoremap <C-k> <Esc>:m-2<CR>==gi
+inoremap <C-h> <Esc><<`]a
+inoremap <C-l> <Esc>>>`]a
+vnoremap <C-j> :m'>+<CR>gv=gv
+vnoremap <C-k> :m-2<CR>gv=gv
+vnoremap <C-h> <gv
+vnoremap <C-l> >gv
+
+" vim:foldmethod=marker:foldlevel=0
