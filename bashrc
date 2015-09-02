@@ -36,7 +36,6 @@ HISTSIZE=1000                  # big big history
 HISTFILESIZE=1000              # big big history
 HISTCONTROL=ignoredups:erasedups
 shopt -s histappend                     # append to history, don't overwrite it
-PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
 # Bind up and down array to do backward and forward history search
 if [[ $- == *i* ]]

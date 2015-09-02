@@ -46,10 +46,6 @@
 	path = vim/bundle/vim-startify
 	url = https://github.com/mhinz/vim-startify
         ignore = untracked
-[submodule "vim/bundle/vim-simple-todo"]
-	path = vim/bundle/vim-simple-todo
-	url = https://github.com/ronakg/vim-simple-todo
-        ignore = untracked
 [submodule "vim/bundle/jellybeans.vim"]
 	path = vim/bundle/jellybeans.vim
 	url = https://github.com/nanotech/jellybeans.vim
@@ -74,3 +70,6 @@
 	path = vim/bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim
         ignore = untracked
+[submodule "vim/bundle/Apprentice"]
+	path = vim/bundle/Apprentice
+	url = https://github.com/romainl/Apprentice
