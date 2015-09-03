@@ -14,11 +14,11 @@ hi Type         ctermfg = darkgreen
 hi Storageclass ctermfg = 161
 hi String       ctermfg = darkred
 hi Number       ctermfg = 161
-hi cTodo        ctermfg = darkred    cterm   = bold,italic ctermbg = yellow
+hi cTodo        ctermfg = darkred    cterm   = italic ctermbg = yellow
 hi Boolean      ctermfg = 161
 hi Debug        ctermfg = yellow     cterm   = none
 hi Identifier   ctermfg = darkblue
-hi Label        ctermfg = darkblue   cterm   = bold,italic
+hi Label        ctermfg = darkblue   cterm   = italic
 hi Directory    ctermfg = cyan
 hi Comment      ctermfg = 245        cterm   = italic
 hi Function     ctermfg = 152

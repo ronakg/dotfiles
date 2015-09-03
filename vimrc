@@ -16,7 +16,7 @@ call pathogen#infect('after/{}')
 
 " Space is my leader, don't assign leader to space - that causes latency
 " issues
- let mapleader = " "
+ nmap <space> <leader>
 
 " Standard vim options
 "                              
@@ -315,10 +315,10 @@ let g:startify_list_order = [['Most recently used files in current directory:'],
 let g:startify_change_to_dir = 0
 
 "==================== EASYMOTION ================================
-nmap f <Plug>(easymotion-s)
 let g:EasyMotion_smartcase = 1
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+nmap f <Plug>(easymotion-bd-f)
+nmap s <Plug>(easymotion-s2)
+map <Leader>j <Plug>(easymotion-bd-jk)
 
 " Grep for word under the cursor
 let g:ack_use_dispatch=2
