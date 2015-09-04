@@ -62,10 +62,6 @@
 	path = vim/bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors
         ignore = untracked
-[submodule "vim/bundle/quickfix-reflector.vim"]
-	path = vim/bundle/quickfix-reflector.vim
-	url = https://github.com/stefandtw/quickfix-reflector.vim
-        ignore = untracked
 [submodule "vim/bundle/ack.vim"]
 	path = vim/bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim

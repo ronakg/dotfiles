@@ -60,7 +60,7 @@ fi
 
 export FZF_DEFAULT_COMMAND='if [ -e cscope.files ]; then cat cscope.files; else find ./ -type f ; fi'
 export FZF_COMPLETION_OPTS='+c -x'
-export FZF_TMUX=0
+export FZF_TMUX=1
 export FZF_DEFAULT_OPTS='
   --extended
   --bind ctrl-f:page-down,ctrl-b:page-up

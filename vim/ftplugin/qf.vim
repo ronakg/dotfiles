@@ -1,1 +1,0 @@
-nnoremap <buffer> <space> <return>

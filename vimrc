@@ -61,7 +61,7 @@ set notimeout
 set wrapscan
 set autoread                         " automatically reload files changed outside of Vim
 set noshowcmd
-set hidden                           " Allow buffer to be hidden without writing to disk
+set nohidden                         
 autocmd CursorHold * checktime       " checktime triggers auto reload when cursor is pressed
 filetype plugin on                   " filetype plugins for file specific settings
 filetype indent on                   " filetype specific indentation
@@ -168,6 +168,7 @@ nnoremap   <leader><tab>     :w<CR>: cn<CR>
 "===================== CTAGS/CSCOPE ==========================
 set tags=./tags;/   " ctags path, search upwards till tags file is found
 set cscopetag       " Use both cscope and ctags as database
+set csto=0
 
 " Find instances of a symbol from command line
 " Yank the word under cursor, search for cscope, close the first result
@@ -323,9 +324,9 @@ map <Leader>j <Plug>(easymotion-bd-jk)
 " Grep for word under the cursor
 let g:ack_use_dispatch=2
 if filereadable("cscope.files")
-    nnoremap <Leader>vv :Ack! -k <cword> --files-from=cscope.files<CR>
+    nnoremap <Leader>vv :silent Ack! -k <cword> --files-from=cscope.files<CR>
 else
-    nnoremap <Leader>vv :Ack! -k <cword> .<CR>
+    nnoremap <Leader>vv :silent Ack! -k <cword> .<CR>
 endif
 
 " if nbuffers > 1? bw: q
@@ -368,5 +369,7 @@ vnoremap <C-j> :m'>+<CR>gv=gv
 vnoremap <C-k> :m-2<CR>gv=gv
 vnoremap <C-h> <gv
 vnoremap <C-l> >gv
+
+autocmd FileType pw set nobuflisted
 
 " vim:foldmethod=marker:foldlevel=0
