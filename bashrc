@@ -19,12 +19,12 @@ export CSCOPE_EDITOR=vim
 function prompt_command {
     RET_CODE=$?
 
-    PS1='[\e[39m\h \e[38;5;39m\w\e[38;5;252m]'
+    PS1='[\e[39m\h \e[38;5;214m\w\e[38;5;252m]'
 
     if [ $RET_CODE != 0 ]; then
-        PS1+=' \e[91m$?>\e[0m '
+        PS1+='\e[91m$?>\e[0m '
     else
-        PS1+=' $\e[0m '
+        PS1+='$\e[0m '
     fi
 
     export PS1

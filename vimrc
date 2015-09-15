@@ -372,4 +372,6 @@ vnoremap <C-l> >gv
 
 autocmd FileType pw set nobuflisted
 
+let g:gutentags_project_root=['cscope.files']
+
 " vim:foldmethod=marker:foldlevel=0
