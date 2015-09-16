@@ -28,6 +28,8 @@ set ignorecase                       " ignore case in searching
 set smartcase                        " dont ignore case if capital letters present
 set backspace=indent,eol,start       " makes backspace working
 set scrolloff=4                      " keep cursor off screen edges
+set sidescrolloff=10
+set sidescroll=1
 set softtabstop=4
 set shiftwidth=4
 set smarttab
@@ -35,7 +37,6 @@ set expandtab
 set cindent
 set smartindent
 set autoindent
-set listchars=tab:\|\ ,
 set nostartofline
 set ttyfast
 set lazyredraw
@@ -100,6 +101,10 @@ nnoremap k gk
 " Better indentation in Visual mode
 vnoremap < <gv
 vnoremap > >gv
+
+" Auto indent pasted text
+nnoremap p p=`]<C-o>
+nnoremap P P=`]<C-o>
 
 " Easier formatting of paragraphs
 vmap Q gq
