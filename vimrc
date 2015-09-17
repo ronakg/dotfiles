@@ -230,8 +230,7 @@ nmap <C-x> :call NERDComment(0,"uncomment")<CR>
 vmap <C-x> :call NERDComment(0,"uncomment")<CR>
 
 "========================== FZF ===================================
-nnoremap <leader>f :FZF! -x<CR>
-cnoreabbrev FZF FZF!
+nnoremap <silent> <C-p> :FZF<CR>
 
 " Change cursor shape based on mode.
 " https://gist.github.com/andyfowler/1195581
