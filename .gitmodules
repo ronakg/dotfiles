@@ -69,3 +69,8 @@
 [submodule "vim/bundle/Apprentice"]
 	path = vim/bundle/Apprentice
 	url = https://github.com/romainl/Apprentice
+        ignore = untracked
+[submodule "vim/bundle/vim-sayonara"]
+	path = vim/bundle/vim-sayonara
+	url = https://github.com/mhinz/vim-sayonara
+        ignore = untracked

@@ -1,29 +1,29 @@
 function! StoreQFResults()
     setlocal nosplitbelow 
     setlocal previewwindow ro
+    setlocal foldlevel=99
     let g:qfResults = getqflist()
-    let g:qfOpenedBufferList = {}
 endfunction
 
 function! ClearOpenedBuffers()
-    if &buftype == 'quickfix'
-        if exists("g:qfOpenedBufferList")
-            execute 'pclose!'
-                for buf in keys(g:qfOpenedBufferList)
-                    execute 'bw ' . buf
-                endfor
-            unlet g:qfOpenedBufferList
-        endif
+    echom 'Inside ClearOpenedBuffers()'
+    if exists("b:qfOpenedBufferList")
+        echom 'b:qfOpenedBufferList exists'
+            for buf_no in keys(b:qfOpenedBufferList)
+                echom "deleting buffer " . buf_no
+                "execute "bd " . buf_no
+            endfor
+        "unlet b:qfOpenedBufferList
     endif
 endfunction
 
 function! OpenResultAsFile()
-    execute 'pclose!'
+    execute 'silent pclose!'
     let ResultBufNr = g:qfResults[line('.') - 1].bufnr
-    if exists("g:qfOpenedBufferList")
-        for buf in keys(g:qfOpenedBufferList)
+    if exists("b:qfOpenedBufferList")
+        for buf in keys(b:qfOpenedBufferList)
             if ResultBufNr == buf
-                unlet g:qfOpenedBufferList[buf]
+                unlet b:qfOpenedBufferList[buf]
                 break
             endif
         endfor
@@ -34,11 +34,11 @@ function! OpenPW()
     if exists("g:qfResults")
         let b:ResultBufNr = g:qfResults[line('.') - 1].bufnr
         if bufexists(b:ResultBufNr)
-            execute  'pedit! +' . g:qfResults[line('.') - 1].lnum . ' ' . bufname(b:ResultBufNr)
-            if exists("g:qfOpenedBufferList")
-                let g:qfOpenedBufferList[b:ResultBufNr] = 1
+            execute  'silent pedit! +' . g:qfResults[line('.') - 1].lnum . ' ' . bufname(b:ResultBufNr)
+            if exists("b:qfOpenedBufferList")
+                let b:qfOpenedBufferList[b:ResultBufNr] = 1
             else
-                let g:qfOpenedBufferList = {b:ResultBufNr : 1}
+                let b:qfOpenedBufferList = {b:ResultBufNr : 1}
             endif
         else
             unlet b:ResultBufNr
@@ -53,5 +53,6 @@ augroup QF-Glance
     autocmd FileType qf nnoremap <buffer> <return> :call OpenResultAsFile()<cr><return>
     autocmd FileType qf nnoremap <buffer> q :call ClearOpenedBuffers()<cr>:bd<cr>
     "autocmd BufWipeout * call ClearOpenedBuffers()
+    autocmd FileType qf autocmd BufDelete <buffer> call ClearOpenedBuffers()
     "autocmd BufEnter * call StoreQFResults()
 augroup END
