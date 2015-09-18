@@ -86,3 +86,7 @@
 	path = vim/bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
         ignore = untracked
+[submodule "vim/bundle/vim-choosewin"]
+	path = vim/bundle/vim-choosewin
+	url = https://github.com/t9md/vim-choosewin
+        ignore = untracked

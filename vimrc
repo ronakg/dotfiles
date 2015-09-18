@@ -361,21 +361,13 @@ let g:startify_skiplist = [
                 \ '.CC',
                 \ ]
 
-nnoremap <C-j> :m+<CR>==
-nnoremap <C-k> :m-2<CR>==
-nnoremap <C-h> <<
-nnoremap <C-l> >>
-inoremap <C-j> <Esc>:m+<CR>==gi
-inoremap <C-k> <Esc>:m-2<CR>==gi
-inoremap <C-h> <Esc><<`]a
-inoremap <C-l> <Esc>>>`]a
-vnoremap <C-j> :m'>+<CR>gv=gv
-vnoremap <C-k> :m-2<CR>gv=gv
-vnoremap <C-h> <gv
-vnoremap <C-l> >gv
-
 autocmd FileType pw set nobuflisted
 
+" GutenCtags
 let g:gutentags_project_root=['cscope.files']
+
+" Choosewin
+let g:choosewin_overlay_enable = 1
+nmap - <Plug>(choosewin)
 
 " vim:foldmethod=marker:foldlevel=0
