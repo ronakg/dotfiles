@@ -73,4 +73,16 @@
 [submodule "vim/bundle/vim-sayonara"]
 	path = vim/bundle/vim-sayonara
 	url = https://github.com/mhinz/vim-sayonara
+    ignore = untracked
+[submodule "vim/bundle/vim-dirdiff"]
+	path = vim/bundle/vim-dirdiff
+	url = git://github.com/will133/vim-dirdiff
+        ignore = untracked
+[submodule "vim/bundle/vim-gutentags"]
+	path = vim/bundle/vim-gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags.git
+        ignore = untracked
+[submodule "vim/bundle/fzf.vim"]
+	path = vim/bundle/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
         ignore = untracked
