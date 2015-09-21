@@ -94,3 +94,7 @@
 	path = vim/bundle/gruvbox
 	url = https://github.com/morhetz/gruvbox
         ignore = untracked
+[submodule "vim/bundle/vim-colorscheme-primary"]
+	path = vim/bundle/vim-colorscheme-primary
+	url = https://github.com/google/vim-colorscheme-primary
+        ignore = untracked
