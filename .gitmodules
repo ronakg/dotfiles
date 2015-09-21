@@ -90,3 +90,7 @@
 	path = vim/bundle/vim-choosewin
 	url = https://github.com/t9md/vim-choosewin
         ignore = untracked
+[submodule "vim/bundle/gruvbox"]
+	path = vim/bundle/gruvbox
+	url = https://github.com/morhetz/gruvbox
+        ignore = untracked

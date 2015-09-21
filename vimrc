@@ -367,7 +367,7 @@ autocmd FileType pw set nobuflisted
 let g:gutentags_project_root=['cscope.files']
 
 " Choosewin
-let g:choosewin_overlay_enable = 1
+"let g:choosewin_overlay_enable = 1
 nmap - <Plug>(choosewin)
 
 " vim:foldmethod=marker:foldlevel=0
