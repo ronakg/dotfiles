@@ -18,7 +18,7 @@ hi cTodo        ctermfg = darkred    cterm   = italic ctermbg = yellow
 hi Boolean      ctermfg = 161
 hi Debug        ctermfg = yellow     cterm   = none
 hi Identifier   ctermfg = darkblue
-hi Label        ctermfg = darkblue   cterm   = italic
+hi Label        ctermfg = darkblue 
 hi Directory    ctermfg = cyan
 hi Comment      ctermfg = 245        cterm   = italic
 hi Function     ctermfg = 152
@@ -27,7 +27,7 @@ hi Keyword      ctermfg = darkblue
 hi Constant     ctermfg = 161
 hi Macro        ctermfg = darkyellow
 hi Tag          ctermfg = black
-hi PreCondit    ctermfg = darkyellow cterm   = italic
+hi PreCondit    ctermfg = darkyellow 
 hi Character    ctermfg = 222
 hi SpecialChar  ctermfg = magenta
 hi PreProc      ctermfg = green

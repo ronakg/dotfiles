@@ -51,7 +51,7 @@ set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
 set pumheight=15                     " Completion menu height
-set number                           " Line numbers
+"set number                           " Line numbers
 set relativenumber                   " Relative line numbers
 set cursorline                       " Cursor line
 set laststatus=2                     " Always show statusline     
@@ -361,13 +361,15 @@ let g:startify_skiplist = [
                 \ '.CC',
                 \ ]
 
-autocmd FileType pw set nobuflisted
-
 " GutenCtags
 let g:gutentags_project_root=['cscope.files']
 
 " Choosewin
 "let g:choosewin_overlay_enable = 1
 nmap - <Plug>(choosewin)
+
+" Disable blinking
+autocmd GUIEnter * set vb t_vb= " for your GUI
+autocmd VimEnter * set vb t_vb=
 
 " vim:foldmethod=marker:foldlevel=0
