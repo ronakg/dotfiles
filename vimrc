@@ -180,10 +180,10 @@ set csto=0
 " window, open quickfix window with results, search for the word for
 " highlighting and movement with n and N
 nnoremap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>   " Find definition of this symbol
-nnoremap <leader>c yiw:cs find c <C-R>=expand("<cword>")<CR><CR>:bw<CR>:cwindow<CR>/<C-R>0<CR>   " Find calls to this symbol
-nnoremap <leader>s yiw:cs find s <C-R>=expand("<cword>")<CR><CR>:bw<CR>:cwindow<CR>/<C-R>0<CR>  " Find all instances of this symbol
-nnoremap <leader>h yiw:cs find f <C-R>=expand("<cfile>:t")<CR><CR>:bw<CR>:cwindow<CR>/<C-R>0<CR>   " Find this file
-nnoremap <leader>i yiw:cs find i <C-R>=expand("<cfile>:t")<CR><CR>:bw<CR>:cwindow<CR>/<C-R>0<CR>   " Find all files including this file
+nnoremap <leader>c yiw:cs find c <C-R>=expand("<cword>")<CR><CR>:cwindow<CR>/<C-R>0<CR>   " Find calls to this symbol
+nnoremap <leader>s yiw:cs find s <C-R>=expand("<cword>")<CR><CR>:cwindow<CR>/<C-R>0<CR>  " Find all instances of this symbol
+nnoremap <leader>h yiw:cs find f <C-R>=expand("<cfile>:t")<CR><CR>:cwindow<CR>/<C-R>0<CR>   " Find this file
+nnoremap <leader>i yiw:cs find i <C-R>=expand("<cfile>:t")<CR><CR>:cwindow<CR>/<C-R>0<CR>   " Find all files including this file
 nnoremap <leader>t <c-t>
 set cscopequickfix=s-,c-,i-,t-,e-,f-
 
@@ -328,9 +328,9 @@ map <Leader>j <Plug>(easymotion-bd-jk)
 " Grep for word under the cursor
 let g:ack_use_dispatch=2
 if filereadable("cscope.files")
-    nnoremap <Leader>vv :silent Ack! -k <cword> --files-from=cscope.files<CR>
+    nnoremap <Leader>vv :Ack! -k <cword> --files-from=cscope.files<CR>
 else
-    nnoremap <Leader>vv :silent Ack! -k <cword> .<CR>
+    nnoremap <Leader>vv :Ack! -k <cword> .<CR>
 endif
 
 " if nbuffers > 1? bw: q
@@ -371,5 +371,9 @@ nmap - <Plug>(choosewin)
 " Disable blinking
 autocmd GUIEnter * set vb t_vb= " for your GUI
 autocmd VimEnter * set vb t_vb=
+
+let g:DirDiffExcludes = "*.CC*,*.c.*,.ACME*"
+autocmd QuickFixCmdPost grep nested cwindow
+autocmd QuickFixCmdPost Ack! nested cwindow
 
 " vim:foldmethod=marker:foldlevel=0

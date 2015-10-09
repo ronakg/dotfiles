@@ -78,10 +78,6 @@
 	path = vim/bundle/vim-dirdiff
 	url = git://github.com/will133/vim-dirdiff
         ignore = untracked
-[submodule "vim/bundle/vim-gutentags"]
-	path = vim/bundle/vim-gutentags
-	url = https://github.com/ludovicchabant/vim-gutentags.git
-        ignore = untracked
 [submodule "vim/bundle/fzf.vim"]
 	path = vim/bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
@@ -98,3 +94,11 @@
 	path = vim/bundle/vim-colorscheme-primary
 	url = https://github.com/google/vim-colorscheme-primary
         ignore = untracked
+[submodule "vim/bundle/quickfix-reflector.vim"]
+	path = vim/bundle/quickfix-reflector.vim
+	url = https://github.com/stefandtw/quickfix-reflector.vim
+    ignore = untracked
+[submodule "vim/bundle/vim-surround"]
+	path = vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround
+    ignore = untracked
