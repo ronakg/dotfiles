@@ -97,8 +97,12 @@
 [submodule "vim/bundle/quickfix-reflector.vim"]
 	path = vim/bundle/quickfix-reflector.vim
 	url = https://github.com/stefandtw/quickfix-reflector.vim
-    ignore = untracked
+        ignore = untracked
 [submodule "vim/bundle/vim-surround"]
 	path = vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround
-    ignore = untracked
+        ignore = untracked
+[submodule "vim/bundle/vim-visual-star-search"]
+	path = vim/bundle/vim-visual-star-search
+	url = https://github.com/nelstrom/vim-visual-star-search
+        ignore = untracked
