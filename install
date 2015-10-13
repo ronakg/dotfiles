@@ -77,6 +77,7 @@ echo -n "${reset}"
 echo -n "${blue}"
 echo -e "\nUpdating submodules..."
 git submodule update --init --recursive     # Sumodules might've submodules of their own
+git submodule foreach git pull origin master
 echo -n "${reset}"
 
 # Install FZF
