@@ -326,11 +326,10 @@ nmap s <Plug>(easymotion-s2)
 map <Leader>j <Plug>(easymotion-bd-jk)
 
 " Grep for word under the cursor
-let g:ack_use_dispatch=2
 if filereadable("cscope.files")
-    nnoremap <Leader>vv :Ack! -k <cword> --files-from=cscope.files<CR>
+    nnoremap <Leader>vv *:silent Ack! -k <cword> --files-from=cscope.files<CR>
 else
-    nnoremap <Leader>vv :Ack! -k <cword> .<CR>
+    nnoremap <Leader>vv *:silent Ack! -k <cword> .<CR>
 endif
 
 " if nbuffers > 1? bw: q
@@ -373,7 +372,5 @@ autocmd GUIEnter * set vb t_vb= " for your GUI
 autocmd VimEnter * set vb t_vb=
 
 let g:DirDiffExcludes = "*.CC*,*.c.*,.ACME*"
-autocmd QuickFixCmdPost grep nested cwindow
-autocmd QuickFixCmdPost Ack! nested cwindow
 
 " vim:foldmethod=marker:foldlevel=0
