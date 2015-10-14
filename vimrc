@@ -47,7 +47,7 @@ set splitbelow                       " Open split below, not above
 set wildmenu
 set wildmode=longest:full,list:full
 set omnifunc=syntaxcomplete#Complete
-set completeopt=longest,menuone
+set completeopt+=longest,menuone
 set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
@@ -121,7 +121,7 @@ let g:netrw_liststyle=3
 noremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 
 " Quicker save and quit
-nnoremap ww :w<CR>
+nnoremap w :w<CR>
 
 " jj to save the file in insert mode, switch to normal mode from other modes
 inoremap jj <Esc>:w<CR>
@@ -181,10 +181,10 @@ set csto=0
 " window, open quickfix window with results, search for the word for
 " highlighting and movement with n and N
 nnoremap <leader>d :cs find g <cword><CR>   " Find definition of this symbol
-nnoremap <leader>c yiw:cs find c <cword><CR>:cwindow<CR>/<C-R>0<CR>   " Find calls to this symbol
-nnoremap <leader>s yiw:cs find s <cword><CR>:cwindow<CR>/<C-R>0<CR>   " Find all instances of this symbol
-nnoremap <leader>h yiw:cs find f <C-R>=expand("<cfile>:t")<CR><CR>:cwindow<CR>/<C-R>0<CR>   " Find this file
-nnoremap <leader>i yiw:cs find i <C-R>=expand("<cfile>:t")<CR><CR>:cwindow<CR>/<C-R>0<CR>   " Find all files including this file
+nnoremap <leader>c yiw:cs find c <cword><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find calls to this symbol
+nnoremap <leader>s yiw:cs find s <cword><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all instances of this symbol
+nnoremap <leader>h yiw:cs find f <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find this file
+nnoremap <leader>i yiw:cs find i <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all files including this file
 nnoremap <leader>t <c-t>
 set cscopequickfix=s-,c-,i-,t-,e-,f-
 
@@ -222,6 +222,7 @@ let   g:SuperTabDefaultCompletionType          =   "context"
 let   g:SuperTabContextDefaultCompletionType   =   "<c-n>"
 
 " ======================= NERDCommenter ===========================
+let NERDCreateDefaultMappings=0
 " Ctrl-C to comment a block/line of code
 nmap <C-c> :call NERDComment(0,"sexy")<CR>
 vmap <C-c> :call NERDComment(0,"sexy")<CR>
@@ -328,11 +329,11 @@ map <Leader>j <Plug>(easymotion-bd-jk)
 
 " Grep for word under the cursor
 if filereadable("cscope.files")
-    nnoremap <Leader>vv *:silent Ack -k <cword> --files-from=cscope.files<CR>:/<CR>
-    vnoremap <Leader>vv y:silent Ack -kQ "<C-R>0" --files-from=cscope.files<CR>:/<C-R>0<CR>
+    nnoremap <Leader>vv *:silent Ack! -k <cword> --files-from=cscope.files<CR>:/<CR>
+    vnoremap <Leader>vv y:silent Ack! -kQ "<C-R>0" --files-from=cscope.files<CR>:/<C-R>0<CR>
 else
-    nnoremap <Leader>vv *:silent Ack -k <cword> .<CR>:/<CR>
-    vnoremap <Leader>vv y:silent Ack -kQ "<C-R>0" .<CR>:/<C-R>0<CR>
+    nnoremap <Leader>vv *:silent Ack! -k <cword> .<CR>:/<CR>
+    vnoremap <Leader>vv y:silent Ack! -kQ "<C-R>0" .<CR>:/<C-R>0<CR>
 endif
 
 " if nbuffers > 1? bw: q
@@ -353,7 +354,7 @@ function! CloseOnLast()
 
 endfunction
 
-nnoremap ee :Sayonara<cr>
+nnoremap e :Sayonara<cr>
 
 if filereadable(".vim.custom")
     so .vim.custom
