@@ -47,7 +47,7 @@ set splitbelow                       " Open split below, not above
 set wildmenu
 set wildmode=longest:full,list:full
 set omnifunc=syntaxcomplete#Complete
-set completeopt+=longest,menuone
+set completeopt=longest,menuone
 set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
@@ -363,9 +363,6 @@ endif
 let g:startify_skiplist = [
                 \ '.CC',
                 \ ]
-
-" GutenCtags
-let g:gutentags_project_root=['cscope.files']
 
 " Choosewin
 "let g:choosewin_overlay_enable = 1
