@@ -106,3 +106,6 @@
 	path = vim/bundle/vim-visual-star-search
 	url = https://github.com/nelstrom/vim-visual-star-search
         ignore = untracked
+[submodule "vim/bundle/vim-man"]
+	path = vim/bundle/vim-man
+	url = https://github.com/vim-utils/vim-man

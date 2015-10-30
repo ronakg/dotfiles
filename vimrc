@@ -5,7 +5,7 @@ set encoding=utf-8
 " To disable a plugin, add it's bundle name to the following list
 " For example
 " let g:pathogen_disabled = ['auto-pairs', 'vim-airline']
-let g:pathogen_disabled = ['']
+"let g:pathogen_disabled = ['vim-airline']
 
 " Pathogen docs say turn filetype off before calling {{{
 filetype off
@@ -29,8 +29,6 @@ set ignorecase                       " ignore case in searching
 set smartcase                        " dont ignore case if capital letters present
 set backspace=indent,eol,start       " makes backspace working
 set scrolloff=4                      " keep cursor off screen edges
-set sidescrolloff=10
-set sidescroll=1
 set softtabstop=4
 set shiftwidth=4
 set smarttab
@@ -52,13 +50,13 @@ set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
 set pumheight=15                     " Completion menu height
+set cursorline                       " Cursor line
 "set number                           " Line numbers
 set relativenumber                   " Relative line numbers
-set cursorline                       " Cursor line
 set laststatus=2                     " Always show statusline     
 set shiftround                       " Round off shiftwidth when using >
 set ttimeout
-set ttimeoutlen=50                  " Make Esc work faster
+set ttimeoutlen=50                   " Make Esc work faster
 set notimeout
 set wrapscan
 set autoread                         " automatically reload files changed outside of Vim
@@ -68,6 +66,7 @@ autocmd CursorHold * checktime       " checktime triggers auto reload when curso
 filetype plugin on                   " filetype plugins for file specific settings
 filetype indent on                   " filetype specific indentation
 syntax enable                        " Pretty syntax highlighing
+set updatetime=750                   " Vim refresh time
 
 " Enable paste mode and add a new line
 map <leader>o :set paste<CR>o
@@ -96,8 +95,8 @@ imap <left> <nop>
 imap <right> <nop>
 
 " Improve up/down movement on wrapped lines
-nnoremap j gj
-nnoremap k gk
+"nnoremap j gj
+"nnoremap k gk
 
 " Better indentation in Visual mode
 vnoremap < <gv
@@ -106,10 +105,6 @@ vnoremap > >gv
 " Auto indent pasted text
 nnoremap p p=`]<C-o>
 nnoremap P P=`]<C-o>
-
-" Easier formatting of paragraphs
-vmap Q gq
-nmap Q gqap
 
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w><C-w>
@@ -122,12 +117,11 @@ noremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 
 " Quicker save and quit
 nnoremap w :w<CR>
+nnoremap e :Sayonara<CR>
 
 " jj to save the file in insert mode, switch to normal mode from other modes
 inoremap jj <Esc>:w<CR>
 cnoremap jj <C-c>
-" kk to switch to normal mode from insert mode without saving
-imap kk <Esc>
 
 " If can't find extention of a file, assume it's a C file
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
@@ -246,15 +240,12 @@ else
 endif
 
 "=========================== DIFF ===============================
-function! DiffSettings()
-    nmap q :qa<CR>
-endfun
 
 if &diff
-    autocmd VimEnter * call DiffSettings()
     " use space and backspace to jump forward/backward through differences
     nnoremap <space> :normal! ]c<enter>
     nnoremap <backspace> :normal! [c<enter>
+    nnoremap e :qa<CR>
 endif
 
 " Update diff if changes are written to the file
@@ -354,8 +345,6 @@ function! CloseOnLast()
 
 endfunction
 
-nnoremap e :Sayonara<cr>
-
 if filereadable(".vim.custom")
     so .vim.custom
 endif
@@ -373,5 +362,7 @@ autocmd GUIEnter * set vb t_vb= " for your GUI
 autocmd VimEnter * set vb t_vb=
 
 let g:DirDiffExcludes = "*.CC*,*.c.*,.ACME*"
+
+nnoremap <C-k> <Plug>(Man)
 
 " vim:foldmethod=marker:foldlevel=0
