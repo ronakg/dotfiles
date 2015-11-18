@@ -190,14 +190,14 @@ let g:airline#extensions#tabline#tab_min_count                = 1
 let g:airline#extensions#tabline#buffer_idx_mode              = 1
 let g:airline#extensions#tabline#buffer_nr_show               = 0
 let g:airline#extensions#tabline#show_buffers                 = 1
-let g:airline_powerline_fonts                                 = 0
+let g:airline_powerline_fonts                                 = 1
 " don't count trailing whitespace since it lags in huge files
 let g:airline#extensions#whitespace#enabled                   = 0
 let g:airline_theme                                           = 'ronakg'
 " Just show the filename (no path) in the tab
 let g:airline#extensions#tabline#fnamemod                     = ':t'
-let g:airline_left_sep                                        = ''
-let g:airline_right_sep                                       = ''
+"let g:airline_left_sep                                        = ''
+"let g:airline_right_sep                                       = ''
 let g:airline_section_b = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_c = '%{fnamemodify(expand("%"), ":~:.")}'
 " Easier tab/buffer switching
