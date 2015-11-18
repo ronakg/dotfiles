@@ -117,7 +117,7 @@ noremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 
 " Quicker save and quit
 nnoremap w :w<CR>
-nnoremap e :Sayonara<CR>
+nnoremap <silent> e :silent Sayonara<CR>
 
 " jj to save the file in insert mode, switch to normal mode from other modes
 inoremap jj <Esc>:w<CR>
@@ -131,6 +131,9 @@ autocmd BufRead COMMIT_EDITMSG setlocal spell!
 
 " Clear highlighted searches
 nmap <silent> ,/ :nohlsearch<CR>
+
+" Switch to last buffer
+nmap <leader>0 :b#<CR>
 
 " Easier to get command prompt
 nnoremap ; :
@@ -363,6 +366,6 @@ autocmd VimEnter * set vb t_vb=
 
 let g:DirDiffExcludes = "*.CC*,*.c.*,.ACME*"
 
-nnoremap <C-k> <Plug>(Man)
+nmap <leader>k <Plug>(Vman)
 
 " vim:foldmethod=marker:foldlevel=0

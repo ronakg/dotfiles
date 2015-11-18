@@ -40,7 +40,7 @@ do
             find ./$dir -type f -and -not -iwholename "*/*kernel*/*" -and -not -iwholename "*stub*" -print | egrep -i "\.($extensions)$" >> $rootdir/cscope.files
         fi
     else
-        echo "Invalid $dir"
+        echo "Invalid directory: $dir"
     fi
 done
 
