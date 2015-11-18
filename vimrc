@@ -5,7 +5,7 @@ set encoding=utf-8
 " To disable a plugin, add it's bundle name to the following list
 " For example
 " let g:pathogen_disabled = ['auto-pairs', 'vim-airline']
-"let g:pathogen_disabled = ['vim-airline']
+let g:pathogen_disabled = ['vim-choosewin', 'vim-dirdiff', 'vim-markdown', 'vim-sneak']
 
 " Pathogen docs say turn filetype off before calling {{{
 filetype off
@@ -51,7 +51,7 @@ set nobackup                         " Don't need backup and swap files
 set noswapfile
 set pumheight=15                     " Completion menu height
 set cursorline                       " Cursor line
-"set number                           " Line numbers
+set number                           " Line numbers
 set relativenumber                   " Relative line numbers
 set laststatus=2                     " Always show statusline     
 set shiftround                       " Round off shiftwidth when using >
@@ -61,7 +61,7 @@ set notimeout
 set wrapscan
 set autoread                         " automatically reload files changed outside of Vim
 set noshowcmd
-set nohidden                         
+set nohidden
 autocmd CursorHold * checktime       " checktime triggers auto reload when cursor is pressed
 filetype plugin on                   " filetype plugins for file specific settings
 filetype indent on                   " filetype specific indentation
@@ -85,22 +85,23 @@ nnoremap x "_x
 nnoremap c "_c
 
 " Don't use the arraow keys
-nmap <up> <nop>
-nmap <down> <nop>
-nmap <left> <nop>
-nmap <right> <nop>
 imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
-" Improve up/down movement on wrapped lines
-"nnoremap j gj
-"nnoremap k gk
+" Make arrowkey do something usefull, resize the viewports accordingly
+nnoremap <Left> :vertical resize +2<CR>
+nnoremap <Right> :vertical resize -2<CR>
+nnoremap <Up> :resize -2<CR>
+nnoremap <Down> :resize +2<CR>
 
 " Better indentation in Visual mode
 vnoremap < <gv
 vnoremap > >gv
+
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
 
 " Auto indent pasted text
 nnoremap p p=`]<C-o>
@@ -108,6 +109,14 @@ nnoremap P P=`]<C-o>
 
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w><C-w>
+
+" Next/prev buffers
+nnoremap <c-l> :bn<CR>
+nnoremap <c-h> :bp<CR>
+
+" Next/prev results
+nnoremap <C-j> :cn<CR>
+nnoremap <C-k> :cp<CR>
 
 " Tree style file explorer
 let g:netrw_liststyle=3
@@ -133,7 +142,7 @@ autocmd BufRead COMMIT_EDITMSG setlocal spell!
 nmap <silent> ,/ :nohlsearch<CR>
 
 " Switch to last buffer
-nmap <leader>0 :b#<CR>
+nmap <leader>p :b#<CR>
 
 " Easier to get command prompt
 nnoremap ; :
@@ -161,13 +170,6 @@ endif
 " center buffer around cursor when opening files
 autocmd BufRead * normal zz
 
-" Buffer selection and movement
-nnoremap   <leader>,         :bprevious<CR>
-nnoremap   <leader>.         :bnext<CR>
-inoremap   <leader>,   <Esc> :bprevious<CR>i
-inoremap   <leader>.   <Esc> :bnext<CR>i
-nnoremap   <leader><tab>     :w<CR>: cn<CR>
-
 "===================== CTAGS/CSCOPE ==========================
 set tags=./tags;/   " ctags path, search upwards till tags file is found
 set cscopetag       " Use both cscope and ctags as database
@@ -182,7 +184,7 @@ nnoremap <leader>c yiw:cs find c <cword><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " F
 nnoremap <leader>s yiw:cs find s <cword><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all instances of this symbol
 nnoremap <leader>h yiw:cs find f <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find this file
 nnoremap <leader>i yiw:cs find i <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all files including this file
-nnoremap <leader>t <c-t>
+nnoremap <leader>t :pop<CR>
 set cscopequickfix=s-,c-,i-,t-,e-,f-
 
 "========================== VIM-AIRLINE ==========================
@@ -193,14 +195,14 @@ let g:airline#extensions#tabline#tab_min_count                = 1
 let g:airline#extensions#tabline#buffer_idx_mode              = 1
 let g:airline#extensions#tabline#buffer_nr_show               = 0
 let g:airline#extensions#tabline#show_buffers                 = 1
-let g:airline_powerline_fonts                                 = 0
+let g:airline_powerline_fonts                                 = 1
 " don't count trailing whitespace since it lags in huge files
 let g:airline#extensions#whitespace#enabled                   = 0
 let g:airline_theme                                           = 'ronakg'
 " Just show the filename (no path) in the tab
 let g:airline#extensions#tabline#fnamemod                     = ':t'
-let g:airline_left_sep                                        = ''
-let g:airline_right_sep                                       = ''
+"let g:airline_left_sep                                        = ''
+"let g:airline_right_sep                                       = ''
 let g:airline_section_b = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_c = '%{fnamemodify(expand("%"), ":~:.")}'
 " Easier tab/buffer switching
@@ -215,8 +217,8 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
 "========================= SUPERTAB ===============================
-let   g:SuperTabDefaultCompletionType          =   "context"
-let   g:SuperTabContextDefaultCompletionType   =   "<c-n>"
+let g:SuperTabDefaultCompletionType          =   "context"
+let g:SuperTabContextDefaultCompletionType   =   "<c-n>"
 
 " ======================= NERDCommenter ===========================
 let NERDCreateDefaultMappings=0
@@ -367,5 +369,12 @@ autocmd VimEnter * set vb t_vb=
 let g:DirDiffExcludes = "*.CC*,*.c.*,.ACME*"
 
 nmap <leader>k <Plug>(Vman)
+
+nnoremap <C-t> :Tags<CR>
+nnoremap <leader>m :Make<CR>
+
+set switchbuf=useopen           " reveal already opened files from the
+                                " quickfix window instead of opening new
+                                " buffers
 
 " vim:foldmethod=marker:foldlevel=0

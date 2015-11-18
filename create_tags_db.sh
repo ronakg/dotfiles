@@ -1,7 +1,7 @@
 #! /bin/sh
 
 # List of root level directories we are interested in.
-declare -a dirs=("product" "ao" "comp" "infra")
+declare -a dirs=("product" "ao" "comp")
 extensions="c|h|cpp|hpp|mk|e"
 
 # Backup current working directory for later
