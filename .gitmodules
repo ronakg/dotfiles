@@ -6,14 +6,6 @@
 	path = vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar.git
         ignore = untracked
-[submodule "vim/bundle/nerdcommenter"]
-	path = vim/bundle/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter.git
-        ignore = untracked
-[submodule "vim/bundle/supertab"]
-	path = vim/bundle/supertab
-	url = https://github.com/ervandew/supertab.git
-        ignore = untracked
 [submodule "vim/bundle/fzf"]
 	path = vim/bundle/fzf
 	url = https://github.com/junegunn/fzf.git
@@ -50,10 +42,6 @@
 	path = vim/bundle/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion
         ignore = untracked
-[submodule "vim/bundle/vim-sneak"]
-	path = vim/bundle/vim-sneak
-	url = https://github.com/justinmk/vim-sneak
-        ignore = untracked
 [submodule "vim/bundle/vim-multiple-cursors"]
 	path = vim/bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors
@@ -61,10 +49,6 @@
 [submodule "vim/bundle/ack.vim"]
 	path = vim/bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim
-        ignore = untracked
-[submodule "vim/bundle/Apprentice"]
-	path = vim/bundle/Apprentice
-	url = https://github.com/romainl/Apprentice
         ignore = untracked
 [submodule "vim/bundle/vim-sayonara"]
 	path = vim/bundle/vim-sayonara
@@ -77,10 +61,6 @@
 [submodule "vim/bundle/fzf.vim"]
 	path = vim/bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
-        ignore = untracked
-[submodule "vim/bundle/vim-choosewin"]
-	path = vim/bundle/vim-choosewin
-	url = https://github.com/t9md/vim-choosewin
         ignore = untracked
 [submodule "vim/bundle/gruvbox"]
 	path = vim/bundle/gruvbox
@@ -105,3 +85,19 @@
 [submodule "vim/bundle/vim-man"]
 	path = vim/bundle/vim-man
 	url = https://github.com/vim-utils/vim-man
+        ignore = untracked
+[submodule "vim/bundle/vim-commentary"]
+	path = vim/bundle/vim-commentary
+	url = https://github.com/tpope/vim-commentary/
+        ignore = untracked
+[submodule "vim/bundle/vim-bracketed-paste"]
+	path = vim/bundle/vim-bracketed-paste
+	url = https://github.com/ConradIrwin/vim-bracketed-paste/
+        ignore = untracked
+[submodule "vim/bundle/vim-pasta"]
+	path = vim/bundle/vim-pasta
+	url = https://github.com/sickill/vim-pasta
+        ignore = untracked
+[submodule "vim/bundle/VimCompletesMe"]
+	path = vim/bundle/VimCompletesMe
+	url = https://github.com/ajh17/VimCompletesMe

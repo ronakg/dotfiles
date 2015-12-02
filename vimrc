@@ -5,7 +5,7 @@ set encoding=utf-8
 " To disable a plugin, add it's bundle name to the following list
 " For example
 " let g:pathogen_disabled = ['auto-pairs', 'vim-airline']
-let g:pathogen_disabled = ['vim-choosewin', 'vim-dirdiff', 'vim-markdown', 'vim-sneak']
+let g:pathogen_disabled = ['vim-choosewin', 'vim-dirdiff', 'vim-markdown', 'vim-sneak', 'supertab']
 
 " Pathogen docs say turn filetype off before calling {{{
 filetype off
@@ -62,20 +62,16 @@ set wrapscan
 set autoread                         " automatically reload files changed outside of Vim
 set noshowcmd
 set nohidden
-autocmd CursorHold * checktime       " checktime triggers auto reload when cursor is pressed
 filetype plugin on                   " filetype plugins for file specific settings
 filetype indent on                   " filetype specific indentation
 syntax enable                        " Pretty syntax highlighing
 set updatetime=750                   " Vim refresh time
 
-" Enable paste mode and add a new line
-map <leader>o :set paste<CR>o
+" Don't add a newline when preview window is visible
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 noremap <C-F> <C-D>
 noremap <C-B> <C-U>
-
-" Disable pastemode when leaving Insert mode
-au InsertLeave * set nopaste
 
 " Expand matching braces only when pressing Enter
 inoremap {<CR> {<CR>}<Esc>==ko
@@ -102,10 +98,6 @@ vnoremap > >gv
 
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
-
-" Auto indent pasted text
-nnoremap p p=`]<C-o>
-nnoremap P P=`]<C-o>
 
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w><C-w>
@@ -139,7 +131,7 @@ autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
 autocmd BufRead COMMIT_EDITMSG setlocal spell!
 
 " Clear highlighted searches
-nmap <silent> ,/ :nohlsearch<CR>
+nnoremap <silent> <Esc> :nohlsearch<CR><Esc>
 
 " Switch to last buffer
 nmap <leader>p :b#<CR>
@@ -215,20 +207,6 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
-
-"========================= SUPERTAB ===============================
-let g:SuperTabDefaultCompletionType          =   "context"
-let g:SuperTabContextDefaultCompletionType   =   "<c-n>"
-
-" ======================= NERDCommenter ===========================
-let NERDCreateDefaultMappings=0
-" Ctrl-C to comment a block/line of code
-nmap <C-c> :call NERDComment(0,"sexy")<CR>
-vmap <C-c> :call NERDComment(0,"sexy")<CR>
-
-" Ctrl-X to uncomment a block/line of code
-nmap <C-x> :call NERDComment(0,"uncomment")<CR>
-vmap <C-x> :call NERDComment(0,"uncomment")<CR>
 
 "========================== FZF ===================================
 nnoremap <silent> <C-p> :FZF<CR>
@@ -320,8 +298,6 @@ let g:startify_change_to_dir = 0
 "==================== EASYMOTION ================================
 let g:EasyMotion_smartcase = 1
 nmap f <Plug>(easymotion-bd-f)
-nmap s <Plug>(easymotion-s2)
-map <Leader>j <Plug>(easymotion-bd-jk)
 
 " Grep for word under the cursor
 if filereadable("cscope.files")
@@ -358,9 +334,6 @@ let g:startify_skiplist = [
                 \ '.CC',
                 \ ]
 
-" Choosewin
-"let g:choosewin_overlay_enable = 1
-nmap - <Plug>(choosewin)
 
 " Disable blinking
 autocmd GUIEnter * set vb t_vb= " for your GUI
@@ -373,8 +346,9 @@ nmap <leader>k <Plug>(Vman)
 nnoremap <C-t> :Tags<CR>
 nnoremap <leader>m :Make<CR>
 
+" VimCompletesMe setup
+let g:vcm_direction = 'n'
+
 set switchbuf=useopen           " reveal already opened files from the
                                 " quickfix window instead of opening new
                                 " buffers
-
-" vim:foldmethod=marker:foldlevel=0
