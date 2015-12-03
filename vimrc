@@ -62,10 +62,13 @@ set wrapscan
 set autoread                         " automatically reload files changed outside of Vim
 set noshowcmd
 set nohidden
+set diffopt+=context:5               " 5 lines of context in diff mode
+set shortmess=atToOI                 " To avoid the 'Hit Enter' prompts caused by the file messages
 filetype plugin on                   " filetype plugins for file specific settings
 filetype indent on                   " filetype specific indentation
 syntax enable                        " Pretty syntax highlighing
 set updatetime=750                   " Vim refresh time
+set linebreak                        " It maintains the whole words when wrapping
 
 " Don't add a newline when preview window is visible
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
