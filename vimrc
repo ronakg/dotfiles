@@ -5,7 +5,7 @@ set encoding=utf-8
 " To disable a plugin, add it's bundle name to the following list
 " For example
 " let g:pathogen_disabled = ['auto-pairs', 'vim-airline']
-let g:pathogen_disabled = ['vim-choosewin', 'vim-dirdiff', 'vim-markdown', 'vim-sneak', 'supertab']
+let g:pathogen_disabled = ['vim-dirdiff', 'vim-markdown']
 
 " Pathogen docs say turn filetype off before calling {{{
 filetype off
@@ -139,6 +139,12 @@ nmap <leader>p :b#<CR>
 " Easier to get command prompt
 nnoremap ; :
 vnoremap ; :
+
+" I don't ever use character wise visual mode, so switch to linewise for v
+nnoremap v V
+vnoremap v V
+nnoremap V v
+vnoremap V v
 
 " x in Insert mode
 inoremap <C-d> <C-o>x
