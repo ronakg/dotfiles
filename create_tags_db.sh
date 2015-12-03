@@ -1,10 +1,10 @@
 #! /bin/sh
 
-# Return on error
+# Exit the script on any error
 set -e
 
 # List of root level directories we are interested in.
-declare -a dirs=("product" "ao" "comp")
+declare -a dirs=()
 extensions="c|h|cpp|hpp|mk|e"
 
 # Backup current working directory for later
@@ -13,30 +13,60 @@ rootdir=`pwd`
 startfresh=0
 includekernel=0
 
+usage() {
+    echo -e "
+Usage: create_tags_db [-i] [-s source] [-f | -d d1,d2,d3,...] [-h]
+
+-i            Include kernel sources
+-s source     Run on 'source' directory instead of current working directory
+-f            Build fresh database instead of updating using existing cscope.files
+-d d1,d2,...  Comma separated list of top level directory to parse for cscope database
+-h            Print this help message
+
+If cscope.files is found, database is built using that unless -f option is passed.
+In which case, fresh cscope.files file is generated.
+"
+}
+
 # A POSIX variable
 OPTIND=1         # Reset in case getopts has been used previously in the shell.
 
-while getopts "h?ifd:" opt; do
+while getopts ":is:fd:h" opt; do
     case "$opt" in
-    h|\?) echo -e "
-Usage: create_tags_db [-f] [-i] [-d <dir>] [-h]
-
-By default script runs on current working directory.
-If cscope.files is found, database is built using that unless -f option is passed.
-In which case, fresh cscope.files file is generated.
-
--f          Build fresh database instead of updating
--i          Include kernel sources
--d <dir>    Run on 'dir' instead of current working directory
--h          Print this help message
-        "
+    h) 
+        usage
         exit 0
         ;;
-    i)  includekernel=1
+    i)  
+        includekernel=1
         ;;
-    f)  startfresh=1
+    f)  
+        startfresh=1
         ;;
-    d)  rootdir=$OPTARG
+    s)  
+        rootdir=$OPTARG
+        ;;
+    d)
+        set -f          # disable glob
+        IFS=','         # split on comma character
+        dirs=($OPTARG)
+        startfresh=1
+        set +f
+        ;;
+    \?)
+        echo "Invalid option: -$OPTARG"
+        usage
+        exit 1
+        ;;
+    :)
+        echo "Option '-$OPTARG' requires an argument."
+        usage
+        exit 1
+        ;;
+    *)
+        echo "Invalid option - $OPTARG"
+        usage
+        exit1
         ;;
     esac
 done
@@ -47,31 +77,42 @@ shift $((OPTIND-1))
 echo "Running on - $rootdir"
 cd $rootdir
 
-if [ $startfresh == 1 ] || [ ! -f $rootdir/cscope.files ]; then
+# Build fresh database if -f is present or -d is present
+if [ $startfresh -eq 1 ] || [ ${#dirs[@]} -gt 0 ]; then
     echo 'Deleting existing cscope files...'
-    rm -rfv cscope.*
+    rm -rfv ./cscope.*
     echo 'Deleting existing tags files...'
-    rm -rfv tags*
+    rm -rfv ./tags*
+
+    if [ ${#dirs[@]} -lt 1 ]; then
+        declare -a dirs=("./")
+    fi
 
     for dir in "${dirs[@]}"
     do
-            echo "Finding files in: $rootdir/$dir"
+        echo "Finding files in: $rootdir/$dir"
 
-            if [ $includekernel == 1 ]; then
-                echo "Including kernel files too..."
-                find ./$dir -type f -print | egrep -i "\.($extensions)$" >> $rootdir/cscope.files
-            else
-                # Don't include kernel and stub files
-                find ./$dir -type f -and -not -iwholename "*/*kernel*/*" -and -not -iwholename "*stub*" -print | egrep -i "\.($extensions)$" >> $rootdir/cscope.files
-            fi
+        if [ $includekernel -eq 1 ]; then
+            echo "Including kernel files too..."
+            find $dir -type f -print | egrep -i "\.($extensions)$" >> $rootdir/cscope.files
+        else
+            # Don't include kernel and stub files
+            find $dir -type f -and -not -iwholename "*/*kernel*/*" -and -not -iwholename "*stub*" -print | egrep -i "\.($extensions)$" >> $rootdir/cscope.files
+        fi
     done
+else
+    if [ ! -e $rootdir/cscope.files ]; then
+        echo "cscope.files not found in $rootdir"
+        usage
+        exit 1
+    fi
 fi
 
 echo 'Building cscope database...'
-cscope -b -q -k
+cscope -b -q -k -i $rootdir/cscope.files
 
 echo 'Building ctags database...'
 ctags --extra=+f --c-kinds=+p --fields=+lS --excmd=p -L $rootdir/cscope.files
 
 cd $cwd
-echo 'All done.'
+echo 'All done'

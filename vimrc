@@ -120,11 +120,12 @@ let g:netrw_liststyle=3
 noremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 
 " Quicker save and quit
-nnoremap w :w<CR>
+nnoremap ww :w<CR>:echo "File saved..."<CR> 
 nnoremap <silent> e :silent Sayonara<CR>
 
 " jj to save the file in insert mode, switch to normal mode from other modes
-inoremap jj <Esc>:w<CR>
+inoremap jj <Esc>:w<CR>:echo "File saved..."<CR>
+inoremap ww <Esc>:w<CR>:echo "File saved..."<CR>
 cnoremap jj <C-c>
 
 " If can't find extention of a file, assume it's a C file
