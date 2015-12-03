@@ -19,12 +19,16 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 while getopts "h?ifd:" opt; do
     case "$opt" in
     h|\?) echo -e "
-Usage: create_tags_db [-h] [-f] [-i] [-d <dir>]
+Usage: create_tags_db [-f] [-i] [-d <dir>] [-h]
 
--h          Print this help message
+By default script runs on current working directory.
+If cscope.files is found, database is built using that unless -f option is passed.
+In which case, fresh cscope.files file is generated.
+
 -f          Build fresh database instead of updating
 -i          Include kernel sources
 -d <dir>    Run on 'dir' instead of current working directory
+-h          Print this help message
         "
         exit 0
         ;;
@@ -43,7 +47,7 @@ shift $((OPTIND-1))
 echo "Running on - $rootdir"
 cd $rootdir
 
-if [ $startfresh == 1 ]; then
+if [ $startfresh == 1 ] || [ ! -f $rootdir/cscope.files ]; then
     echo 'Deleting existing cscope files...'
     rm -rfv cscope.*
     echo 'Deleting existing tags files...'
