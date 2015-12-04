@@ -5,7 +5,7 @@ set encoding=utf-8
 " To disable a plugin, add it's bundle name to the following list
 " For example
 " let g:pathogen_disabled = ['auto-pairs', 'vim-airline']
-let g:pathogen_disabled = ['vim-dirdiff', 'vim-markdown']
+let g:pathogen_disabled = ['vim-dirdiff', 'vim-markdown', 'vim-commentary']
 
 " Pathogen docs say turn filetype off before calling {{{
 filetype off
@@ -95,15 +95,15 @@ nnoremap <Right> :vertical resize -2<CR>
 nnoremap <Up> :resize -2<CR>
 nnoremap <Down> :resize +2<CR>
 
-" Better indentation in Visual mode
-vnoremap < <gv
-vnoremap > >gv
-
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w><C-w>
+
+" Tab to indent-unindent code blocks in visual mode
+vnoremap <tab> >gv
+vnoremap <S-tab> <gv
 
 " Next/prev buffers
 nnoremap <c-l> :bn<CR>
@@ -117,7 +117,7 @@ nnoremap <C-k> :cp<CR>
 let g:netrw_liststyle=3
 
 " Don't jump to next search result on *
-noremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
+nnoremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 
 " Quicker save and quit
 nnoremap ww :w<CR>:echo "File saved..."<CR> 
@@ -268,6 +268,16 @@ set t_Co=256
 set bg=dark
 colorscheme ronakg
 
+" ======================= NERDCommenter ===========================
+let NERDCreateDefaultMappings=0
+" Ctrl-C to comment a block/line of code
+nmap <C-c> :call NERDComment(0,"sexy")<CR>
+vmap <C-c> :call NERDComment(0,"sexy")<CR>
+
+" Ctrl-X to uncomment a block/line of code
+nmap <C-x> :call NERDComment(0,"uncomment")<CR>
+vmap <C-x> :call NERDComment(0,"uncomment")<CR>
+
 "====================== WORK VIMRC ===============================
 try
     source ~/.vimrc_work
@@ -280,13 +290,6 @@ augroup CursorLine
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 augroup END
-
-" auto-align
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
 
 "==================== Simple-todo=================================
 " Disable default key bindings
@@ -318,6 +321,11 @@ else
     vnoremap <Leader>vv y:silent Ack! -kQ "<C-R>0" .<CR>:/<C-R>0<CR>
 endif
 
+"========================== Ack.vim ==============================
+let g:ack_apply_qmappings = 0
+let g:ack_apply_lmappings = 0
+
+
 " if nbuffers > 1? bw: q
 function! CloseOnLast()
     let cnt = 0
@@ -344,10 +352,6 @@ let g:startify_skiplist = [
                 \ '.CC',
                 \ ]
 
-
-" Disable blinking
-autocmd GUIEnter * set vb t_vb= " for your GUI
-autocmd VimEnter * set vb t_vb=
 
 let g:DirDiffExcludes = "*.CC*,*.c.*,.ACME*"
 

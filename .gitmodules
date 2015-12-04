@@ -86,10 +86,6 @@
 	path = vim/bundle/vim-man
 	url = https://github.com/vim-utils/vim-man
         ignore = untracked
-[submodule "vim/bundle/vim-commentary"]
-	path = vim/bundle/vim-commentary
-	url = https://github.com/tpope/vim-commentary/
-        ignore = untracked
 [submodule "vim/bundle/vim-bracketed-paste"]
 	path = vim/bundle/vim-bracketed-paste
 	url = https://github.com/ConradIrwin/vim-bracketed-paste/
@@ -101,3 +97,8 @@
 [submodule "vim/bundle/VimCompletesMe"]
 	path = vim/bundle/VimCompletesMe
 	url = https://github.com/ajh17/VimCompletesMe
+        ignore = untracked
+[submodule "vim/bundle/nerdcommenter"]
+	path = vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter
+        ignore = untracked
