@@ -50,7 +50,7 @@ let g:airline#themes#ronakg#palette.visual_modified = {
       \ }
 
 " Inactive:
-let s:IA = [ '#585858' , '#e4e4e4' , 240 , 254 , '' ]
+let s:IA = [ '#585858' , '#e4e4e4' , 254 , 236, '' ]
 let g:airline#themes#ronakg#palette.inactive = airline#themes#generate_color_map(s:IA, s:IA, s:IA)
 let g:airline#themes#ronakg#palette.inactive_modified = {
       \ 'airline_a': [ '#eeeeee' , '#005f87' , 255, 160, '' ] ,

@@ -55,8 +55,7 @@ set number                           " Line numbers
 set relativenumber                   " Relative line numbers
 set laststatus=2                     " Always show statusline     
 set shiftround                       " Round off shiftwidth when using >
-set ttimeout
-set ttimeoutlen=50                   " Make Esc work faster
+set timeout timeoutlen=3000 ttimeoutlen=100
 set notimeout
 set wrapscan
 set autoread                         " automatically reload files changed outside of Vim
@@ -120,19 +119,19 @@ let g:netrw_liststyle=3
 nnoremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 
 " Quicker save and quit
-nnoremap ww :w<CR>:echo "File saved..."<CR> 
 nnoremap <silent> e :silent Sayonara<CR>
-
-" jj to save the file in insert mode, switch to normal mode from other modes
-inoremap jj <Esc>:w<CR>:echo "File saved..."<CR>
-inoremap ww <Esc>:w<CR>:echo "File saved..."<CR>
-cnoremap jj <C-c>
+nnoremap <silent> w :w<CR>
+inoremap <silent> jj <Esc>
+cnoremap <silent> jj <C-c>
 
 " If can't find extention of a file, assume it's a C file
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
 
 " Spellcheck commit messages
 autocmd BufRead COMMIT_EDITMSG setlocal spell!
+
+" autosource vimrc
+autocmd! bufwritepost ~/.vimrc source %
 
 " Clear highlighted searches
 nnoremap <silent> <Esc> :nohlsearch<CR><Esc>
@@ -143,12 +142,6 @@ nmap <leader>p :b#<CR>
 " Easier to get command prompt
 nnoremap ; :
 vnoremap ; :
-
-" I don't ever use character wise visual mode, so switch to linewise for v
-nnoremap v V
-vnoremap v V
-nnoremap V v
-vnoremap V v
 
 " x in Insert mode
 inoremap <C-d> <C-o>x
@@ -219,7 +212,7 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
 "========================== FZF ===================================
-nnoremap <silent> <C-p> :FZF<CR>
+nnoremap <silent> <C-p> :FZF!<CR>
 
 " Change cursor shape based on mode.
 " https://gist.github.com/andyfowler/1195581
@@ -307,10 +300,13 @@ let g:startify_list_order = [['Most recently used files in current directory:'],
             \                ['Bookmarks:'], 'bookmarks',
             \                ['Sessions:'], 'sessions']
 let g:startify_change_to_dir = 0
+let g:startify_custom_indices = ['a','d','f','g','h','l','w','r','y','u','o','p','z','x','c','n']
 
 "==================== EASYMOTION ================================
 let g:EasyMotion_smartcase = 1
-nmap f <Plug>(easymotion-bd-f)
+let g:EasyMotion_keys = 'sdghklqwertyuiopzxcvbnmfaj'
+nmap f <Plug>(easymotion-s)
+nmap s <Plug>(easymotion-s)
 
 " Grep for word under the cursor
 if filereadable("cscope.files")
@@ -357,7 +353,7 @@ let g:DirDiffExcludes = "*.CC*,*.c.*,.ACME*"
 
 nmap <leader>k <Plug>(Vman)
 
-nnoremap <C-t> :Tags<CR>
+nnoremap <C-t> :Tags!<CR>
 nnoremap <leader>m :Make<CR>
 
 " VimCompletesMe setup
