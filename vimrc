@@ -5,7 +5,7 @@ set encoding=utf-8
 " To disable a plugin, add it's bundle name to the following list
 " For example
 " let g:pathogen_disabled = ['auto-pairs', 'vim-airline']
-let g:pathogen_disabled = ['vim-dirdiff', 'vim-markdown', 'vim-commentary']
+let g:pathogen_disabled = ['vim-startify', 'vim-dirdiff', 'vim-markdown', 'vim-commentary']
 
 " Pathogen docs say turn filetype off before calling {{{
 filetype off
@@ -59,7 +59,7 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 set notimeout
 set wrapscan
 set autoread                         " automatically reload files changed outside of Vim
-set noshowcmd
+set showcmd
 set nohidden
 set diffopt+=context:5               " 5 lines of context in diff mode
 set shortmess=atToOI                 " To avoid the 'Hit Enter' prompts caused by the file messages
@@ -174,11 +174,11 @@ set csto=0
 " Yank the word under cursor, search for cscope, close the first result
 " window, open quickfix window with results, search for the word for
 " highlighting and movement with n and N
-nnoremap <leader>d :cs find g <cword><CR>   " Find definition of this symbol
-nnoremap <leader>c yiw:cs find c <cword><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find calls to this symbol
-nnoremap <leader>s yiw:cs find s <cword><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all instances of this symbol
-nnoremap <leader>h yiw:cs find f <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find this file
-nnoremap <leader>i yiw:cs find i <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all files including this file
+nnoremap <leader>d :cclose<cr>:cs find g <cword><CR>   " Find definition of this symbol
+nnoremap <leader>c yiw:cclose<cr>:cs find c <cword><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find calls to this symbol
+nnoremap <leader>s yiw:cclose<cr>:cs find s <cword><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all instances of this symbol
+nnoremap <leader>h yiw:cclose<cr>:cs find f <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find this file
+nnoremap <leader>i yiw:cclose<cr>:cs find i <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all files including this file
 nnoremap <leader>t :pop<CR>
 set cscopequickfix=s-,c-,i-,t-,e-,f-
 
