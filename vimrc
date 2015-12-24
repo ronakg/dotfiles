@@ -134,7 +134,7 @@ autocmd BufRead COMMIT_EDITMSG setlocal spell!
 autocmd! bufwritepost ~/.vimrc source %
 
 " Clear highlighted searches
-nnoremap <silent> <Esc> :nohlsearch<CR><Esc>
+nnoremap ,/ :nohlsearch<CR><Esc>
 
 " Switch to last buffer
 nmap <leader>p :b#<CR>
@@ -293,6 +293,10 @@ let g:simple_todo_tick_symbol = '✓'
 nmap <leader>x <Plug>(simple-todo-mark-as-done)
 nmap <leader>X <Plug>(simple-todo-mark-as-undone)
 nmap <leader>O <Plug>(simple-todo-new)
+
+"========================= SUPERTAB ===============================
+let   g:SuperTabDefaultCompletionType          =   "context"
+let   g:SuperTabContextDefaultCompletionType   =   "<c-n>"
 
 "======================== Startify ===============================
 let g:startify_list_order = [['Most recently used files in current directory:'], 'dir',

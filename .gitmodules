@@ -94,11 +94,11 @@
 	path = vim/bundle/vim-pasta
 	url = https://github.com/sickill/vim-pasta
         ignore = untracked
-[submodule "vim/bundle/VimCompletesMe"]
-	path = vim/bundle/VimCompletesMe
-	url = https://github.com/ajh17/VimCompletesMe
-        ignore = untracked
 [submodule "vim/bundle/nerdcommenter"]
 	path = vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter
+        ignore = untracked
+[submodule "vim/bundle/supertab"]
+	path = vim/bundle/supertab
+	url = https://github.com/ervandew/supertab
         ignore = untracked
