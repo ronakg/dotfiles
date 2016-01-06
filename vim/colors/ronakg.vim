@@ -49,3 +49,4 @@ hi VertSplit    ctermfg = grey
 
 hi StartifyFile ctermfg=red
 hi Startifypath ctermfg=grey
+hi ColorColumn  ctermbg=236

@@ -5,7 +5,7 @@ set encoding=utf-8
 " To disable a plugin, add it's bundle name to the following list
 " For example
 " let g:pathogen_disabled = ['auto-pairs', 'vim-airline']
-let g:pathogen_disabled = ['vim-startify', 'vim-dirdiff', 'vim-markdown', 'vim-commentary']
+let g:pathogen_disabled = ['vim-dirdiff', 'vim-markdown', 'vim-commentary']
 
 " Pathogen docs say turn filetype off before calling {{{
 filetype off
@@ -68,12 +68,21 @@ filetype indent on                   " filetype specific indentation
 syntax enable                        " Pretty syntax highlighing
 set updatetime=750                   " Vim refresh time
 set linebreak                        " It maintains the whole words when wrapping
+set path=.,**                        " Current directory and eveyrthing underneath
+set formatoptions+=1
+set formatoptions+=j
 
 " Don't add a newline when preview window is visible
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 noremap <C-F> <C-D>
 noremap <C-B> <C-U>
+
+" Make Y behave like other motion characters
+nnoremap Y y$
+
+" qq to record, Q to replay
+nmap Q @q
 
 " Expand matching braces only when pressing Enter
 inoremap {<CR> {<CR>}<Esc>==ko
@@ -166,9 +175,28 @@ endif
 autocmd BufRead * normal zz
 
 "===================== CTAGS/CSCOPE ==========================
+function! s:add_cscope_db()
+  " add any database in current directory
+  let db = findfile('cscope.out', '.;')
+  if !empty(db)
+    silent cs reset
+    silent! execute 'cs add' db
+  " else add database pointed to by environment
+  elseif !empty($CSCOPE_DB)
+    silent cs reset
+    silent! execute 'cs add' $CSCOPE_DB
+  endif
+endfunction
+
+if has("cscope")
+  set csto=0
+  set cst
+  set csverb
+  set cscopetag       " Use both cscope and ctags as database
+  call s:add_cscope_db()
+endif
+
 set tags=./tags;/   " ctags path, search upwards till tags file is found
-set cscopetag       " Use both cscope and ctags as database
-set csto=0
 
 " Find instances of a symbol from command line
 " Yank the word under cursor, search for cscope, close the first result
@@ -304,7 +332,6 @@ let g:startify_list_order = [['Most recently used files in current directory:'],
             \                ['Bookmarks:'], 'bookmarks',
             \                ['Sessions:'], 'sessions']
 let g:startify_change_to_dir = 0
-let g:startify_custom_indices = ['a','d','f','g','h','l','w','r','y','u','o','p','z','x','c','n']
 
 "==================== EASYMOTION ================================
 let g:EasyMotion_smartcase = 1
