@@ -10,6 +10,12 @@ fi
 #for *BSD/darwin
 export CLICOLOR=1
 export PATH=/usr/local/git/bin:/usr/local/bin:$PATH
+export LD_LIBRARY_PATH=~/tools/lib/:$LD_LIBRARY_PATH
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 
 # Editor
 export EDITOR=vim
@@ -62,6 +68,10 @@ export FZF_DEFAULT_COMMAND='if [ -e cscope.files ]; then cat cscope.files; else 
 export FZF_COMPLETION_OPTS='+c -x'
 export FZF_TMUX=0
 export FZF_DEFAULT_OPTS='--extended-exact --bind ctrl-f:page-down,ctrl-b:page-up --color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:121 --color info:144,prompt:161,spinner:135,pointer:135,marker:118'
+
+function fz {
+    $1 $(fzf)
+}
 
 # Don't care about Ctrl-s
 bind -r '\C-s'
