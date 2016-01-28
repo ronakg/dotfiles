@@ -70,7 +70,7 @@ export FZF_TMUX=0
 export FZF_DEFAULT_OPTS='--extended-exact --bind ctrl-f:page-down,ctrl-b:page-up --color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:121 --color info:144,prompt:161,spinner:135,pointer:135,marker:118'
 
 function fz {
-    $1 $(fzf)
+    $@ $(fzf)
 }
 
 # Don't care about Ctrl-s

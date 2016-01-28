@@ -68,9 +68,7 @@ filetype indent on                   " filetype specific indentation
 syntax enable                        " Pretty syntax highlighing
 set updatetime=750                   " Vim refresh time
 set linebreak                        " It maintains the whole words when wrapping
-set path=.,**                        " Current directory and eveyrthing underneath
-set formatoptions+=1
-set formatoptions+=j
+set complete-=i                      " Don't scan included files for completion
 
 " Don't add a newline when preview window is visible
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
