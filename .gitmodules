@@ -102,3 +102,9 @@
 	path = vim/bundle/supertab
 	url = https://github.com/ervandew/supertab
         ignore = untracked
+[submodule "vim/bundle/vim-colors-pencil"]
+	path = vim/bundle/vim-colors-pencil
+	url = https://github.com/reedes/vim-colors-pencil
+[submodule "vim/bundle/Alduin"]
+	path = vim/bundle/Alduin
+	url = https://github.com/AlessandroYorba/Alduin
