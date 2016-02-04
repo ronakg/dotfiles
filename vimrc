@@ -27,6 +27,7 @@ set incsearch                        " increamental search
 set hlsearch                         " highlight search
 set ignorecase                       " ignore case in searching
 set smartcase                        " dont ignore case if capital letters present
+set infercase                        " ingnore case on completion
 set backspace=indent,eol,start       " makes backspace working
 set scrolloff=4                      " keep cursor off screen edges
 set softtabstop=4
@@ -69,6 +70,11 @@ syntax enable                        " Pretty syntax highlighing
 set updatetime=750                   " Vim refresh time
 set linebreak                        " It maintains the whole words when wrapping
 set complete-=i                      " Don't scan included files for completion
+" Highlight when CursorMoved.
+setglobal cpoptions-=m
+setglobal matchtime=1
+" Highlight <>.
+setglobal matchpairs+=<:>
 
 " Don't add a newline when preview window is visible
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -84,6 +90,9 @@ nmap Q @q
 
 " Expand matching braces only when pressing Enter
 inoremap {<CR> {<CR>}<Esc>==ko
+
+" python.vim
+let python_highlight_all = 1
 
 " Don't let x and c to spoil the yank register
 nnoremap x "_x
@@ -136,6 +145,9 @@ autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
 
 " Spellcheck commit messages
 autocmd BufRead COMMIT_EDITMSG setlocal spell!
+
+" Check timestamp more for 'autoread'.
+autocmd WinEnter * checktime
 
 " autosource vimrc
 autocmd! bufwritepost ~/.vimrc source %
@@ -260,8 +272,9 @@ if &diff
     nnoremap e :qa<CR>
 endif
 
-" Update diff if changes are written to the file
-autocmd BufWritePost * if &diff == 1 | diffupdate | endif
+" Update diff when leaving from insertmode or writing to file
+autocmd InsertLeave * if &diff == 1 | diffupdate | endif
+autocmd BufWritepost * if &diff == 1 | diffupdate | endif
 
 "========================== LINE NUMBERS =========================
 function! NumberToggle()
@@ -391,3 +404,13 @@ let g:vcm_direction = 'n'
 set switchbuf=useopen           " reveal already opened files from the
                                 " quickfix window instead of opening new
                                 " buffers
+
+" ===================== UndoTree ==============================
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+endif
+" focus when open
+let g:undotree_SetFocusWhenToggle = 0
+" relative timestamp
+let g:undotree_RelativeTimestamp = 1

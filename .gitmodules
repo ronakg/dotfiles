@@ -108,3 +108,6 @@
 [submodule "vim/bundle/Alduin"]
 	path = vim/bundle/Alduin
 	url = https://github.com/AlessandroYorba/Alduin
+[submodule "vim/bundle/undotree"]
+	path = vim/bundle/undotree
+	url = https://github.com/mbbill/undotree
