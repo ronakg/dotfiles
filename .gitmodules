@@ -114,6 +114,3 @@
 [submodule "vim/bundle/python-syntax"]
 	path = vim/bundle/python-syntax
 	url = https://github.com/hdima/python-syntax
-[submodule "vim/bundle/vim-cpp-enhanced-highlight"]
-	path = vim/bundle/vim-cpp-enhanced-highlight
-	url = https://github.com/octol/vim-cpp-enhanced-highlight
