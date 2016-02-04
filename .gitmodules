@@ -111,3 +111,6 @@
 [submodule "vim/bundle/undotree"]
 	path = vim/bundle/undotree
 	url = https://github.com/mbbill/undotree
+[submodule "vim/bundle/python-syntax"]
+	path = vim/bundle/python-syntax
+	url = https://github.com/hdima/python-syntax
