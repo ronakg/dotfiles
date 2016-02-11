@@ -136,7 +136,7 @@ nnoremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 
 " Quicker save and quit
 nnoremap <silent> e :silent Sayonara<CR>
-nnoremap <silent> w :w<CR>
+nnoremap <silent> w :update<CR>
 inoremap <silent> jj <Esc>
 cnoremap <silent> jj <C-c>
 
