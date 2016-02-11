@@ -5,7 +5,7 @@ set -e
 
 # List of root level directories we are interested in.
 declare -a dirs=()
-extensions="c|h|cpp|hpp|mk|e"
+filetypes=".c|.h|.cpp|.hpp|.mk|.e|Makefile"
 
 # Backup current working directory for later
 cwd=`pwd`
@@ -74,8 +74,8 @@ done
 shift $((OPTIND-1))
 [ "$1" = "--" ] && shift
 
-echo "Running on - $rootdir"
-cd $rootdir
+echo "Running on - "$rootdir""
+cd "$rootdir"
 
 # Build fresh database if -f is present or -d is present
 if [ $startfresh -eq 1 ] || [ ${#dirs[@]} -gt 0 ]; then
@@ -90,29 +90,29 @@ if [ $startfresh -eq 1 ] || [ ${#dirs[@]} -gt 0 ]; then
 
     for dir in "${dirs[@]}"
     do
-        echo "Finding files in: $rootdir/$dir"
+        echo "Finding files in: "$rootdir"/$dir"
 
         if [ $includekernel -eq 1 ]; then
             echo "Including kernel files too..."
-            find $dir -type f -print | egrep -i "\.($extensions)$" >> $rootdir/cscope.files
+            find $dir -type f -print | egrep -i "($filetypes)$" >> "$rootdir"/cscope.files
         else
             # Don't include kernel and stub files
-            find $dir -type f -and -not -iwholename "*/*kernel*/*" -and -not -iwholename "*stub*" -print | egrep -i "\.($extensions)$" >> $rootdir/cscope.files
+            find $dir -type f -and -not -iwholename "*/*kernel*/*" -and -not -iwholename "*stub*" -print | egrep -i "($filetypes)$" >> "$rootdir"/cscope.files
         fi
     done
 else
-    if [ ! -e $rootdir/cscope.files ]; then
-        echo "cscope.files not found in $rootdir"
+    if [ ! -e "$rootdir"/cscope.files ]; then
+        echo "cscope.files not found in "$rootdir""
         usage
         exit 1
     fi
 fi
 
 echo 'Building cscope database...'
-cscope -b -q -k -i $rootdir/cscope.files
+cscope -b -q -k -i "$rootdir"/cscope.files
 
 echo 'Building ctags database...'
-ctags --extra=+f --c-kinds=+p --fields=+lS --excmd=p -L $rootdir/cscope.files
+ctags --extra=+f --c-kinds=+p --fields=+lS --excmd=p -L "$rootdir"/cscope.files
 
-cd $cwd
+cd "$cwd"
 echo 'All done'
