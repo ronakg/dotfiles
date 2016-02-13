@@ -70,11 +70,10 @@ syntax enable                        " Pretty syntax highlighing
 set updatetime=750                   " Vim refresh time
 set linebreak                        " It maintains the whole words when wrapping
 set complete-=i                      " Don't scan included files for completion
-" Highlight when CursorMoved.
-setglobal cpoptions-=m
+setglobal cpoptions-=m               " Highlight when CursorMoved.
 setglobal matchtime=1
-" Highlight <>.
 setglobal matchpairs+=<:>
+set clipboard=exclude:.*             " Don't connect to X server clipboard
 
 " Don't add a newline when preview window is visible
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -166,8 +165,8 @@ vnoremap ; :
 inoremap <C-d> <C-o>x
 
 " Jump to start and end of line using the home row keys
-map H ^
-map L $
+map <C-a> ^
+map <C-e> $
 
 " Insert a new line below and come back to normal mode
 noremap O o<ESC>
@@ -273,7 +272,6 @@ if &diff
 endif
 
 " Update diff when leaving from insertmode or writing to file
-autocmd InsertLeave * if &diff == 1 | diffupdate | endif
 autocmd BufWritepost * if &diff == 1 | diffupdate | endif
 
 "========================== LINE NUMBERS =========================
@@ -347,7 +345,6 @@ let g:startify_change_to_dir = 0
 "==================== EASYMOTION ================================
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_keys = 'sdghklqwertyuiopzxcvbnmfaj'
-nmap f <Plug>(easymotion-s)
 nmap s <Plug>(easymotion-s)
 
 " Grep for word under the cursor
