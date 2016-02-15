@@ -105,15 +105,32 @@
 [submodule "vim/bundle/vim-colors-pencil"]
 	path = vim/bundle/vim-colors-pencil
 	url = https://github.com/reedes/vim-colors-pencil
+        ignore = untracked
 [submodule "vim/bundle/Alduin"]
 	path = vim/bundle/Alduin
 	url = https://github.com/AlessandroYorba/Alduin
+        ignore = untracked
 [submodule "vim/bundle/undotree"]
 	path = vim/bundle/undotree
 	url = https://github.com/mbbill/undotree
+        ignore = untracked
 [submodule "vim/bundle/python-syntax"]
 	path = vim/bundle/python-syntax
 	url = https://github.com/hdima/python-syntax
+        ignore = untracked
 [submodule "vim/bundle/indentLine"]
 	path = vim/bundle/indentLine
 	url = https://github.com/Yggdroot/indentLine
+        ignore = untracked
+[submodule "vim/bundle/vim-textobj-underscore"]
+	path = vim/bundle/vim-textobj-underscore
+	url = https://github.com/lucapette/vim-textobj-underscore
+        ignore = untracked
+[submodule "vim/bundle/vim-textobj-user"]
+	path = vim/bundle/vim-textobj-user
+	url = https://github.com/kana/vim-textobj-user
+        ignore = untracked
+[submodule "vim/bundle/Sierra"]
+	path = vim/bundle/Sierra
+	url = https://github.com/AlessandroYorba/Sierra
+        ignore = untracked

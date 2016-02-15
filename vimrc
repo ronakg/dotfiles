@@ -30,9 +30,10 @@ set smartcase                        " dont ignore case if capital letters prese
 set infercase                        " ingnore case on completion
 set backspace=indent,eol,start       " makes backspace working
 set scrolloff=4                      " keep cursor off screen edges
+set smarttab
+set tabstop=8
 set softtabstop=4
 set shiftwidth=4
-set smarttab
 set expandtab
 set cindent
 set smartindent
@@ -74,6 +75,8 @@ setglobal cpoptions-=m               " Highlight when CursorMoved.
 setglobal matchtime=1
 setglobal matchpairs+=<:>
 set clipboard=exclude:.*             " Don't connect to X server clipboard
+set listchars=tab:\|\ 
+set list
 
 " Don't add a newline when preview window is visible
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -411,3 +414,8 @@ endif
 let g:undotree_SetFocusWhenToggle = 0
 " relative timestamp
 let g:undotree_RelativeTimestamp = 1
+
+" ======================== IndentLine =========================
+let g:indentLine_concealcursor = ''
+let g:indentLine_color_term = 239
+let g:indentLine_showFirstIndentLevel = 1

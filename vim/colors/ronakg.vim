@@ -30,6 +30,7 @@ hi Tag          ctermfg = black
 hi PreCondit    ctermfg = darkyellow 
 hi Character    ctermfg = 222
 hi SpecialChar  ctermfg = magenta
+hi SpecialKey   ctermfg = 239        cterm = none
 hi PreProc      ctermfg = green
 hi Delimiter    ctermfg = 241
 hi Visual       ctermfg = brown      ctermbg = grey
