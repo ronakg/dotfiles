@@ -5,7 +5,7 @@ set -e
 
 # List of root level directories we are interested in.
 declare -a dirs=()
-filetypes="\.c|\.h|\.cpp|\.hpp|\.mk|\.e|Makefile"
+filetypes="\.c|\.h|\.cpp|\.hpp|\.mk|\.e|Makefile|\.sh"
 
 # Backup current working directory for later
 cwd=`pwd`
