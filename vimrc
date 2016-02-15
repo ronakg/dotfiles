@@ -30,11 +30,11 @@ set smartcase                        " dont ignore case if capital letters prese
 set infercase                        " ingnore case on completion
 set backspace=indent,eol,start       " makes backspace working
 set scrolloff=4                      " keep cursor off screen edges
-set smarttab
 set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+set smarttab
 set cindent
 set smartindent
 set autoindent
@@ -86,6 +86,9 @@ noremap <C-B> <C-U>
 
 " Make Y behave like other motion characters
 nnoremap Y y$
+
+" Backspace in normal mode switches to last buffer
+nnoremap <BS> :buffer #<CR>
 
 " qq to record, Q to replay
 nmap Q @q
@@ -300,6 +303,8 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 set t_Co=256
 set bg=dark
 colorscheme ronakg
+"let g:sierra_Twilight = 1
+"colorscheme sierra
 
 " ======================= NERDCommenter ===========================
 let NERDCreateDefaultMappings=0

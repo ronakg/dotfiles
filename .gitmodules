@@ -118,10 +118,6 @@
 	path = vim/bundle/python-syntax
 	url = https://github.com/hdima/python-syntax
         ignore = untracked
-[submodule "vim/bundle/indentLine"]
-	path = vim/bundle/indentLine
-	url = https://github.com/Yggdroot/indentLine
-        ignore = untracked
 [submodule "vim/bundle/vim-textobj-underscore"]
 	path = vim/bundle/vim-textobj-underscore
 	url = https://github.com/lucapette/vim-textobj-underscore
