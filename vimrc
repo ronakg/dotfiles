@@ -76,7 +76,7 @@ setglobal matchtime=1
 setglobal matchpairs+=<:>
 set clipboard=exclude:.*             " Don't connect to X server clipboard
 set listchars=tab:\|\ 
-set list
+"set list
 
 " Don't add a newline when preview window is visible
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -419,8 +419,3 @@ endif
 let g:undotree_SetFocusWhenToggle = 0
 " relative timestamp
 let g:undotree_RelativeTimestamp = 1
-
-" ======================== IndentLine =========================
-let g:indentLine_concealcursor = ''
-let g:indentLine_color_term = 239
-let g:indentLine_showFirstIndentLevel = 1
