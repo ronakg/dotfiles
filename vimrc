@@ -1,28 +1,28 @@
-set termencoding=utf-8
-set encoding=utf-8
+" Modeline and Notes {{
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=0 foldmethod=marker:
+" }}
 
-" ======================== PATHOGEN ===============================
+" Pathogen {{
 " To disable a plugin, add it's bundle name to the following list
 " For example
 " let g:pathogen_disabled = ['auto-pairs', 'vim-airline']
 let g:pathogen_disabled = ['vim-dirdiff', 'vim-markdown', 'vim-commentary']
 
-" Pathogen docs say turn filetype off before calling {{{
+" Pathogen docs say turn filetype off before calling
 filetype off
 call pathogen#infect()
 call pathogen#helptags()
 call pathogen#infect('after/{}')
-" }}}
+" }}
 
 " Space is my leader, don't assign leader to space - that causes latency
 " issues
  nmap <space> <leader>
  vmap <space> <leader>
 
-" Standard vim options
-"                              
-"                            
-" Searching
+" Standard vim options {{
+set termencoding=utf-8
+set encoding=utf-8
 set incsearch                        " increamental search
 set hlsearch                         " highlight search
 set ignorecase                       " ignore case in searching
@@ -78,6 +78,7 @@ set clipboard=exclude:.*             " Don't connect to X server clipboard
 set listchars=tab:\|\ 
 "set list
 set diffopt+=iwhite                  " Ignore white space diff
+" }}
 
 " Don't add a newline when preview window is visible
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -190,7 +191,9 @@ endif
 " center buffer around cursor when opening files
 autocmd BufRead * normal zz
 
-"===================== CTAGS/CSCOPE ==========================
+nnoremap <leader>l :call NumberToggle()<CR>
+
+" CTAGS/CSCOPE {{
 function! s:add_cscope_db()
   " add any database in current directory
   let db = findfile('cscope.out', '.;')
@@ -225,8 +228,9 @@ nnoremap <leader>h yiw:cclose<cr>:cs find f <C-R>=expand("<cfile>:t")<CR><CR>:bd
 nnoremap <leader>i yiw:cclose<cr>:cs find i <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all files including this file
 nnoremap <leader>t :pop<CR>
 set cscopequickfix=s-,c-,i-,t-,e-,f-
+" }}
 
-"========================== VIM-AIRLINE ==========================
+" VIM-AIRLINE {{
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled                      = 1
 let g:airline#extensions#tabline#buffer_min_count             = 1
@@ -254,8 +258,9 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
+" }}
 
-"========================== FZF ===================================
+" FZF {{
 nnoremap <silent> <C-p> :FZF!<CR>
 
 " Change cursor shape based on mode.
@@ -268,8 +273,9 @@ else
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+" }}
 
-"=========================== DIFF ===============================
+" DIFF {{
 
 if &diff
     " use space and backspace to jump forward/backward through differences
@@ -280,8 +286,9 @@ endif
 
 " Update diff when leaving from insertmode or writing to file
 autocmd BufWritepost * if &diff == 1 | diffupdate | endif
+" }}
 
-"========================== LINE NUMBERS =========================
+" LINE NUMBERS {{
 function! NumberToggle()
   if(&relativenumber == 1 && &number == 1)
     set number
@@ -294,8 +301,7 @@ function! NumberToggle()
     set relativenumber
   endif
 endfunc
-
-nnoremap <leader>l :call NumberToggle()<CR>
+" }}
 
 " Treat .md files as markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
