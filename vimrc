@@ -77,6 +77,7 @@ setglobal matchpairs+=<:>
 set clipboard=exclude:.*             " Don't connect to X server clipboard
 set listchars=tab:\|\ 
 "set list
+set diffopt+=iwhite                  " Ignore white space diff
 
 " Don't add a newline when preview window is visible
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
