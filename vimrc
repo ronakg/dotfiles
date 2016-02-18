@@ -40,6 +40,7 @@ Plug 'hdima/python-syntax', { 'for' : [ 'python' ] }
 Plug 'lucapette/vim-textobj-underscore'
 Plug 'kana/vim-textobj-user'
 Plug 'AlessandroYorba/Sierra'
+Plug 'benmills/vimux'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -110,8 +111,6 @@ set diffopt+=iwhite                  " Ignore white space diff
 " Space is my leader, don't assign leader to space - that causes latency
 " issues
 let g:mapleader = "\<Space>"
- "nmap <space> <leader>
- "vmap <space> <leader>
 
 nmap <leader>k <Plug>(Vman)
 
@@ -249,8 +248,8 @@ endfunc
 
 if &diff
     " use space and backspace to jump forward/backward through differences
-    nnoremap <space> :normal! ]c<enter>
-    nnoremap <backspace> :normal! [c<enter>
+    nnoremap <C-j> :normal! ]c<enter>
+    nnoremap <C-k> :normal! [c<enter>
     nnoremap e :qa<CR>
 endif
 
@@ -412,6 +411,32 @@ endif
 let g:undotree_SetFocusWhenToggle = 0
 " relative timestamp
 let g:undotree_RelativeTimestamp = 1
+
+" Vimux {{
+let g:VimuxOrientation = "h"
+
+" Run the current file with rspec
+ map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
+
+ " Prompt for a command to run
+ map <Leader>vp :VimuxPromptCommand<CR>
+
+ " Run last command executed by VimuxRunCommand
+ map <Leader>vl :VimuxRunLastCommand<CR>
+
+ " Inspect runner pane
+ map <Leader>vi :VimuxInspectRunner<CR>
+
+ " Close vim tmux runner opened by VimuxRunCommand
+ map <Leader>vq :VimuxCloseRunner<CR>
+
+ " Interrupt any command running in the runner pane
+ map <Leader>vx :VimuxInterruptRunner<CR>
+
+ " Zoom the runner pane (use <bind-key> z to restore runner pane)
+ map <Leader>vz :call VimuxZoomRunner()<CR>
+" }
+
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
 " }}
