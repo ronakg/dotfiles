@@ -9,6 +9,3 @@ Session.vim
 *~
 .vim
 tags
-
-# Ignore the installed plugins
-vim/plugged/**
