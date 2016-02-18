@@ -9,3 +9,5 @@ Session.vim
 *~
 .vim
 tags
+vim/plugged
+vim/plugged/**

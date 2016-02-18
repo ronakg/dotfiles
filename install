@@ -73,8 +73,13 @@ tic xterm-256color-italic.terminfo
 tic screen-256color-italic.terminfo
 echo -n "${reset}"
 
+echo -n "${blue}"
+echo -e "\nInstalling vim plugins..."
+vim +PlugInstall
+echo -n "${reset}"
+
 echo -n "${green}"
-echo -e "\n Sourcing ~/.bashrc"
+echo -e "\nSourcing ~/.bashrc"
 . ~/.bashrc
 echo -n "${reset}"
 
