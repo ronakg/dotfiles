@@ -73,19 +73,6 @@ tic xterm-256color-italic.terminfo
 tic screen-256color-italic.terminfo
 echo -n "${reset}"
 
-# Install submodules
-echo -n "${blue}"
-echo -e "\nUpdating submodules..."
-git submodule update --init --recursive     # Sumodules might've submodules of their own
-git submodule foreach git pull origin master
-echo -n "${reset}"
-
-# Install FZF
-echo -n "${yellow}"
-echo -e "\n Installing FZF with everything enabled..."
-yes | $mydotdir/vim/bundle/fzf/install
-echo -n "${reset}"
-
 echo -n "${green}"
 echo -e "\n Sourcing ~/.bashrc"
 . ~/.bashrc
