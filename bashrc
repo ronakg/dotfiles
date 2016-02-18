@@ -69,8 +69,14 @@ export FZF_COMPLETION_OPTS='+c -x'
 export FZF_TMUX=0
 export FZF_DEFAULT_OPTS='--extended-exact --bind ctrl-f:page-down,ctrl-b:page-up --color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:121 --color info:144,prompt:161,spinner:135,pointer:135,marker:118'
 
+# fz [command pattern] - get result from fzf using pattern and pass it to command
+# - Bypass fuzzy finder if there's only one match (--select-1)
+# - Exit if there's no match (--exit-0)
 function fz {
-    $@ $(fzf)
+    alias
+    local file
+    file=$(fzf --query="${*:2}" --select-1 --exit-0)
+    [ -f "$file" ] && "$1" "$file"
 }
 
 # Don't care about Ctrl-s
@@ -80,3 +86,12 @@ stty -ixon 2>/dev/null
 if [ -f ~/.fzf.bash ]; then
    source ~/.fzf.bash
 fi
+
+# fe [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fe() {
+  local file
+  file=$(fzf --query="$*" --select-1 --exit-0)
+  [ -n "$file" ] && ${EDITOR} "$file"
+}
