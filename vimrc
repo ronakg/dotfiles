@@ -2,18 +2,49 @@
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=0 foldmethod=marker:
 " }}
 
-" Pathogen {{
-" To disable a plugin, add it's bundle name to the following list
-" For example
-" let g:pathogen_disabled = ['auto-pairs', 'vim-airline']
-let g:pathogen_disabled = ['vim-dirdiff', 'vim-markdown', 'vim-commentary']
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
 
-" Pathogen docs say turn filetype off before calling
-filetype off
-call pathogen#infect()
-call pathogen#helptags()
-call pathogen#infect('after/{}')
-" }}
+call plug#begin('~/.vim/plugged')
+
+Plug 'bling/vim-airline'
+Plug 'majutsushi/tagbar'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'tpope/vim-dispatch'
+Plug 'mbbill/echofunc'
+Plug 'vim-scripts/auto_autoread.vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'plasticboy/vim-markdown'
+Plug 'mhinz/vim-startify'
+Plug 'nanotech/jellybeans.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'mileszs/ack.vim'
+Plug 'mhinz/vim-sayonara'
+Plug 'will133/vim-dirdiff'
+Plug 'junegunn/fzf.vim'
+Plug 'morhetz/gruvbox'
+Plug 'google/vim-colorscheme-primary'
+Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'tpope/vim-surround'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'vim-utils/vim-man'
+Plug 'ConradIrwin/vim-bracketed-paste/'
+Plug 'sickill/vim-pasta'
+Plug 'scrooloose/nerdcommenter'
+Plug 'ervandew/supertab'
+Plug 'reedes/vim-colors-pencil'
+Plug 'AlessandroYorba/Alduin'
+Plug 'mbbill/undotree'
+Plug 'hdima/python-syntax'
+Plug 'lucapette/vim-textobj-underscore'
+Plug 'kana/vim-textobj-user'
+Plug 'AlessandroYorba/Sierra'
+
+call plug#end()
 
 " Space is my leader, don't assign leader to space - that causes latency
 " issues
