@@ -1,7 +1,3 @@
-" Modeline and Notes {{
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=0 foldmethod=marker:
-" }}
-
 " Vim-Plug {{
 if empty(glob('~/.vim/autoload/plug.vim'))
       silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -15,10 +11,10 @@ Plug 'bling/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'tpope/vim-dispatch'
-Plug 'mbbill/echofunc'
+Plug 'mbbill/echofunc', { 'for' : [ 'c', 'cpp' ] }
 Plug 'vim-scripts/auto_autoread.vim'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown', { 'for' : [ 'markdown' ] }
 Plug 'mhinz/vim-startify'
 Plug 'nanotech/jellybeans.vim'
 Plug 'easymotion/vim-easymotion'
@@ -33,14 +29,14 @@ Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'tpope/vim-surround'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'vim-utils/vim-man'
-Plug 'ConradIrwin/vim-bracketed-paste/'
+Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'sickill/vim-pasta'
 Plug 'scrooloose/nerdcommenter'
-Plug 'ervandew/supertab'
+Plug 'ervandew/supertab', { 'for' : [ 'c', 'cpp' ] }
 Plug 'reedes/vim-colors-pencil'
 Plug 'AlessandroYorba/Alduin'
 Plug 'mbbill/undotree'
-Plug 'hdima/python-syntax'
+Plug 'hdima/python-syntax', { 'for' : [ 'python' ] }
 Plug 'lucapette/vim-textobj-underscore'
 Plug 'kana/vim-textobj-user'
 Plug 'AlessandroYorba/Sierra'
@@ -416,3 +412,6 @@ endif
 let g:undotree_SetFocusWhenToggle = 0
 " relative timestamp
 let g:undotree_RelativeTimestamp = 1
+" Modeline and Notes {{
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
+" }}
