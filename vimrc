@@ -1,49 +1,9 @@
 " Vim-Plug {{
-if empty(glob('~/.vim/autoload/plug.vim'))
-      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        autocmd VimEnter * PlugInstall | source $MYVIMRC
-endif
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'bling/vim-airline'
-Plug 'majutsushi/tagbar'
-Plug 'junegunn/fzf', { 'do': './install --all' }
-Plug 'tpope/vim-dispatch'
-Plug 'mbbill/echofunc', { 'for' : [ 'c', 'cpp' ] }
-Plug 'vim-scripts/auto_autoread.vim'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'plasticboy/vim-markdown', { 'for' : [ 'markdown' ] }
-Plug 'mhinz/vim-startify'
-Plug 'nanotech/jellybeans.vim'
-Plug 'easymotion/vim-easymotion'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'mileszs/ack.vim'
-Plug 'mhinz/vim-sayonara'
-Plug 'will133/vim-dirdiff'
-Plug 'junegunn/fzf.vim'
-Plug 'morhetz/gruvbox'
-Plug 'google/vim-colorscheme-primary'
-Plug 'stefandtw/quickfix-reflector.vim'
-Plug 'tpope/vim-surround'
-Plug 'nelstrom/vim-visual-star-search'
-Plug 'vim-utils/vim-man'
-Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'sickill/vim-pasta'
-Plug 'scrooloose/nerdcommenter'
-Plug 'ervandew/supertab', { 'for' : [ 'c', 'cpp' ] }
-Plug 'reedes/vim-colors-pencil'
-Plug 'AlessandroYorba/Alduin'
-Plug 'mbbill/undotree'
-Plug 'hdima/python-syntax', { 'for' : [ 'python' ] }
-Plug 'lucapette/vim-textobj-underscore'
-Plug 'kana/vim-textobj-user'
-Plug 'AlessandroYorba/Sierra'
-Plug 'benmills/vimux'
-
-" Add plugins to &runtimepath
-call plug#end()
+try
+    source ~/.vim/vim-plug.vim
+catch
+    " It's okay
+endtry
 " }}
 
 " Standard vim options {{
@@ -326,6 +286,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 
 " FZF {{
 nnoremap <silent> <C-p> :FZF!<CR>
+" }}
 
 " Change cursor shape based on mode.
 " https://gist.github.com/andyfowler/1195581
