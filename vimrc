@@ -152,6 +152,10 @@ inoremap <C-d> <C-o>x
 map <C-a> ^
 map <C-e> $
 
+" Increment decrement numbers
+noremap <leader>a <C-a>
+noremap <leader>x <C-x>
+
 " Insert a new line below and come back to normal mode
 noremap O o<ESC>
 
@@ -160,32 +164,41 @@ nnoremap <leader>l :call NumberToggle()<CR>
 
 " Auto commands {{
 
-" Treat .md files as markdown
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
-" If can't find extention of a file, assume it's a C file
-autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
-
-" Spellcheck commit messages
-autocmd BufRead COMMIT_EDITMSG setlocal spell!
-
-" Check timestamp more for 'autoread'.
-autocmd WinEnter * checktime
-
-" autosource vimrc
-autocmd! bufwritepost ~/.vimrc source %
-
-" Remember cursor position between vim sessions
 if has("autocmd")
-    autocmd BufReadPost *
-                \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-                \   exe "normal! g'\"" |
-                \ endif
-            
-endif
+    augroup myAutoCmds
+        autocmd!
 
-" center buffer around cursor when opening files
-autocmd BufRead * normal zz
+        " Cursor line only on active window
+        autocmd WinEnter * setlocal cursorline
+        autocmd WinLeave * setlocal nocursorline
+
+        " Treat .md files as markdown
+        autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+        " If can't find extention of a file, assume it's a C file
+        autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
+
+        " Spellcheck commit messages
+        autocmd BufRead COMMIT_EDITMSG setlocal spell!
+
+        " autosource vimrc and vim-plug.vim
+        autocmd bufwritepost ~/.vimrc source %
+        autocmd bufwritepost ~/.vim/vim-plug.vim source %
+
+        " Remember cursor position between vim sessions
+        autocmd BufReadPost *
+                    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+                    \   exe "normal! g'\"" |
+                    \ endif
+
+        " center buffer around cursor when opening files
+        autocmd BufRead * normal zz
+
+        " Update diff when leaving from insertmode or writing to file
+        autocmd BufWritepost * if &diff == 1 | diffupdate | endif
+
+    augroup END 
+endif
 " }}
 
 " Line Numbers {{
@@ -212,8 +225,6 @@ if &diff
     nnoremap e :qa<CR>
 endif
 
-" Update diff when leaving from insertmode or writing to file
-autocmd BufWritepost * if &diff == 1 | diffupdate | endif
 " }}
 
 " Tags/CScope {{
@@ -324,12 +335,6 @@ catch
     " No such file? No problem; just ignore it.
 endtry
 
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
-
 "========================= SUPERTAB ===============================
 let   g:SuperTabDefaultCompletionType          =   "context"
 let   g:SuperTabContextDefaultCompletionType   =   "<c-n>"
@@ -375,6 +380,7 @@ let g:undotree_RelativeTimestamp = 1
 
 " Vimux {{
 let g:VimuxOrientation = "h"
+let g:VimuxHeight = "30"
 
 " Run the current file with rspec
  map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>

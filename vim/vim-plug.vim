@@ -35,7 +35,8 @@ Plug 'hdima/python-syntax', { 'for' : [ 'python' ] }
 Plug 'lucapette/vim-textobj-underscore'
 Plug 'kana/vim-textobj-user'
 Plug 'benmills/vimux'
-Plug 'chrisbra/csv.vim'
+"Plug 'chrisbra/csv.vim'
+Plug 'tpope/vim-repeat'
 
 " Add plugins to &runtimepath
 call plug#end()
