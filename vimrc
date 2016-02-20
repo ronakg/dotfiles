@@ -74,7 +74,6 @@ let g:mapleader = "\<Space>"
 
 nmap <leader>k <Plug>(Vman)
 
-nnoremap <C-t> :Tags!<CR>
 nnoremap <leader>m :Make<CR>
 
 " Grep for word under the cursor
@@ -285,6 +284,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 " }}
 
 " FZF {{
+nnoremap <C-t> :Tags!<CR>
 nnoremap <silent> <C-p> :FZF!<CR>
 " }}
 

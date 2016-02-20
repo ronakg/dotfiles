@@ -64,6 +64,10 @@ if command_exists git ; then
     alias gitdiff='git difftool'
 fi
 
+if [ -f ~/.fzf.bash ]; then
+   source ~/.fzf.bash
+fi
+
 export FZF_DEFAULT_COMMAND='if [ -e cscope.files ]; then cat cscope.files; else find ./ -type f ; fi'
 export FZF_COMPLETION_OPTS='+c -x'
 export FZF_TMUX=0
@@ -79,14 +83,6 @@ function fz {
     [ -f "$file" ] && "$1" "$file"
 }
 
-# Don't care about Ctrl-s
-bind -r '\C-s'
-stty -ixon 2>/dev/null
-
-if [ -f ~/.fzf.bash ]; then
-   source ~/.fzf.bash
-fi
-
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
@@ -95,3 +91,22 @@ fe() {
   file=$(fzf --query="$*" --select-1 --exit-0)
   [ -n "$file" ] && ${EDITOR} "$file"
 }
+
+# ftags - search ctags
+ftags() {
+  local line
+  [ -e tags ] &&
+  line=$(
+    awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' tags |
+    cut -c1-80 | fzf --nth=1,2
+  ) && $EDITOR $(cut -f3 <<< "$line") -c "set nocst" \
+                                      -c "silent tag $(cut -f2 <<< "$line")"
+}
+
+# Don't care about Ctrl-s
+bind -r '\C-s'
+stty -ixon 2>/dev/null
+
+# Modeline and Notes {{
+# vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
+# }}
