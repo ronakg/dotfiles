@@ -1,9 +1,5 @@
 let g:airline#themes#ronakg#palette = {}
 
-let g:airline#themes#ronakg#palette.accents = {
-      \ 'red': [ '#66d9ef' , '' , 81 , '' , '' ],
-      \ }
-
 " Normal Mode:
 let s:N1 = [ '#585858' , '#e4e4e4' , 240 , 254 ] " Mode
 let s:N2 = [ '#e4e4e4' , '#0087af' , 254 , 31  ] " Info
@@ -57,11 +53,9 @@ let g:airline#themes#ronakg#palette.inactive_modified = {
       \ 'airline_c': [ '#585858' , '#e4e4e4' , 240 , 254 , '' ] ,
       \ }
 
-let g:airline#themes#ronakg#palette.accents = {
-      \ 'red': [ '#ff0000' , '' , 160 , ''  ]
-      \ }
-
 let g:airline#themes#ronakg#palette.tabline = {
-      \ 'airline_tabmod':  [ '#eeeeee' , '#005f87' , 255, 160, '' ],
-      \ 'airline_tabmod_unsel':  [ '#eeeeee' , '#005f87' , 255, 167, '' ]
-      \ }
+            \ 'airline_tab': ['#eeeeee', '#005f87' , 255, 31, '' ],
+            \ 'airline_tabsel': ['#eeeeee', '#005f87' , 24, 255, '' ],
+            \ 'airline_tabmod':  [ '#eeeeee' , '#005f87' , 24, 255, '' ],
+            \ 'airline_tabmod_unsel':  [ '#eeeeee' , '#005f87' , 255, 167, '' ],
+            \ }

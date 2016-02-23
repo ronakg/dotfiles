@@ -41,7 +41,7 @@ hi DiffChange   ctermfg = black      ctermbg = cyan
 hi DiffText     ctermfg = white      ctermbg = darkred
 hi DiffDelete   ctermfg = black      ctermbg = 145
 
-hi Pmenu        ctermfg = 214       ctermbg = black
+hi Pmenu        ctermfg = red       ctermbg = black 
 hi PmenuSel     ctermfg = black       ctermbg = lightblue
 
 hi Folded       ctermfg = black
