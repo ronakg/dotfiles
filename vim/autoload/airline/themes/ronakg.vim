@@ -55,7 +55,8 @@ let g:airline#themes#ronakg#palette.inactive_modified = {
 
 let g:airline#themes#ronakg#palette.tabline = {
             \ 'airline_tab': ['#eeeeee', '#005f87' , 255, 31, '' ],
+            \ 'airline_tabfill': ['#eeeeee', '#005f87' , 255, 237, '' ],
             \ 'airline_tabsel': ['#eeeeee', '#005f87' , 24, 255, '' ],
-            \ 'airline_tabmod':  [ '#eeeeee' , '#005f87' , 24, 255, '' ],
+            \ 'airline_tabmod':  [ '#eeeeee' , '#005f87' , 255, 160, '' ],
             \ 'airline_tabmod_unsel':  [ '#eeeeee' , '#005f87' , 255, 167, '' ],
             \ }
