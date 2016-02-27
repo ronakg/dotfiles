@@ -24,7 +24,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'tpope/vim-surround'
 Plug 'nelstrom/vim-visual-star-search'
-Plug 'vim-utils/vim-man'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'sickill/vim-pasta'
 Plug 'scrooloose/nerdcommenter'
@@ -37,6 +36,8 @@ Plug 'kana/vim-textobj-user'
 Plug 'benmills/vimux'
 "Plug 'chrisbra/csv.vim'
 Plug 'tpope/vim-repeat'
+"Plug 'edkolev/tmuxline.vim'
+"Plug 'edkolev/promptline.vim'
 
 " Add plugins to &runtimepath
 call plug#end()

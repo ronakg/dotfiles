@@ -51,9 +51,6 @@ set showcmd
 set nohidden
 set diffopt+=context:5               " 5 lines of context in diff mode
 set shortmess=atToOI                 " To avoid the 'Hit Enter' prompts caused by the file messages
-filetype plugin on                   " filetype plugins for file specific settings
-filetype indent on                   " filetype specific indentation
-syntax enable                        " Pretty syntax highlighing
 set updatetime=750                   " Vim refresh time
 set linebreak                        " It maintains the whole words when wrapping
 set complete-=i                      " Don't scan included files for completion
@@ -65,6 +62,9 @@ set listchars=tab:\|\
 "set list
 set diffopt+=iwhite                  " Ignore white space diff
 set visualbell t_vb=                 " Disable bells
+filetype plugin on                   " filetype plugins for file specific settings
+filetype indent on                   " filetype specific indentation
+syntax enable                        " Pretty syntax highlighing
 " }}
 
 " Key remaps {{
@@ -72,8 +72,6 @@ set visualbell t_vb=                 " Disable bells
 " Space is my leader, don't assign leader to space - that causes latency
 " issues
 let g:mapleader = "\<Space>"
-
-nmap <leader>k <Plug>(Vman)
 
 nnoremap <leader>m :Make<CR>
 
@@ -105,7 +103,7 @@ inoremap {<CR> {<CR>}<Esc>==ko
 nnoremap x "_x
 nnoremap c "_c
 
-" Make arrowkey do something usefull, resize the viewports accordingly
+" Make arrowkey do something useful, resize the viewports accordingly
 nnoremap <Left> :vertical resize +2<CR>
 nnoremap <Right> :vertical resize -2<CR>
 nnoremap <Up> :resize -2<CR>
@@ -116,15 +114,10 @@ nnoremap J mzJ`z
 
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w>w
-nnoremap <C-g> <C-i>
 
 " Tab to indent-unindent code blocks in visual mode
 vnoremap <tab> >gv
 vnoremap <S-tab> <gv
-
-" Next/prev buffers
-nnoremap <c-l> :bn<CR>
-nnoremap <c-h> :bp<CR>
 
 " Next/prev quick-fix results
 nnoremap <C-j> :cn<CR>
@@ -156,9 +149,6 @@ map <C-e> $
 " Increment decrement numbers
 noremap <leader>a <C-a>
 noremap <leader>x <C-x>
-
-" Insert a new line below and come back to normal mode
-noremap O o<ESC>
 
 nnoremap <leader>l :call NumberToggle()<CR>
 " }}
@@ -224,6 +214,7 @@ if &diff
     nnoremap <C-j> :normal! ]c<enter>
     nnoremap <C-k> :normal! [c<enter>
     nnoremap e :qa<CR>
+    set nocursorline
 endif
 
 " }}
@@ -296,8 +287,10 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 " }}
 
 " FZF {{
-nnoremap <C-t> :Tags!<CR>
-nnoremap <silent> <C-p> :FZF!<CR>
+nnoremap <C-y> :BTags<CR>
+nnoremap <C-l> :Lines<CR>
+nnoremap <C-t> :Tags<CR>
+nnoremap <C-p> :FZF<CR>
 " }}
 
 " Change cursor shape based on mode.
