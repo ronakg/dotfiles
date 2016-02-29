@@ -45,7 +45,7 @@ hi Pmenu        ctermfg = red       ctermbg = black
 hi PmenuSel     ctermfg = black       ctermbg = lightblue
 
 hi Folded       ctermfg = black
-hi MatchParen   ctermfg = black      ctermbg = yellow
+hi MatchParen   ctermfg=black ctermbg=yellow
 hi VertSplit    ctermfg = grey
 
 hi StartifyFile ctermfg=red

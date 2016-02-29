@@ -69,8 +69,9 @@ if [ -f ~/.fzf.bash ]; then
 fi
 
 export FZF_DEFAULT_COMMAND='if [ -f cscope.files ]; then cat cscope.files; else find . -path '*/\.*' -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..// ; fi'
+export FZF_TMUX=0
 export FZF_COMPLETION_OPTS='+c -x'
-export FZF_DEFAULT_OPTS='--extended-exact --color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:121 --color info:144,prompt:161,spinner:135,pointer:135,marker:118'
+export FZF_DEFAULT_OPTS='--extended-exact --color fg:254,bg:235,hl:214,fg+:14,bg+:233,hl+:214 --color info:144,prompt:161,spinner:135,pointer:135,marker:118'
 
 # fz [command pattern] - get result from fzf using pattern and pass it to command
 # - Bypass fuzzy finder if there's only one match (--select-1)
