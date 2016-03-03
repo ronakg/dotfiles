@@ -34,8 +34,9 @@ Plug 'hdima/python-syntax', { 'for' : [ 'python' ] }
 Plug 'lucapette/vim-textobj-underscore'
 Plug 'kana/vim-textobj-user'
 Plug 'benmills/vimux'
-"Plug 'chrisbra/csv.vim'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+"Plug 'chrisbra/csv.vim'
 "Plug 'edkolev/tmuxline.vim'
 "Plug 'edkolev/promptline.vim'
 
