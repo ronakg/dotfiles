@@ -257,6 +257,12 @@ nnoremap <leader>t :pop<CR>
 set cscopequickfix=s-,c-,i-,t-,e-,f-
 " }}
 
+" Colorscheme {{
+set t_Co=256
+set bg=dark
+colorscheme molokai
+" }}
+
 " Vim-Airline {{
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled                      = 1
@@ -305,23 +311,6 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 " }}
-
-" =========================== COLORSCHEME ========================
-set t_Co=256
-set bg=dark
-colorscheme ronakg
-"let g:sierra_Twilight = 1
-"colorscheme sierra
-
-" ======================= NERDCommenter ===========================
-let NERDCreateDefaultMappings=0
-" Ctrl-C to comment a block/line of code
-nmap <C-c> :call NERDComment(0,"sexy")<CR>
-vmap <C-c> :call NERDComment(0,"sexy")<CR>
-
-" Ctrl-X to uncomment a block/line of code
-nmap <C-x> :call NERDComment(0,"uncomment")<CR>
-vmap <C-x> :call NERDComment(0,"uncomment")<CR>
 
 "====================== WORK VIMRC ===============================
 try
@@ -397,6 +386,14 @@ let g:VimuxHeight = "30"
 
  " Zoom the runner pane (use <bind-key> z to restore runner pane)
  map <Leader>vz :call VimuxZoomRunner()<CR>
+" }
+
+" Jedi.vim {{
+" }
+
+" Indentline {{
+let g:indentLine_color_term = 237
+let g:indentLine_char = '│'
 " }
 
 " Modeline and Notes {{
