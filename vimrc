@@ -214,6 +214,7 @@ if &diff
     nnoremap <C-j> :normal! ]c<enter>
     nnoremap <C-k> :normal! [c<enter>
     nnoremap e :qa<CR>
+    nnoremap w :wa<CR>
     set nocursorline
 endif
 
