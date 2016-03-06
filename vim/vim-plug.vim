@@ -26,7 +26,6 @@ Plug 'tpope/vim-surround'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'sickill/vim-pasta'
-Plug 'scrooloose/nerdcommenter'
 Plug 'ervandew/supertab', { 'for' : [ 'c', 'cpp' ] }
 Plug 'reedes/vim-colors-pencil'
 Plug 'mbbill/undotree'
@@ -36,6 +35,10 @@ Plug 'kana/vim-textobj-user'
 Plug 'benmills/vimux'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
+Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
+Plug 'Yggdroot/indentLine', { 'for' : [ 'python' ] }
+Plug 'kien/rainbow_parentheses.vim', { 'for' : [ 'python' ] }
+Plug 'klen/python-mode', { 'for' : [ 'python' ] }
 "Plug 'chrisbra/csv.vim'
 "Plug 'edkolev/tmuxline.vim'
 "Plug 'edkolev/promptline.vim'
