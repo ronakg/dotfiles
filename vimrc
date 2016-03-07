@@ -59,7 +59,7 @@ setglobal matchtime=1
 setglobal matchpairs+=<:>
 set clipboard=exclude:.*             " Don't connect to X server clipboard
 set listchars=tab:\|\ 
-"set list
+" set list
 set diffopt+=iwhite                  " Ignore white space diff
 set visualbell t_vb=                 " Disable bells
 filetype plugin on                   " filetype plugins for file specific settings
@@ -260,7 +260,7 @@ set cscopequickfix=s-,c-,i-,t-,e-,f-
 " Colorscheme {{
 set t_Co=256
 set bg=dark
-colorscheme molokai
+colorscheme ronakg
 " }}
 
 " Vim-Airline {{
@@ -392,8 +392,9 @@ let g:VimuxHeight = "30"
 " }
 
 " Indentline {{
-let g:indentLine_color_term = 237
-let g:indentLine_char = '│'
+let g:indentLine_color_term = 244
+let g:indentLine_char = '|'
+let g:indentLine_concealcursor=''
 " }
 
 " Modeline and Notes {{
