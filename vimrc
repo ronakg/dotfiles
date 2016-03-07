@@ -393,7 +393,7 @@ let g:VimuxHeight = "30"
 
 " Indentline {{
 let g:indentLine_color_term = 239
-let g:indentLine_char = '|'
+" let g:indentLine_char = '|'
 let g:indentLine_concealcursor=''
 " }
 
