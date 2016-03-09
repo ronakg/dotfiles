@@ -40,6 +40,7 @@ Plug 'kien/rainbow_parentheses.vim', { 'for' : [ 'python' ] }
 Plug 'klen/python-mode', { 'for' : [ 'python' ] }
 Plug 'zenorocha/dracula-theme', { 'rtp' : 'vim' }
 Plug 'ajh17/VimCompletesMe'
+Plug 'wellle/targets.vim'
 "Plug 'chrisbra/csv.vim'
 "Plug 'edkolev/tmuxline.vim'
 "Plug 'edkolev/promptline.vim'
