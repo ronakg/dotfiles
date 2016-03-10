@@ -259,8 +259,8 @@ set cscopequickfix=s-,c-,i-,t-,e-,f-
 
 " Colorscheme {{
 set t_Co=256
+colorscheme Tomorrow-Night-Eighties
 set bg=dark
-colorscheme ronakg
 " }}
 
 " Vim-Airline {{
