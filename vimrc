@@ -57,7 +57,7 @@ set cpoptions-=m               " Highlight when CursorMoved.
 set matchtime=1
 set matchpairs+=<:>
 set clipboard=exclude:.*             " Don't connect to X server clipboard
-set listchars=tab:\|\ 
+set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
 " set list
 set diffopt+=iwhite                  " Ignore white space diff
 set visualbell t_vb=                 " Disable bells
@@ -255,8 +255,9 @@ set cscopequickfix=s-,c-,i-,t-,e-,f-
 
 " Colorscheme {{
 set t_Co=256
-set bg=dark
+set background=dark
 colorscheme ronakg
+highlight Comment cterm=italic
 " }}
 
 " Vim-Airline {{

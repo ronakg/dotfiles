@@ -26,7 +26,6 @@ Plug 'tpope/vim-surround'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'sickill/vim-pasta'
-Plug 'reedes/vim-colors-pencil'
 Plug 'mbbill/undotree'
 Plug 'hdima/python-syntax', { 'for' : [ 'python' ] }
 Plug 'lucapette/vim-textobj-underscore'
@@ -38,15 +37,25 @@ Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
 Plug 'Yggdroot/indentLine', { 'for' : [ 'python' ] }
 Plug 'kien/rainbow_parentheses.vim', { 'for' : [ 'python' ] }
 Plug 'klen/python-mode', { 'for' : [ 'python' ] }
-Plug 'zenorocha/dracula-theme', { 'rtp' : 'vim' }
 Plug 'ajh17/VimCompletesMe'
 Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
 Plug 'unblevable/quick-scope'
 "Plug 'chrisbra/csv.vim'
-"Plug 'edkolev/tmuxline.vim'
-"Plug 'edkolev/promptline.vim'
+
+" Colorschemes
+Plug 'kabbamine/yowish.vim'
+Plug 'zenorocha/dracula-theme', { 'rtp' : 'vim' }
+Plug 'reedes/vim-colors-pencil'
+Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
+Plug 'sickill/vim-monokai'
+Plug 'tomasr/molokai'
+Plug 'sjl/badwolf'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
+Plug 'w0ng/vim-hybrid'
 
 " Add plugins to &runtimepath
 call plug#end()
