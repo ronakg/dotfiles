@@ -10,7 +10,6 @@ endtry
 set termencoding=utf-8
 set encoding=utf-8
 set incsearch                        " increamental search
-set hlsearch                         " highlight search
 set ignorecase                       " ignore case in searching
 set smartcase                        " dont ignore case if capital letters present
 set infercase                        " ingnore case on completion
@@ -271,6 +270,7 @@ let g:airline#extensions#tabline#tab_min_count                = 1
 let g:airline#extensions#tabline#buffer_idx_mode              = 1
 let g:airline#extensions#tabline#buffer_nr_show               = 0
 let g:airline#extensions#tabline#show_buffers                 = 1
+let g:airline#extensions#tagbar#enabled                       = 1
 let g:airline_powerline_fonts                                 = 1
 "let g:airline_left_sep                                        = ''
 "let g:airline_right_sep                                       = ''
@@ -280,6 +280,8 @@ let g:airline#extensions#whitespace#enabled                   = 0
 let g:airline#extensions#tabline#fnamemod                     = ':t'
 let g:airline_section_b = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_c = '%{fnamemodify(expand("%"), ":~:.")}'
+let g:airline_section_y = airline#section#create_right(['tagbar', ' ', 'filetype'])
+let g:airline_section_x = ''
 let g:airline_theme                                           = 'ronakg'
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -297,7 +299,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nnoremap <silent> <C-y> :BTags!<CR>
 nnoremap <silent> <C-l> :Lines!<CR>
 nnoremap <silent> <C-t> :Tags!<CR>
-nnoremap <silent> <C-p> :FZF!<CR>
+nnoremap <silent> <leader>f :FZF!<CR>
 " }}
 
 " Change cursor shape based on mode.
@@ -396,6 +398,20 @@ let g:indentLine_color_term = 239
 " let g:indentLine_char = '|'
 let g:indentLine_concealcursor=''
 " }
+
+" quick-scope {{
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+" }
+
+" Go Continuous Scroll-Binding
+" Vertically split the current buffer into two windows which will stay
+" scroll-bound together.  Allows you to see twice as much as before!
+" (disables the wrap setting and expands folds to work better)
+" (PS: this is kind of janky, but I like it anyway)
+" https://gitlab.com/AssailantLF/dotfiles/blob/master/vimconfig/vimrc
+nnoremap <silent> gcsb :<c-u>let @z=&so<cr>:set so=0 noscb nowrap nofen<cr>:bo vs<cr>Ljzt:setl scb<cr><c-w>p:setl scb<cr>:let &so=@z<cr>
+
 
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
