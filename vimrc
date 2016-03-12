@@ -162,9 +162,6 @@ if has("autocmd")
         autocmd WinEnter * setlocal cursorline
         autocmd WinLeave * setlocal nocursorline
 
-        " Treat .md files as markdown
-        autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
         " If can't find extention of a file, assume it's a C file
         autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
 
@@ -313,6 +310,10 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 " }}
+
+" vim-markdown {{
+let g:vim_markdown_folding_disabled = 1
+" }
 
 "====================== WORK VIMRC ===============================
 try
