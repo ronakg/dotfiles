@@ -54,9 +54,9 @@ set shortmess=atToOI                 " To avoid the 'Hit Enter' prompts caused b
 set updatetime=750                   " Vim refresh time
 set linebreak                        " It maintains the whole words when wrapping
 set complete-=i                      " Don't scan included files for completion
-setglobal cpoptions-=m               " Highlight when CursorMoved.
-setglobal matchtime=1
-setglobal matchpairs+=<:>
+set cpoptions-=m               " Highlight when CursorMoved.
+set matchtime=1
+set matchpairs+=<:>
 set clipboard=exclude:.*             " Don't connect to X server clipboard
 set listchars=tab:\|\ 
 " set list
@@ -256,28 +256,30 @@ set cscopequickfix=s-,c-,i-,t-,e-,f-
 
 " Colorscheme {{
 set t_Co=256
-colorscheme Tomorrow-Night-Eighties
 set bg=dark
+colorscheme ronakg
 " }}
 
 " Vim-Airline {{
 " Enable the list of buffers
-let g:airline#extensions#tabline#enabled                      = 1
-let g:airline#extensions#tabline#buffer_min_count             = 1
-let g:airline#extensions#tabline#tab_min_count                = 1
-let g:airline#extensions#tabline#buffer_idx_mode              = 1
-let g:airline#extensions#tabline#buffer_nr_show               = 0
-let g:airline#extensions#tabline#show_buffers                 = 1
-let g:airline_powerline_fonts                                 = 1
+let g:airline#extensions#tabline#enabled          = 1
+let g:airline#extensions#tabline#buffer_min_count = 1
+let g:airline#extensions#tabline#tab_min_count    = 1
+let g:airline#extensions#tabline#buffer_idx_mode  = 1
+let g:airline#extensions#tabline#buffer_nr_show   = 0
+let g:airline#extensions#tabline#show_buffers     = 1
+let g:airline_powerline_fonts                     = 1
 "let g:airline_left_sep                                        = ''
 "let g:airline_right_sep                                       = ''
 " don't count trailing whitespace since it lags in huge files
-let g:airline#extensions#whitespace#enabled                   = 0
+let g:airline#extensions#whitespace#enabled       = 0
 " Just show the filename (no path) in the tab
-let g:airline#extensions#tabline#fnamemod                     = ':t'
-let g:airline_section_b = '%{fnamemodify(getcwd(), ":t")}'
-let g:airline_section_c = '%{fnamemodify(expand("%"), ":~:.")}'
-let g:airline_theme                                           = 'ronakg'
+let g:airline#extensions#tabline#fnamemod         = ':t'
+let g:airline_section_b                           = '%{fnamemodify(getcwd(), ":t")}'
+let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
+" let g:airline_section_x                           = airline#section#create_right(['tagbar'])
+" let g:airline_section_y                           = airline#section#create_right(['filetype'])
+let g:airline_theme                               = 'ronakg'
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2

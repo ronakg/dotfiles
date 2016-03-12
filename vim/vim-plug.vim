@@ -41,6 +41,7 @@ Plug 'klen/python-mode', { 'for' : [ 'python' ] }
 Plug 'zenorocha/dracula-theme', { 'rtp' : 'vim' }
 Plug 'ajh17/VimCompletesMe'
 Plug 'wellle/targets.vim'
+Plug 'junegunn/vim-easy-align'
 "Plug 'chrisbra/csv.vim'
 "Plug 'edkolev/tmuxline.vim'
 "Plug 'edkolev/promptline.vim'
