@@ -96,7 +96,7 @@ nnoremap <BS> :buffer #<CR>
 nmap Q @q
 
 " Expand matching braces only when pressing Enter
-inoremap {<CR> {<CR>}<Esc>==ko
+" inoremap {<CR> {<CR>}<Esc>==ko
 
 " Don't let x and c to spoil the yank register
 nnoremap x "_x
@@ -170,7 +170,7 @@ if has("autocmd")
 
         " autosource vimrc and vim-plug.vim
         autocmd bufwritepost ~/.vimrc source %
-        autocmd bufwritepost ~/.vim/vim-plug.vim source %
+        autocmd bufwritepost ~/.vim/vim-plug.vim source ~/.vimrc
 
         " Remember cursor position between vim sessions
         autocmd BufReadPost *
@@ -256,7 +256,8 @@ set cscopequickfix=s-,c-,i-,t-,e-,f-
 " Colorscheme {{
 set t_Co=256
 set background=dark
-colorscheme ronakg
+colorscheme solarized
+autocmd BufEnter *.c,*.h,*.cpp,*.hpp,*.mk,*.sh colorscheme ronakg
 highlight Comment cterm=italic
 " }}
 
@@ -403,15 +404,6 @@ let g:indentLine_concealcursor=''
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " }
-
-" Go Continuous Scroll-Binding
-" Vertically split the current buffer into two windows which will stay
-" scroll-bound together.  Allows you to see twice as much as before!
-" (disables the wrap setting and expands folds to work better)
-" (PS: this is kind of janky, but I like it anyway)
-" https://gitlab.com/AssailantLF/dotfiles/blob/master/vimconfig/vimrc
-nnoremap <silent> gcsb :<c-u>let @z=&so<cr>:set so=0 noscb nowrap nofen<cr>:bo vs<cr>Ljzt:setl scb<cr><c-w>p:setl scb<cr>:let &so=@z<cr>
-
 
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:

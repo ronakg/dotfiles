@@ -23,7 +23,6 @@ Plug 'will133/vim-dirdiff'
 Plug 'junegunn/fzf.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'tpope/vim-surround'
-Plug 'nelstrom/vim-visual-star-search'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'sickill/vim-pasta'
 Plug 'mbbill/undotree'
@@ -56,6 +55,8 @@ Plug 'sjl/badwolf'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
 Plug 'w0ng/vim-hybrid'
+Plug 'romainl/Apprentice'
+Plug 'ajh17/spacegray.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
