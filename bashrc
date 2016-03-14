@@ -108,7 +108,7 @@ bind -r '\C-s'
 stty -ixon 2>/dev/null
 
 if [ -f ~/.vim/plugged/gruvbox/gruvbox_256palette.sh ]; then
-   source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
+   source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh > /dev/null 2>&1
 fi
 
 # Modeline and Notes {{

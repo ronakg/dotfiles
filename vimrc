@@ -84,7 +84,7 @@ else
 endif
 
 " Don't add a newline when preview window is visible
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <Cr>  pumvisible() ? "<C-y>" : "<C-g>u<Cr>"
 
 " Make Y behave like other motion characters
 nnoremap Y y$
