@@ -107,6 +107,10 @@ ftags() {
 bind -r '\C-s'
 stty -ixon 2>/dev/null
 
+if [ -f ~/.vim/plugged/gruvbox/gruvbox_256palette.sh ]; then
+   source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
+fi
+
 # Modeline and Notes {{
 # vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
 # }}

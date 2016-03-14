@@ -39,7 +39,7 @@ set noswapfile
 set pumheight=15                     " Completion menu height
 set cursorline                       " Cursor line
 set number                           " Line numbers
-set relativenumber                   " Relative line numbers
+" set relativenumber                   " Relative line numbers
 set laststatus=2                     " Always show statusline     
 set shiftround                       " Round off shiftwidth when using >
 set timeout timeoutlen=3000 ttimeoutlen=100
@@ -256,8 +256,9 @@ set cscopequickfix=s-,c-,i-,t-,e-,f-
 " Colorscheme {{
 set t_Co=256
 set background=dark
-colorscheme solarized
-autocmd BufEnter *.c,*.h,*.cpp,*.hpp,*.mk,*.sh colorscheme ronakg
+let g:gruvbox_italic=1
+" let g:gruvbox_contrast_dark="soft"
+colorscheme gruvbox
 highlight Comment cterm=italic
 " }}
 
@@ -277,8 +278,7 @@ let g:airline#extensions#whitespace#enabled       = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
 let g:airline_section_b                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
-let g:airline_section_x                           = airline#section#create_right(['tagbar'])
-let g:airline_section_y                           = airline#section#create_right(['filetype'])
+let g:airline_section_y                           = ''
 let g:airline_theme                               = 'ronakg'
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -359,9 +359,11 @@ set switchbuf=useopen           " reveal already opened files from the
 if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
+    set undolevels=1000
+    set undoreload=10000
 endif
 " focus when open
-let g:undotree_SetFocusWhenToggle = 0
+let g:undotree_SetFocusWhenToggle = 1
 " relative timestamp
 let g:undotree_RelativeTimestamp = 1
 
