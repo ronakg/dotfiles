@@ -184,6 +184,9 @@ if has("autocmd")
         " Update diff when leaving from insertmode or writing to file
         autocmd BufWritepost * if &diff == 1 | diffupdate | endif
 
+        " Use shell syntax for .conf files
+        autocmd BufRead,BufNewFile *.conf set syntax=sh
+
     augroup END 
 endif
 " }}
