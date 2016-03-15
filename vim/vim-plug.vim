@@ -34,13 +34,13 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
 Plug 'Yggdroot/indentLine', { 'for' : [ 'python' ] }
-Plug 'kien/rainbow_parentheses.vim', { 'for' : [ 'python' ] }
 Plug 'klen/python-mode', { 'for' : [ 'python' ] }
 Plug 'ajh17/VimCompletesMe'
 Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
 Plug 'unblevable/quick-scope'
+Plug 'chriskempson/base16-shell'
 "Plug 'chrisbra/csv.vim'
 
 " Colorschemes
@@ -57,6 +57,7 @@ Plug 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
 Plug 'w0ng/vim-hybrid'
 Plug 'romainl/Apprentice'
 Plug 'ajh17/spacegray.vim'
+Plug 'chriskempson/base16-vim/'
 
 " Add plugins to &runtimepath
 call plug#end()

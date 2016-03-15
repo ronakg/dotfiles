@@ -39,11 +39,10 @@ set noswapfile
 set pumheight=15                     " Completion menu height
 set cursorline                       " Cursor line
 set number                           " Line numbers
-" set relativenumber                   " Relative line numbers
+set relativenumber                   " Relative line numbers
 set laststatus=2                     " Always show statusline     
 set shiftround                       " Round off shiftwidth when using >
 set timeout timeoutlen=3000 ttimeoutlen=100
-set notimeout
 set wrapscan
 set autoread                         " automatically reload files changed outside of Vim
 set showcmd
@@ -64,6 +63,7 @@ set visualbell t_vb=                 " Disable bells
 filetype plugin on                   " filetype plugins for file specific settings
 filetype indent on                   " filetype specific indentation
 syntax enable                        " Pretty syntax highlighing
+set re=1
 " }}
 
 " Key remaps {{
@@ -128,8 +128,7 @@ nnoremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 " Quicker save and quit
 nnoremap <silent> e :silent Sayonara<CR>
 nnoremap <silent> w :update<CR>
-inoremap <silent> jj <Esc>
-cnoremap <silent> jj <C-c>
+inoremap <silent> jk <Esc>
 
 " Clear highlighted searches
 nnoremap ,/ :nohlsearch<CR><Esc>
@@ -157,6 +156,7 @@ nnoremap <leader>l :call NumberToggle()<CR>
 if has("autocmd")
     augroup myAutoCmds
         autocmd!
+        autocmd VimEnter * redraw!
 
         " Cursor line only on active window
         autocmd WinEnter * setlocal cursorline
@@ -273,7 +273,7 @@ let g:airline#extensions#tabline#tab_min_count                = 1
 let g:airline#extensions#tabline#buffer_idx_mode              = 1
 let g:airline#extensions#tabline#buffer_nr_show               = 0
 let g:airline#extensions#tabline#show_buffers                 = 1
-let g:airline#extensions#tagbar#enabled                       = 1
+" let g:airline#extensions#tagbar#enabled                       = 1
 let g:airline_powerline_fonts                                 = 1
 " don't count trailing whitespace since it lags in huge files
 let g:airline#extensions#whitespace#enabled       = 0
