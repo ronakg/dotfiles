@@ -128,7 +128,7 @@ nnoremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 
 " Quicker save and quit
 nnoremap <silent> e :silent Sayonara<CR>
-nnoremap <silent> w :update<CR>
+nnoremap <silent> s :update<CR>
 inoremap <silent> jj <Esc>
 
 " Clear highlighted searches
@@ -137,13 +137,14 @@ nnoremap ,/ :nohlsearch<CR><Esc>
 " Easier to get command prompt
 nnoremap ; :
 vnoremap ; :
+" Restore repeat for f, F, t, T
+nnoremap : ;
 
 " x in Insert mode
 inoremap <C-d> <C-o>x
 
 " Jump to start and end of line using the home row keys
-map <C-a> ^
-map <C-e> $
+nmap 0 ^
 
 " Increment decrement numbers
 noremap <leader>a <C-a>
@@ -222,39 +223,40 @@ endif
 
 " Tags/CScope {{
 function! s:add_cscope_db()
-  " add any database in current directory
-  let db = findfile('cscope.out', '.;')
-  if !empty(db)
-    silent cs reset
-    silent! execute 'cs add' db
-  " else add database pointed to by environment
-  elseif !empty($CSCOPE_DB)
-    silent cs reset
-    silent! execute 'cs add' $CSCOPE_DB
-  endif
+    " add any database in current directory
+    let db = findfile('cscope.out', '.;')
+    if !empty(db)
+        silent cs reset
+        silent! execute 'cs add' db
+    " else add database pointed to by environment
+    elseif !empty($CSCOPE_DB)
+        silent cs reset
+        silent! execute 'cs add' $CSCOPE_DB
+    endif
 endfunction
 
 if has("cscope")
-  set csto=0
-  set cst
-  set csverb
-  set cscopetag       " Use both cscope and ctags as database
-  call s:add_cscope_db()
+    set csto=0
+    set cst
+    set csverb
+    set cscopetag       " Use both cscope and ctags as database
+    call s:add_cscope_db()
+
+    " Find instances of a symbol from command line
+    " Yank the word under cursor, search for cscope, close the first result
+    " window, open quickfix window with results, search for the word for
+    " highlighting and movement with n and N
+    nnoremap <leader>d :cclose<cr>:cs find g <cword><CR>   " Find definition of this symbol
+    nnoremap <leader>c yiw:cclose<cr>:cs find c <cword><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find calls to this symbol
+    nnoremap <leader>s yiw:cclose<cr>:cs find s <cword><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all instances of this symbol
+    nnoremap <leader>h yiw:cclose<cr>:cs find f <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find this file
+    nnoremap <leader>i yiw:cclose<cr>:cs find i <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all files including this file
+    nnoremap <leader>t :pop<CR>
+    set cscopequickfix=s-,c-,i-,t-,e-,f-
 endif
 
 set tags=./tags;/   " ctags path, search upwards till tags file is found
 
-" Find instances of a symbol from command line
-" Yank the word under cursor, search for cscope, close the first result
-" window, open quickfix window with results, search for the word for
-" highlighting and movement with n and N
-nnoremap <leader>d :cclose<cr>:cs find g <cword><CR>   " Find definition of this symbol
-nnoremap <leader>c yiw:cclose<cr>:cs find c <cword><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find calls to this symbol
-nnoremap <leader>s yiw:cclose<cr>:cs find s <cword><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all instances of this symbol
-nnoremap <leader>h yiw:cclose<cr>:cs find f <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find this file
-nnoremap <leader>i yiw:cclose<cr>:cs find i <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all files including this file
-nnoremap <leader>t :pop<CR>
-set cscopequickfix=s-,c-,i-,t-,e-,f-
 " }}
 
 " Colorscheme {{
@@ -301,9 +303,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 " }}
 
 " FZF {{
-nnoremap <silent> <C-y> :BTags!<CR>
-nnoremap <silent> <C-l> :Lines!<CR>
-nnoremap <silent> <C-t> :Tags!<CR>
+nnoremap <silent> <leader>b :Tags!<CR>
 nnoremap <silent> <leader>f :FZF!<CR>
 " }}
 
@@ -347,7 +347,6 @@ let g:startify_skiplist = [
 "==================== EASYMOTION ================================
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_keys = 'sdghklqwertyuiopzxcvbnmfaj'
-nmap s <Plug>(easymotion-s)
 
 "========================== Ack.vim ==============================
 let g:ack_apply_qmappings = 0

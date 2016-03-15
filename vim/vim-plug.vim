@@ -25,7 +25,6 @@ Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'tpope/vim-surround'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'sickill/vim-pasta'
-Plug 'mbbill/undotree'
 Plug 'hdima/python-syntax', { 'for' : [ 'python' ] }
 Plug 'lucapette/vim-textobj-underscore'
 Plug 'kana/vim-textobj-user'
