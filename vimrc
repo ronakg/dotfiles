@@ -64,6 +64,7 @@ filetype plugin on                   " filetype plugins for file specific settin
 filetype indent on                   " filetype specific indentation
 syntax enable                        " Pretty syntax highlighing
 set re=1
+let g:sh_no_error = 1
 " }}
 
 " Key remaps {{
@@ -128,7 +129,7 @@ nnoremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 " Quicker save and quit
 nnoremap <silent> e :silent Sayonara<CR>
 nnoremap <silent> w :update<CR>
-inoremap <silent> jk <Esc>
+inoremap <silent> jj <Esc>
 
 " Clear highlighted searches
 nnoremap ,/ :nohlsearch<CR><Esc>
@@ -260,9 +261,13 @@ set cscopequickfix=s-,c-,i-,t-,e-,f-
 set t_Co=256
 set background=dark
 let g:gruvbox_italic=1
-" let g:gruvbox_contrast_dark="soft"
+let g:gruvbox_italicize_comments=1
+let g:gruvbox_improved_strings=0
+let g:gruvbox_improved_warnings=1
+let g:gruvbox_invert_selection=0
 colorscheme gruvbox
-highlight Comment cterm=italic
+hi LineNr ctermfg = darkgrey ctermbg = black
+" highlight Comment cterm=italic
 " }}
 
 " Vim-Airline {{
