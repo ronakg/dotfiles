@@ -414,6 +414,10 @@ let g:indentLine_concealcursor=''
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " }
 
+" python-mode {{
+let g:pymode_folding = 0
+" }}
+
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
 " }}
