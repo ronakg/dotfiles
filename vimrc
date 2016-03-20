@@ -58,7 +58,7 @@ set matchpairs+=<:>
 set clipboard=exclude:.*             " Don't connect to X server clipboard
 set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
 " set list
-set diffopt+=iwhite                  " Ignore white space diff
+" set diffopt+=iwhite                  " Ignore white space diff
 set visualbell t_vb=                 " Disable bells
 filetype plugin on                   " filetype plugins for file specific settings
 filetype indent on                   " filetype specific indentation
