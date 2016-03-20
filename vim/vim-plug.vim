@@ -43,20 +43,20 @@ Plug 'chriskempson/base16-shell'
 "Plug 'chrisbra/csv.vim'
 
 " Colorschemes
-Plug 'kabbamine/yowish.vim'
-Plug 'zenorocha/dracula-theme', { 'rtp' : 'vim' }
-Plug 'reedes/vim-colors-pencil'
-Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
-Plug 'sickill/vim-monokai'
-Plug 'tomasr/molokai'
-Plug 'sjl/badwolf'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
-Plug 'w0ng/vim-hybrid'
-Plug 'romainl/Apprentice'
-Plug 'ajh17/spacegray.vim'
-Plug 'chriskempson/base16-vim/'
+" Plug 'kabbamine/yowish.vim'
+" Plug 'zenorocha/dracula-theme', { 'rtp' : 'vim' }
+" Plug 'reedes/vim-colors-pencil'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'sickill/vim-monokai'
+" Plug 'tomasr/molokai'
+" Plug 'sjl/badwolf'
+" Plug 'NLKNguyen/papercolor-theme'
+" Plug 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
+" Plug 'w0ng/vim-hybrid'
+" Plug 'romainl/Apprentice'
+" Plug 'ajh17/spacegray.vim'
+" Plug 'chriskempson/base16-vim/'
 
 " Add plugins to &runtimepath
 call plug#end()
