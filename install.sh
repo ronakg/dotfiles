@@ -85,5 +85,6 @@ echo -n "${reset}"
 
 # Create undodir for vim persistent undo
 mkdir -p ~/.undodir
+
 # Hurray...
 echo -e "\n...done"
