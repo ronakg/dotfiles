@@ -40,6 +40,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
 Plug 'unblevable/quick-scope'
 Plug 'chriskempson/base16-shell'
+Plug 'tpope/vim-unimpaired'
 "Plug 'chrisbra/csv.vim'
 
 " Colorschemes
