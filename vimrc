@@ -60,10 +60,11 @@ set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
 " set list
 " set diffopt+=iwhite                  " Ignore white space diff
 set visualbell t_vb=                 " Disable bells
-filetype plugin on                   " filetype plugins for file specific settings
-filetype indent on                   " filetype specific indentation
+filetype plugin indent on                   " filetype specific indentation
 syntax enable                        " Pretty syntax highlighing
-set re=1
+set switchbuf=useopen           " reveal already opened files from the
+                                " quickfix window instead of opening new
+                                " buffers
 let g:sh_no_error = 1
 " }}
 
@@ -146,10 +147,6 @@ inoremap <C-d> <C-o>x
 " Jump to start and end of line using the home row keys
 nmap 0 ^
 
-" Increment decrement numbers
-noremap <leader>a <C-a>
-noremap <leader>x <C-x>
-
 nnoremap <leader>l :call NumberToggle()<CR>
 " }}
 
@@ -172,7 +169,7 @@ if has("autocmd")
 
         " autosource vimrc and vim-plug.vim
         autocmd bufwritepost ~/.vimrc source %
-        autocmd bufwritepost ~/.vim/vim-plug.vim source ~/.vimrc
+        autocmd bufwritepost ~/.vim/vim-plug.vim source %
 
         " Remember cursor position between vim sessions
         autocmd BufReadPost *
@@ -211,11 +208,10 @@ endfunc
 " Diff {{
 
 if &diff
-    " use space and backspace to jump forward/backward through differences
     nnoremap <C-j> :normal! ]c<enter>
     nnoremap <C-k> :normal! [c<enter>
     nnoremap e :qa<CR>
-    nnoremap w :wa<CR>
+    nnoremap s :wa<CR>
     set nocursorline
 endif
 
@@ -269,7 +265,7 @@ let g:gruvbox_improved_warnings=1
 let g:gruvbox_invert_selection=0
 colorscheme gruvbox
 hi LineNr ctermfg = darkgrey ctermbg = black
-" highlight Comment cterm=italic
+highlight Comment cterm=italic
 " }}
 
 " Vim-Airline {{
@@ -330,10 +326,6 @@ catch
     " No such file? No problem; just ignore it.
 endtry
 
-"========================= SUPERTAB ===============================
-let   g:SuperTabDefaultCompletionType          =   "context"
-let   g:SuperTabContextDefaultCompletionType   =   "<c-n>"
-
 "======================== Startify ===============================
 let g:startify_list_order = [['Most recently used files in current directory:'], 'dir',
             \                ['Most recently used file on the system:'], 'files',
@@ -344,10 +336,6 @@ let g:startify_skiplist = [
                 \ '.CC',
                 \ ]
 
-"==================== EASYMOTION ================================
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_keys = 'sdghklqwertyuiopzxcvbnmfaj'
-
 "========================== Ack.vim ==============================
 let g:ack_apply_qmappings = 0
 let g:ack_apply_lmappings = 0
@@ -357,10 +345,6 @@ if filereadable(".vim.custom")
 endif
 
 let g:DirDiffExcludes = "*.CC*,*.c.*,.ACME*"
-
-set switchbuf=useopen           " reveal already opened files from the
-                                " quickfix window instead of opening new
-                                " buffers
 
 " ===================== UndoTree ==============================
 if has("persistent_undo")
