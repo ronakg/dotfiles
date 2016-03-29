@@ -116,6 +116,10 @@ nnoremap J mzJ`z
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w>w
 
+" Jumps
+nnoremap ]i <tab>
+nnoremap [i <C-o>
+
 " Tab to indent-unindent code blocks in visual mode
 vnoremap <tab> >gv
 vnoremap <S-tab> <gv
@@ -301,6 +305,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 " FZF {{
 nnoremap <silent> <leader>b :Tags!<CR>
 nnoremap <silent> <leader>f :FZF!<CR>
+nnoremap <silent> <leader>/ :Lines!<CR>
 " }}
 
 " Change cursor shape based on mode.
