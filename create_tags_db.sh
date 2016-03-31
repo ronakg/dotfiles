@@ -114,7 +114,7 @@ echo 'Building cscope database...'
 cscope -b -q -k -i "${rootdir}"/cscope.files
 
 echo 'Building ctags database...'
-ctags --extra=+f --c-kinds=+p --fields=+lS --excmd=p -L "${rootdir}"/cscope.files
+ctags --extra=+f --c-kinds=+p --fields=+lS --excmd=p --sort=yes -L "${rootdir}"/cscope.files
 
 cd "${cwd}"
 echo 'All done'

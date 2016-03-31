@@ -44,8 +44,9 @@ Plug 'tpope/vim-unimpaired'
 "Plug 'chrisbra/csv.vim'
 
 " Colorschemes
-Plug 'morhetz/gruvbox'
+Plug 'ronakg/gruvbox'
 Plug 'junegunn/seoul256.vim'
+Plug 'w0ng/vim-hybrid'
 " Plug 'kabbamine/yowish.vim'
 " Plug 'zenorocha/dracula-theme', { 'rtp' : 'vim' }
 " Plug 'reedes/vim-colors-pencil'
