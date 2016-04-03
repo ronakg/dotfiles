@@ -137,6 +137,9 @@ nnoremap <silent> e :silent Sayonara<CR>
 nnoremap <silent> s :update<CR>
 inoremap <silent> jj <Esc>
 
+" Paste in insert mode
+inoremap pp <C-r>0
+
 " Clear highlighted searches
 nnoremap ,/ :nohlsearch<CR><Esc>
 

@@ -42,7 +42,8 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'rhysd/clever-f.vim'
 Plug 'itchyny/vim-parenmatch'
-"Plug 'chrisbra/csv.vim'
+Plug 'mbbill/undotree', { 'on' : 'UndotreeToggle' }
+Plug 'chrisbra/csv.vim', { 'for' : [ 'csv' ] }
 
 " Colorschemes
 Plug 'ronakg/gruvbox'
