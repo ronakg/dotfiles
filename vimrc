@@ -23,6 +23,7 @@ set smarttab
 set cindent
 set smartindent
 set autoindent
+set copyindent
 set nostartofline
 set ttyfast
 set lazyredraw
@@ -116,9 +117,6 @@ nnoremap J mzJ`z
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w>w
 
-" Poor man's autopair
-inoremap {<cr> {<cr>}<esc>==ko
-
 " Jumps
 nnoremap ]i <tab>
 nnoremap [i <C-o>
@@ -153,6 +151,10 @@ inoremap <C-d> <C-o>x
 
 " Jump to start and end of line using the home row keys
 nmap 0 ^
+
+" Make j and k move to the next row, not file line {{{1
+nnoremap j gj
+nnoremap k gk
 
 nnoremap <leader>l :call NumberToggle()<CR>
 " }}
@@ -414,6 +416,15 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " python-mode {{
 let g:pymode_folding = 0
+" }}
+
+" Clever-f {{
+let g:clever_f_ignore_case = 1
+" }}
+
+" vim-parenmatch {{
+let g:loaded_matchparen = 1
+hi ParenMatch ctermbg=white ctermfg=red
 " }}
 
 " Modeline and Notes {{

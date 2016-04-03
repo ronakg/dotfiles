@@ -12,10 +12,8 @@ Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-dispatch'
 Plug 'mbbill/echofunc', { 'for' : [ 'c', 'cpp' ] }
-Plug 'vim-scripts/auto_autoread.vim'
 Plug 'plasticboy/vim-markdown', { 'for' : [ 'markdown' ] }
 Plug 'mhinz/vim-startify'
-Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-sayonara'
@@ -38,10 +36,12 @@ Plug 'ajh17/VimCompletesMe'
 Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
-Plug 'unblevable/quick-scope'
 Plug 'chriskempson/base16-shell'
 Plug 'tpope/vim-unimpaired'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'rhysd/clever-f.vim'
+Plug 'itchyny/vim-parenmatch'
 "Plug 'chrisbra/csv.vim'
 
 " Colorschemes
