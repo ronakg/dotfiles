@@ -42,7 +42,8 @@ Plug 'unblevable/quick-scope'
 Plug 'chriskempson/base16-shell'
 Plug 'tpope/vim-unimpaired'
 Plug 'kien/rainbow_parentheses.vim'
-"Plug 'chrisbra/csv.vim'
+Plug 'mbbill/undotree', { 'on' : 'UndotreeToggle' }
+Plug 'chrisbra/csv.vim', { 'for' : [ 'csv' ] }
 
 " Colorschemes
 Plug 'ronakg/gruvbox'
