@@ -41,11 +41,13 @@ Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
 Plug 'unblevable/quick-scope'
 Plug 'chriskempson/base16-shell'
 Plug 'tpope/vim-unimpaired'
+Plug 'kien/rainbow_parentheses.vim'
 "Plug 'chrisbra/csv.vim'
 
 " Colorschemes
-Plug 'morhetz/gruvbox'
+Plug 'ronakg/gruvbox'
 Plug 'junegunn/seoul256.vim'
+Plug 'w0ng/vim-hybrid'
 " Plug 'kabbamine/yowish.vim'
 " Plug 'zenorocha/dracula-theme', { 'rtp' : 'vim' }
 " Plug 'reedes/vim-colors-pencil'

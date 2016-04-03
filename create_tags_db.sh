@@ -5,7 +5,7 @@ set -e
 
 # List of root level directories we are interested in.
 declare -a dirs=()
-filetypes="\.c|\.h|\.cpp|\.hpp|\.mk|\.e|Makefile|\.sh"
+filetypes="\.c|\.h|\.cpp|\.hpp|\.mk|\.e|Makefile|\.sh|\.xml|\.py"
 
 # Backup current working directory for later
 cwd=`pwd`
@@ -19,12 +19,10 @@ Usage: create_tags_db [-i] [-s source] [-f | -d d1,d2,d3,...] [-h]
 
 -i            Include kernel sources
 -s source     Run on 'source' directory instead of current working directory
--f            Build fresh database instead of updating using existing cscope.files
 -d d1,d2,...  Comma separated list of top level directory to parse for cscope database
 -h            Print this help message
 
-If cscope.files is found, database is built using that unless -f option is passed.
-In which case, fresh cscope.files file is generated.
+Existing cscope.files is used to generate the database unless -d option is passed. In which case, fresh cscope.files file is generated.
 "
 }
 
@@ -39,9 +37,6 @@ while getopts ":is:fd:h" opt; do
         ;;
     i)  
         includekernel=1
-        ;;
-    f)  
-        startfresh=1
         ;;
     s)  
         rootdir=${OPTARG}
@@ -114,7 +109,7 @@ echo 'Building cscope database...'
 cscope -b -q -k -i "${rootdir}"/cscope.files
 
 echo 'Building ctags database...'
-ctags --extra=+f --c-kinds=+p --fields=+lS --excmd=p -L "${rootdir}"/cscope.files
+ctags --extra=+f --c-kinds=+p --fields=+lS --excmd=p --sort=yes -L "${rootdir}"/cscope.files
 
 cd "${cwd}"
 echo 'All done'

@@ -116,6 +116,9 @@ nnoremap J mzJ`z
 " Tab to switch between vertical splits
 nnoremap <tab> <C-w>w
 
+" Poor man's autopair
+inoremap {<cr> {<cr>}<esc>==ko
+
 " Jumps
 nnoremap ]i <tab>
 nnoremap [i <C-o>
@@ -192,6 +195,10 @@ if has("autocmd")
 
         " Use shell syntax for .conf files
         autocmd BufRead,BufNewFile *.conf set syntax=sh
+
+        " Rainbow-Parenthesis {{
+        au WinEnter * RainbowParenthesesToggle
+        " }}
 
     augroup END 
 endif
@@ -337,9 +344,11 @@ endtry
 "======================== Startify ===============================
 let g:startify_list_order = [['Most recently used files in current directory:'], 'dir',
             \                ['Most recently used file on the system:'], 'files',
-            \                ['Bookmarks:'], 'bookmarks',
-            \                ['Sessions:'], 'sessions']
+            \                ['Sessions:'], 'sessions',
+            \                ['Bookmarks:'], 'bookmarks']
 let g:startify_change_to_dir = 0
+let g:startify_files_number = 7
+let g:startify_enable_unsafe = 1
 let g:startify_skiplist = [
                 \ '.CC',
                 \ ]
