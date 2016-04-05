@@ -24,11 +24,11 @@ Plug 'tpope/vim-surround'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'sickill/vim-pasta'
 Plug 'hdima/python-syntax', { 'for' : [ 'python' ] }
-Plug 'lucapette/vim-textobj-underscore'
-Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-user' | Plug 'lucapette/vim-textobj-underscore'
+Plug 'kana/vim-textobj-user' | Plug 'sgur/vim-textobj-parameter'
 Plug 'benmills/vimux'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdcommenter'
 Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
 Plug 'Yggdroot/indentLine', { 'for' : [ 'python' ] }
 Plug 'klen/python-mode', { 'for' : [ 'python' ] }

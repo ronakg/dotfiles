@@ -31,7 +31,7 @@ set gdefault                         " search/replace globally (on a line) by de
 set splitright                       " Open split on right, not left
 set splitbelow                       " Open split below, not above
 set wildmenu
-set wildmode=longest:full,list:full
+set wildmode=longest:full,list:longest
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menuone
 set noshowmode                       " Airline shows mode, so hide default mode
@@ -118,8 +118,8 @@ nnoremap J mzJ`z
 nnoremap <tab> <C-w>w
 
 " Jumps
-nnoremap ]i <tab>
-nnoremap [i <C-o>
+nnoremap ]j <tab>
+nnoremap [j <C-o>
 
 " Tab to indent-unindent code blocks in visual mode
 vnoremap <tab> >gv
@@ -138,7 +138,7 @@ nnoremap <silent> s :update<CR>
 inoremap <silent> jj <Esc>
 
 " Paste in insert mode
-inoremap pp <C-r>0
+inoremap <C-p> <C-r>0
 
 " Clear highlighted searches
 nnoremap ,/ :nohlsearch<CR><Esc>
@@ -427,7 +427,13 @@ let g:clever_f_ignore_case = 1
 
 " vim-parenmatch {{
 let g:loaded_matchparen = 1
-hi ParenMatch ctermbg=white ctermfg=red
+hi ParenMatch ctermbg=white ctermfg=red cterm=none
+" }}
+
+" NERDCommenter {{
+let g:NERDCreateDefaultMappings = 0
+let g:NERDRemoveExtraSpaces = 1
+map gc <plug>NERDCommenterToggle
 " }}
 
 " Modeline and Notes {{
