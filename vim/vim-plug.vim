@@ -44,6 +44,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'itchyny/vim-parenmatch'
 Plug 'mbbill/undotree', { 'on' : 'UndotreeToggle' }
 Plug 'chrisbra/csv.vim', { 'for' : [ 'csv' ] }
+Plug 'tpope/vim-abolish' " case honoring subsitute
 
 " Colorschemes
 Plug 'ronakg/gruvbox'

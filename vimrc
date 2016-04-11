@@ -95,9 +95,6 @@ nnoremap Y y$
 " Backspace in normal mode switches to last buffer
 nnoremap <BS> :buffer #<CR>
 
-" qq to record, Q to replay
-nmap Q @q
-
 " Expand matching braces only when pressing Enter
 " inoremap {<CR> {<CR>}<Esc>==ko
 
@@ -121,16 +118,9 @@ nnoremap <tab> <C-w>w
 nnoremap ]j <tab>
 nnoremap [j <C-o>
 
-" Tab to indent-unindent code blocks in visual mode
-vnoremap <tab> >gv
-vnoremap <S-tab> <gv
-
 " Next/prev quick-fix results
 nnoremap <C-j> :cn<CR>
 nnoremap <C-k> :cp<CR>
-
-" Don't jump to next search result on *
-nnoremap * :let @/ = '\<'.expand('<cword>').'\>' \| set hlsearch<CR>
 
 " Quicker save and quit
 nnoremap <silent> e :silent Sayonara<CR>
@@ -146,8 +136,6 @@ nnoremap ,/ :nohlsearch<CR><Esc>
 " Easier to get command prompt
 nnoremap ; :
 vnoremap ; :
-" Restore repeat for f, F, t, T
-nnoremap : ;
 
 " x in Insert mode
 inoremap <C-d> <C-o>x
@@ -178,10 +166,6 @@ if has("autocmd")
 
         " Spellcheck commit messages
         autocmd BufRead COMMIT_EDITMSG setlocal spell!
-
-        " autosource vimrc and vim-plug.vim
-        autocmd bufwritepost ~/.vimrc source %
-        autocmd bufwritepost ~/.vim/vim-plug.vim source %
 
         " Remember cursor position between vim sessions
         autocmd BufReadPost *
@@ -300,7 +284,8 @@ let g:airline#extensions#whitespace#enabled       = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
 let g:airline_section_b                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
-let g:airline_section_y                           = ''
+let g:airline_section_y                           = airline#section#create(['filetype']) 
+let g:airline_section_x                           = airline#section#create(['%{tagbar#currenttag("%s", "")}']) 
 let g:airline_theme                               = 'ronakg'
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -336,14 +321,15 @@ endif
 let g:vim_markdown_folding_disabled = 1
 " }
 
-"====================== WORK VIMRC ===============================
+" WORK {{
 try
     source ~/.vimrc_work
 catch
     " No such file? No problem; just ignore it.
 endtry
+" }}
 
-"======================== Startify ===============================
+" Startify {{
 let g:startify_list_order = [['Most recently used files in current directory:'], 'dir',
             \                ['Most recently used file on the system:'], 'files',
             \                ['Sessions:'], 'sessions',
@@ -354,18 +340,20 @@ let g:startify_enable_unsafe = 1
 let g:startify_skiplist = [
                 \ '.CC',
                 \ ]
+" }}
 
-"========================== Ack.vim ==============================
+" Ack.vim {{
 let g:ack_apply_qmappings = 0
 let g:ack_apply_lmappings = 0
 
 if filereadable(".vim.custom")
     so .vim.custom
 endif
+" }}
 
 let g:DirDiffExcludes = "*.CC*,*.c.*,.ACME*"
 
-" ===================== UndoTree ==============================
+" UndoTree {{
 if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
@@ -376,28 +364,17 @@ endif
 let g:undotree_SetFocusWhenToggle = 1
 " relative timestamp
 let g:undotree_RelativeTimestamp = 1
+" }}
 
 " Vimux {{
 let g:VimuxOrientation = "h"
 let g:VimuxHeight = "30"
 
-" Run the current file with rspec
- map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
-
  " Prompt for a command to run
  map <Leader>vp :VimuxPromptCommand<CR>
 
- " Run last command executed by VimuxRunCommand
- map <Leader>vl :VimuxRunLastCommand<CR>
-
- " Inspect runner pane
- map <Leader>vi :VimuxInspectRunner<CR>
-
  " Close vim tmux runner opened by VimuxRunCommand
  map <Leader>vq :VimuxCloseRunner<CR>
-
- " Interrupt any command running in the runner pane
- map <Leader>vx :VimuxInterruptRunner<CR>
 
  " Zoom the runner pane (use <bind-key> z to restore runner pane)
  map <Leader>vz :call VimuxZoomRunner()<CR>
