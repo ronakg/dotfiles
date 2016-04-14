@@ -71,7 +71,7 @@ fi
 
 export FZF_DEFAULT_COMMAND='if [ -f cscope.files ]; then cat cscope.files; else find . -type f; fi'
 export FZF_TMUX=0
-export FZF_COMPLETION_OPTS='+c -x'
+export FZF_COMPLETION_OPTS='+c -i'
 export FZF_DEFAULT_OPTS='--extended-exact --color fg:223,bg:235,hl:214,fg+:14,bg+:233,hl+:214 --color info:144,prompt:161,spinner:135,pointer:135,marker:118'
 
 # fz [command pattern] - get result from fzf using pattern and pass it to command

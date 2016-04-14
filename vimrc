@@ -1,3 +1,20 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Install using following options
+"
+" ./configure --with-features=huge \
+"             --enable-pythoninterp \
+"             --enable-luainterp \
+"             --with-lua-prefix=/users/rogandhi/tools \
+"             --with-luajit \
+"             --enable-perlinterp \
+"             --disable-gui \
+"             --disable-netbeans \
+"             --enable-cscope \
+"             --prefix=/users/rogandhi/tools \
+"             --enable-multibyte
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Vim-Plug {{
 try
     source ~/.vim/vim-plug.vim
@@ -66,7 +83,8 @@ syntax enable                        " Pretty syntax highlighing
 set switchbuf=useopen           " reveal already opened files from the
                                 " quickfix window instead of opening new
                                 " buffers
-let g:sh_no_error = 1
+set shell=bash 
+set fileformats="unix,dos,mac"
 " }}
 
 " Key remaps {{
@@ -119,8 +137,8 @@ nnoremap ]j <tab>
 nnoremap [j <C-o>
 
 " Next/prev quick-fix results
-nnoremap <C-j> :cn<CR>
-nnoremap <C-k> :cp<CR>
+nnoremap <leader>j :cn<CR>
+nnoremap <leader>k :cp<CR>
 
 " Quicker save and quit
 nnoremap <silent> e :silent Sayonara<CR>
@@ -148,6 +166,10 @@ nnoremap j gj
 nnoremap k gk
 
 nnoremap <leader>l :call NumberToggle()<CR>
+
+" Add a heading/subheading to current line
+nnoremap <leader>= yypVr=
+nnoremap <leader>- yypVr-
 " }}
 
 " Auto commands {{
@@ -181,11 +203,6 @@ if has("autocmd")
 
         " Use shell syntax for .conf files
         autocmd BufRead,BufNewFile *.conf set syntax=sh
-
-        " Rainbow-Parenthesis {{
-        au WinEnter * RainbowParenthesesToggle
-        " }}
-
     augroup END 
 endif
 " }}
@@ -208,8 +225,8 @@ endfunc
 " Diff {{
 
 if &diff
-    nnoremap <C-j> :normal! ]c<enter>
-    nnoremap <C-k> :normal! [c<enter>
+    nnoremap <leader>j :normal! ]c<enter>
+    nnoremap <leader>j :normal! [c<enter>
     nnoremap e :qa<CR>
     nnoremap s :wa<CR>
     set nocursorline
@@ -266,6 +283,7 @@ let g:gruvbox_invert_selection=0
 colorscheme gruvbox
 hi LineNr ctermfg = darkgrey ctermbg = black
 highlight Comment cterm=italic
+let c_no_curly_error=1
 " }}
 
 " Vim-Airline {{

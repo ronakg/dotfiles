@@ -38,13 +38,12 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
 Plug 'chriskempson/base16-shell'
 Plug 'tpope/vim-unimpaired'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'jiangmiao/auto-pairs'
 Plug 'rhysd/clever-f.vim'
 Plug 'itchyny/vim-parenmatch'
 Plug 'mbbill/undotree', { 'on' : 'UndotreeToggle' }
 Plug 'chrisbra/csv.vim', { 'for' : [ 'csv' ] }
 Plug 'tpope/vim-abolish' " case honoring subsitute
+Plug 'justinmk/vim-syntax-extra'
 
 " Colorschemes
 Plug 'ronakg/gruvbox'
