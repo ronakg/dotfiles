@@ -170,6 +170,9 @@ nnoremap <leader>l :call NumberToggle()<CR>
 " Add a heading/subheading to current line
 nnoremap <leader>= yypVr=
 nnoremap <leader>- yypVr-
+
+" Poor man's autopair
+inoremap {<cr> {<cr>}<Esc>O
 " }}
 
 " Auto commands {{
@@ -226,7 +229,7 @@ endfunc
 
 if &diff
     nnoremap <leader>j :normal! ]c<enter>
-    nnoremap <leader>j :normal! [c<enter>
+    nnoremap <leader>k :normal! [c<enter>
     nnoremap e :qa<CR>
     nnoremap s :wa<CR>
     set nocursorline
@@ -430,6 +433,10 @@ let g:NERDCreateDefaultMappings = 0
 let g:NERDRemoveExtraSpaces = 1
 map gc <plug>NERDCommenterToggle
 " }}
+
+command! -nargs=+ Silent
+\ | execute ':silent '.<q-args>
+\ | execute ':redraw!'
 
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
