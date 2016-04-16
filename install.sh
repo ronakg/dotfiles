@@ -69,8 +69,10 @@ echo -n "${reset}"
 # Install terminfo
 echo -n "${red}"
 echo -e "\nInstall terminfo"
-tic terminfo/xterm-256color-italic.terminfo
-tic terminfo/screen-256color-italic.terminfo
+{ infocmp -1 xterm-256color ; printf "\tsitm=\\E[3m,\n\tritm=\\E[23m,"; } > xterm-256color.terminfo
+tic xterm-256color.terminfo
+{ infocmp -1 screen-256color ; printf "\tsitm=\\E[3m,\n\tritm=\\E[23m,"; } > screen-256color.terminfo
+tic screen-256color.terminfo
 echo -n "${reset}"
 
 echo -n "${blue}"
