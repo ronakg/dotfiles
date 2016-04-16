@@ -13,3 +13,5 @@ vim/plugged
 vim/plugged/**
 plug.vim.old
 *.terminfo
+vim/session/**
+vim/vim
