@@ -28,6 +28,10 @@ function prompt_command {
     # 38;5 is for foreground, don't touch that.
     PS1='[\e[39m\h \e[38;5;214m\w\e[38;5;252m]'
 
+    if [ "$VIMRUNTIME" ]; then
+        PS1+='(Vim)'
+    fi
+
     if [ $RET_CODE != 0 ]; then
         PS1+='\e[91m$?>\e[0m '
     else

@@ -435,7 +435,7 @@ map gc <plug>NERDCommenterToggle
 " }}
 
 command! -nargs=+ Silent
-\ | execute ':silent '.<q-args>
+\ | execute ':silent !'.<q-args>
 \ | execute ':redraw!'
 
 " Modeline and Notes {{

@@ -14,7 +14,7 @@ let g:airline#themes#ronakg#palette.normal_modified = {
 
 
 " Insert Mode:
-let s:I1 = [ '#585858' , '#e4e4e4' , 223 , 214 ] " Mode
+let s:I1 = [ '#585858' , '#e4e4e4' , 240 , 214 ] " Mode
 let s:I2 = [ '#e4e4e4' , '#0087af' , 223 , 31  ] " Info
 let s:I3 = [ '#eeeeee' , '#005f87' , 223 , 24  ] " StatusLine
 
