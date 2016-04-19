@@ -44,6 +44,7 @@ Plug 'mbbill/undotree', { 'on' : 'UndotreeToggle' }
 Plug 'chrisbra/csv.vim', { 'for' : [ 'csv' ] }
 Plug 'tpope/vim-abolish' " case honoring subsitute
 Plug 'justinmk/vim-syntax-extra'
+Plug 'vim-utils/vim-man'
 
 " Colorschemes
 Plug 'ronakg/gruvbox'

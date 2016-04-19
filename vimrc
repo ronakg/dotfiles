@@ -48,7 +48,7 @@ set gdefault                         " search/replace globally (on a line) by de
 set splitright                       " Open split on right, not left
 set splitbelow                       " Open split below, not above
 set wildmenu
-set wildmode=longest:full,list:longest
+set wildmode=longest:full,list:full
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menuone
 set noshowmode                       " Airline shows mode, so hide default mode
@@ -437,6 +437,10 @@ map gc <plug>NERDCommenterToggle
 command! -nargs=+ Silent
 \ | execute ':silent !'.<q-args>
 \ | execute ':redraw!'
+
+" vim-man {{
+nmap K <plug>(Vman)
+" }}
 
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
