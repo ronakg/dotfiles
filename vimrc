@@ -142,7 +142,7 @@ nnoremap <leader>k :cp<CR>
 
 " Quicker save and quit
 nnoremap <silent> e :silent Sayonara<CR>
-nnoremap <silent> s :update<CR>
+nnoremap <silent> w :update<CR>
 inoremap <silent> jj <Esc>
 
 " Paste in insert mode
@@ -186,8 +186,8 @@ if has("autocmd")
         autocmd WinEnter * setlocal cursorline
         autocmd WinLeave * setlocal nocursorline
 
-        " If can't find extention of a file, assume it's a C file
-        autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=c | endif
+        " In a diff window, if can't find extensio of a file, assume it's a C file
+        autocmd BufNewFile,BufRead * if and(expand('%:t') !~ '\.', &diff == 1) | set syntax=c | endif
 
         " Spellcheck commit messages
         autocmd BufRead COMMIT_EDITMSG setlocal spell!
@@ -286,7 +286,6 @@ let g:gruvbox_invert_selection=0
 colorscheme gruvbox
 hi LineNr ctermfg = darkgrey ctermbg = black
 highlight Comment cterm=italic
-let c_no_curly_error=1
 " }}
 
 " Vim-Airline {{
@@ -305,8 +304,8 @@ let g:airline#extensions#whitespace#enabled       = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
 let g:airline_section_b                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
-let g:airline_section_y                           = airline#section#create(['filetype']) 
 let g:airline_section_x                           = airline#section#create(['%{tagbar#currenttag("%s", "")}']) 
+let g:airline_section_y                           = airline#section#create(['filetype']) 
 let g:airline_theme                               = 'ronakg'
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
