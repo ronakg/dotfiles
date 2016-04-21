@@ -49,8 +49,7 @@ set splitright                       " Open split on right, not left
 set splitbelow                       " Open split below, not above
 set wildmenu
 set wildmode=longest:full,list:full
-set omnifunc=syntaxcomplete#Complete
-set completeopt=longest,menuone
+set completeopt+=longest,menu
 set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
@@ -85,6 +84,7 @@ set switchbuf=useopen           " reveal already opened files from the
                                 " buffers
 set shell=bash 
 set fileformats="unix,dos,mac"
+set omnifunc=syntaxcomplete#Complete
 " }}
 
 " Key remaps {{
@@ -172,7 +172,7 @@ nnoremap <leader>= yypVr=
 nnoremap <leader>- yypVr-
 
 " Poor man's autopair
-inoremap {<cr> {<cr>}<Esc>O
+inoremap {<CR> {<CR>}<Esc>O
 " }}
 
 " Auto commands {{
@@ -231,7 +231,7 @@ if &diff
     nnoremap <leader>j :normal! ]c<enter>
     nnoremap <leader>k :normal! [c<enter>
     nnoremap e :qa<CR>
-    nnoremap s :wa<CR>
+    nnoremap w :wa<CR>
     set nocursorline
 endif
 
@@ -251,6 +251,27 @@ function! s:add_cscope_db()
     endif
 endfunction
 
+" Fancy CscopeQuery function {{
+function! CscopeQuery(str, query)
+    " Close any open quickfix windows
+    cclose
+
+    let l:cur_file_name=@%
+    execute "cs find ".a:query." ".a:str
+    if l:cur_file_name != @%
+        bd
+    endif
+
+    " Open quickfix window
+    cwindow
+
+    " Store the query string as search pattern for easy navigation
+    " using n and N
+    let @/ = a:str
+    execute "normal /<CR>"
+endfunction
+" }}
+
 if has("cscope")
     set csto=0
     set cst
@@ -258,16 +279,18 @@ if has("cscope")
     set cscopetag       " Use both cscope and ctags as database
     call s:add_cscope_db()
 
-    " Find instances of a symbol from command line
-    " Yank the word under cursor, search for cscope, close the first result
-    " window, open quickfix window with results, search for the word for
-    " highlighting and movement with n and N
-    nnoremap <leader>d :cclose<cr>:cs find g <cword><CR>   " Find definition of this symbol
-    nnoremap <leader>c yiw:cclose<cr>:cs find c <cword><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find calls to this symbol
-    nnoremap <leader>s yiw:cclose<cr>:cs find s <cword><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all instances of this symbol
-    nnoremap <leader>h yiw:cclose<cr>:cs find f <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find this file
-    nnoremap <leader>i yiw:cclose<cr>:cs find i <C-R>=expand("<cfile>:t")<CR><CR>:bd<CR>:cwindow<CR>/<C-R>0<CR>   " Find all files including this file
+    " Definition
+    nnoremap <leader>d :cs find g <cword><CR>
+    " Callers
+    nnoremap <leader>c :call CscopeQuery(expand("<cword>"), "c")<CR>
+    " Symbols
+    nnoremap <leader>s :call CscopeQuery(expand("<cword>"), "s")<CR>
+    " File
+    nnoremap <leader>h :call CscopeQuery(expand("<cfile>:t"), "f")<CR>
+    " Files including this file
+    nnoremap <leader>i :call CscopeQuery(expand("<cfile>:t"), "i")<CR>
     nnoremap <leader>t :pop<CR>
+    " Don't open the cscope result list of any of the following queries
     set cscopequickfix=s-,c-,i-,t-,e-,f-
 endif
 
@@ -439,6 +462,10 @@ command! -nargs=+ Silent
 
 " vim-man {{
 nmap K <plug>(Vman)
+" }}
+
+" VimCompletesMe {{
+let g:vcm_direction = 'n'
 " }}
 
 " Modeline and Notes {{
