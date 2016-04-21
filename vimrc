@@ -268,7 +268,6 @@ function! CscopeQuery(str, query)
     " Store the query string as search pattern for easy navigation
     " using n and N
     let @/ = a:str
-    execute "normal /<CR>"
 endfunction
 " }}
 
