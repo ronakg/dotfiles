@@ -89,6 +89,11 @@ set csverb
 set cscopetag       " Use both cscope and ctags as database
 " }}
 
+" True 24 bit colors
+set t_8f=[[38;2;%lu;%lu;%lum
+set t_8b=[[48;2;%lu;%lu;%lum
+set guicolors
+
 " Key remaps {{
 
 " Space is my leader, don't assign leader to space - that causes latency
