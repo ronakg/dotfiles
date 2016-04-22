@@ -90,9 +90,11 @@ set cscopetag       " Use both cscope and ctags as database
 " }}
 
 " True 24 bit colors
-set t_8f=[[38;2;%lu;%lu;%lum
-set t_8b=[[48;2;%lu;%lu;%lum
-set guicolors
+if v:version > 704 || v:version == 704 && has('patch1775')
+    set t_8f=[[38;2;%lu;%lu;%lum
+    set t_8b=[[48;2;%lu;%lu;%lum
+    set guicolors
+endif
 
 " Key remaps {{
 
