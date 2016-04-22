@@ -49,7 +49,7 @@ set splitright                       " Open split on right, not left
 set splitbelow                       " Open split below, not above
 set wildmenu
 set wildmode=longest:full,list:full
-set completeopt+=longest,menu
+set completeopt+=longest,menuone
 set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
@@ -85,6 +85,8 @@ set switchbuf=useopen           " reveal already opened files from the
 set shell=bash 
 set fileformats="unix,dos,mac"
 set omnifunc=syntaxcomplete#Complete
+set csverb
+set cscopetag       " Use both cscope and ctags as database
 " }}
 
 " Key remaps {{
@@ -226,7 +228,6 @@ endfunc
 " }}
 
 " Diff {{
-
 if &diff
     nnoremap <leader>j :normal! ]c<enter>
     nnoremap <leader>k :normal! [c<enter>
@@ -234,64 +235,8 @@ if &diff
     nnoremap w :wa<CR>
     set nocursorline
 endif
-
 " }}
 
-" Tags/CScope {{
-function! s:add_cscope_db()
-    " add any database in current directory
-    let db = findfile('cscope.out', '.;')
-    if !empty(db)
-        silent cs reset
-        silent! execute 'cs add' db
-    " else add database pointed to by environment
-    elseif !empty($CSCOPE_DB)
-        silent cs reset
-        silent! execute 'cs add' $CSCOPE_DB
-    endif
-endfunction
-
-" Fancy CscopeQuery function {{
-function! CscopeQuery(str, query)
-    " Close any open quickfix windows
-    cclose
-
-    let l:cur_file_name=@%
-    execute "cs find ".a:query." ".a:str
-    if l:cur_file_name != @%
-        bd
-    endif
-
-    " Open quickfix window
-    cwindow
-
-    " Store the query string as search pattern for easy navigation
-    " using n and N
-    let @/ = a:str
-endfunction
-" }}
-
-if has("cscope")
-    set csto=0
-    set cst
-    set csverb
-    set cscopetag       " Use both cscope and ctags as database
-    call s:add_cscope_db()
-
-    " Definition
-    nnoremap <leader>d :cs find g <cword><CR>
-    " Callers
-    nnoremap <leader>c :call CscopeQuery(expand("<cword>"), "c")<CR>
-    " Symbols
-    nnoremap <leader>s :call CscopeQuery(expand("<cword>"), "s")<CR>
-    " File
-    nnoremap <leader>h :call CscopeQuery(expand("<cfile>:t"), "f")<CR>
-    " Files including this file
-    nnoremap <leader>i :call CscopeQuery(expand("<cfile>:t"), "i")<CR>
-    nnoremap <leader>t :pop<CR>
-    " Don't open the cscope result list of any of the following queries
-    set cscopequickfix=s-,c-,i-,t-,e-,f-
-endif
 
 set tags=./tags;/   " ctags path, search upwards till tags file is found
 
@@ -343,7 +288,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 
 " FZF {{
 nnoremap <silent> <leader>b :Tags!<CR>
-nnoremap <silent> <leader>f :FZF!<CR>
+nnoremap <silent> <leader>p :FZF!<CR>
 nnoremap <silent> <leader>/ :Lines!<CR>
 " }}
 

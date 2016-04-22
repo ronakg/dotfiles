@@ -33,6 +33,7 @@ Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
 Plug 'Yggdroot/indentLine', { 'for' : [ 'python' ] }
 Plug 'klen/python-mode', { 'for' : [ 'python' ] }
 Plug 'ronakg/VimCompletesMe'
+Plug 'ronakg/quickr-cscope.vim'
 Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
