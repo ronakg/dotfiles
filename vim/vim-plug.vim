@@ -32,7 +32,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
 Plug 'Yggdroot/indentLine', { 'for' : [ 'python' ] }
 Plug 'klen/python-mode', { 'for' : [ 'python' ] }
-Plug 'ronakg/VimCompletesMe'
+Plug 'ajh17/VimCompletesMe'
 Plug 'ronakg/quickr-cscope.vim'
 Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-easy-align'
@@ -46,11 +46,13 @@ Plug 'chrisbra/csv.vim', { 'for' : [ 'csv' ] }
 Plug 'tpope/vim-abolish' " case honoring subsitute
 Plug 'justinmk/vim-syntax-extra'
 Plug 'vim-utils/vim-man'
+Plug 'easymotion/vim-easymotion'
 
 " Colorschemes
 Plug 'ronakg/gruvbox'
-Plug 'junegunn/seoul256.vim'
-Plug 'w0ng/vim-hybrid'
+" Plug 'romainl/flattened'
+" Plug 'junegunn/seoul256.vim'
+" Plug 'w0ng/vim-hybrid'
 " Plug 'kabbamine/yowish.vim'
 " Plug 'zenorocha/dracula-theme', { 'rtp' : 'vim' }
 " Plug 'reedes/vim-colors-pencil'

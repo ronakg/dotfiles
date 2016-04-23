@@ -48,15 +48,17 @@ set gdefault                         " search/replace globally (on a line) by de
 set splitright                       " Open split on right, not left
 set splitbelow                       " Open split below, not above
 set wildmenu
+set wildignorecase
 set wildmode=longest:full,list:full
 set completeopt+=longest,menuone
+set completeopt-=preview             " Don't open preview window
 set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
 set pumheight=15                     " Completion menu height
 set cursorline                       " Cursor line
-set number                           " Line numbers
-set relativenumber                   " Relative line numbers
+"set number                           " Line numbers
+"set relativenumber                   " Relative line numbers
 set laststatus=2                     " Always show statusline     
 set shiftround                       " Round off shiftwidth when using >
 set timeout timeoutlen=3000 ttimeoutlen=100
@@ -69,7 +71,7 @@ set shortmess=atToOI                 " To avoid the 'Hit Enter' prompts caused b
 set updatetime=750                   " Vim refresh time
 set linebreak                        " It maintains the whole words when wrapping
 set complete-=i                      " Don't scan included files for completion
-set cpoptions-=m               " Highlight when CursorMoved.
+set cpoptions-=m                     " Highlight when CursorMoved.
 set matchtime=1
 set matchpairs+=<:>
 set clipboard=exclude:.*             " Don't connect to X server clipboard
@@ -79,9 +81,6 @@ set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
 set visualbell t_vb=                 " Disable bells
 filetype plugin indent on                   " filetype specific indentation
 syntax enable                        " Pretty syntax highlighing
-set switchbuf=useopen           " reveal already opened files from the
-                                " quickfix window instead of opening new
-                                " buffers
 set shell=bash 
 set fileformats="unix,dos,mac"
 set omnifunc=syntaxcomplete#Complete
@@ -146,8 +145,8 @@ nnoremap ]j <tab>
 nnoremap [j <C-o>
 
 " Next/prev quick-fix results
-nnoremap <leader>j :cn<CR>
-nnoremap <leader>k :cp<CR>
+nnoremap <expr> <silent> <leader>j (&diff ? "]c" : ":cnext\<CR>")
+nnoremap <expr> <silent> <leader>k (&diff ? "[c" : ":cprev\<CR>")
 
 " Quicker save and quit
 nnoremap <silent> e :silent Sayonara<CR>
@@ -175,6 +174,7 @@ nnoremap j gj
 nnoremap k gk
 
 nnoremap <leader>l :call NumberToggle()<CR>
+nnoremap <leader>q :cclose<CR>
 
 " Add a heading/subheading to current line
 nnoremap <leader>= yypVr=
@@ -236,8 +236,6 @@ endfunc
 
 " Diff {{
 if &diff
-    nnoremap <leader>j :normal! ]c<enter>
-    nnoremap <leader>k :normal! [c<enter>
     nnoremap e :qa<CR>
     nnoremap w :wa<CR>
     set nocursorline
@@ -394,11 +392,12 @@ let g:pymode_folding = 0
 
 " Clever-f {{
 let g:clever_f_ignore_case = 1
+let g:clever_f_fix_key_direction = 1
 " }}
 
 " vim-parenmatch {{
 let g:loaded_matchparen = 1
-hi ParenMatch ctermbg=white ctermfg=red cterm=none
+hi ParenMatch ctermbg=yellow ctermfg=red cterm=none
 " }}
 
 " NERDCommenter {{
@@ -416,7 +415,14 @@ nmap K <plug>(Vman)
 " }}
 
 " VimCompletesMe {{
-let g:vcm_direction = 'n'
+let g:vcm_direction = 'p'
+" }}
+
+" EasyMotion {{
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+nmap s <Plug>(easymotion-overwin-f)
+nmap s <Plug>(easymotion-s2)
 " }}
 
 " Modeline and Notes {{
