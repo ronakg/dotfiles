@@ -433,6 +433,7 @@ let g:oblique#incsearch_highlight_all = 1
 " }}
 
 " quickr-cscope.vim {{
+let g:quickr_cscope_autoload_db = 1
 let g:quickr_cscope_use_qf_g = 1
 " }
 
