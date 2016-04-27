@@ -224,8 +224,18 @@ if has("autocmd")
 
         " Use shell syntax for .conf files
         autocmd BufRead,BufNewFile *.conf set syntax=sh
+
+        " C files
+        autocmd FileType c set makeprg=gcc\ -g\ %
     augroup END
 endif
+" }}
+
+" Compile_C {{
+function! Compile_C()
+    setlocal makeprg='gcc -g -Wall %'
+    Make!
+endfunction
 " }}
 
 " Line Numbers {{
