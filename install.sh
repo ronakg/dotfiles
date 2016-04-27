@@ -77,7 +77,7 @@ echo -n "${reset}"
 
 echo -n "${blue}"
 echo -e "\nInstalling vim plugins..."
-vim -u NONE +PlugUpdate +qall
+vim -u NONE ./vim/vim-plug.vim +source\ % +PlugUpdate +qall
 echo -n "${reset}"
 
 echo -n "${green}"
