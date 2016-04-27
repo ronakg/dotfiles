@@ -190,12 +190,6 @@ vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 " }}
 
-function! QuickFixPClose()
-    if &buftype == 'quickfix'
-        autocmd BufDelete <buffer> pclose
-    endif
-endfunction
-
 " Auto commands {{
 
 if has("autocmd")
@@ -230,26 +224,22 @@ if has("autocmd")
 
         " Use shell syntax for .conf files
         autocmd BufRead,BufNewFile *.conf set syntax=sh
-
-        augroup quickfix_cmds
-            autocmd BufCreate * call QuickFixPClose()
-        augroup END
     augroup END
 endif
 " }}
 
 " Line Numbers {{
 function! NumberToggle()
-  if(&relativenumber == 1 && &number == 1)
-    set number
-    set norelativenumber
-  elseif (&number == 1 && &relativenumber == 0)
-    set norelativenumber
-    set nonumber
-  else
-    set number
-    set relativenumber
-  endif
+    if(&relativenumber == 1 && &number == 1)
+        set number
+        set norelativenumber
+    elseif (&number == 1 && &relativenumber == 0)
+        set norelativenumber
+        set nonumber
+    else
+        set number
+        set relativenumber
+    endif
 endfunc
 " }}
 
