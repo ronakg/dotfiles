@@ -61,7 +61,7 @@ set cursorline                       " Cursor line
 "set relativenumber                   " Relative line numbers
 set laststatus=2                     " Always show statusline     
 set shiftround                       " Round off shiftwidth when using >
-set timeout timeoutlen=3000 ttimeoutlen=100
+set timeout timeoutlen=1000 ttimeoutlen=100
 set wrapscan
 set autoread                         " automatically reload files changed outside of Vim
 set showcmd
@@ -85,7 +85,8 @@ set shell=bash
 set fileformats="unix,dos,mac"
 set omnifunc=syntaxcomplete#Complete
 set csverb
-set cscopetag       " Use both cscope and ctags as database
+set cscopetag
+set previewheight=20
 " }}
 
 " True 24 bit colors
@@ -113,7 +114,7 @@ else
 endif
 
 " Don't add a newline when preview window is visible
-inoremap <silent><expr> <Cr>  pumvisible() ? "<C-y>" : "<C-g>u<Cr>"
+inoremap <silent><expr> <CR>  pumvisible() ? "<C-y>" : "<C-g>u<CR>"
 
 " Make Y behave like other motion characters
 nnoremap Y y$
@@ -182,18 +183,32 @@ nnoremap <leader>- yypVr-
 
 " Poor man's autopair
 inoremap {<CR> {<CR>}<Esc>O
+
+" Go to end of yanked/pasted text
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
 " }}
+
+function! QuickFixPClose()
+    if &buftype == 'quickfix'
+        autocmd BufDelete <buffer> pclose
+    endif
+endfunction
 
 " Auto commands {{
 
 if has("autocmd")
-    augroup myAutoCmds
+    augroup mycommands
         autocmd!
         autocmd VimEnter * redraw!
 
         " Cursor line only on active window
         autocmd WinEnter * setlocal cursorline
         autocmd WinLeave * setlocal nocursorline
+
+        " Refresh buffer on entering, works with autoread
+        au WinEnter * :silent! checktime
 
         " In a diff window, if can't find extensio of a file, assume it's a C file
         autocmd BufNewFile,BufRead * if and(expand('%:t') !~ '\.', &diff == 1) | set syntax=c | endif
@@ -218,7 +233,12 @@ if has("autocmd")
 
         " C files
         autocmd FileType c set makeprg=gcc\ -g\ %
-    augroup END 
+
+        " Temporary quickr-preview
+        augroup quickfix_cmds
+            autocmd BufCreate * call QuickFixPClose()
+        augroup END
+    augroup END
 endif
 " }}
 
@@ -288,6 +308,7 @@ let g:airline_section_b                           = '%{fnamemodify(getcwd(), ":t
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = airline#section#create(['%{tagbar#currenttag("%s", "")}']) 
 let g:airline_section_y                           = airline#section#create(['filetype']) 
+let g:airline_section_z                           = airline#section#create(['%3p%%', ' ', 'linenr'])
 let g:airline_theme                               = 'ronakg'
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -412,8 +433,9 @@ hi ParenMatch ctermbg=yellow ctermfg=red cterm=none
 
 " NERDCommenter {{
 let g:NERDCreateDefaultMappings = 0
-let g:NERDRemoveExtraSpaces = 1
-map gc <plug>NERDCommenterToggle
+let g:NERDRemoveExtraSpaces = 0
+map gc <plug>NERDCommenterSexy
+map gx <plug>NERDCommenterToggle 
 " }}
 
 command! -nargs=+ Silent
@@ -434,6 +456,15 @@ let g:EasyMotion_smartcase = 1
 nmap s <Plug>(easymotion-overwin-f)
 nmap s <Plug>(easymotion-s2)
 " }}
+
+" vim-oblique {{
+let g:oblique#incsearch_highlight_all = 1
+" }}
+
+" quickr-cscope.vim {{
+let g:quickr_cscope_autoload_db = 1
+let g:quickr_cscope_use_qf_g = 1
+" }
 
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:

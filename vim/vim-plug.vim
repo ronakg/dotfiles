@@ -32,7 +32,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
 Plug 'Yggdroot/indentLine', { 'for' : [ 'python' ] }
 Plug 'klen/python-mode', { 'for' : [ 'python' ] }
-Plug 'ajh17/VimCompletesMe'
+Plug 'ronakg/VimCompletesMe'
 Plug 'ronakg/quickr-cscope.vim'
 Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-easy-align'
@@ -47,6 +47,9 @@ Plug 'tpope/vim-abolish' " case honoring subsitute
 Plug 'justinmk/vim-syntax-extra'
 Plug 'vim-utils/vim-man'
 Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
 
 " Colorschemes
 Plug 'ronakg/gruvbox'
