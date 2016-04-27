@@ -114,7 +114,7 @@ else
 endif
 
 " Don't add a newline when preview window is visible
-inoremap <silent><expr> <Cr>  pumvisible() ? "<C-y>" : "<C-g>u<Cr>"
+inoremap <silent><expr> <CR>  pumvisible() ? "<C-y>" : "<C-g>u<CR>"
 
 " Make Y behave like other motion characters
 nnoremap Y y$
@@ -183,40 +183,58 @@ nnoremap <leader>- yypVr-
 
 " Poor man's autopair
 inoremap {<CR> {<CR>}<Esc>O
+
+" Go to end of yanked/pasted text
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
 " }}
+
+function! QuickFixPClose()
+    if &buftype == 'quickfix'
+        autocmd BufDelete <buffer> pclose
+    endif
+endfunction
 
 " Auto commands {{
 
 if has("autocmd")
-    autocmd VimEnter * redraw!
+    augroup mycommands
+        autocmd!
+        autocmd VimEnter * redraw!
 
-    " Cursor line only on active window
-    autocmd WinEnter * setlocal cursorline
-    autocmd WinLeave * setlocal nocursorline
+        " Cursor line only on active window
+        autocmd WinEnter * setlocal cursorline
+        autocmd WinLeave * setlocal nocursorline
 
-    " Refresh buffer on entering, works with autoread
-    au WinEnter * :silent! checktime
+        " Refresh buffer on entering, works with autoread
+        au WinEnter * :silent! checktime
 
-    " In a diff window, if can't find extensio of a file, assume it's a C file
-    autocmd BufNewFile,BufRead * if and(expand('%:t') !~ '\.', &diff == 1) | set syntax=c | endif
+        " In a diff window, if can't find extensio of a file, assume it's a C file
+        autocmd BufNewFile,BufRead * if and(expand('%:t') !~ '\.', &diff == 1) | set syntax=c | endif
 
-    " Spellcheck commit messages
-    autocmd BufRead COMMIT_EDITMSG setlocal spell!
+        " Spellcheck commit messages
+        autocmd BufRead COMMIT_EDITMSG setlocal spell!
 
-    " Remember cursor position between vim sessions
-    autocmd BufReadPost *
-                \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-                \   exe "normal! g'\"" |
-                \ endif
+        " Remember cursor position between vim sessions
+        autocmd BufReadPost *
+                    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+                    \   exe "normal! g'\"" |
+                    \ endif
 
-    " center buffer around cursor when opening files
-    autocmd BufRead * normal zz
+        " center buffer around cursor when opening files
+        autocmd BufRead * normal zz
 
-    " Update diff when leaving from insertmode or writing to file
-    autocmd BufWritepost * if &diff == 1 | diffupdate | endif
+        " Update diff when leaving from insertmode or writing to file
+        autocmd BufWritepost * if &diff == 1 | diffupdate | endif
 
-    " Use shell syntax for .conf files
-    autocmd BufRead,BufNewFile *.conf set syntax=sh
+        " Use shell syntax for .conf files
+        autocmd BufRead,BufNewFile *.conf set syntax=sh
+
+        augroup quickfix_cmds
+            autocmd BufCreate * call QuickFixPClose()
+        augroup END
+    augroup END
 endif
 " }}
 
