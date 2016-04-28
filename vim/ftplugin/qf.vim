@@ -3,14 +3,14 @@
 " WORK IN PROGRESS
 
 let s:buflist = []
+let s:qflist = getqflist()
 
 """
 " Operate on an entry in quickfix list
 "       linenr is current line number in the quickfix window
 "
 function! QFList(linenr)
-    let l:qflist = getqflist()
-    let l:entry = l:qflist[a:linenr - 1]
+    let l:entry = s:qflist[a:linenr - 1]
     pclose
 
     if l:entry.valid
@@ -26,7 +26,6 @@ function! QFList(linenr)
         " was populated
         if index(s:buflist, l:entry.bufnr) == -1
             setlocal nobuflisted
-            setlocal bufhidden=wipe
             setlocal noswapfile
             setlocal readonly
             setlocal cursorline
