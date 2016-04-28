@@ -236,6 +236,7 @@ if has("autocmd")
 
         " Temporary quickr-preview
         augroup quickfix_cmds
+            autocmd!
             autocmd BufCreate * call QuickFixPClose()
         augroup END
     augroup END
@@ -308,7 +309,6 @@ let g:airline_section_b                           = '%{fnamemodify(getcwd(), ":t
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = airline#section#create(['%{tagbar#currenttag("%s", "")}']) 
 let g:airline_section_y                           = airline#section#create(['filetype']) 
-let g:airline_section_z                           = airline#section#create(['%3p%%', ' ', 'linenr'])
 let g:airline_theme                               = 'ronakg'
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
