@@ -32,6 +32,7 @@ Plug 'Yggdroot/indentLine', { 'for' : [ 'python' ] }
 Plug 'klen/python-mode', { 'for' : [ 'python' ] }
 Plug 'ronakg/VimCompletesMe'
 Plug 'ronakg/quickr-cscope.vim'
+Plug 'ronakg/quickr-preview.vim'
 Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
