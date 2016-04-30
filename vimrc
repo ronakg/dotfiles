@@ -138,12 +138,8 @@ nnoremap <Down> :resize +2<CR>
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
-" Tab to switch between vertical splits
-nnoremap <tab> <C-w>w
-
-" Jumps
-nnoremap ]j <tab>
-nnoremap [j <C-o>
+" Easier splits switching
+nnoremap b <C-w>w
 
 " Next/prev quick-fix results
 nnoremap <expr> <silent> <leader>j (&diff ? "]c" : ":cnext\<CR>")
