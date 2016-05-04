@@ -415,7 +415,8 @@ hi ParenMatch ctermbg=yellow ctermfg=red cterm=none
 " NERDCommenter {{
 let g:NERDCreateDefaultMappings = 0
 let g:NERDRemoveExtraSpaces = 0
-map gc <plug>NERDCommenterSexy
+nmap gc <plug>NERDCommenterToggle
+vmap gc <plug>NERDCommenterSexy
 map gx <plug>NERDCommenterToggle 
 " }}
 
