@@ -434,8 +434,8 @@ let g:vcm_direction = 'p'
 " EasyMotion {{
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
-nmap s <Plug>(easymotion-overwin-f)
 nmap s <Plug>(easymotion-s2)
+map <Leader>srm <Plug>(easymotion-prefix)
 " }}
 
 " vim-oblique {{
@@ -446,6 +446,10 @@ let g:oblique#incsearch_highlight_all = 1
 let g:quickr_cscope_autoload_db = 1
 let g:quickr_cscope_use_qf_g = 1
 " }
+
+" quickr-previe.vim {{
+nmap <leader><space> <plug>(quickr_preview)
+" }}
 
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
