@@ -40,7 +40,10 @@ function prompt_command {
 
     export PS1
 }
-#export PROMPT_COMMAND=prompt_command
+if [ -f ~/.bash_prompt ]
+then
+    . ~/.bash_prompt
+fi
 
 # Moar history for me
 HISTSIZE=1000                  # big big history
