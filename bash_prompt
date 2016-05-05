@@ -40,7 +40,7 @@ fi;
 if [[ "${SSH_TTY}" ]]; then
     hostStyle="${bold}${green}";
 else
-    hostStyle="${purple}";
+    hostStyle="${gray}";
 fi;
 
 function prompt_command {
