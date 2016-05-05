@@ -32,6 +32,13 @@ HISTFILESIZE=1000              # big big history
 HISTCONTROL=ignoredups:erasedups
 shopt -s histappend                     # append to history, don't overwrite it
 
+# Bind up and down array to do backward and forward history search
+if [[ $- == *i* ]]
+then
+    bind '"\e[A": history-search-backward'
+    bind '"\e[B": history-search-forward'
+fi
+
 # Device specific settings should be in .bashrc_local
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
 

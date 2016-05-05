@@ -5,7 +5,7 @@ if tput setaf 1 &> /dev/null; then
     bold=$(tput bold);
     reset=$(tput sgr0);
     black=$(tput setaf 235)
-    red=$(tput setaf 127)
+    red=$(tput setaf 1)
     green=$(tput setaf 142)
     yellow=$(tput setaf 214)
     blue=$(tput setaf 66)
