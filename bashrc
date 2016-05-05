@@ -7,6 +7,10 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -f ~/.bash_prompt ]; then
+    . ~/.bash_prompt
+fi
+
 #for *BSD/darwin
 export CLICOLOR=1
 export PATH=/usr/local/git/bin:/usr/local/bin:$PATH
@@ -22,38 +26,11 @@ export EDITOR=vim
 export VISUAL=vim
 export CSCOPE_EDITOR=vim
 
-function prompt_command {
-    RET_CODE=$?
-
-    # 38;5 is for foreground, don't touch that.
-    PS1='[\e[39m\h \e[38;5;214m\w\e[38;5;252m]'
-
-    if [ "$VIMRUNTIME" ]; then
-        PS1+='(Vim)'
-    fi
-
-    if [ $RET_CODE != 0 ]; then
-        PS1+='\e[91m$?>\e[0m '
-    else
-        PS1+='\e[92m$\e[0m '
-    fi
-
-    export PS1
-}
-export PROMPT_COMMAND=prompt_command
-
 # Moar history for me
 HISTSIZE=1000                  # big big history
 HISTFILESIZE=1000              # big big history
 HISTCONTROL=ignoredups:erasedups
 shopt -s histappend                     # append to history, don't overwrite it
-
-# Bind up and down array to do backward and forward history search
-if [[ $- == *i* ]]
-then
-    bind '"\e[A": history-search-backward'
-    bind '"\e[B": history-search-forward'
-fi
 
 # Device specific settings should be in .bashrc_local
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
