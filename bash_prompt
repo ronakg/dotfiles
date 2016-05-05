@@ -4,16 +4,16 @@ if tput setaf 1 &> /dev/null; then
     tput sgr0; # reset colors
     bold=$(tput bold);
     reset=$(tput sgr0);
-    black=$(tput setaf 0);
-    blue=$(tput setaf 33);
-    cyan=$(tput setaf 37);
-    green=$(tput setaf 64);
-    orange=$(tput setaf 166);
-    purple=$(tput setaf 125);
-    red=$(tput setaf 124);
-    violet=$(tput setaf 61);
-    white=$(tput setaf 15);
-    yellow=$(tput setaf 136);
+    black=$(tput setaf 235)
+    red=$(tput setaf 127)
+    green=$(tput setaf 142)
+    yellow=$(tput setaf 214)
+    blue=$(tput setaf 66)
+    purple=$(tput setaf 175)
+    cyan=$(tput setaf 37)
+    gray=$(tput setaf 246)
+    white=$(tput setaf 223)
+    orange=$(tput setaf 208)
 else
     bold='';
     reset="\e[0m";
@@ -38,15 +38,14 @@ fi;
 
 # Highlight the hostname when connected via SSH.
 if [[ "${SSH_TTY}" ]]; then
-    hostStyle="${bold}${red}";
+    hostStyle="${bold}${green}";
 else
-    hostStyle="${yellow}";
+    hostStyle="${purple}";
 fi;
 
 function prompt_command {
     RET_CODE=$?
 
-    # 38;5 is for foreground, don't touch that.
     PS1="\[${userStyle}\]\u "
     PS1+="\[${reset}\]at \[${hostStyle}\]\h "
     PS1+="\[${reset}\]in \[${cyan}\]\w "
