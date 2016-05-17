@@ -46,16 +46,19 @@ fi;
 function prompt_command {
     RET_CODE=$?
 
+    # $USER at $hostname in $pwd
     PS1="\[${userStyle}\]\u "
     PS1+="\[${reset}\]at \[${hostStyle}\]\h "
     PS1+="\[${reset}\]in \[${cyan}\]\w "
 
+    # Are we running in a shell invoked from Vim?
     if [ "${VIMRUNTIME}" ]; then
         PS1+="(Vim)"
     fi
 
     PS1+="\n"
 
+    # Did last command return non-zero value?
     if [ ${RET_CODE} != 0 ]; then
         PS1+="\[${red}\]${RET_CODE}>"
     else
@@ -63,6 +66,8 @@ function prompt_command {
     fi
 
     PS1+="\[${reset}\] "
+
+    # All set
     export PS1
 }
 export PROMPT_COMMAND=prompt_command
