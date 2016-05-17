@@ -90,10 +90,10 @@ set previewheight=20
 " }}
 
 " True 24 bit colors
-if v:version > 704 || v:version == 704 && has('patch1775')
+if has('termguicolors')
     set t_8f=[[38;2;%lu;%lu;%lum
     set t_8b=[[48;2;%lu;%lu;%lum
-    set guicolors
+"    set termguicolors
 endif
 
 " Key remaps {{
@@ -103,6 +103,8 @@ endif
 let g:mapleader = "\<Space>"
 
 nnoremap <leader>m :Make<CR>
+
+nnoremap G :norm! Gzz<CR>
 
 " Grep for word under the cursor
 if filereadable("cscope.files")
@@ -286,11 +288,11 @@ let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#whitespace#enabled       = 0
 " Just show the filename (no path) in the tab
 let g:airline#extensions#tabline#fnamemod         = ':t'
+let g:airline_theme                               = 'ronakg'
 let g:airline_section_b                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = airline#section#create(['%{tagbar#currenttag("%s", "")}']) 
 let g:airline_section_y                           = airline#section#create(['filetype']) 
-let g:airline_theme                               = 'ronakg'
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -436,7 +438,6 @@ let g:vcm_direction = 'p'
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
 nmap s <Plug>(easymotion-s2)
-map <Leader>srm <Plug>(easymotion-prefix)
 " }}
 
 " vim-oblique {{
