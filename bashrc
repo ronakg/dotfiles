@@ -26,11 +26,13 @@ export EDITOR=vim
 export VISUAL=vim
 export CSCOPE_EDITOR=vim
 
-# Moar history for me
-HISTSIZE=1000                  # big big history
-HISTFILESIZE=1000              # big big history
-HISTCONTROL=ignoredups:erasedups
-shopt -s histappend                     # append to history, don't overwrite it
+### Append to the history file
+shopt -s histappend
+export HISTCONTROL=ignoreboth:erasedups
+export HISTSIZE=
+export HISTFILESIZE=
+export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S:   "
+[ -z "$TMPDIR" ] && TMPDIR=/tmp
 
 # Bind up and down array to do backward and forward history search
 if [[ $- == *i* ]]
