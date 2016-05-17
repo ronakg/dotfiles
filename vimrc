@@ -131,6 +131,10 @@ nnoremap <BS> :buffer #<CR>
 nnoremap x "_x
 nnoremap c "_c
 
+" back tick is more powerful, but harder to reach
+noremap ' `
+noremap ` '
+
 " Make arrowkey do something useful, resize the viewports accordingly
 nnoremap <Left> :vertical resize +2<CR>
 nnoremap <Right> :vertical resize -2<CR>
