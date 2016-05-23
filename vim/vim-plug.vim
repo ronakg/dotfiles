@@ -49,6 +49,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Colorschemes
 Plug 'ronakg/gruvbox'
