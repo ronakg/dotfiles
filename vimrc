@@ -180,8 +180,8 @@ nnoremap <leader>l :call NumberToggle()<CR>
 nnoremap <leader>q :cclose<CR>
 
 " Add a heading/subheading to current line
-nnoremap <leader>= yypVr=
-nnoremap <leader>- yypVr-
+nnoremap <leader>= yypVr=<Esc>==
+nnoremap <leader>- yypVr-<Esc>==
 
 " Poor man's autopair
 inoremap {<CR> {<CR>}<Esc>O
