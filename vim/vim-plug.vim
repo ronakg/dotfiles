@@ -48,6 +48,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'vimwiki/vimwiki'
 
 " Colorschemes
 Plug 'ronakg/gruvbox'

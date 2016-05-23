@@ -257,6 +257,7 @@ if &diff
     nnoremap e :qa<CR>
     nnoremap w :wa<CR>
     set nocursorline
+    set scrolloff=999
 endif
 " }}
 
@@ -456,6 +457,10 @@ let g:quickr_cscope_use_qf_g = 1
 " quickr-previe.vim {{
 nmap <leader><space> <plug>(quickr_preview)
 " }}
+
+" vimwiki {{
+let g:vimwiki_list = [{'path': '~/Dropbox/Public/vimwiki'}]
+" }
 
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
