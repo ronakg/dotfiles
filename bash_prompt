@@ -29,10 +29,12 @@ else
     hostStyle="$gray";
 fi;
 
+dirStyle="$cyan"
+
 function prompt_command {
     ret_code=$?
     # Are we running in a shell invoked from Vim?
-    if [ "$VIM" ]; then
+    if [[ "$VIM" ]]; then
         vim="(Vim)"
     else
         vim=""
@@ -45,7 +47,7 @@ function prompt_command {
         ret_str="\[$green\]$"
     fi
 
-    PS1="\[$userStyle\]\u \[$reset\]at \[$hostStyle\]\H \[$reset\]in \[$cyan\]\W \[\n\]$ret_str\[$reset\] "
+    PS1="\[$userStyle\]\u \[$reset\]at \[$hostStyle\]\H \[$reset\]in \[$dirStyle\]\W \[\n\]\[$yellow\]$vim $ret_str\[$reset\] "
 }
 export PROMPT_COMMAND=prompt_command
 export PS2="\[$blue\]continue -> \[$reset\]"
