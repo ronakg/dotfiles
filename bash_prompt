@@ -47,7 +47,7 @@ function prompt_command {
         ret_str="\[$green\]$"
     fi
 
-    PS1="\[$userStyle\]\u \[$reset\]at \[$hostStyle\]\H \[$reset\]in \[$dirStyle\]\W \[\n\]\[$yellow\]$vim$ret_str\[$reset\] "
+    PS1="\[$userStyle\]\u \[$reset\]at \[$hostStyle\]\H \[$reset\]in \[$dirStyle\]\w \[\n\]\[$yellow\]$vim$ret_str\[$reset\] "
 }
 export PROMPT_COMMAND=prompt_command
 export PS2="\[$blue\]continue -> \[$reset\]"
