@@ -31,27 +31,21 @@ fi;
 
 function prompt_command {
     ret_code=$?
-
-    # $USER at $hostname in $pwd
-    PS1="\[$userStyle\]\u "
-    PS1+="\[$reset\]at \[$hostStyle\]\H "
-    PS1+="\[$reset\]in \[$cyan\]\W "
-
     # Are we running in a shell invoked from Vim?
     if [ "$VIM" ]; then
-        PS1+="(Vim)"
+        vim="(Vim)"
+    else
+        vim=""
     fi
-
-    PS1+="\[\n\]"
 
     # Did last command return non-zero value?
-    if [ $ret_code != 0 ]; then
-        PS1+="\[$red\]$ret_code>"
+    if [ "$ret_code" != 0 ]; then
+        ret_str="\[$red\]$ret_code>"
     else
-        PS1+="\[$green\]$"
+        ret_str="\[$green\]$"
     fi
 
-    PS1+="\[$reset\] "
+    PS1="\[$userStyle\]\u \[$reset\]at \[$hostStyle\]\H \[$reset\]in \[$cyan\]\W \[\n\]$ret_str\[$reset\] "
 }
 export PROMPT_COMMAND=prompt_command
 export PS2="\[$blue\]continue -> \[$reset\]"
