@@ -102,10 +102,6 @@ if [ -f ~/.vim/plugged/gruvbox/gruvbox_256palette.sh ]; then
    source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh > /dev/null 2>&1
 fi
 
-set -o vi
-bind -m vi-insert '"jj": vi-movement-mode'
-set show-mode-in-prompt on
-
 # Modeline and Notes {{
 # vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
 # }}
