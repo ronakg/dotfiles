@@ -58,7 +58,7 @@ function prompt_command {
     if [ "$ret_code" != 0 ]; then
         ret_str="\[$red\]$ret_code>"
     else
-        ret_str="\[$green\]$"
+        ret_str="\[$green\]\$"
     fi
 
     PS1="\[$userStyle\]\u \[$reset\]at \[$hostStyle\]\H \[$reset\]in \[$dirStyle\]\w\n\[$yellow\]$vim$ret_str\[$reset\] "
