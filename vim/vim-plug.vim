@@ -24,7 +24,6 @@ Plug 'tpope/vim-surround'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'sickill/vim-pasta'
 Plug 'hdima/python-syntax', { 'for' : [ 'python' ] }
-Plug 'benmills/vimux'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
@@ -50,6 +49,7 @@ Plug 'junegunn/gv.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-vinegar'
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes'
 
 " Colorschemes
