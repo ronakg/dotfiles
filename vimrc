@@ -218,9 +218,6 @@ if has("autocmd")
                     \   exe "normal! g'\"" |
                     \ endif
 
-        " center buffer around cursor when opening files
-        autocmd BufRead * normal zz
-
         " Update diff when leaving from insertmode or writing to file
         autocmd BufWritepost * if &diff == 1 | diffupdate | endif
 
