@@ -13,7 +13,7 @@ fi
 
 set -o vi
 bind -m vi-insert '"jj": vi-movement-mode'
-set show-mode-in-prompt on
+bind 'set show-mode-in-prompt on'
 
 #for *BSD/darwin
 export CLICOLOR=1
