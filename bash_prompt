@@ -14,6 +14,7 @@ if tput setaf 1 &> /dev/null; then
     gray=$(tput setaf 246)
     white=$(tput setaf 223)
     orange=$(tput setaf 208)
+    light_black=$(tput setaf 236)
 else
     bold='';
     reset="\e[0m";
@@ -49,7 +50,7 @@ function prompt_command {
     ret_code=$?
     # Are we running in a shell invoked from Vim?
     if [[ "$VIM" ]]; then
-        vim="(Vim) "
+        vim="\[$red\](Vim) "
     else
         vim=""
     fi
@@ -61,7 +62,7 @@ function prompt_command {
         ret_str="\[$green\]\$"
     fi
 
-    PS1="\[$gray\]\t \[$userStyle\]\u \[$reset\]at \[$hostStyle\]\H \[$reset\]in \[$dirStyle\]\w\n\[$yellow\]$vim$ret_str\[$reset\] "
+    PS1="\[$userStyle\]\u \[$reset\]at \[$hostStyle\]\H \[$reset\]in \[$dirStyle\]\w \[$black\]\t\n\[$yellow\]$vim$ret_str\[$reset\] "
 }
 export PROMPT_COMMAND=prompt_command
 export PS2="\[$blue\]continue -> \[$reset\]"

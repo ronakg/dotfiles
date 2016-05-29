@@ -428,6 +428,8 @@ command! -nargs=+ Silent
 \ | execute ':silent !'.<q-args>
 \ | execute ':redraw!'
 
+nnoremap <C-s> :Silent bash<CR>
+
 " vim-man {{
 nmap K <plug>(Vman)
 " }}
