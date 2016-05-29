@@ -152,8 +152,8 @@ nnoremap <expr> <silent> <leader>j (&diff ? "]c" : ":cnext\<CR>")
 nnoremap <expr> <silent> <leader>k (&diff ? "[c" : ":cprev\<CR>")
 
 " Quicker save and quit
-nnoremap <silent> <leader>e :silent Sayonara<CR>
-nnoremap <silent> <leader>w :update<CR>
+nnoremap <silent> e :silent Sayonara<CR>
+nnoremap <silent> w :update<CR>
 inoremap <silent> jj <Esc>
 
 " Paste in insert mode
@@ -254,8 +254,8 @@ endfunc
 
 " Diff {{
 if &diff
-    nnoremap <leader>e :qa<CR>
-    nnoremap <leader>w :wa<CR>
+    nnoremap e :qa<CR>
+    nnoremap w :wa<CR>
     set nocursorline
     set scrolloff=999
 endif
