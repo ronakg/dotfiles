@@ -185,7 +185,6 @@ nnoremap j gj
 nnoremap k gk
 
 nnoremap <leader>l :call NumberToggle()<CR>
-nnoremap <leader>q :cclose<CR>
 
 " Add a heading/subheading to current line
 nnoremap <leader>= yypVr=<Esc>==
@@ -254,7 +253,7 @@ function! NumberToggle()
         set number
         set relativenumber
     endif
-endfunc
+endfunction
 " }}
 
 " Diff {{
