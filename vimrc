@@ -72,6 +72,7 @@ set updatetime=750                   " Vim refresh time
 set linebreak                        " It maintains the whole words when wrapping
 set complete-=i                      " Don't scan included files for completion
 set cpoptions-=m                     " Highlight when CursorMoved.
+set cpoptions+=I
 set matchtime=1
 set matchpairs+=<:>
 set clipboard=exclude:.*             " Don't connect to X server clipboard
@@ -107,6 +108,8 @@ nnoremap <leader>m :Make<CR>
 nnoremap G :norm! Gzz<CR>
 
 " Grep for word under the cursor
+" Look for cscope.files first, if present then only search through those
+" Otherwise search all subdirectories
 if filereadable("cscope.files")
     " Greedy search: ignore case and don't care about word boundaries
     nnoremap <Leader>vv *:silent Ack! -k <cword> -i --files-from=cscope.files<CR>:/<CR>
