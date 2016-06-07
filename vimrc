@@ -222,6 +222,9 @@ if has("autocmd")
 
         " Use shell syntax for .conf files
         autocmd BufRead,BufNewFile *.conf set syntax=sh
+
+        " Open the result from quickfix window and close the quickfix window
+        autocmd FileType qf nnoremap <buffer> o <CR>:cclose<CR>
     augroup END
 endif
 " }}
