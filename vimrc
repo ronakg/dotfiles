@@ -72,6 +72,7 @@ set updatetime=750                   " Vim refresh time
 set linebreak                        " It maintains the whole words when wrapping
 set complete-=i                      " Don't scan included files for completion
 set cpoptions-=m                     " Highlight when CursorMoved.
+set cpoptions+=I
 set matchtime=1
 set matchpairs+=<:>
 set clipboard=exclude:.*             " Don't connect to X server clipboard
@@ -107,12 +108,22 @@ nnoremap <leader>m :Make<CR>
 nnoremap G :norm! Gzz<CR>
 
 " Grep for word under the cursor
+" Look for cscope.files first, if present then only search through those
+" Otherwise search all subdirectories
 if filereadable("cscope.files")
-    nnoremap <Leader>vv *:silent Ack! -k <cword> --files-from=cscope.files<CR>:/<CR>
-    vnoremap <Leader>vv y:silent Ack! -kQ "<C-R>0" --files-from=cscope.files<CR>:/<C-R>0<CR>
+    " Greedy search: ignore case and don't care about word boundaries
+    nnoremap <Leader>vv *:silent Ack! -k <cword> -i --files-from=cscope.files<CR>:/<CR>
+    vnoremap <Leader>vv y:silent Ack! -kQ "<C-R>0" -i --files-from=cscope.files<CR>:/<C-R>0<CR>
+    " Specific search: case sensitive and whole words only
+    nnoremap <Leader>VV *:silent Ack! -k <cword> -w --files-from=cscope.files<CR>:/<CR>
+    vnoremap <Leader>VV y:silent Ack! -kQ "<C-R>0" -w --files-from=cscope.files<CR>:/<C-R>0<CR>
 else
-    nnoremap <Leader>vv *:silent Ack! -k <cword> .<CR>:/<CR>
-    vnoremap <Leader>vv y:silent Ack! -kQ "<C-R>0" .<CR>:/<C-R>0<CR>
+    " Greedy search: ignore case and don't care about word boundaries
+    nnoremap <Leader>vv *:silent Ack! -k <cword> -i .<CR>:/<CR>
+    vnoremap <Leader>vv y:silent Ack! -kQ "<C-R>0" -i .<CR>:/<C-R>0<CR>
+    " Specific search: case sensitive and whole words only
+    nnoremap <Leader>VV *:silent Ack! -k <cword> -w .<CR>:/<CR>
+    vnoremap <Leader>VV y:silent Ack! -kQ "<C-R>0" -w .<CR>:/<C-R>0<CR>
 endif
 
 " Don't add a newline when preview window is visible
