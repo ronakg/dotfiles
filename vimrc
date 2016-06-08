@@ -57,8 +57,8 @@ set nobackup                         " Don't need backup and swap files
 set noswapfile
 set pumheight=15                     " Completion menu height
 set cursorline                       " Cursor line
-"set number                           " Line numbers
-"set relativenumber                   " Relative line numbers
+set number                           " Line numbers
+set relativenumber                   " Relative line numbers
 set laststatus=2                     " Always show statusline     
 set shiftround                       " Round off shiftwidth when using >
 set timeout timeoutlen=1000 ttimeoutlen=100
@@ -96,6 +96,10 @@ if has('termguicolors')
     set t_8b=[[48;2;%lu;%lu;%lum
 "    set termguicolors
 endif
+
+" Italics support
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
 
 " Key remaps {{
 
