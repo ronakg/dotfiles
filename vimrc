@@ -48,7 +48,6 @@ set gdefault                         " search/replace globally (on a line) by de
 set splitright                       " Open split on right, not left
 set splitbelow                       " Open split below, not above
 set wildmenu
-set wildignorecase
 set wildmode=longest:full,list:full
 set completeopt+=longest,menuone
 set completeopt-=preview             " Don't open preview window
@@ -57,7 +56,6 @@ set nobackup                         " Don't need backup and swap files
 set noswapfile
 set pumheight=15                     " Completion menu height
 set cursorline                       " Cursor line
-set number                           " Line numbers
 set relativenumber                   " Relative line numbers
 set laststatus=2                     " Always show statusline     
 set shiftround                       " Round off shiftwidth when using >
@@ -89,6 +87,14 @@ set csverb
 set cscopetag
 set previewheight=20
 " }}
+
+if exists("&wildignorecase")
+    set wildignorecase
+endif
+
+if exists("&relativenumber")
+    set relativenumber
+endif
 
 " True 24 bit colors
 if has('termguicolors')
@@ -221,7 +227,7 @@ if has("autocmd")
         au WinEnter * :silent! checktime
 
         " In a diff window, if can't find extensio of a file, assume it's a C file
-        autocmd BufNewFile,BufRead * if and(expand('%:t') !~ '\.', &diff == 1) | set syntax=c | endif
+        autocmd BufNewFile,BufRead * if (expand('%:t') !~ '\.') && (&diff == 1) | set syntax=c | endif
 
         " Spellcheck commit messages
         autocmd BufRead COMMIT_EDITMSG setlocal spell!
