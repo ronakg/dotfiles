@@ -11,7 +11,7 @@ Plug 'bling/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-dispatch'
-Plug 'mbbill/echofunc', { 'for' : [ 'c', 'cpp' ] }
+"Plug 'mbbill/echofunc'
 Plug 'plasticboy/vim-markdown', { 'for' : [ 'markdown' ] }
 Plug 'mhinz/vim-startify'
 Plug 'terryma/vim-multiple-cursors'
