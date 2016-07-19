@@ -12,7 +12,8 @@ Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-dispatch'
 "Plug 'mbbill/echofunc'
-Plug 'plasticboy/vim-markdown', { 'for' : [ 'markdown' ] }
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'mhinz/vim-startify'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mileszs/ack.vim'

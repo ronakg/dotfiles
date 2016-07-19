@@ -86,6 +86,7 @@ set omnifunc=syntaxcomplete#Complete
 set csverb
 set cscopetag
 set previewheight=20
+set conceallevel=2
 " }}
 
 if exists("&wildignorecase")
