@@ -23,34 +23,26 @@ Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'tpope/vim-surround'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'sickill/vim-pasta'
-Plug 'hdima/python-syntax', { 'for' : [ 'python' ] }
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
-Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
 Plug 'Yggdroot/indentLine', { 'for' : [ 'python' ] }
-Plug 'klen/python-mode', { 'for' : [ 'python' ] }
 Plug 'ronakg/VimCompletesMe'
 Plug 'ronakg/quickr-cscope.vim'
 Plug 'ronakg/quickr-preview.vim'
 Plug 'wellle/targets.vim'
-Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
 Plug 'tpope/vim-unimpaired'
 Plug 'rhysd/clever-f.vim'
-Plug 'itchyny/vim-parenmatch'
 Plug 'mbbill/undotree', { 'on' : 'UndotreeToggle' }
 Plug 'chrisbra/csv.vim', { 'for' : [ 'csv' ] }
-Plug 'tpope/vim-abolish' " case honoring subsitute
 Plug 'justinmk/vim-syntax-extra'
 Plug 'vim-utils/vim-man'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'vimwiki/vimwiki'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-vinegar'
-Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes'
+Plug 'dhruvasagar/vim-table-mode'
 
 " Colorschemes
 Plug 'ronakg/gruvbox'
