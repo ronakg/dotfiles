@@ -17,6 +17,7 @@
 ### Vim
 
 - Designed for minimizing keystrokes
+- Optimized for `C` programming
 - Custom [vim-airline](https://github.com/vim-airline/vim-airline-themes) theme to my liking
 - List of plugins are in [vim-plug.vim](https://github.com/ronakg/dotfiles/blob/master/vim/vim-plug.vim)
 
