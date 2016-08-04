@@ -447,7 +447,7 @@
 			<key>Action</key>
 			<integer>11</integer>
 			<key>Text</key>
-			<string>0x00 0x6e</string>
+			<string>0x00 0x00</string>
 		</dict>
 		<key>0xf700-0x300000</key>
 		<dict>
@@ -575,11 +575,11 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>240 458 963 479 0 0 1920 1200 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>139 418 606 456 0 0 1440 900 </string>
+	<string>268 708 606 456 0 0 1920 1177 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>673 606 620 392 0 0 1920 1200 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 900 0 0 1440 877 </string>
+	<string>0 0 1920 1200 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>47 675 665 502 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1329,6 +1329,10 @@
 	<integer>0</integer>
 	<key>NoSyncInstallationId</key>
 	<string>7712432C-F180-427F-B9FE-7CD3D6692FF1</string>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
@@ -1381,7 +1385,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-07-19T18:28:02Z</date>
+	<date>2016-07-21T18:28:03Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SwitchTabModifier</key>

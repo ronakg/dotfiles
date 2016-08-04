@@ -74,11 +74,8 @@ set cpoptions+=I
 set matchtime=1
 set matchpairs+=<:>
 set clipboard=exclude:.*             " Don't connect to X server clipboard
-set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
-" set list
-" set diffopt+=iwhite                  " Ignore white space diff
 set visualbell t_vb=                 " Disable bells
-filetype plugin indent on                   " filetype specific indentation
+filetype plugin indent on            " filetype specific indentation
 syntax enable                        " Pretty syntax highlighting
 set shell=bash 
 set fileformats="unix,dos,mac"
@@ -87,6 +84,9 @@ set csverb
 set cscopetag
 set previewheight=20
 set conceallevel=2
+set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
+" set list
+" set diffopt+=iwhite                  " Ignore white space diff
 " }}
 
 if exists("&wildignorecase")
@@ -374,7 +374,11 @@ endif
 
 " vim-markdown {{
 let g:vim_markdown_folding_disabled = 1
-" }
+" }}
+
+" vim-instant-markdown {{
+let g:instant_markdown_autostart = 0
+" }}
 
 " WORK {{
 try

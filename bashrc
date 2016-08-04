@@ -106,6 +106,11 @@ if [ -f ~/.vim/plugged/gruvbox/gruvbox_256palette.sh ]; then
    source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh > /dev/null 2>&1
 fi
 
+# Select which Java to use, see dir /Library/Java/JavaVirtualMachines/ for more options
+alias setJdk6='export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)'
+alias setJdk7='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)'
+alias setJdk8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)'
+
 # Modeline and Notes {{
 # vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
 # }}
