@@ -19,3 +19,8 @@ alias create_tags_db="~/dotfiles/create_tags_db.sh"
 
 # fzf vim
 alias fvim='vim $(fzf -x)'
+
+# Select which Java to use, see dir /Library/Java/JavaVirtualMachines/ for more options
+alias setJdk6='export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)'
+alias setJdk7='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)'
+alias setJdk8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)'

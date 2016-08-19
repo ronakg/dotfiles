@@ -1,0 +1,33 @@
+imap jj <esc>
+nnoremap ; :
+nnoremap : ;
+nnoremap w :w<CR>
+
+set incsearch
+set ignorecase                       " ignore case in searching
+set smartcase                        " don't ignore case if capital letters present
+set scrolloff=4                      " keep cursor off screen edges
+set hlsearch
+set number
+set relativenumber
+
+" Backspace in normal mode switches to last buffer
+nnoremap <BS> :buffer #<CR>
+
+" Don't let x and c to spoil the yank register
+nnoremap x "_x
+nnoremap c "_c
+
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
+
+" Jump to start and end of line using the home row keys
+nmap 0 ^
+
+" Go to end of yanked/pasted text
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
