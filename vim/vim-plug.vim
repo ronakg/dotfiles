@@ -26,7 +26,7 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'sickill/vim-pasta'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Yggdroot/indentLine', { 'for' : [ 'python' ] }
+Plug 'Yggdroot/indentLine', { 'for' : [ 'python', 'js', 'html' ] }
 Plug 'ronakg/VimCompletesMe'
 Plug 'ronakg/quickr-cscope.vim'
 Plug 'ronakg/quickr-preview.vim'
@@ -46,6 +46,9 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'plasticboy/vim-markdown'
 Plug 'suan/vim-instant-markdown'
+Plug 'burnettk/vim-angular'
+Plug 'pangloss/vim-javascript'
+Plug 'groenewege/vim-less'
 
 " Colorschemes
 Plug 'ronakg/gruvbox'

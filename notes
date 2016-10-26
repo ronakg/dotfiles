@@ -1,0 +1,11 @@
+Vim installation
+
+./configure --with-features=huge \
+            --enable-pythoninterp \
+            --enable-luainterp \
+            --with-luajit \
+            --enable-perlinterp \
+            --disable-gui \
+            --disable-netbeans \
+            --enable-cscope \
+            --enable-multibyte

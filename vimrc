@@ -1,20 +1,3 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Install using following options
-"
-" ./configure --with-features=huge \
-"             --enable-pythoninterp \
-"             --enable-luainterp \
-"             --with-lua-prefix=/users/rogandhi/tools \
-"             --with-luajit \
-"             --enable-perlinterp \
-"             --disable-gui \
-"             --disable-netbeans \
-"             --enable-cscope \
-"             --prefix=/users/rogandhi/tools \
-"             --enable-multibyte
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Vim-Plug {{
 try
     source ~/.vim/vim-plug.vim

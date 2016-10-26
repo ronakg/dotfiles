@@ -3,14 +3,6 @@ command_exists () {
     type $1 &> /dev/null
 }
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-if [ -f ~/.bash_prompt ]; then
-    . ~/.bash_prompt
-fi
-
 set -o vi
 bind -m vi-insert '"jj": vi-movement-mode'
 bind 'set show-mode-in-prompt on'
@@ -104,6 +96,14 @@ stty -ixon 2>/dev/null
 
 if [ -f ~/.vim/plugged/gruvbox/gruvbox_256palette.sh ]; then
    source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh > /dev/null 2>&1
+fi
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+if [ -f ~/.bash_prompt ]; then
+    . ~/.bash_prompt
 fi
 
 # Modeline and Notes {{
