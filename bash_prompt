@@ -1,4 +1,25 @@
 #!/bin/bash
+find_git_branch() {
+  # Based on: http://stackoverflow.com/a/13003854/170413
+  local branch
+  if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
+    if [[ "$branch" == "HEAD" ]]; then
+      branch='detached*'
+    fi
+    echo "($branch) "
+  else
+    echo ""
+  fi
+}
+
+find_git_dirty() {
+  local status=$(git status --porcelain 2> /dev/null)
+  if [[ "$status" != "" ]]; then
+    echo '*'
+  else
+    echo ''
+  fi
+}
 
 if tput setaf 1 &> /dev/null; then
     tput sgr0; # reset colors
@@ -62,7 +83,7 @@ function prompt_command {
         ret_str="\[$green\]\$"
     fi
 
-    PS1="\[$userStyle\]\u \[$reset\]at \[$hostStyle\]\H \[$reset\]in \[$dirStyle\]\w \[$black\]\t\n\[$yellow\]$vim$ret_str\[$reset\] "
+    PS1="\[$userStyle\]\u \[$reset\]at \[$hostStyle\]\H \[$reset\]in \[$dirStyle\]\w \[$black\]\t\n\[$yellow\]$vim$(find_git_branch)$ret_str\[$reset\] "
 }
 
 export PROMPT_COMMAND=prompt_command

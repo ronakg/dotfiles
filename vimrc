@@ -66,7 +66,7 @@ set omnifunc=syntaxcomplete#Complete
 set csverb
 set cscopetag
 set previewheight=20
-set conceallevel=2
+set conceallevel=0
 set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
 " set list
 " set diffopt+=iwhite                  " Ignore white space diff

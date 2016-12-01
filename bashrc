@@ -3,6 +3,8 @@ command_exists () {
     type $1 &> /dev/null
 }
 
+shopt -s expand_aliases
+
 set -o vi
 bind -m vi-insert '"jj": vi-movement-mode'
 bind 'set show-mode-in-prompt on'
@@ -105,6 +107,8 @@ fi
 if [ -f ~/.bash_prompt ]; then
     . ~/.bash_prompt
 fi
+
+setJdk7
 
 # Modeline and Notes {{
 # vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
