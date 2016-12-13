@@ -56,7 +56,7 @@ set cpoptions-=m                     " Highlight when CursorMoved.
 set cpoptions+=I
 set matchtime=1
 set matchpairs+=<:>
-set clipboard=exclude:.*             " Don't connect to X server clipboard
+set clipboard=unnamed
 set visualbell t_vb=                 " Disable bells
 filetype plugin indent on            " filetype specific indentation
 syntax enable                        " Pretty syntax highlighting

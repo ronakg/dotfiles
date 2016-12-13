@@ -7,6 +7,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+"Plug 'itchyny/lightline.vim'
 Plug 'bling/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -26,8 +27,8 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'sickill/vim-pasta'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Yggdroot/indentLine', { 'for' : [ 'python', 'js', 'html' ] }
-Plug 'davidhalter/jedi-vim.git', { 'for' : [ 'python' ] }
+"Plug 'Yggdroot/indentLine', { 'for' : [ 'python', 'js', 'html' ] }
+"Plug 'davidhalter/jedi-vim.git', { 'for' : [ 'python' ] }
 Plug 'ronakg/VimCompletesMe'
 Plug 'ronakg/quickr-cscope.vim'
 Plug 'ronakg/quickr-preview.vim'
@@ -36,8 +37,8 @@ Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
 Plug 'tpope/vim-unimpaired'
 Plug 'rhysd/clever-f.vim'
 Plug 'mbbill/undotree', { 'on' : 'UndotreeToggle' }
-Plug 'chrisbra/csv.vim', { 'for' : [ 'csv' ] }
-Plug 'justinmk/vim-syntax-extra'
+"Plug 'chrisbra/csv.vim', { 'for' : [ 'csv' ] }
+"Plug 'justinmk/vim-syntax-extra'
 Plug 'vim-utils/vim-man'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-fugitive'
@@ -47,9 +48,10 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'dhruvasagar/vim-table-mode'
 "Plug 'plasticboy/vim-markdown'
 "Plug 'suan/vim-instant-markdown'
-Plug 'burnettk/vim-angular'
-Plug 'pangloss/vim-javascript'
+"Plug 'burnettk/vim-angular'
+"Plug 'pangloss/vim-javascript'
 Plug 'groenewege/vim-less'
+Plug 'sheerun/vim-polyglot'
 
 " Colorschemes
 Plug 'ronakg/gruvbox'
