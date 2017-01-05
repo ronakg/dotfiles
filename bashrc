@@ -92,6 +92,13 @@ ftags() {
                                       -c "silent tag $(cut -f2 <<< "$line")"
 }
 
+# cdf - change directory to selected file
+cdf() {
+   local file
+   local dir
+   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
 # Don't care about Ctrl-s
 bind -r '\C-s'
 stty -ixon 2>/dev/null
@@ -107,6 +114,8 @@ fi
 if [ -f ~/.bash_prompt ]; then
     . ~/.bash_prompt
 fi
+
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 setJdk7
 
