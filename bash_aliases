@@ -9,7 +9,8 @@ fi
 alias vi=vim
 
 # Shortcut to create new tmux with pwd as session name
-alias newtmux='tmux -2 -u new -s ${PWD##*/}'
+alias tmux='tmux -2 -u'
+alias newtmux='tmux new -s ${PWD##*/}'
 
 # ssh with normal terminal
 alias myssh="TERM=xterm ssh"

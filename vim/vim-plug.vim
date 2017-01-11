@@ -29,6 +29,7 @@ Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 "Plug 'Yggdroot/indentLine', { 'for' : [ 'python', 'js', 'html' ] }
 Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
+"Plug 'python-mode/python-mode', { 'for' : [ 'python' ] }
 Plug 'ronakg/VimCompletesMe'
 Plug 'ronakg/quickr-cscope.vim'
 Plug 'ronakg/quickr-preview.vim'
@@ -58,15 +59,15 @@ Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
 "Plug 'rakr/vim-one'
 "Plug 'lifepillar/vim-solarized8'
-" Plug 'romainl/flattened'
+ "Plug 'romainl/flattened'
 "Plug 'junegunn/seoul256.vim'
 "Plug 'w0ng/vim-hybrid'
 " Plug 'kabbamine/yowish.vim'
 " Plug 'zenorocha/dracula-theme', { 'rtp' : 'vim' }
-" Plug 'reedes/vim-colors-pencil'
+ "Plug 'reedes/vim-colors-pencil'
 " Plug 'altercation/vim-colors-solarized'
-" Plug 'sickill/vim-monokai'
-" Plug 'tomasr/molokai'
+ "Plug 'sickill/vim-monokai'
+ "Plug 'tomasr/molokai'
 " Plug 'sjl/badwolf'
 "Plug 'NLKNguyen/papercolor-theme'
 " Plug 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }

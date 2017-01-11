@@ -308,7 +308,7 @@ let g:gruvbox_italicize_comments=1
 let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
 let g:gruvbox_invert_selection=0
-let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 " }}
 

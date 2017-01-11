@@ -27,17 +27,7 @@ export CSCOPE_EDITOR=vim
 ### Append to the history file
 shopt -s histappend
 export HISTCONTROL=ignoreboth:erasedups
-export HISTSIZE=
-export HISTFILESIZE=
-export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S:   "
 [ -z "$TMPDIR" ] && TMPDIR=/tmp
-
-# Bind up and down array to do backward and forward history search
-if [[ $- == *i* ]]
-then
-    bind '"\e[A": history-search-backward'
-    bind '"\e[B": history-search-forward'
-fi
 
 # Device specific settings should be in .bashrc_local
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
@@ -60,7 +50,7 @@ fi
 export FZF_DEFAULT_COMMAND='if [ -f cscope.files ]; then cat cscope.files; else find . -type f; fi'
 export FZF_TMUX=0
 export FZF_COMPLETION_OPTS='+c -i'
-export FZF_DEFAULT_OPTS='--extended-exact --color fg:223,bg:235,hl:214,fg+:14,bg+:233,hl+:214 --color info:144,prompt:161,spinner:135,pointer:135,marker:118'
+export FZF_DEFAULT_OPTS='--extended-exact'
 
 # fz [command pattern] - get result from fzf using pattern and pass it to command
 # - Bypass fuzzy finder if there's only one match (--select-1)
@@ -115,9 +105,9 @@ if [ -f ~/.bash_prompt ]; then
     . ~/.bash_prompt
 fi
 
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
-
-setJdk7
+if [ -f /usr/local/etc/bash_completion ]; then
+    . /usr/local/etc/bash_completion
+fi
 
 # Modeline and Notes {{
 # vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
