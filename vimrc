@@ -47,7 +47,7 @@ set wrapscan
 set autoread                         " automatically reload files changed outside of Vim
 set showcmd
 set nohidden
-set diffopt+=context:5               " 5 lines of context in diff mode
+set diffopt+=context:5,vertical               " 5 lines of context in diff mode
 set shortmess=atToOI                 " To avoid the 'Hit Enter' prompts caused by the file messages
 set updatetime=750                   " Vim refresh time
 set linebreak                        " It maintains the whole words when wrapping
@@ -82,16 +82,14 @@ if exists("&relativenumber")
     set relativenumber
 endif
 
-" True 24 bit colors
-if has('termguicolors')
-    set t_8f=[[38;2;%lu;%lu;%lum
-    set t_8b=[[48;2;%lu;%lu;%lum
-"    set termguicolors
-endif
-
 " Italics support
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
+
+" True 24 bit colors
+if has('termguicolors')
+    set termguicolors
+endif
 
 " Key remaps {{
 
@@ -302,10 +300,8 @@ let g:gruvbox_italicize_comments=1
 let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
 let g:gruvbox_invert_selection=0
-hi LineNr ctermfg = darkgrey ctermbg = black
-hi CursorLineNr ctermfg = yellow ctermbg = black
+let g:gruvbox_contrast_dark='medium'
 colorscheme gruvbox
-highlight Comment cterm=italic
 " }}
 
 " Vim-Airline {{
@@ -322,7 +318,7 @@ let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#whitespace#enabled       = 0
 " Just show the filename (no path) in the tab
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'ronakg'
+let g:airline_theme                               = 'one'
 let g:airline_section_b                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = airline#section#create(['%{tagbar#currenttag("%s", "")}']) 
