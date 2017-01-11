@@ -26,11 +26,7 @@ export CSCOPE_EDITOR=vim
 
 ### Append to the history file
 shopt -s histappend
-export HISTCONTROL=ignoreboth:erasedups
-export HISTSIZE=
-export HISTFILESIZE=
-export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S:   "
-[ -z "$TMPDIR" ] && TMPDIR=/tmp
+HISTCONTROL=ignoreboth:erasedups
 
 # Bind up and down array to do backward and forward history search
 if [[ $- == *i* ]]

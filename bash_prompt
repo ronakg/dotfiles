@@ -86,5 +86,5 @@ function prompt_command {
     PS1="\[$userStyle\]\u \[$reset\]at \[$hostStyle\]\H \[$reset\]in \[$dirStyle\]\w \[$black\]\t\n\[$yellow\]$vim$(find_git_branch)$ret_str\[$reset\] "
 }
 
-export PROMPT_COMMAND=prompt_command
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; prompt_command"
 export PS2="\[$blue\]continue -> \[$reset\]"
