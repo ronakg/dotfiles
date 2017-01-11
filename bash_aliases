@@ -1,5 +1,5 @@
 # --color=auto is not available everywhere
-ls --color=auto &> /dev/null && alias ls="ls -Fh --color=auto" || alias ls="ls -GFh"
+ls --color &> /dev/null && alias ls="ls -Fh --color" || alias ls="ls -GFh"
 
 # grep doesn't support --color every where either
 if grep --color "a" <<<"a" &>/dev/null; then

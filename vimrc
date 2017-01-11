@@ -88,7 +88,15 @@ let &t_ZR="\e[23m"
 
 " True 24 bit colors
 if has('termguicolors')
+    " set t_8f=[[38;2;%lu;%lu;%lum
+    " set t_8b=[[48;2;%lu;%lu;%lum
     set termguicolors
+endif
+
+if &term =~ '256color'
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  set t_ut=
 endif
 
 " Key remaps {{
