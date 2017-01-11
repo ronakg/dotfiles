@@ -56,10 +56,9 @@ set cpoptions-=m                     " Highlight when CursorMoved.
 set cpoptions+=I
 set matchtime=1
 set matchpairs+=<:>
-set clipboard=unnamed
 set visualbell t_vb=                 " Disable bells
 filetype plugin indent on            " filetype specific indentation
-syntax enable                        " Pretty syntax highlighting
+syntax on                        " Pretty syntax highlighting
 set shell=bash 
 set fileformats="unix,dos,mac"
 set omnifunc=syntaxcomplete#Complete
@@ -68,6 +67,9 @@ set cscopetag
 set previewheight=20
 set conceallevel=0
 set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
+if $TMUX == ''
+    set clipboard+=unnamed
+endif
 " set list
 " set diffopt+=iwhite                  " Ignore white space diff
 " }}
