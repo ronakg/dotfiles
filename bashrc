@@ -26,8 +26,7 @@ export CSCOPE_EDITOR=vim
 
 ### Append to the history file
 shopt -s histappend
-export HISTCONTROL=ignoreboth:erasedups
-[ -z "$TMPDIR" ] && TMPDIR=/tmp
+HISTCONTROL=ignoreboth:erasedups
 
 # Device specific settings should be in .bashrc_local
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
