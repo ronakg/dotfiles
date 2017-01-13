@@ -1,6 +1,5 @@
 [user]
     name = Ronak Gandhi
-    email = ronak.gandhi@ronakg.com
 [diff]
 	tool = vimdiff
 [merge]
