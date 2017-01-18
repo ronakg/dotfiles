@@ -44,7 +44,7 @@ fi
 export FZF_DEFAULT_COMMAND='if [ -f cscope.files ]; then cat cscope.files; else find . -type f; fi'
 #export FZF_TMUX=0
 #export FZF_COMPLETION_OPTS='+c -i'
-export FZF_DEFAULT_OPTS='--exact --reverse --color=bg+:234,hl+:1,hl:202'
+export FZF_DEFAULT_OPTS='--exact --reverse --color=fg+:221,hl+:1,hl:202'
 
 if [ -f ~/.fzf.bash ]; then
    source ~/.fzf.bash
