@@ -7,7 +7,6 @@ shopt -s expand_aliases
 
 set -o vi
 bind -m vi-insert '"jj": vi-movement-mode'
-bind 'set show-mode-in-prompt on'
 
 #for *BSD/darwin
 export CLICOLOR=1
@@ -92,9 +91,9 @@ cdf() {
 bind -r '\C-s'
 stty -ixon 2>/dev/null
 
-if [ -f ~/.vim/plugged/gruvbox/gruvbox_256palette.sh ]; then
-   source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh > /dev/null 2>&1
-fi
+#if [ -f ~/.vim/plugged/gruvbox/gruvbox_256palette.sh ]; then
+   #source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh > /dev/null 2>&1
+#fi
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
