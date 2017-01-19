@@ -13,8 +13,9 @@ reset=`tput sgr 0`
 files="bashrc bash_profile vimrc gvimrc vim tmux.conf screenrc bash_aliases gitconfig bash_prompt inputrc"
 
 # Directories to install from and backup to
-mydotdir=`pwd`
-olddotdir=~/.olddotfiles
+
+BASEDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+OLDBASEDIR=~/.olddotfiles
 
 # ./install clean
 echo -n "${red}"
@@ -34,25 +35,25 @@ echo -n "${reset}"
 
 # create dotfiles_old in homedir
 echo -n "${blue}"
-echo -e "Creating $olddotdir for backup of any existing dotfiles in ~"
-mkdir -p $olddotdir
+echo -e "Creating $OLDBASEDIR for backup of any existing dotfiles in ~"
+mkdir -p $OLDBASEDIR
 echo -e "...done\n"
 
 # change to the my-dot-files directory
-echo "Changing to the $mydotdir directory"
-cd $mydotdir
+echo "Changing to the $BASEDIR directory"
+cd $BASEDIR
 echo -e "...done\n"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create
 # symlinks
-echo -e "Moving any existing dotfiles from ~ to $olddotdir\n"
+echo -e "Moving any existing dotfiles from ~ to $OLDBASEDIR\n"
 for file in $files; do
     if [ -e ~/.$file ]; then
         if [ -d ~/.$file ]; then
             # Move entire folder
-            mv -v ~/.$file $olddotdir/
+            mv -v ~/.$file $OLDBASEDIR/
         else
-            mv -v ~/.$file $olddotdir/.$file
+            mv -v ~/.$file $OLDBASEDIR/.$file
         fi
     fi
 done
@@ -62,7 +63,7 @@ echo -n "${reset}"
 echo -n "${green}"
 echo -e "\nCreating symlinks in home directory."
 for file in $files; do
-    ln -sv $mydotdir/$file ~/.$file
+    ln -sv $BASEDIR/$file ~/.$file
 done
 echo -n "${reset}"
 
