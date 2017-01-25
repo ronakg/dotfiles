@@ -15,7 +15,7 @@ set smartcase                        " don't ignore case if capital letters pres
 set infercase                        " ignore case on completion
 set backspace=indent,eol,start       " makes backspace working
 set scrolloff=4                      " keep cursor off screen edges
-set tabstop=8
+set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
@@ -301,14 +301,13 @@ set tags=./tags;/   " ctags path, search upwards till tags file is found
 " }}
 
 " Colorscheme {{
-set t_Co=256
 set background=dark
 let g:gruvbox_italic=1
 let g:gruvbox_italicize_comments=1
 let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
 let g:gruvbox_invert_selection=0
-let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_dark='medium'
 colorscheme gruvbox
 " }}
 
@@ -326,7 +325,7 @@ let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#whitespace#enabled       = 0
 " Just show the filename (no path) in the tab
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'one'
+let g:airline_theme                               = 'gruvbox'
 let g:airline_section_b                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = airline#section#create(['%{tagbar#currenttag("%s", "")}']) 
@@ -486,8 +485,6 @@ let g:oblique#incsearch_highlight_all = 1
 " quickr-cscope.vim {{
 let g:quickr_cscope_autoload_db = 1
 let g:quickr_cscope_use_qf_g = 1
-"let g:quickr_cscope_program = "gtags-cscope"
-"let g:quickr_cscope_db_file = "GTAGS"
 let g:quickr_cscope_debug_mode = 0
 " }
 
