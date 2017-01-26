@@ -24,6 +24,7 @@ find_git_dirty() {
 if tput setaf 1 &> /dev/null; then
     tput sgr0; # reset colors
     bold="\[$(tput bold)\]";
+    italic="\[$(tput sitm)\]";
     reset="\[$(tput sgr0)\]";
     black="\[$(tput setaf 235)\]"
     red="\[$(tput setaf 1)\]"
@@ -37,7 +38,8 @@ if tput setaf 1 &> /dev/null; then
     orange="\[$(tput setaf 208)\]"
     light_black="\[$(tput setaf 236)\]"
 else
-    bold='';
+    bold="\[\e[1m\]";
+    italic="\[\e[3m\]";
     reset="\[\e[0m\]";
     black="\[\e[1;30m\]";
     blue="\[\e[1;34m\]";
@@ -83,7 +85,7 @@ function prompt_command {
         ret_str="${green}\$"
     fi
 
-    PS1="${userStyle}\u ${reset}at ${hostStyle}\H ${reset}in ${dirStyle}\w ${black}\t\n${yellow}${vim}$(find_git_branch)${ret_str}${reset} "
+    PS1="${userStyle}\u ${reset}at ${italic}${hostStyle}\H ${reset}in ${bold}${dirStyle}\w\n${reset}${yellow}${vim}$(find_git_branch)${ret_str}${reset} "
 }
 
 PROMPT_COMMAND=prompt_command
