@@ -28,14 +28,14 @@ if tput setaf 1 &> /dev/null; then
     reset="\[$(tput sgr0)\]";
     black="\[$(tput setaf 235)\]"
     red="\[$(tput setaf 1)\]"
-    green="\[$(tput setaf 142)\]"
+    green="\[$(tput setaf 64)\]"
     yellow="\[$(tput setaf 214)\]"
     blue="\[$(tput setaf 66)\]"
     purple="\[$(tput setaf 175)\]"
     cyan="\[$(tput setaf 37)\]"
     gray="\[$(tput setaf 246)\]"
     white="\[$(tput setaf 223)\]"
-    orange="\[$(tput setaf 208)\]"
+    orange="\[$(tput setaf 166)\]"
     light_black="\[$(tput setaf 236)\]"
 else
     bold="\[\e[1m\]";
@@ -60,13 +60,7 @@ else
     userStyle="$green";
 fi;
 
-# Highlight the hostname when connected via SSH.
-if [[ "$SSH_TTY" ]]; then
-    hostStyle="$orange";
-else
-    hostStyle="$gray";
-fi;
-
+hostStyle="${italic}$orange";
 dirStyle="$cyan"
 
 function prompt_command {
@@ -85,7 +79,7 @@ function prompt_command {
         ret_str="${green}\$"
     fi
 
-    PS1="${userStyle}\u ${reset}at ${italic}${hostStyle}\H ${reset}in ${bold}${dirStyle}\w\n${reset}${yellow}${vim}$(find_git_branch)${ret_str}${reset} "
+    PS1="${userStyle}\u${gray} • ${hostStyle}\H${reset}${gray} • ${dirStyle}\w\n${reset}${blue}${vim}$(find_git_branch)${ret_str}${reset} "
 }
 
 PROMPT_COMMAND=prompt_command
