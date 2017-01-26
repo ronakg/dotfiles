@@ -55,14 +55,14 @@ fi;
 
 # Highlight the user name when logged in as root.
 if [[ "$USER" == "root" ]]; then
-    userStyle="$red";
+    userStyle="${bold}${italic}$red";
 else
-    userStyle="$orange";
+    userStyle="$green";
 fi;
 
 # Highlight the hostname when connected via SSH.
 if [[ "$SSH_TTY" ]]; then
-    hostStyle="$green";
+    hostStyle="$orange";
 else
     hostStyle="$gray";
 fi;
