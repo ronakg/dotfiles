@@ -28,7 +28,7 @@ if tput setaf 1 &> /dev/null; then
     reset="\[$(tput sgr0)\]";
     black="\[$(tput setaf 235)\]"
     red="\[$(tput setaf 1)\]"
-    green="\[$(tput setaf 64)\]"
+    green="\[$(tput setaf 106)\]"
     yellow="\[$(tput setaf 214)\]"
     blue="\[$(tput setaf 66)\]"
     purple="\[$(tput setaf 175)\]"
@@ -57,7 +57,7 @@ fi;
 if [[ "$USER" == "root" ]]; then
     userStyle="${bold}${italic}$red";
 else
-    userStyle="$green";
+    userStyle="$gray";
 fi;
 
 hostStyle="${italic}$orange";
@@ -79,7 +79,7 @@ function prompt_command {
         ret_str="${green}\$"
     fi
 
-    PS1="${userStyle}\u${gray} • ${hostStyle}\H${reset}${gray} • ${dirStyle}\w\n${reset}${blue}${vim}$(find_git_branch)${ret_str}${reset} "
+    PS1="${userStyle}\u${gray} • ${hostStyle}\H${reset}${gray} • ${dirStyle}\w\n${reset}${vim}${yellow}$(find_git_branch)${ret_str}${reset} "
 }
 
 PROMPT_COMMAND=prompt_command
