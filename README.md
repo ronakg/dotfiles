@@ -31,6 +31,6 @@
 
 ## Screenshot
 
-![Screenshot](http://i.imgur.com/HlFctIg.png)
+![Screenshot](http://i.imgur.com/az9lyZg.png)
 
 P.S.: Clone at your own risk. Most config files have inline documentation.
