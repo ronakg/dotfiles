@@ -56,7 +56,7 @@ Plug 'sheerun/vim-polyglot'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
-"Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes'
 "Plug 'rakr/vim-one'
 "Plug 'lifepillar/vim-solarized8'
  "Plug 'romainl/flattened'
