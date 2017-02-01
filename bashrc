@@ -42,6 +42,7 @@ if command_exists git ; then
     alias gitdiff='git difftool'
 fi
 
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_DEFAULT_OPTS='--exact --reverse --color=fg+:221,hl+:1,hl:202'
 
 if [ -f ~/.fzf.bash ]; then
