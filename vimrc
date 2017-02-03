@@ -502,6 +502,18 @@ nmap <leader><space> <plug>(quickr_preview)
 let g:vimwiki_list = [{'path': '~/Dropbox/Public/vimwiki'}]
 " }
 
+" Vimux {{
+nnoremap <C-p> :call VimuxRunLastCommand()<CR>
+" }
+
+let g:rg_command = '
+\ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+\ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf,h,hpp,sh}" 
+\ -g "!*.min.js" -g "!cscope*"
+\ -g "!.git/*" -g "!node_modules/*" -g "!vendor/*" ' 
+
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
 " }}

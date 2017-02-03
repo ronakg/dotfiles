@@ -53,6 +53,7 @@ Plug 'suan/vim-instant-markdown'
 "Plug 'pangloss/vim-javascript'
 Plug 'groenewege/vim-less'
 Plug 'sheerun/vim-polyglot'
+Plug 'benmills/vimux'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'

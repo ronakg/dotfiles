@@ -21,6 +21,15 @@ find_git_dirty() {
   fi
 }
 
+# Determine active Python virtualenv details.
+find_virtualenv() {
+    if test -z "$VIRTUAL_ENV" ; then
+        echo ""
+    else
+        echo "$cyan[`basename \"$VIRTUAL_ENV\"`] "
+    fi
+}
+
 if tput setaf 1 &> /dev/null; then
     tput sgr0; # reset colors
     bold="\[$(tput bold)\]";
@@ -63,13 +72,6 @@ fi;
 hostStyle="${italic}$orange";
 dirStyle="$cyan"
 
-# Determine active Python virtualenv details.
-if test -z "$VIRTUAL_ENV" ; then
-    virtualEnv=""
-else
-    virtualEnv="$cyan[`basename \"$VIRTUAL_ENV\"`] "
-fi
-
 function prompt_command {
     ret_code=$?
     # Are we running in a shell invoked from Vim?
@@ -86,7 +88,7 @@ function prompt_command {
         ret_str="${green}\$"
     fi
 
-    PS1="${userStyle}\u${gray} • ${hostStyle}\H${reset}${gray} • ${dirStyle}\w\n${reset}${vim}${virtualEnv}${yellow}$(find_git_branch)${ret_str}${reset} "
+    PS1="${userStyle}\u${gray} • ${hostStyle}\H${reset}${gray} • ${dirStyle}\w\n${reset}${vim}$(find_virtualenv)${yellow}$(find_git_branch)${ret_str}${reset} "
 }
 
 PROMPT_COMMAND=prompt_command
