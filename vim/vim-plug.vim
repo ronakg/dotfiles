@@ -27,12 +27,12 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'sickill/vim-pasta'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'Yggdroot/indentLine', { 'for' : [ 'python', 'js', 'html' ] }
+Plug 'Yggdroot/indentLine', { 'for' : [ 'python', 'js', 'html' ] }
 Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
 "Plug 'python-mode/python-mode', { 'for' : [ 'python' ] }
 Plug 'ronakg/VimCompletesMe'
 Plug 'ronakg/quickr-cscope.vim'
-Plug 'ronakg/quickr-preview.vim'
+"Plug 'ronakg/quickr-preview.vim'
 Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
 Plug 'tpope/vim-unimpaired'
