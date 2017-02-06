@@ -5,6 +5,7 @@ command_exists () {
 }
 
 shopt -s expand_aliases
+shopt -s checkwinsize
 
 set -o vi
 bind -m vi-insert '"jj": vi-movement-mode'

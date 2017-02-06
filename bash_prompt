@@ -1,34 +1,4 @@
 #!/bin/bash
-find_git_branch() {
-  # Based on: http://stackoverflow.com/a/13003854/170413
-  local branch
-  if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
-    if [[ "$branch" == "HEAD" ]]; then
-      branch='detached*'
-    fi
-    echo "($branch) "
-  else
-    echo ""
-  fi
-}
-
-find_git_dirty() {
-  local status=$(git status --porcelain 2> /dev/null)
-  if [[ "$status" != "" ]]; then
-    echo '*'
-  else
-    echo ''
-  fi
-}
-
-# Determine active Python virtualenv details.
-find_virtualenv() {
-    if test -z "$VIRTUAL_ENV" ; then
-        echo ""
-    else
-        echo "$cyan[`basename \"$VIRTUAL_ENV\"`] "
-    fi
-}
 
 if tput setaf 1 &> /dev/null; then
     tput sgr0; # reset colors
@@ -62,33 +32,65 @@ else
     yellow="\[\e[1;33m\]";
 fi;
 
+find_git_branch() {
+  # Based on: http://stackoverflow.com/a/13003854/170413
+  local branch
+  if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
+    if [[ "$branch" == "HEAD" ]]; then
+      branch='detached*'
+    fi
+    echo "${yellow}(${branch})${reset} "
+  else
+    echo ""
+  fi
+}
+
+find_git_dirty() {
+  local status=$(git status --porcelain 2> /dev/null)
+  if [[ "$status" != "" ]]; then
+    echo '*'
+  else
+    echo ''
+  fi
+}
+
+# Determine active Python virtualenv details.
+find_virtualenv() {
+    if test -z "$VIRTUAL_ENV" ; then
+        echo ""
+    else
+        echo "$cyan[`basename \"$VIRTUAL_ENV\"`] "
+    fi
+}
+
 # Highlight the user name when logged in as root.
 if [[ "$USER" == "root" ]]; then
-    userStyle="${bold}${italic}$red";
+    user="${bold}${italic}$red\u${reset}";
 else
-    userStyle="$gray";
+    user="${gray}\u${reset}";
 fi;
 
-hostStyle="${italic}$orange";
-dirStyle="$cyan"
+host="${italic}${orange}\H${reset}";
+dir="${cyan}\w${reset}"
+separator="${gray} \[•\] ${reset}"
 
 function prompt_command {
     ret_code=$?
     # Are we running in a shell invoked from Vim?
     if [[ "$VIM" ]]; then
-        vim="$red(Vim) "
+        vim="${red}(Vim)${reset} "
     else
         vim=""
     fi
 
     # Did last command return non-zero value?
     if [ "${ret_code}" != 0 ]; then
-        ret_str="${red}${ret_code}>"
+        ret_str="${red}${ret_code}>${reset} "
     else
-        ret_str="${green}\$"
+        ret_str="${green}\$${reset} "
     fi
 
-    PS1="${userStyle}\u${gray} • ${hostStyle}\H${reset}${gray} • ${dirStyle}\w\n${reset}${vim}$(find_virtualenv)${yellow}$(find_git_branch)${ret_str}${reset} "
+    PS1="${user}${separator}${host}${separator}${dir}\n${vim}$(find_virtualenv)$(find_git_branch)${ret_str}"
 }
 
 PROMPT_COMMAND=prompt_command
