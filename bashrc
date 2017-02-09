@@ -47,41 +47,12 @@ if [ -f ~/.fzf.bash ]; then
    source ~/.fzf.bash
 fi
 
-# fz [command pattern] - get result from fzf using pattern and pass it to command
-# - Bypass fuzzy finder if there's only one match (--select-1)
-# - Exit if there's no match (--exit-0)
-function fz {
-    alias
-    local file
-    file=$(fzf --query="${*:2}" --select-1 --exit-0)
-    [ -f "$file" ] && "$1" "$file"
-}
-
-# fe [FUZZY PATTERN] - Open the selected file with the default editor
-#   - Bypass fuzzy finder if there's only one match (--select-1)
-#   - Exit if there's no match (--exit-0)
-fe() {
-  local file
-  file=$(fzf --query="$*" --select-1 --exit-0)
-  [ -n "$file" ] && ${EDITOR} "$file"
-}
-
-# ftags - search ctags
-ftags() {
-  local line
-  [ -e tags ] &&
-  line=$(
-    awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' tags |
-    cut -c1-80 | fzf --nth=1,2
-  ) && $EDITOR $(cut -f3 <<< "$line") -c "set nocst" \
-                                      -c "silent tag $(cut -f2 <<< "$line")"
-}
-
 # cdf - change directory to selected file
 cdf() {
    local file
    local dir
-   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+   file=$(find . 2>/dev/null | fzf +m -q "$1") && dir=$(if [ -d $file ]; then
+   echo $file; else echo `dirname $file`; fi) && cd "$dir"
 }
 
 # Don't care about Ctrl-s

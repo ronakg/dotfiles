@@ -25,7 +25,7 @@ Plug 'sickill/vim-pasta'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
-"Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
+Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
 Plug 'python-mode/python-mode', { 'for' : [ 'python' ] }
 Plug 'ronakg/VimCompletesMe'
 Plug 'ronakg/quickr-cscope.vim'
