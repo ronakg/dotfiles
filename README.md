@@ -25,7 +25,7 @@
 
 - Asthetics designed to match with `vim-airline` theme
 - Key shortcuts work in conjunction with iTerm key bindings
-  * `⌘-n` to switch to window `n`
+  * `Alt-n` to switch to window `n`
   * `Alt-arrows` to switch between panes
   * `Alt-tab` to switch to last active window (quick switch between 2 tmux windows)
 
