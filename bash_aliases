@@ -26,7 +26,7 @@ alias setJdk6='export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)'
 alias setJdk7='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)'
 alias setJdk8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)'
 
-alias actvenv='. /ws/rogandhi-sjc/icsp/venv/bin/activate'
+alias actvenv='. /nobackup/rogandhi/icsp/venv/bin/activate'
 
 # Git aliases
 alias stat='git status'
@@ -40,3 +40,4 @@ alias push='git push'
 alias pull='git pull'
 alias clone='git clone'
 alias fetch='git fetch'
+alias confemail='git config user.email'

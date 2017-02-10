@@ -41,7 +41,7 @@ git config --global merge.tool vimdiff
 git config --global difftool.prompt false
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-export FZF_DEFAULT_OPTS='--bind J:down,K:up --exact --reverse --color=fg+:221,hl+:1,hl:202'
+export FZF_DEFAULT_OPTS='--color=fg+:221,hl+:1,hl:202'
 
 if [ -f ~/.fzf.bash ]; then
    source ~/.fzf.bash
