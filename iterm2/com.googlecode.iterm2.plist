@@ -587,89 +587,12 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
-		<key>0x30-0x100000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x00 0x00</string>
-		</dict>
-		<key>0x31-0x100000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x00 0x31</string>
-		</dict>
-		<key>0x32-0x100000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x00 0x32</string>
-		</dict>
-		<key>0x33-0x100000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x00 0x33</string>
-		</dict>
-		<key>0x34-0x100000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x00 0x34</string>
-		</dict>
-		<key>0x35-0x100000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x00 0x35</string>
-		</dict>
-		<key>0x36-0x100000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x00 0x36</string>
-		</dict>
-		<key>0x37-0x100000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x00 0x37</string>
-		</dict>
-		<key>0x38-0x100000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x00 0x38</string>
-		</dict>
-		<key>0x39-0x100000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x00 0x39</string>
-		</dict>
 		<key>0x9-0x40000</key>
 		<dict>
 			<key>Action</key>
 			<integer>32</integer>
 			<key>Text</key>
 			<string></string>
-		</dict>
-		<key>0x9-0x80000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x00 0x00</string>
 		</dict>
 		<key>0xf700-0x300000</key>
 		<dict>
@@ -811,9 +734,9 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>433 363 620 392 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>505 177 918 495 0 0 1440 877 </string>
+	<string>505 347 796 473 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 900 0 0 1440 877 </string>
+	<string>0 0 1920 1200 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>47 675 665 502 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1647,7 +1570,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-02-01T01:08:35Z</date>
+	<date>2017-02-09T04:07:23Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowPaneTitles</key>

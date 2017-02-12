@@ -70,9 +70,9 @@ else
     user="${gray}\u${reset}";
 fi;
 
-host="${italic}${orange}\H${reset}";
-dir="${cyan}\w${reset}"
-separator="${gray} \[•\] ${reset}"
+_host="${italic}${orange}\H${reset}";
+_dir="${cyan}\w${reset}"
+_sep="${gray} \[•\] ${reset}"
 
 function prompt_command {
     ret_code=$?
@@ -90,7 +90,7 @@ function prompt_command {
         ret_str="${green}\$${reset} "
     fi
 
-    PS1="${user}${separator}${host}${separator}${dir}\n${vim}$(find_virtualenv)$(find_git_branch)${ret_str}"
+    PS1="${user}${_sep}${_host}${_sep}${_dir}\n${vim}$(find_virtualenv)$(find_git_branch)${ret_str}"
 }
 
 PROMPT_COMMAND=prompt_command

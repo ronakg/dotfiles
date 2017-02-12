@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # Exit the script on any error
 set -e
@@ -31,14 +31,14 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 
 while getopts ":is:fd:h" opt; do
     case "${opt}" in
-    h) 
+    h)
         usage
         exit 0
         ;;
-    i)  
+    i)
         includekernel=1
         ;;
-    s)  
+    s)
         rootdir=${OPTARG}
         ;;
     d)

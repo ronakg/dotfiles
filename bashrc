@@ -1,4 +1,3 @@
-echo "bash version: $BASH_VERSION"
 # Check if a command exists
 command_exists () {
     type $1 &> /dev/null
@@ -51,17 +50,13 @@ fi
 cdf() {
    local file
    local dir
-   file=$(find . 2>/dev/null | fzf +m -q "$1") && dir=$(if [ -d $file ]; then
+   file=$(fzf --reverse --height=50 -q "$1") && dir=$(if [ -d $file ]; then
    echo $file; else echo `dirname $file`; fi) && cd "$dir"
 }
 
 # Don't care about Ctrl-s
 bind -r '\C-s'
 stty -ixon 2>/dev/null
-
-#if [ -f ~/.vim/plugged/gruvbox/gruvbox_256palette.sh ]; then
-   #source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh > /dev/null 2>&1
-#fi
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases

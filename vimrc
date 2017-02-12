@@ -33,8 +33,8 @@ set splitright                       " Open split on right, not left
 set splitbelow                       " Open split below, not above
 set wildmenu
 set wildmode=longest:full,list:full
-set completeopt+=longest,menuone
-set completeopt-=preview             " Don't open preview window
+set completeopt=longest,menuone,preview
+set completeopt-=preview
 set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
@@ -50,6 +50,7 @@ set showcmd
 set nohidden
 set diffopt+=context:5,vertical               " 5 lines of context in diff mode
 set shortmess=atToOI                 " To avoid the 'Hit Enter' prompts caused by the file messages
+set shortmess+=c
 set updatetime=750                   " Vim refresh time
 set linebreak                        " It maintains the whole words when wrapping
 set complete-=i                      " Don't scan included files for completion
@@ -91,6 +92,7 @@ if has('termguicolors')
     " set t_8f=[[38;2;%lu;%lu;%lum
     " set t_8b=[[48;2;%lu;%lu;%lum
     set termguicolors
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
 if &term =~ '256color'
@@ -204,6 +206,9 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 " }}
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " UpdateGlobalDB() {{
 "

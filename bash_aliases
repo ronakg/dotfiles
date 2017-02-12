@@ -6,6 +6,9 @@ if grep --color "a" <<<"a" &>/dev/null; then
     alias grep='grep --color=auto'
 fi
 
+if command_exists nvim; then
+    alias vim=nvim;
+fi
 alias vi=vim
 
 # Shortcut to create new tmux with pwd as session name

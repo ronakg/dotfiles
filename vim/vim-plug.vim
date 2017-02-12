@@ -8,13 +8,10 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'bling/vim-airline'
-" Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-dispatch'
-Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'mhinz/vim-startify'
 Plug 'terryma/vim-multiple-cursors'
-" Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-sayonara'
 Plug 'will133/vim-dirdiff'
 Plug 'junegunn/fzf.vim'
@@ -40,18 +37,14 @@ Plug 'vim-utils/vim-man'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
-Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'dhruvasagar/vim-table-mode'
 Plug 'suan/vim-instant-markdown'
-Plug 'groenewege/vim-less'
-Plug 'sheerun/vim-polyglot'
 Plug 'benmills/vimux'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'rakr/vim-one'
+Plug 'rakr/vim-one'
 " Plug 'lifepillar/vim-solarized8'
 " Plug 'romainl/flattened'
 " Plug 'junegunn/seoul256.vim'
@@ -67,7 +60,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
 " Plug 'romainl/Apprentice'
 " Plug 'ajh17/spacegray.vim'
-" Plug 'chriskempson/base16-vim/'
+Plug 'chriskempson/base16-vim/'
 
 " Add plugins to &runtimepath
 call plug#end()

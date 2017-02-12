@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Install script
 
@@ -16,6 +16,9 @@ files="bashrc bash_profile vimrc gvimrc vim tmux.conf screenrc bash_aliases gitc
 
 BASEDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 OLDBASEDIR=~/.olddotfiles
+
+mkdir ~/.config || true
+ln -s ~/.vim ~/.config/nvim
 
 # ./install clean
 echo -n "${red}"
