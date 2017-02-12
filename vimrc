@@ -21,7 +21,7 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
-"set cindent
+set cindent
 set smartindent
 set autoindent
 set copyindent
@@ -334,14 +334,10 @@ let g:airline#extensions#tabline#show_buffers                 = 1
 let g:airline#extensions#branch#enabled                       = 1
 let g:airline#extensions#tagbar#enabled                       = 0
 let g:airline_powerline_fonts                                 = 1
-" don't count trailing whitespace since it lags in huge files
 let g:airline#extensions#whitespace#enabled       = 0
-" Just show the filename (no path) in the tab
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'base16'
-"let g:airline_section_b                           = '%{fnamemodify(getcwd(), ":t")}'
+let g:airline_theme                               = 'base16_default'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
-"let g:airline_section_x                           = airline#section#create(['%{tagbar#currenttag("%s", "")}'])
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype'])
 " Easier tab/buffer switching
@@ -445,7 +441,6 @@ map <Leader>vz :call VimuxZoomRunner()<CR>
 " }
 
 " Indentline {{
-let g:indentLine_char = '│'
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_concealcursor=''
 set conceallevel=1

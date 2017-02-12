@@ -40,27 +40,29 @@ Plug 'junegunn/gv.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'suan/vim-instant-markdown'
 Plug 'benmills/vimux'
+Plug 'hdima/python-syntax'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-one'
-" Plug 'lifepillar/vim-solarized8'
-" Plug 'romainl/flattened'
-" Plug 'junegunn/seoul256.vim'
-" Plug 'w0ng/vim-hybrid'
-" Plug 'kabbamine/yowish.vim'
-" Plug 'zenorocha/dracula-theme', { 'rtp' : 'vim' }
-" Plug 'reedes/vim-colors-pencil'
-" Plug 'altercation/vim-colors-solarized'
- "Plug 'sickill/vim-monokai'
-" Plug 'tomasr/molokai'
-" Plug 'sjl/badwolf'
-" Plug 'NLKNguyen/papercolor-theme'
-" Plug 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
-" Plug 'romainl/Apprentice'
-" Plug 'ajh17/spacegray.vim'
+Plug 'lifepillar/vim-solarized8'
+Plug 'romainl/flattened'
+Plug 'junegunn/seoul256.vim'
+Plug 'w0ng/vim-hybrid'
+Plug 'kabbamine/yowish.vim'
+Plug 'zenorocha/dracula-theme', { 'rtp' : 'vim' }
+Plug 'reedes/vim-colors-pencil'
+Plug 'altercation/vim-colors-solarized'
+Plug 'sickill/vim-monokai'
+Plug 'tomasr/molokai'
+Plug 'sjl/badwolf'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
+Plug 'romainl/Apprentice'
+Plug 'ajh17/spacegray.vim'
 Plug 'chriskempson/base16-vim/'
+Plug 'mhartington/oceanic-next'
 
 " Add plugins to &runtimepath
 call plug#end()
