@@ -38,6 +38,9 @@ HISTCONTROL=ignoreboth:erasedups
 git config --global diff.tool vimdiff
 git config --global merge.tool vimdiff
 git config --global difftool.prompt false
+if command_exists nvim; then
+    git config --global mergetool.vimdiff.path nvim
+fi
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTS='--color=fg+:221,hl+:1,hl:202'

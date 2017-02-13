@@ -40,3 +40,5 @@
     required = true
 [show]
 	tool = vimdiff
+[mergetool "vimdiff"]
+	path = nvim
