@@ -17,8 +17,11 @@ files="bashrc bash_profile vimrc gvimrc vim tmux.conf screenrc bash_aliases gitc
 BASEDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 OLDBASEDIR=~/.olddotfiles
 
-mkdir ~/.config || true
-ln -s ~/.vim ~/.config/nvim
+echo -n "${green}"
+echo "Setting up NeoVim directories..."
+mkdir ~/.config
+ln -sv $BASEDIR/vim ~/.config/nvim
+echo -n "${reset}"
 
 # ./install clean
 echo -n "${red}"

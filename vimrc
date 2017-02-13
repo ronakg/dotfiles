@@ -398,8 +398,8 @@ let g:DirDiffExcludes = "*.CC*,*.c.*,.ACME*"
 if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
-    set undolevels=100
-    set undoreload=1000
+    set undolevels=1000
+    set undoreload=10000
 endif
 " focus when open
 let g:undotree_SetFocusWhenToggle = 1
