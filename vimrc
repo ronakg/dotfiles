@@ -235,12 +235,6 @@ if has("autocmd")
 
         autocmd BufWritePre * :%s/\s\+$//e
 
-        " Refresh buffer on entering, works with autoread
-        au WinEnter * :silent! checktime
-
-        " In a diff window, if can't find extension of a file, assume it's a C file
-        autocmd BufNewFile,BufRead * if (expand('%:t') !~ '\.') && (&diff == 1) | set syntax=c | endif
-
         " Spell check commit messages
         autocmd BufRead COMMIT_EDITMSG setlocal spell!
 
@@ -302,7 +296,6 @@ if &diff
     set nornu
 endif
 " }}
-
 
 set tags=./tags;/   " ctags path, search upwards till tags file is found
 
@@ -369,14 +362,6 @@ else
 endif
 " }}
 
-" vim-markdown {{
-let g:vim_markdown_folding_disabled = 1
-" }}
-
-" vim-instant-markdown {{
-let g:instant_markdown_autostart = 0
-" }}
-
 " WORK {{
 try
     source ~/.vimrc_work
@@ -413,8 +398,8 @@ let g:DirDiffExcludes = "*.CC*,*.c.*,.ACME*"
 if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
-    set undolevels=1000
-    set undoreload=10000
+    set undolevels=100
+    set undoreload=1000
 endif
 " focus when open
 let g:undotree_SetFocusWhenToggle = 1
@@ -427,13 +412,15 @@ let g:VimuxOrientation = "h"
 let g:VimuxHeight = "30"
 
 " Prompt for a command to run
-map <Leader>vp :VimuxPromptCommand<CR>
+" Vimux {{
+nnoremap <Leader>vp :VimuxPromptCommand<CR>
+nnoremap <C-p> :call VimuxRunLastCommand()<CR>
 
 " Close vim tmux runner opened by VimuxRunCommand
-map <Leader>vq :VimuxCloseRunner<CR>
+nnoremap <Leader>vq :VimuxCloseRunner<CR>
 
 " Zoom the runner pane (use <bind-key> z to restore runner pane)
-map <Leader>vz :call VimuxZoomRunner()<CR>
+nnoremap <Leader>vz :call VimuxZoomRunner()<CR>
 " }
 
 " Jedi.vim {{
@@ -505,22 +492,6 @@ let g:quickr_cscope_debug_mode = 0
 " quickr-previe.vim {{
 nmap <leader><space> <plug>(quickr_preview)
 " }}
-
-" vimwiki {{
-let g:vimwiki_list = [{'path': '~/Dropbox/Public/vimwiki'}]
-" }
-
-" Vimux {{
-nnoremap <C-p> :call VimuxRunLastCommand()<CR>
-" }
-
-let g:rg_command = '
-\ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-\ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf,h,hpp,sh}"
-\ -g "!*.min.js" -g "!cscope*"
-\ -g "!.git/*" -g "!node_modules/*" -g "!vendor/*" '
-
-command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
