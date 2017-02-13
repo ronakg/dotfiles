@@ -354,8 +354,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 
 " FZF {{
 nnoremap <silent> <leader>b :Tags<CR>
-nnoremap <silent> <leader>p :FZF<CR>
-nnoremap <silent> <leader>/ :Lines<CR>
+nnoremap <silent> <leader>p :FZF --no-reverse<CR>
 " }}
 
 " Change cursor shape based on mode.
