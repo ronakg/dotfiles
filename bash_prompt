@@ -7,8 +7,8 @@ if tput setaf 1 &> /dev/null; then
     reset="\[$(tput sgr0)\]";
     black="\[$(tput setaf 235)\]"
     red="\[$(tput setaf 1)\]"
-    green="\[$(tput setaf 106)\]"
-    yellow="\[$(tput setaf 214)\]"
+    green="\[$(tput setaf 143)\]"
+    yellow="\[$(tput setaf 3)\]"
     blue="\[$(tput setaf 66)\]"
     purple="\[$(tput setaf 175)\]"
     cyan="\[$(tput setaf 37)\]"
