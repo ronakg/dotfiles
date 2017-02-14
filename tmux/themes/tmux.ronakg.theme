@@ -1,0 +1,69 @@
+#!/bin/bash
+window_active_bg='colour235'
+window_inactive_bg='colour236'
+
+status_bar_bg='colour238'
+status_bar_fg='colour12'
+
+pane_active_fg='red'
+
+message_fg='colour39'
+
+status_edge_bg=$status_bar_fg
+status_edge_fg='colour237'
+
+inactive_title_bg='colour236'
+inactive_no_bg='colour235'
+inactive_title_fg='colour245'
+inactive_no_fg='colour245'
+
+active_title_bg='colour142'
+active_no_bg='colour23'
+active_title_fg='colour232'
+active_no_fg='colour250'
+
+right_sep=''
+left_sep=''
+
+set-option -g status "on"
+
+# default statusbar colors
+set-option -g status-bg $status_bar_bg
+set-option -g status-fg $status_bar_fg
+
+# set inactive/active window styles
+set -g window-style "bg=$window_inactive_bg"
+set -g window-active-style "bg=$window_active_bg"
+
+# pane border
+set-option -g pane-active-border-fg $pane_active_fg
+set-option -g pane-active-border-bg $window_active_bg
+set-option -g pane-border-fg $pane_active_fg
+set-option -g pane-border-bg $window_inactive_bg
+
+# message infos
+set-option -g message-bg $status_bar_bg
+set-option -g message-fg $message_fg
+
+# writting commands inactive
+set-option -g message-command-bg $status_bar_bg
+set-option -g message-command-fg $message_fg
+
+## Theme settings mixed with colors (unfortunately, but there is no cleaner way)
+set-option -g status-attr "none"
+set-option -g status-justify "left"
+set-option -g status-left-attr "none"
+set-option -g status-left-length "80"
+set-option -g status-right-attr "none"
+set-option -g status-right-length "80"
+set-window-option -g window-status-activity-attr "none"
+set-window-option -g window-status-attr "none"
+set-window-option -g window-status-separator " "
+
+set-option -g status-left "#[fg=$status_edge_fg, bg=$status_edge_bg] #S #[fg=$status_edge_bg, bg=$status_bar_bg]$right_sep "
+
+set-option -g status-right "#[fg=$inactive_title_bg,bg=$status_bar_bg]$left_sep#[fg=$status_edge_bg,bg=$inactive_title_bg] %Y-%m-%d • %H:%M #[fg=$status_edge_bg, bg=$inactive_title_bg]$left_sep#[fg=$status_edge_fg, bg=$status_edge_bg] #h "
+
+set-window-option -g window-status-current-format "#[fg=$status_bar_bg, bg=$active_no_bg]$right_sep#[fg=$active_no_fg, bg=$active_no_bg] #I #[fg=$active_no_bg, bg=$active_title_bg]$right_sep#[fg=$active_title_fg, bg=$active_title_bg] #W #[fg=$active_title_bg, bg=$status_bar_bg]$right_sep"
+
+set-window-option -g window-status-format "#[fg=$status_bar_bg,bg=$inactive_no_bg]$right_sep#[fg=$inactive_no_fg,bg=$inactive_no_bg] #I #[fg=$inactive_no_bg,bg=$inactive_title_bg]$right_sep#[fg=$inactive_title_fg, bg=$inactive_title_bg] #W #[fg=$inactive_title_bg, bg=$status_bar_bg]$right_sep"

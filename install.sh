@@ -10,7 +10,7 @@ blue=`tput setaf 4`
 reset=`tput sgr 0`
 
 # List of files to be installed
-files="bashrc bash_profile vimrc gvimrc vim tmux.conf screenrc bash_aliases gitconfig bash_prompt inputrc"
+files="bashrc bash_profile vimrc gvimrc vim tmux tmux.conf screenrc bash_aliases gitconfig bash_prompt inputrc"
 
 # Directories to install from and backup to
 
@@ -21,6 +21,7 @@ echo -n "${green}"
 echo "Setting up NeoVim directories..."
 mkdir ~/.config
 ln -sv $BASEDIR/vim ~/.config/nvim
+ln -sv ~/.vimrc ~/.config/nvim/init.vim
 echo -n "${reset}"
 
 # ./install clean
@@ -72,15 +73,6 @@ for file in $files; do
     ln -sv $BASEDIR/$file ~/.$file
 done
 echo -n "${reset}"
-
-# Install terminfo
-#echo -n "${red}"
-#echo -e "\nInstall terminfo"
-#{ infocmp -1 xterm-256color ; printf "\tsitm=\\E[3m,\n\tritm=\\E[23m,"; } > xterm-256color.terminfo
-#tic xterm-256color.terminfo
-#{ infocmp -1 screen-256color ; printf "\tsitm=\\E[3m,\n\tritm=\\E[23m,"; } > screen-256color.terminfo
-#tic screen-256color.terminfo
-#echo -n "${reset}"
 
 echo -n "${blue}"
 echo -e "\nInstalling vim plugins..."

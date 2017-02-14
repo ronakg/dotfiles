@@ -71,6 +71,11 @@ set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
 if $TMUX == ''
     set clipboard+=unnamed
 endif
+
+if has('nvim')
+    set inccommand=nosplit
+endif
+
 " set list
 " set diffopt+=iwhite                  " Ignore white space diff
 " }}
@@ -261,6 +266,11 @@ if has("autocmd")
 
         " Open help in vertical split
         autocmd FileType help wincmd L
+
+        if has('nvim')
+            au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+        endif
+
     augroup END
 endif
 " }}
@@ -314,6 +324,7 @@ highlight LineNr guibg=#1d2021
 highlight CursorLine guibg=#1d2021
 highlight CursorColumn guibg=#1d2021
 highlight CursorLineNr guibg=#1d2021
+highlight TermCursor ctermfg=red guifg=red
 " }}
 
 " Vim-Airline {{
@@ -492,6 +503,40 @@ let g:quickr_cscope_debug_mode = 0
 " quickr-previe.vim {{
 nmap <leader><space> <plug>(quickr_preview)
 " }}
+
+if has('nvim')
+    " Use deoplete.
+    let g:deoplete#enable_at_startup = 1
+
+    if exists(':tnoremap')
+        tnoremap <Esc> <C-\><C-n>
+    endif
+
+    nnoremap <C-b> :vs term://bash<CR>
+
+    " Window navigation function
+    " Make ctrl-h/j/k/l move between windows and auto-insert in terminals
+    func! s:mapMoveToWindowInDirection(direction)
+        func! s:maybeInsertMode(direction)
+            stopinsert
+            execute "wincmd" a:direction
+
+            if &buftype == 'terminal'
+                startinsert!
+            endif
+        endfunc
+
+        execute "tnoremap" "<silent>" "<C-" . a:direction . ">"
+                    \ "<C-\\><C-n>"
+                    \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
+        execute "nnoremap" "<silent>" "<C-" . a:direction . ">"
+                    \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
+    endfunc
+
+    for dir in ["h", "j", "l", "k"]
+        call s:mapMoveToWindowInDirection(dir)
+    endfor
+endif
 
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:

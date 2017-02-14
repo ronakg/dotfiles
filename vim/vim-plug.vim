@@ -64,6 +64,13 @@ Plug 'ajh17/spacegray.vim'
 Plug 'chriskempson/base16-vim/'
 Plug 'mhartington/oceanic-next'
 
+if has('nvim')
+    Plug 'zchee/deoplete-jedi'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'zchee/deoplete-clang'
+    Plug 'sbdchd/neoformat'
+endif
+
 " Add plugins to &runtimepath
 call plug#end()
 " }}
