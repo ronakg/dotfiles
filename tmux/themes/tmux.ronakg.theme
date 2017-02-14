@@ -1,6 +1,6 @@
 #!/bin/bash
-window_active_bg='colour235'
-window_inactive_bg='colour236'
+window_active_bg='colour234'
+window_inactive_bg='colour235'
 
 status_bar_bg='colour238'
 status_bar_fg='colour12'

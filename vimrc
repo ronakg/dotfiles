@@ -318,7 +318,7 @@ let g:gruvbox_italicize_comments=1
 let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
 let g:gruvbox_invert_selection=0
-let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 highlight LineNr guibg=#1d2021
 highlight CursorLine guibg=#1d2021
@@ -340,7 +340,7 @@ let g:airline#extensions#tagbar#enabled                       = 0
 let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#whitespace#enabled       = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'one'
+let g:airline_theme                               = 'base16_default'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype'])
