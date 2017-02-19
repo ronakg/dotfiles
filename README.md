@@ -11,7 +11,6 @@
 ### Bash
 
 - Simple but useful bash prompt
-  [bash prompt screenshot](http://i.imgur.com/2OnZyln.png)
 - `vi` mode on by default
 
 ### Vim
@@ -31,6 +30,6 @@
 
 ## Screenshot
 
-![Screenshot](http://i.imgur.com/az9lyZg.png)
+![Screenshot](http://i.imgur.com/cisQiqu.png)
 
 P.S.: Clone at your own risk. Most config files have inline documentation.
