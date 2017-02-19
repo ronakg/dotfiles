@@ -66,6 +66,8 @@ for file in $files; do
     ln -sv $DOTFILES/$file ~/.$file
 done
 
+git submodule update --init --recursive
+
 echo -e "\nInstalling vim plugins..."
 vim -u NONE ./vim/vim-plug.vim +source\ % +PlugUpdate +qall
 
