@@ -728,15 +728,15 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>831 33 609 330 0 0 1440 877 </string>
+	<string>831 33 609 434 0 0 1440 877 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>139 414 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>433 363 620 392 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>505 347 796 473 0 0 1440 877 </string>
+	<string>159 167 796 473 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1920 1200 0 0 1920 1177 </string>
+	<string>47 375 650 502 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>47 675 665 502 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -975,13 +975,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.12098352611064911</real>
+				<real>0.082812190055847168</real>
 				<key>Color Space</key>
 				<string>Calibrated</string>
 				<key>Green Component</key>
-				<real>0.12187247723340988</real>
+				<real>0.082810796797275543</real>
 				<key>Red Component</key>
-				<real>0.1203213557600975</real>
+				<real>0.082813262939453125</real>
 			</dict>
 			<key>Background Image Location</key>
 			<string></string>
@@ -1570,7 +1570,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-02-09T04:07:23Z</date>
+	<date>2017-02-19T07:45:45Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowPaneTitles</key>
@@ -1594,9 +1594,9 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.13</string>
+	<string>3.0.14</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
-	<integer>0</integer>
+	<integer>6</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
 	<false/>
 	<key>moveToApplicationsFolderAlertSuppress</key>

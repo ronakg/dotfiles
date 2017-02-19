@@ -15,3 +15,5 @@ plug.vim.old
 *.terminfo
 vim/session/**
 vim/vim
+tmux/tmux
+vim/init.vim
