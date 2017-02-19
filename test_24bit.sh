@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Shell: $SHELL"
 awk 'BEGIN{
     s="/\\/\\/\\/\\/\\"; s=s s s s s s s s s s s s s s s s s s s s s s s;
     for (colnum = 0; colnum<256; colnum++) {

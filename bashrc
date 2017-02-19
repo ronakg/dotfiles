@@ -1,5 +1,5 @@
 # Where are my dotfiles
-DOTFILES=~/dotfiles
+export DOTFILES=~/dotfiles
 
 # Setup environment, common to both bash and zsh
 shopt -s expand_aliases

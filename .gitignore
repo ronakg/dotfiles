@@ -11,8 +11,8 @@ Session.vim
 tags
 vim/plugged
 vim/plugged/**
+vim/spell/**
 plug.vim.old
-*.terminfo
 vim/session/**
 vim/vim
 tmux/tmux

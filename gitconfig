@@ -1,5 +1,7 @@
 [user]
-    name = Ronak Gandhi
+	name = Ronak Gandhi
+[github]
+    user = ronakg
 [diff]
 	tool = vimdiff
 [merge]

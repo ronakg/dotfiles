@@ -6,6 +6,8 @@ command_exists () {
     type $1 &> /dev/null
 }
 
+export TERM=xterm-256color
+
 # Aliases
 [ -f $DOTFILES/aliases.sh ] && . $DOTFILES/aliases.sh
 
