@@ -73,7 +73,7 @@ function prompt_command {
     if [ "${ret_code}" != 0 ]; then
         ret_str="${red}❯❯${reset} "
     else
-        ret_str="${cyan}❯${reset} "
+        ret_str="${blue}❯${reset} "
     fi
 
     PS1="${user}${_host}${_dir}\n${vim}$(find_virtualenv)$(find_git_branch)${ret_str}"
