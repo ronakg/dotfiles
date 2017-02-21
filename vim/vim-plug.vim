@@ -38,9 +38,10 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'suan/vim-instant-markdown'
 Plug 'benmills/vimux'
 Plug 'hdima/python-syntax'
+"Plug 'gabrielelana/vim-markdown'
+Plug 'vim-pandoc/vim-pandoc-syntax' | Plug 'vim-pandoc/vim-pandoc'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'

@@ -27,6 +27,8 @@ setopt APPEND_HISTORY
 
 setopt COMPLETE_ALIASES
 
+[ -f $DOTFILES/zsh_prompt ] && . $DOTFILES/zsh_prompt
+
 # FZF
 if [ -f ~/.fzf.zsh ]; then
    . ~/.fzf.zsh

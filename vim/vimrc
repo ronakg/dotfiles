@@ -66,7 +66,7 @@ set omnifunc=syntaxcomplete#Complete
 set csverb
 set cscopetag
 set previewheight=20
-set conceallevel=0
+set conceallevel=2
 set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
 if $TMUX == ''
     set clipboard+=unnamed
@@ -324,7 +324,6 @@ highlight LineNr guibg=#1d2021
 highlight CursorLine guibg=#1d2021
 highlight CursorColumn guibg=#1d2021
 highlight CursorLineNr guibg=#1d2021
-highlight TermCursor ctermfg=red guifg=red
 " }}
 
 " Vim-Airline {{
@@ -440,8 +439,6 @@ nnoremap <Leader>vz :call VimuxZoomRunner()<CR>
 " Indentline {{
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_concealcursor=''
-set conceallevel=1
-let g:indentLine_conceallevel=1
 " }
 
 " quick-scope {{
@@ -504,13 +501,14 @@ let g:quickr_cscope_debug_mode = 0
 nmap <leader><space> <plug>(quickr_preview)
 " }}
 
+" vim-pandoc {{
+let g:pandoc#syntax#conceal#urls = 1
+let g:pandoc#folding#level = 0
+" }
+
 if has('nvim')
     " Use deoplete.
     let g:deoplete#enable_at_startup = 1
-
-    if exists(':tnoremap')
-        tnoremap <Esc> <C-\><C-n>
-    endif
 
     nnoremap <C-b> :vs term://bash<CR>
 

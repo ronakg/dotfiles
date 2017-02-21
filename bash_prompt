@@ -76,7 +76,7 @@ function prompt_command {
         ret_str="${blue}❯${reset} "
     fi
 
-    PS1="${user}${_host}${_dir}\n${vim}$(find_virtualenv)$(find_git_branch)${ret_str}"
+    PS1="\n${user}${_host}${_dir}\n${vim}$(find_virtualenv)$(find_git_branch)${ret_str}"
 }
 
 PROMPT_COMMAND=prompt_command
