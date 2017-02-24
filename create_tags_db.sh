@@ -76,9 +76,6 @@ cd "${rootdir}"
 if [ ${startfresh} -eq 1 ] || [ ${#dirs[@]} -gt 0 ]; then
     echo 'Deleting existing cscope files...'
     rm -rfv ./cscope.*
-    echo 'Deleting existing tags files...'
-    rm -rfv ./tags*
-
     if [ ${#dirs[@]} -lt 1 ]; then
         declare -a dirs=("./")
     fi
@@ -107,9 +104,6 @@ fi
 
 echo 'Building cscope database...'
 cscope -b -q -k -i "${rootdir}"/cscope.files
-
-echo 'Building ctags database...'
-ctags --extra=+f --c-kinds=+p --c++-kinds=+p --fields=+lS --excmd=p --sort=yes -L "${rootdir}"/cscope.files
 
 cd "${cwd}"
 echo 'All done'

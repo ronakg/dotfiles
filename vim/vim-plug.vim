@@ -24,9 +24,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
 Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
 Plug 'python-mode/python-mode', { 'for' : [ 'python' ] }
-Plug 'ronakg/VimCompletesMe'
+"Plug 'ronakg/VimCompletesMe'
 Plug 'ronakg/quickr-cscope.vim'
-" Plug 'ronakg/quickr-preview.vim'
+Plug 'ronakg/quickr-preview.vim'
 Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
 Plug 'tpope/vim-unimpaired'
@@ -40,8 +40,8 @@ Plug 'junegunn/gv.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'hdima/python-syntax'
-"Plug 'gabrielelana/vim-markdown'
 Plug 'vim-pandoc/vim-pandoc-syntax' | Plug 'vim-pandoc/vim-pandoc'
+Plug 'ludovicchabant/vim-gutentags'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
@@ -66,10 +66,14 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'mhartington/oceanic-next'
 
 if has('nvim')
-    Plug 'zchee/deoplete-jedi'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'zchee/deoplete-jedi'
     Plug 'zchee/deoplete-clang'
     Plug 'sbdchd/neoformat'
+    Plug 'nathanalderson/yang.vim'
+    Plug 'zchee/libclang-python3'
+    Plug 'Shougo/neoinclude.vim'
+    Plug 'neomake/neomake'
 endif
 
 " Add plugins to &runtimepath

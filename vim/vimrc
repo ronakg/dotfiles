@@ -113,7 +113,6 @@ endif
 let g:mapleader = "\<Space>"
 
 nnoremap <leader>m :Make<CR>
-nnoremap <C-m> :lnext<CR>
 
 nnoremap G :norm! Gzz<CR>
 
@@ -534,6 +533,11 @@ if has('nvim')
     for dir in ["h", "j", "l", "k"]
         call s:mapMoveToWindowInDirection(dir)
     endfor
+
+    " deoplete-clang {{
+    let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-3.8/lib/libclang.so"
+    let g:deoplete#sources#clang#clang_header = "/usr/lib/llvm-3.8/lib/clang"
+    " }
 endif
 
 " Modeline and Notes {{
