@@ -13,6 +13,9 @@ fi
 
 alias vi=vim
 
+# silver searcher
+alias ag='ag --noheading --nobreak'
+
 # Shortcut to create new tmux with pwd as session name
 alias tmux='tmux -2 -u'
 alias newtmux='tmux new -s ${PWD##*/}'
