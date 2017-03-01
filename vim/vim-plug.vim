@@ -23,8 +23,7 @@ Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
 Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
-Plug 'python-mode/python-mode', { 'for' : [ 'python' ] }
-"Plug 'ronakg/VimCompletesMe'
+Plug 'ronakg/VimCompletesMe'
 Plug 'ronakg/quickr-cscope.vim'
 Plug 'ronakg/quickr-preview.vim'
 Plug 'wellle/targets.vim'
@@ -40,10 +39,12 @@ Plug 'junegunn/gv.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'hdima/python-syntax'
-Plug 'vim-pandoc/vim-pandoc-syntax' | Plug 'vim-pandoc/vim-pandoc'
+Plug 'plasticboy/vim-markdown'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'elzr/vim-json'
 
 " Colorschemes
+Plug 'danilo-augusto/vim-afterglow'
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim/'
 Plug 'vim-airline/vim-airline-themes'

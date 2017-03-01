@@ -33,8 +33,7 @@ set splitright                       " Open split on right, not left
 set splitbelow                       " Open split below, not above
 set wildmenu
 set wildmode=longest:full,list:full
-set completeopt=longest,menuone,preview
-set completeopt-=preview
+set completeopt=longest,menuone
 set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
@@ -62,7 +61,6 @@ set visualbell t_vb=                 " Disable bells
 syntax on                        " Pretty syntax highlighting
 set shell=bash
 set fileformats="unix,dos,mac"
-set omnifunc=syntaxcomplete#Complete
 set csverb
 set cscopetag
 set previewheight=20
@@ -232,6 +230,14 @@ if has("autocmd")
     augroup mycommands
         autocmd!
         autocmd VimEnter * redraw!
+        autocmd FocusGained * silent! checktime
+
+        " omnifuncs
+        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
         " Cursor line only on active window
         autocmd WinEnter * setlocal cursorline
@@ -244,8 +250,8 @@ if has("autocmd")
 
         " Remember cursor position between vim sessions
         autocmd BufReadPost *
-                    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-                    \   exe "normal! g'\"" |
+                    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+                    \   exe "normal! g`\"" |
                     \ endif
 
         " Update diff when leaving from insertmode or writing to file
@@ -433,11 +439,11 @@ nnoremap <Leader>vz :call VimuxZoomRunner()<CR>
 " }
 
 " Jedi.vim {{
+let g:jedi#show_call_signatures = "2"
 " }
 
 " Indentline {{
 let g:indentLine_leadingSpaceChar = '·'
-let g:indentLine_concealcursor=''
 " }
 
 " quick-scope {{
@@ -500,9 +506,13 @@ let g:quickr_cscope_debug_mode = 0
 nmap <leader><space> <plug>(quickr_preview)
 " }}
 
-" vim-pandoc {{
-let g:pandoc#syntax#conceal#urls = 1
-let g:pandoc#folding#level = 0
+" vim-markdown {{
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal = 0
+" }
+
+" vim-json {{
+let g:vim_json_syntax_conceal = 0
 " }
 
 if has('nvim')
