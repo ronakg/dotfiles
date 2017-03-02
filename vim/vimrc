@@ -361,7 +361,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 " }}
 
 " FZF {{
-nnoremap <silent> <leader>b :Tags<CR>
+nnoremap <silent> <leader>b :FzfTags<CR>
 nnoremap <silent> <leader>p :FZF --no-reverse<CR>
 let g:fzf_command_prefix = 'Fzf'
 " }}
