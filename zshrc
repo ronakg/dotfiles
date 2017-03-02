@@ -2,7 +2,7 @@
 export DOTFILES=~/dotfiles
 
 # Setup environment, common to both bash and zsh
-[ -f $DOTFILES/setup_env.sh ] && . $DOTFILES/setup_env.sh
+[ -f $DOTFILES/environment.sh ] && . $DOTFILES/environment.sh
 
 setopt NO_BG_NICE
 setopt NO_HUP

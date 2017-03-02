@@ -9,7 +9,7 @@ shopt -s checkwinsize
 set -o vi
 bind -m vi-insert '"jj": vi-movement-mode'
 
-[ -f $DOTFILES/setup_env.sh ] && . $DOTFILES/setup_env.sh
+[ -f $DOTFILES/environment.sh ] && . $DOTFILES/environment.sh
 
 # Don't care about Ctrl-s
 bind -r '\C-s'
