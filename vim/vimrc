@@ -202,11 +202,14 @@ nnoremap <silent> p p`]
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" Commit and push
-function! CommitNotes()
+" Commit and push {{
+function! s:CommitNotes()
     :Gcommit -am "update notes"
     :Gpush
 endfunction
+
+command! CommitNotes call s:CommitNotes()
+" }}
 
 " UpdateGlobalDB() {{
 "
@@ -410,7 +413,21 @@ if filereadable(".vim.custom")
     so .vim.custom
 endif
 
-let g:DirDiffExcludes = "*.CC*,*.c.*,.ACME*"
+" Zoom / Restore window {{
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
+nnoremap <silent> <C-A> :ZoomToggle<CR>
+" }}
 
 " UndoTree {{
 if has("persistent_undo")
@@ -424,22 +441,6 @@ let g:undotree_SetFocusWhenToggle = 1
 " relative timestamp
 let g:undotree_RelativeTimestamp = 1
 " }}
-
-" Vimux {{
-let g:VimuxOrientation = "h"
-let g:VimuxHeight = "30"
-
-" Prompt for a command to run
-" Vimux {{
-nnoremap <Leader>vp :VimuxPromptCommand<CR>
-nnoremap <C-p> :call VimuxRunLastCommand()<CR>
-
-" Close vim tmux runner opened by VimuxRunCommand
-nnoremap <Leader>vq :VimuxCloseRunner<CR>
-
-" Zoom the runner pane (use <bind-key> z to restore runner pane)
-nnoremap <Leader>vz :call VimuxZoomRunner()<CR>
-" }
 
 " Jedi.vim {{
 let g:jedi#show_call_signatures = "2"
