@@ -9,7 +9,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'bling/vim-airline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'tpope/vim-dispatch'
 Plug 'mhinz/vim-startify'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mhinz/vim-sayonara'
@@ -39,9 +38,13 @@ Plug 'junegunn/gv.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'hdima/python-syntax'
+Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'elzr/vim-json'
+Plug 'mzlogin/vim-markdown-toc'
+Plug 'Raimondi/delimitMate'
+Plug 'mileszs/ack.vim'
 
 " Colorschemes
 Plug 'danilo-augusto/vim-afterglow'

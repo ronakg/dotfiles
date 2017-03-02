@@ -115,23 +115,13 @@ nnoremap <leader>m :Make<CR>
 nnoremap G :norm! Gzz<CR>
 
 " Grep for word under the cursor
-" Look for cscope.files first, if present then only search through those
 " Otherwise search all subdirectories
-if filereadable("cscope.files")
-    " Greedy search: ignore case and don't care about word boundaries
-    nnoremap <Leader>vv *:silent Ack! -k <cword> -i --files-from=cscope.files<CR>:/<CR>
-    vnoremap <Leader>vv y:silent Ack! -kQ "<C-R>0" -i --files-from=cscope.files<CR>:/<C-R>0<CR>
-    " Specific search: case sensitive and whole words only
-    nnoremap <Leader>VV *:silent Ack! -k <cword> -w --files-from=cscope.files<CR>:/<CR>
-    vnoremap <Leader>VV y:silent Ack! -kQ "<C-R>0" -w --files-from=cscope.files<CR>:/<C-R>0<CR>
-else
-    " Greedy search: ignore case and don't care about word boundaries
-    nnoremap <Leader>vv *:silent Ack! -k <cword> -i .<CR>:/<CR>
-    vnoremap <Leader>vv y:silent Ack! -kQ "<C-R>0" -i .<CR>:/<C-R>0<CR>
-    " Specific search: case sensitive and whole words only
-    nnoremap <Leader>VV *:silent Ack! -k <cword> -w .<CR>:/<CR>
-    vnoremap <Leader>VV y:silent Ack! -kQ "<C-R>0" -w .<CR>:/<C-R>0<CR>
-endif
+nnoremap <Leader>vv yiw:silent Ack! <cword><CR>:/<C-R>0<CR>
+vnoremap <Leader>vv y:silent Ack! "<C-R>0"<CR>:/<C-R>0<CR>
+
+" Specific search: case sensitive and whole words only
+nnoremap <Leader>VV yiw:silent Ack! -w <cword><CR>:/<C-R>0<CR>
+vnoremap <Leader>VV y:silent Ack! -w "<C-R>0"<CR>:/<C-R>0<CR>
 
 " Don't add a newline when preview window is visible
 inoremap <silent><expr> <CR>  pumvisible() ? "<C-y>" : "<C-g>u<CR>"
@@ -279,6 +269,7 @@ if has("autocmd")
         autocmd FileType help wincmd L
 
         if has('nvim')
+            autocmd! BufWritePost * Neomake
             au BufEnter * if &buftype == 'terminal' | :startinsert | endif
         endif
 
@@ -369,6 +360,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 " FZF {{
 nnoremap <silent> <leader>b :Tags<CR>
 nnoremap <silent> <leader>p :FZF --no-reverse<CR>
+let g:fzf_command_prefix = 'Fzf'
 " }}
 
 " Change cursor shape based on mode.
@@ -405,13 +397,18 @@ let g:startify_skiplist = [
 " }}
 
 " Ack.vim {{
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack
 let g:ack_apply_qmappings = 0
 let g:ack_apply_lmappings = 0
+" }}
 
 if filereadable(".vim.custom")
     so .vim.custom
 endif
-" }}
 
 let g:DirDiffExcludes = "*.CC*,*.c.*,.ACME*"
 
