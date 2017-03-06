@@ -159,16 +159,8 @@ nnoremap b <C-w>w
 nnoremap <expr> <silent> <leader>j (&diff ? "]c" : ":cnext\<CR>")
 nnoremap <expr> <silent> <leader>k (&diff ? "[c" : ":cprev\<CR>")
 
-function! QuitBuffer()
-    if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) <=1
-        Sayonara
-    else
-        Sayonara!
-    endif
-endfunction
-
 " Quicker save and quit
-nnoremap <silent> e :call QuitBuffer()<CR>
+nnoremap <silent> e :silent Sayonara<CR>
 nnoremap <silent> w :update<CR>
 inoremap <silent> jj <Esc>
 
