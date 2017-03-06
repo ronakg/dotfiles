@@ -18,8 +18,8 @@ OLDDOTFILES=~/.olddotfiles
 
 echo "Setting up NeoVim directories..."
 mkdir ~/.config
-ln -sv $DOTFILES/vim ~/.config/nvim
-ln -sv $DOTFILES/vim/vimrc ~/.config/nvim/init.vim
+ln -snfv $DOTFILES/vim ~/.config/nvim
+ln -snfv $DOTFILES/vim/vimrc ~/.config/nvim/init.vim
 
 # ./install clean
 if [ "$1" == "clean" ]; then
@@ -63,13 +63,13 @@ echo -n "${reset}"
 # Create symlinks
 echo -e "\nCreating symlinks in home directory."
 for file in $files; do
-    ln -sv $DOTFILES/$file ~/.$file
+    ln -snfv $DOTFILES/$file ~/.$file
 done
 
 git submodule update --init --recursive
 
 echo -e "\nInstalling vim plugins..."
-vim -u NONE ./vim/vim-plug.vim +source\ % +PlugUpdate +qall
+vim -u NONE ./vim/vim-plug.vim +source\ % +PlugInstall +PlugUpdate +qall
 
 echo -e "\nSourcing ~/.bashrc"
 . ~/.bashrc

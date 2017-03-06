@@ -730,15 +730,15 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>670 109 609 300 0 0 1440 877 </string>
+	<string>2524 409 609 227 1920 120 1920 1080 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>139 414 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>433 363 620 392 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>263 238 796 473 0 0 1440 877 </string>
+	<string>239 140 796 473 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 900 0 0 1440 877 </string>
+	<string>47 425 570 452 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>47 675 665 502 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1407,11 +1407,11 @@
 			<key>Name</key>
 			<string>Default</string>
 			<key>Non Ascii Font</key>
-			<string>SauceCodePowerline-Regular 14</string>
+			<string>SauceCodePowerline-Regular 12.7</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>RobotoMono-Regular 14</string>
+			<string>RobotoMono-Regular 12</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -1489,7 +1489,7 @@
 			<key>Use Non-ASCII Font</key>
 			<true/>
 			<key>Vertical Spacing</key>
-			<real>1</real>
+			<real>1.0025590643825302</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
@@ -1574,7 +1574,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-02-28T20:27:36Z</date>
+	<date>2017-03-03T20:28:03Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowPaneTitles</key>

@@ -48,8 +48,7 @@ set autoread                         " automatically reload files changed outsid
 set showcmd
 set nohidden
 set diffopt+=context:5,vertical               " 5 lines of context in diff mode
-set shortmess=atToOI                 " To avoid the 'Hit Enter' prompts caused by the file messages
-set shortmess+=c
+"set shortmess=atToOIc                 " To avoid the 'Hit Enter' prompts caused by the file messages
 set updatetime=750                   " Vim refresh time
 set linebreak                        " It maintains the whole words when wrapping
 set complete-=i                      " Don't scan included files for completion
@@ -65,6 +64,7 @@ set csverb
 set cscopetag
 set previewheight=20
 set conceallevel=2
+set mouse=a
 set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
 if $TMUX == ''
     set clipboard+=unnamed
@@ -159,8 +159,16 @@ nnoremap b <C-w>w
 nnoremap <expr> <silent> <leader>j (&diff ? "]c" : ":cnext\<CR>")
 nnoremap <expr> <silent> <leader>k (&diff ? "[c" : ":cprev\<CR>")
 
+function! QuitBuffer()
+    if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) <=1
+        Sayonara
+    else
+        Sayonara!
+    endif
+endfunction
+
 " Quicker save and quit
-nnoremap <silent> e :silent Sayonara<CR>
+nnoremap <silent> e :call QuitBuffer()<CR>
 nnoremap <silent> w :update<CR>
 inoremap <silent> jj <Esc>
 
@@ -195,8 +203,10 @@ inoremap {<CR> {<CR>}<Esc>O
 
 " Go to end of yanked/pasted text
 vnoremap <silent> y y`]
-vnoremap <silent> p p`]
-nnoremap <silent> p p`]
+nnoremap <silent> p ]p`]
+vnoremap <silent> p ]p`]
+nnoremap <silent> P [p`]
+vnoremap <silent> P [p`]
 " }}
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
