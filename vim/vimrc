@@ -112,6 +112,10 @@ let g:mapleader = "\<Space>"
 
 nnoremap <leader>m :Make<CR>
 
+" Jump to start of function
+nnoremap ]] ]m
+nnoremap ]] ]m
+
 nnoremap G :norm! Gzz<CR>
 
 " Grep for word under the cursor
@@ -201,8 +205,8 @@ nnoremap <silent> P [p`]
 vnoremap <silent> P [p`]
 " }}
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " Commit and push {{
 function! s:CommitNotes()
@@ -402,7 +406,7 @@ let g:startify_skiplist = [
 " }}
 
 " Ack.vim {{
-let g:ackprg = 'ag --vimgrep --smart-case'
+let g:ackprg = 'ag --vimgrep --smart-case --ignore=tags'
 cnoreabbrev ag Ack
 cnoreabbrev aG Ack
 cnoreabbrev Ag Ack
@@ -553,8 +557,10 @@ if has('nvim')
     " deoplete-clang {{
     let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-3.8/lib/libclang.so"
     let g:deoplete#sources#clang#clang_header = "/usr/lib/llvm-3.8/lib/clang"
-    " }
+    " }}
 endif
+
+let g:quickr_cscope_program = "gtags-cscope"
 
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:

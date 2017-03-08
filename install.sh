@@ -69,7 +69,7 @@ done
 git submodule update --init --recursive
 
 echo -e "\nInstalling vim plugins..."
-vim -u NONE ./vim/vim-plug.vim +source\ % +PlugInstall +PlugUpdate +qall
+vim -u NONE ./vim/vim-plug.vim +source\ % +PlugInstall +PlugUpdate +UpdateRemotePlugins +qall
 
 echo -e "\nSourcing ~/.bashrc"
 . ~/.bashrc

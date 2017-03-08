@@ -19,8 +19,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
-Plug 'davidhalter/jedi-vim', { 'for' : [ 'python' ] }
-Plug 'ronakg/VimCompletesMe'
+"Plug 'ronakg/VimCompletesMe'
 Plug 'ronakg/quickr-cscope.vim'
 Plug 'ronakg/quickr-preview.vim'
 Plug 'wellle/targets.vim'
@@ -38,13 +37,15 @@ Plug 'benmills/vimux'
 Plug 'hdima/python-syntax'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'ludovicchabant/vim-gutentags'
+Plug 'jsfaint/gen_tags.vim'
 Plug 'elzr/vim-json'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'Raimondi/delimitMate'
 Plug 'mileszs/ack.vim'
 Plug 'roxma/vim-tmux-clipboard'
+"Plug 'arakashic/chromatica.nvim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'sickill/vim-pasta'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
@@ -69,13 +70,14 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'mhartington/oceanic-next'
 
 if has('nvim')
+    Plug 'brooth/far.vim'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-jedi'
-    Plug 'zchee/deoplete-clang'
+    Plug 'zchee/deoplete-jedi', { 'for' : [ 'python' ] }
+    Plug 'zchee/deoplete-clang', { 'for': [ 'c', 'cpp', 'h' ]}
+    Plug 'Shougo/neoinclude.vim'
     Plug 'sbdchd/neoformat'
     Plug 'nathanalderson/yang.vim'
     Plug 'zchee/libclang-python3'
-    Plug 'Shougo/neoinclude.vim'
     Plug 'neomake/neomake'
 endif
 
