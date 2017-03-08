@@ -6,7 +6,19 @@ catch
 endtry
 " }}
 
+" Check for OS {{
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
+" }}
+
 " Standard vim options {{
+set smartindent
+set autoindent
 filetype plugin indent on            " filetype specific indentation
 set termencoding=utf-8
 set encoding=utf-8
@@ -21,10 +33,6 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
-set cindent
-set smartindent
-set autoindent
-set copyindent
 set nostartofline
 set ttyfast
 set lazyredraw
@@ -38,7 +46,7 @@ set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
 set pumheight=15                     " Completion menu height
-set cursorline                       " Cursor line
+" set cursorline                       " Cursor line
 set number                           " line numbers
 set laststatus=2                     " Always show status line
 set shiftround                       " Round off shift width when using >
@@ -331,8 +339,8 @@ let g:gruvbox_improved_warnings=1
 let g:gruvbox_invert_selection=0
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
-highlight LineNr guibg=#1d2021
-highlight CursorLine guibg=#1d2021
+highlight LineNr guibg=#282828
+highlight CursorLine guibg=#282828
 highlight CursorColumn guibg=#1d2021
 highlight CursorLineNr guibg=#1d2021
 " }}
@@ -407,10 +415,6 @@ let g:startify_skiplist = [
 
 " Ack.vim {{
 let g:ackprg = 'ag --vimgrep --smart-case --ignore=tags'
-cnoreabbrev ag Ack
-cnoreabbrev aG Ack
-cnoreabbrev Ag Ack
-cnoreabbrev AG Ack
 let g:ack_apply_qmappings = 0
 let g:ack_apply_lmappings = 0
 " }}
@@ -555,8 +559,13 @@ if has('nvim')
     endfor
 
     " deoplete-clang {{
-    let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-3.8/lib/libclang.so"
-    let g:deoplete#sources#clang#clang_header = "/usr/lib/llvm-3.8/lib/clang"
+    if g:os == "Darwin"
+        let g:deoplete#sources#clang#libclang_path = "/usr/local/cellar/llvm/3.9.1/lib/libclang.dylib"
+        let g:deoplete#sources#clang#clang_header = "/usr/local/Cellar/llvm/3.9.1/lib/clang"
+    else
+        let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-3.8/lib/libclang.so"
+        let g:deoplete#sources#clang#clang_header = "/usr/lib/llvm-3.8/lib/clang"
+    endif
     " }}
 endif
 

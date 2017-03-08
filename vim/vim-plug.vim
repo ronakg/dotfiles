@@ -46,6 +46,7 @@ Plug 'roxma/vim-tmux-clipboard'
 "Plug 'arakashic/chromatica.nvim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'sickill/vim-pasta'
+Plug 'junegunn/rainbow_parentheses.vim'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
