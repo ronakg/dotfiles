@@ -219,10 +219,11 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 " Commit and push {{
 function! s:CommitNotes(...)
     if a:0 > 0
-        :Gcommit -am a:1
+        execute 'Gcommit -am '. a:1
     else
         :Gcommit -am "update notes"
     endif
+
     :Gpush
 endfunction
 
