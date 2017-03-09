@@ -217,12 +217,16 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " Commit and push {{
-function! s:CommitNotes()
-    :Gcommit -am "update notes"
+function! s:CommitNotes(...)
+    if a:0
+        :Gcommit -am a:0
+    else
+        :Gcommit -am "update notes"
+    endif
     :Gpush
 endfunction
 
-command! CommitNotes call s:CommitNotes()
+command! -nargs=? CommitNotes call s:CommitNotes()
 " }}
 
 " UpdateGlobalDB() {{
