@@ -226,7 +226,7 @@ function! s:CommitNotes(...)
     :Gpush
 endfunction
 
-command! -nargs=? CommitNotes call s:CommitNotes()
+command! -nargs=? CommitNotes call s:CommitNotes(<f-args>)
 " }}
 
 " UpdateGlobalDB() {{
