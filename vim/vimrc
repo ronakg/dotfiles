@@ -222,7 +222,7 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " Commit and push {{
-function! s:CommitNotes(...)
+function! s:CommitPush(...)
     if a:0 > 0
         execute "Gcommit -am '" . join(a:000) . "'"
     else
@@ -232,7 +232,7 @@ function! s:CommitNotes(...)
     :Gpush
 endfunction
 
-command! -nargs=? CommitNotes call s:CommitNotes(<f-args>)
+command! -nargs=? CommitPush call s:CommitPush(<f-args>)
 " }}
 
 " UpdateGlobalDB() {{
