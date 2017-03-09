@@ -74,6 +74,7 @@ set previewheight=20
 set conceallevel=2
 set mouse=a
 set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
+set omnifunc=syntaxcomplete#Complete
 if $TMUX == ''
     set clipboard+=unnamed
 endif
@@ -125,6 +126,10 @@ nnoremap ]] ]m
 nnoremap ]] ]m
 
 nnoremap G :norm! Gzz<CR>
+
+" vim-fugitive {{
+nnoremap <C-g> :Gstatus<CR>
+" }}
 
 " Grep for word under the cursor
 " Otherwise search all subdirectories
@@ -219,7 +224,7 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 " Commit and push {{
 function! s:CommitNotes(...)
     if a:0 > 0
-        execute 'Gcommit -am '. a:1
+        execute "Gcommit -am '" . join(a:000) . "'"
     else
         :Gcommit -am "update notes"
     endif
@@ -256,6 +261,8 @@ if has("autocmd")
         autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        autocmd FileType c set omnifunc=ccomplete#Complete
+		autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
 
         " Cursor line only on active window
         autocmd WinEnter * setlocal cursorline
