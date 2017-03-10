@@ -43,32 +43,15 @@ Plug 'mzlogin/vim-markdown-toc'
 Plug 'Raimondi/delimitMate'
 Plug 'mileszs/ack.vim'
 Plug 'roxma/vim-tmux-clipboard'
-"Plug 'arakashic/chromatica.nvim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'sickill/vim-pasta'
 Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'python-mode/python-mode'
+Plug 'davidhalter/jedi-vim'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim/'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'rakr/vim-one'
-"Plug 'lifepillar/vim-solarized8'
-"Plug 'romainl/flattened'
-"Plug 'junegunn/seoul256.vim'
-"Plug 'w0ng/vim-hybrid'
-"Plug 'kabbamine/yowish.vim'
-"Plug 'zenorocha/dracula-theme'
-"Plug 'reedes/vim-colors-pencil'
-"Plug 'altercation/vim-colors-solarized'
-"Plug 'sickill/vim-monokai'
-"Plug 'tomasr/molokai'
-"Plug 'sjl/badwolf'
-"Plug 'NLKNguyen/papercolor-theme'
-"Plug 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
-"Plug 'romainl/Apprentice'
-"Plug 'ajh17/spacegray.vim'
-"Plug 'mhartington/oceanic-next'
 
 if has('nvim')
     Plug 'brooth/far.vim'
@@ -80,6 +63,7 @@ if has('nvim')
     Plug 'nathanalderson/yang.vim'
     Plug 'zchee/libclang-python3'
     Plug 'neomake/neomake'
+    Plug 'artur-shaik/vim-javacomplete2'
 endif
 
 " Add plugins to &runtimepath
