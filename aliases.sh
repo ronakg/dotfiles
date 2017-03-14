@@ -36,6 +36,8 @@ alias setJdk8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)'
 
 alias actvenv='. /nobackup/rogandhi/icsp/venv/bin/activate'
 
+alias histfix='history -n && history | sort -k2 -k1nr | uniq -f1 | sort -n | cut -c8- > ~/.tmp$$ && history -c && history -r ~/.tmp$$ && history -w && rm ~/.tmp$$'
+
 # Git aliases
 alias stash='git stash'
 alias stat='git status'

@@ -511,7 +511,7 @@ nmap K <plug>(Vman)
 " }}
 
 " VimCompletesMe {{
-let g:vcm_direction = 'p'
+"let g:vcm_direction = 'p'
 " }}
 
 " EasyMotion {{
@@ -571,6 +571,7 @@ if has('nvim')
     for dir in ["h", "j", "l", "k"]
         call s:mapMoveToWindowInDirection(dir)
     endfor
+    tnoremap <esc><esc> <C-\><C-n>
 
     " deoplete-clang {{
     if g:os == "Darwin"

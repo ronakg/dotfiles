@@ -5,6 +5,10 @@ export DOTFILES=~/dotfiles
 shopt -s expand_aliases
 shopt -s checkwinsize
 
+### Append to the history file
+shopt -s histappend
+HISTCONTROL=ignoredups:erasedups
+
 # vi mode for readline
 set -o vi
 bind -m vi-insert '"jj": vi-movement-mode'
@@ -26,7 +30,3 @@ fi
 if [ -f ~/.fzf.bash ]; then
    . ~/.fzf.bash
 fi
-
-### Append to the history file
-shopt -s histappend
-HISTCONTROL=ignoreboth:erasedups
