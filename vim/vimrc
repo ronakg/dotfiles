@@ -136,7 +136,7 @@ nnoremap <C-g> :Gstatus<CR>
 nnoremap <Leader>vv yiw:silent Ack! <cword><CR>:/<C-R>0<CR>
 vnoremap <Leader>vv y:silent Ack! "<C-R>0"<CR>:/<C-R>0<CR>
 
-" Specific search: case sensitive and whole words only
+" Specific search: whole words only
 nnoremap <Leader>VV yiw:silent Ack! -w <cword><CR>:/<C-R>0<CR>
 vnoremap <Leader>VV y:silent Ack! -w "<C-R>0"<CR>:/<C-R>0<CR>
 
@@ -585,6 +585,7 @@ if has('nvim')
 endif
 
 let g:quickr_cscope_program = "gtags-cscope"
+let g:quickr_cscope_db_file = "GTAGS"
 
 command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>,

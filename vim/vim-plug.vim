@@ -12,15 +12,14 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'mhinz/vim-startify'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mhinz/vim-sayonara'
-"Plug 'will133/vim-dirdiff'
 Plug 'junegunn/fzf.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
-"Plug 'ronakg/VimCompletesMe'
 Plug 'ronakg/quickr-cscope.vim'
+Plug 'rhysd/vim-clang-format'
 Plug 'ronakg/quickr-preview.vim'
 Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
@@ -37,7 +36,6 @@ Plug 'benmills/vimux'
 Plug 'hdima/python-syntax'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'jsfaint/gen_tags.vim'
 Plug 'elzr/vim-json'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'Raimondi/delimitMate'
@@ -54,7 +52,6 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
 
 if has('nvim')
-    Plug 'brooth/far.vim'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'zchee/deoplete-jedi', { 'for' : [ 'python' ] }
     Plug 'zchee/deoplete-clang', { 'for': [ 'c', 'cpp', 'h' ]}
