@@ -140,6 +140,7 @@ vnoremap <Leader>VV y:silent Ack! -w "<C-R>0"<CR>:/<C-R>0<CR>
 
 " Don't add a newline when preview window is visible
 inoremap <silent><expr> <CR>  pumvisible() ? "<C-y>" : "<C-g>u<CR>"
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<C-R>=UltiSnips#ExpandSnippet()"
 
 " Make Y behave like other motion characters
 nnoremap Y y$
