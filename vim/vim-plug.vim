@@ -29,6 +29,7 @@ Plug 'stephpy/vim-yaml'
 Plug 'mbbill/undotree', { 'on' : 'UndotreeToggle' }
 Plug 'vim-utils/vim-man'
 Plug 'easymotion/vim-easymotion'
+Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'christoomey/vim-tmux-navigator'
@@ -46,6 +47,8 @@ Plug 'sickill/vim-pasta'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'python-mode/python-mode'
 Plug 'davidhalter/jedi-vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'

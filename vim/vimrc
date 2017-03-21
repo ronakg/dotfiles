@@ -19,7 +19,6 @@ endif
 " Standard vim options {{
 set smartindent
 set autoindent
-filetype plugin indent on            " filetype specific indentation
 set termencoding=utf-8
 set encoding=utf-8
 set incsearch                        " incremental search
@@ -65,7 +64,6 @@ set cpoptions+=I
 set matchtime=1
 set matchpairs+=<:>
 set visualbell t_vb=                 " Disable bells
-syntax on                        " Pretty syntax highlighting
 set shell=bash
 set fileformats="unix,dos,mac"
 set csverb
@@ -217,9 +215,6 @@ vnoremap <silent> p ]p`]
 nnoremap <silent> P [p`]
 vnoremap <silent> P [p`]
 " }}
-
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " Commit and push {{
 function! s:CommitPush(...)
@@ -599,6 +594,15 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
+
+" UtilSnips {{
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="vertical"
+" }
 
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
