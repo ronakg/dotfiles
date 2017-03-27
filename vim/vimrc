@@ -608,6 +608,10 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 " }
 
+" Neomake {{
+let g:neomake_sh_enabled_makers = ['shellcheck']
+" }}
+
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
 " }}
