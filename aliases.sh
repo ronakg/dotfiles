@@ -55,3 +55,7 @@ alias fetch='git fetch'
 alias confemail='git config user.email'
 alias confname='git config user.name "Ronak Gandhi"'
 alias cdgitroot='cd $(git rev-parse --show-toplevel)'
+
+alias please='sudo $( history -p !! )'
+alias fuck='sudo $( history -p !! )'
+alias fucking='sudo'

@@ -108,7 +108,7 @@ endif
 if &term =~ '256color'
   " disable Background Color Erase (BCE) so that color schemes
   " render properly when inside 256-color tmux and GNU screen.
-  set t_ut=
+  "set t_ut=
 endif
 
 " Key remaps {{
@@ -139,8 +139,8 @@ nnoremap <Leader>VV yiw:silent Ack! -w <cword><CR>:/<C-R>0<CR>
 vnoremap <Leader>VV y:silent Ack! -w "<C-R>0"<CR>:/<C-R>0<CR>
 
 " Don't add a newline when preview window is visible
-inoremap <silent><expr> <CR>  pumvisible() ? "<C-y>" : "<C-g>u<CR>"
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<C-R>=UltiSnips#ExpandSnippet()"
+inoremap <silent><expr> <CR> pumvisible() ? "<C-y>" : "<C-g>u<CR>"
+"imap <silent><expr> <tab> pumvisible() ? "<C-p>" : "<C-R>=UltiSnips#ExpandSnippet()<CR>"
 
 " Make Y behave like other motion characters
 nnoremap Y y$
@@ -268,7 +268,7 @@ if has("autocmd")
         autocmd WinEnter * setlocal cursorline
         autocmd WinLeave * setlocal nocursorline
 
-        autocmd BufWritePre * :%s/\s\+$//e
+        autocmd BufWritePre * :mark `|%s/\s\+$//e|normal! ``
 
         " Spell check commit messages
         autocmd BufRead COMMIT_EDITMSG setlocal spell!
@@ -487,6 +487,8 @@ let g:pymode_options_max_line_length = 119
 let g:pymode_rope = 0
 let g:pymode_lint_cwindow = 1
 let g:pymode_virtualenv = 1
+let g:pymode_options_colorcolumn = 0
+let g:pymode_lint_cwindow = 0
 " }}
 
 " Clever-f {{
@@ -606,11 +608,18 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
 " }
 
 " Neomake {{
 let g:neomake_sh_enabled_makers = ['shellcheck']
 " }}
+
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
+
+let g:neoformat_enabled_python = ['autopep8', 'yapf']
 
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:

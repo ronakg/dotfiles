@@ -1,3 +1,13 @@
 snippet printf
 printf("$1 is %${2:s}\n", $1);
 endsnippet
+
+snippet dprint
+printf("%s:%d %s\n", __FILE__, __LINE__, __FUNCTION__);
+endsnippet
+
+snippet if "if { ... }" b
+if (${1:condition}) {
+	${0:${VISUAL}}
+}
+endsnippet
