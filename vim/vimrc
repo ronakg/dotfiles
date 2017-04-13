@@ -160,10 +160,10 @@ noremap ' `
 noremap ` '
 
 " Make arrow key do something useful, resize the view ports accordingly
-nnoremap <Left> :vertical resize +2<CR>
-nnoremap <Right> :vertical resize -2<CR>
-nnoremap <Up> :resize -2<CR>
-nnoremap <Down> :resize +2<CR>
+"nnoremap <Left> :vertical resize +2<CR>
+"nnoremap <Right> :vertical resize -2<CR>
+"nnoremap <Up> :resize -2<CR>
+"nnoremap <Down> :resize +2<CR>
 
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
