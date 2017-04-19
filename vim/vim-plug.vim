@@ -7,6 +7,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'tpope/vim-eunuch'
 Plug 'sheerun/vim-polyglot'
 Plug 'bling/vim-airline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -23,7 +24,7 @@ Plug 'ronakg/quickr-cscope.vim'
 Plug 'ronakg/quickr-preview.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'wellle/targets.vim'
-Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
+Plug 'junegunn/vim-slash'
 Plug 'tpope/vim-unimpaired'
 Plug 'rhysd/clever-f.vim'
 Plug 'stephpy/vim-yaml'
