@@ -1,4 +1,4 @@
-PATH="/usr/local/bin:$PATH"
+#PATH="/usr/local/bin:$PATH"
 
 if [ -f ~/.bash_profile_work ]
 then
