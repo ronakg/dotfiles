@@ -627,6 +627,21 @@ let g:tmux_navigator_disable_when_zoomed = 1
 
 let g:neoformat_enabled_python = ['autopep8', 'yapf']
 
+function! s:lost()
+  " https://git.savannah.gnu.org/cgit/diffutils.git/tree/src/diff.c?id=eaa2a24#n464
+  let found = search('\v^[[:alpha:]$_]', "bn", 1, 100)
+  if found > 0
+     let line = getline(found)
+     echom line
+  else
+     echom '?'
+  endif
+endfunction
+command! -bar Lost call s:lost()
+
+nnoremap <silent> gL :Lost<Cr>
+
+
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
 " }}
