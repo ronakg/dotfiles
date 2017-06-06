@@ -17,6 +17,8 @@ endif
 " }}
 
 " Standard vim options {{
+syntax on
+filetype plugin indent on
 set path+=**
 set smartindent
 set autoindent
@@ -63,7 +65,6 @@ set complete-=i                      " Don't scan included files for completion
 set cpoptions-=m                     " Highlight when CursorMoved.
 set cpoptions+=I
 set matchtime=1
-set matchpairs+=<:>
 set visualbell t_vb=                 " Disable bells
 set shell=bash
 set fileformats="unix,dos,mac"
@@ -73,7 +74,6 @@ set previewheight=20
 set conceallevel=2
 set mouse=a
 set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
-set omnifunc=syntaxcomplete#Complete
 if $TMUX == ''
     set clipboard+=unnamed
 endif
@@ -81,6 +81,8 @@ endif
 if has('nvim')
     set inccommand=nosplit
 endif
+
+let python_highlight_all = 1
 
 " set list
 " set diffopt+=iwhite                  " Ignore white space diff
@@ -118,7 +120,7 @@ endif
 " issues
 let g:mapleader = "\<Space>"
 
-nnoremap <leader>m :Make<CR>
+nnoremap <Leader>m :%s/\<<C-r><C-w>\>/
 
 " Jump to start of function
 nnoremap ]] ]m
@@ -132,12 +134,16 @@ nnoremap <C-g> :Gstatus<CR>
 
 " Grep for word under the cursor
 " Otherwise search all subdirectories
-nnoremap <Leader>vv yiw:silent Ack! <cword><CR>:/<C-R>0<CR>
-vnoremap <Leader>vv y:silent Ack! "<C-R>0"<CR>:/<C-R>0<CR>
+nnoremap <Leader>VV yiw:silent Ack! <cword><CR>:/<C-R>0<CR>
+vnoremap <Leader>VV y:silent Ack! "<C-R>0"<CR>:/<C-R>0<CR>
 
 " Specific search: whole words only
-nnoremap <Leader>VV yiw:silent Ack! -w <cword><CR>:/<C-R>0<CR>
-vnoremap <Leader>VV y:silent Ack! -w "<C-R>0"<CR>:/<C-R>0<CR>
+nnoremap <Leader>vv yiw:silent Ack! -w <cword><CR>:/<C-R>0<CR>
+vnoremap <Leader>vv y:silent Ack! -w "<C-R>0"<CR>:/<C-R>0<CR>
+
+" Easier movement in visual mode
+vnoremap > >gv
+vnoremap < <gv
 
 " Don't add a newline when preview window is visible
 inoremap <silent><expr> <CR> pumvisible() ? "<C-y>" : "<C-g>u<CR>"
@@ -301,8 +307,9 @@ if has("autocmd")
         " Open help in vertical split
         autocmd FileType help wincmd L
 
+        autocmd FileType c,cpp,h ClangFormatAutoEnable
+
         if has('nvim')
-            autocmd! BufWritePost * Neomake
             au BufEnter * if &buftype == 'terminal' | :startinsert | endif
         endif
 
@@ -355,6 +362,7 @@ let g:gruvbox_improved_warnings=1
 let g:gruvbox_invert_selection=0
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
+highlight Comments gui=italic
 highlight LineNr guibg=#282828
 highlight CursorLine guibg=#282828
 highlight CursorColumn guibg=#1d2021
@@ -488,6 +496,8 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " }
 
 " python-mode {{
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
 let g:pymode_folding = 0
 let g:pymode_options_max_line_length = 119
 let g:pymode_rope = 0
@@ -616,16 +626,17 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:SuperTabDefaultCompletionType = "<c-n>"
-" }
-
-" Neomake {{
-let g:neomake_sh_enabled_makers = ['shellcheck']
 " }}
 
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
 
-let g:neoformat_enabled_python = ['autopep8', 'yapf']
+" Neoformat {{
+let g:neoformat_enabled_python = ['autopep8']
+let g:neoformat_try_formatprg = 1
+let g:neoformat_only_msg_on_error = 1
+au FileType python setlocal formatprg=autopep8\ -
+" }}
 
 function! s:lost()
   " https://git.savannah.gnu.org/cgit/diffutils.git/tree/src/diff.c?id=eaa2a24#n464
@@ -640,7 +651,11 @@ endfunction
 command! -bar Lost call s:lost()
 
 nnoremap <silent> gL :Lost<Cr>
+nnoremap <C-d> :ZoomToggle<CR>:Gdiff<CR>
 
+" ale {{
+let g:ale_lint_on_text_changed = 'never'
+" }}
 
 " Modeline and Notes {{
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:

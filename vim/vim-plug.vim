@@ -8,8 +8,8 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-eunuch'
-Plug 'sheerun/vim-polyglot'
 Plug 'bling/vim-airline'
+"Plug 'python-mode/python-mode'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'mhinz/vim-startify'
 Plug 'terryma/vim-multiple-cursors'
@@ -34,8 +34,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
-"Plug 'hdima/python-syntax'
-Plug 'junegunn/vim-easy-align'
 Plug 'plasticboy/vim-markdown'
 Plug 'elzr/vim-json'
 Plug 'mzlogin/vim-markdown-toc'
@@ -45,14 +43,16 @@ Plug 'roxma/vim-tmux-clipboard'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'sickill/vim-pasta'
 Plug 'junegunn/rainbow_parentheses.vim'
-"Plug 'python-mode/python-mode'
 Plug 'davidhalter/jedi-vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'tommcdo/vim-lion'
+Plug 'w0rp/ale'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'joshdick/onedark.vim'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -62,7 +62,6 @@ if has('nvim')
     Plug 'sbdchd/neoformat'
     Plug 'nathanalderson/yang.vim'
     Plug 'zchee/libclang-python3'
-    Plug 'neomake/neomake'
     Plug 'artur-shaik/vim-javacomplete2'
 endif
 
