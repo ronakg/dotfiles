@@ -7,7 +7,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-eunuch'     "Vim sugar for the UNIX shell commands that need it the most
 Plug 'bling/vim-airline'
 "Plug 'python-mode/python-mode'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -24,7 +24,7 @@ Plug 'ronakg/quickr-cscope.vim'
 Plug 'ronakg/quickr-preview.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'wellle/targets.vim'
-Plug 'junegunn/vim-slash'
+Plug 'haya14busa/incsearch.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'rhysd/clever-f.vim'
 Plug 'vim-utils/vim-man'
@@ -42,7 +42,6 @@ Plug 'mileszs/ack.vim'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'sickill/vim-pasta'
-Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'

@@ -7,7 +7,7 @@
 	<key>AboutToPasteTabsWithCancel_selection</key>
 	<integer>2</integer>
 	<key>AllowClipboardAccess</key>
-	<false/>
+	<true/>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
 	<key>AppleScrollAnimationEnabled</key>
@@ -16,6 +16,8 @@
 	<integer>1</integer>
 	<key>AutoHideTmuxClientSession</key>
 	<false/>
+	<key>CopyLastNewline</key>
+	<true/>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>Flat</key>
@@ -1412,7 +1414,7 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>831 176 609 176 0 0 1440 877 </string>
+	<string>3231 287 609 94 1920 120 1920 1080 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>139 414 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
@@ -1420,9 +1422,9 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>171 54 606 456 0 0 1440 900 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>409 309 918 381 0 0 1440 900 </string>
+	<string>409 294 796 473 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>47 450 570 427 0 0 1440 877 </string>
+	<string>522 237 570 427 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>47 675 665 502 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -2258,7 +2260,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-05-18T16:59:59Z</date>
+	<date>2017-06-09T04:57:17Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowPaneTitles</key>

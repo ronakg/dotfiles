@@ -108,12 +108,6 @@ if has('termguicolors')
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
-if &term =~ '256color'
-  " disable Background Color Erase (BCE) so that color schemes
-  " render properly when inside 256-color tmux and GNU screen.
-  "set t_ut=
-endif
-
 " Key remaps {{
 
 " Space is my leader, don't assign leader to space - that causes latency
@@ -190,9 +184,6 @@ inoremap <silent> jj <Esc>
 " Paste in insert mode
 inoremap <C-p> <C-r>0
 
-" Clear highlighted searches
-nnoremap ,/ :nohlsearch<CR><Esc>
-
 " Easier to get command prompt
 nnoremap ; :
 vnoremap ; :
@@ -203,9 +194,12 @@ inoremap <C-d> <C-o>x
 " Jump to start and end of line using the home row keys
 nmap 0 ^
 
-" Make j and k move to the next row, not file line {{{1
-nnoremap j gj
-nnoremap k gk
+" Move by 'display lines' rather than 'logical lines' if no v:count was
+" provided.  When a v:count is provided, move by logical lines.
+nnoremap <expr> j v:count > 0 ? 'j' : 'gj'
+xnoremap <expr> j v:count > 0 ? 'j' : 'gj'
+nnoremap <expr> k v:count > 0 ? 'k' : 'gk'
+xnoremap <expr> k v:count > 0 ? 'k' : 'gk'
 
 nnoremap <leader>l :call NumberToggle()<CR>
 
@@ -223,6 +217,19 @@ vnoremap <silent> p ]p`]
 nnoremap <silent> P [p`]
 vnoremap <silent> P [p`]
 " }}
+
+" :h g:incsearch#auto_nohlsearch
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)N
+map #  <Plug>(incsearch-nohl-#)n
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
 
 " Commit and push {{
 function! s:CommitPush(...)
@@ -307,7 +314,7 @@ if has("autocmd")
         " Open help in vertical split
         autocmd FileType help wincmd L
 
-        autocmd FileType c,cpp,h ClangFormatAutoEnable
+        autocmd FileType c,cpp,h call FormatUsingClang()
 
         if has('nvim')
             au BufEnter * if &buftype == 'terminal' | :startinsert | endif
@@ -316,6 +323,14 @@ if has("autocmd")
     augroup END
 endif
 " }}
+
+" FormatUsingClang {{
+function! FormatUsingClang()
+    if !empty(glob('.clang-format'))
+        ClangFormatAutoEnable
+    endif
+endfunction
+" }
 
 " Compile_C {{
 function! Compile_C()
@@ -509,6 +524,7 @@ let g:pymode_lint_cwindow = 0
 
 " Clever-f {{
 let g:clever_f_ignore_case = 1
+let g:clever_f_smart_case = 1
 let g:clever_f_fix_key_direction = 1
 " }}
 
