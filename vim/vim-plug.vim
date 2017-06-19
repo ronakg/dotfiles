@@ -9,7 +9,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-eunuch'     "Vim sugar for the UNIX shell commands that need it the most
 Plug 'bling/vim-airline'
-"Plug 'python-mode/python-mode'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'mhinz/vim-startify'
 Plug 'terryma/vim-multiple-cursors'
@@ -39,6 +38,7 @@ Plug 'elzr/vim-json'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'Raimondi/delimitMate'
 Plug 'mileszs/ack.vim'
+Plug 'mhinz/vim-grepper'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'sickill/vim-pasta'
@@ -52,6 +52,7 @@ Plug 'w0rp/ale'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'joshdick/onedark.vim'
+Plug 'dracula/vim'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

@@ -39,7 +39,7 @@ fi
 
 # FZF
 export FZF_DEFAULT_COMMAND='ag -g "" --hidden --ignore .git'
-export FZF_DEFAULT_OPTS='--color=fg+:221,hl+:1,hl:202'
+export FZF_DEFAULT_OPTS='--reverse --color=fg+:221,hl+:1,hl:202'
 
 # cdf - change directory to selected file
 cdf() {

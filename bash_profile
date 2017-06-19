@@ -1,5 +1,6 @@
 export GOROOT=$HOME/go
 export PATH=$PATH:$GOROOT/bin
+export PATH="/usr/local/sbin:$PATH"
 
 if [ -f ~/.bash_profile_work ]
 then
