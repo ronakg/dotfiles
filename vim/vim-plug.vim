@@ -7,6 +7,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'will133/vim-dirdiff'
 Plug 'tpope/vim-eunuch'     "Vim sugar for the UNIX shell commands that need it the most
 Plug 'bling/vim-airline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -47,12 +48,15 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tommcdo/vim-lion'
 Plug 'w0rp/ale'
+Plug 'vim-scripts/groovyindent-unix'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'joshdick/onedark.vim'
 Plug 'dracula/vim'
+Plug 'w0ng/vim-hybrid'
+Plug 'rakr/vim-one'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

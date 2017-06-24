@@ -1,29 +1,41 @@
 #!/bin/bash
-window_active_bg='colour234'
-window_inactive_bg='colour235'
+dark_black="#1a1f28"
+black="#282c34"
+light_black="#343944"
+blue="#61afef"
+dark_blue="#1a5484"
+yellow="#e5c07b"
+red="#e06c75"
+white="#aab2bf"
+green="#98c379"
+visual_grey="#3e4452"
+comment_grey="#5c6370"
 
-status_bar_bg='colour238'
-status_bar_fg='colour12'
+window_active_bg=$black
+window_inactive_bg=$light_black
 
-pane_active_fg='red'
+status_bar_bg=$dark_black
+status_bar_fg=$green
 
-message_fg='colour39'
+pane_active_fg=$red
+
+message_fg=$yellow
 
 status_edge_bg=$status_bar_fg
-status_edge_fg='colour237'
+status_edge_fg=$dark_black
 
-inactive_title_bg='colour236'
-inactive_no_bg='colour235'
-inactive_title_fg='colour245'
-inactive_no_fg='colour245'
+inactive_title_bg=$light_black
+inactive_no_bg=$dark_black
+inactive_title_fg=$white
+inactive_no_fg=$blue
 
-active_title_bg='colour142'
-active_no_bg='colour23'
-active_title_fg='colour232'
-active_no_fg='colour250'
+active_title_bg=$blue
+active_no_bg=$dark_blue
+active_title_fg=$dark_black
+active_no_fg=$white
 
-right_sep=''
 left_sep=''
+right_sep=''
 
 set-option -g status "on"
 
@@ -66,4 +78,4 @@ set-option -g status-right "#[fg=$inactive_title_bg,bg=$status_bar_bg]$left_sep#
 
 set-window-option -g window-status-current-format "#[fg=$status_bar_bg, bg=$active_no_bg]$right_sep#[fg=$active_no_fg, bg=$active_no_bg] #I #[fg=$active_no_bg, bg=$active_title_bg]$right_sep#[fg=$active_title_fg, bg=$active_title_bg] #W #[fg=$active_title_bg, bg=$status_bar_bg]$right_sep"
 
-set-window-option -g window-status-format "#[fg=$status_bar_bg,bg=$inactive_no_bg]$right_sep#[fg=$inactive_no_fg,bg=$inactive_no_bg] #I #[fg=$inactive_no_bg,bg=$inactive_title_bg]$right_sep#[fg=$inactive_title_fg, bg=$inactive_title_bg] #W #[fg=$inactive_title_bg, bg=$status_bar_bg]$right_sep"
+set-window-option -g window-status-format "#[fg=$status_bar_bg,bg=$inactive_no_bg]$right_sep#[fg=$inactive_no_fg,bg=$inactive_no_bg] #I#[fg=$inactive_no_bg,bg=$inactive_title_bg]$right_sep#[fg=$inactive_title_fg, bg=$inactive_title_bg] #W #[fg=$inactive_title_bg, bg=$status_bar_bg]$right_sep"

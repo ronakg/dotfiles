@@ -5,18 +5,19 @@ if tput setaf 1 &> /dev/null; then
     bold="\[$(tput bold)\]";
     italic="\[$(tput sitm)\]";
     reset="\[$(tput sgr0)\]";
-    black="\[$(tput setaf 235)\]"
-    red="\[$(tput setaf 1)\]"
-    green="\[$(tput setaf 143)\]"
-    yellow="\[$(tput setaf 3)\]"
-    blue="\[$(tput setaf 66)\]"
     purple="\[$(tput setaf 5)\]"
-    cyan="\[$(tput setaf 37)\]"
-    gray="\[$(tput setaf 246)\]"
-    white="\[$(tput setaf 223)\]"
+    black="\[$(tput setaf 0)\]"
+    red="\[$(tput setaf 1)\]"
+    green="\[$(tput setaf 2)\]"
+    yellow="\[$(tput setaf 3)\]"
+    blue="\[$(tput setaf 4)\]"
+    magenta="\[$(tput setaf 5)\]"
+    cyan="\[$(tput setaf 6)\]"
+    white="\[$(tput setaf 7)\]"
     orange="\[$(tput setaf 166)\]"
-    light_black="\[$(tput setaf 236)\]"
+    gray="\[$(tput setaf 246)\]"
 fi;
+
 
 _sep="${gray} \[•\] ${reset}"
 _dir="${cyan}\w${reset}"

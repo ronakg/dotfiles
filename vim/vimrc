@@ -48,7 +48,6 @@ set noshowmode                       " Airline shows mode, so hide default mode
 set nobackup                         " Don't need backup and swap files
 set noswapfile
 set pumheight=15                     " Completion menu height
-" set cursorline                       " Cursor line
 set number                           " line numbers
 set laststatus=2                     " Always show status line
 set shiftround                       " Round off shift width when using >
@@ -58,7 +57,7 @@ set autoread                         " automatically reload files changed outsid
 set showcmd
 set nohidden
 set diffopt+=context:5,vertical               " 5 lines of context in diff mode
-"set shortmess=atToOIc                 " To avoid the 'Hit Enter' prompts caused by the file messages
+set shortmess=atToOIc                 " To avoid the 'Hit Enter' prompts caused by the file messages
 set updatetime=750                   " Vim refresh time
 set linebreak                        " It maintains the whole words when wrapping
 set complete-=i                      " Don't scan included files for completion
@@ -74,6 +73,7 @@ set previewheight=20
 set conceallevel=2
 set mouse=a
 set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
+set cursorline
 if $TMUX == ''
     set clipboard+=unnamed
 endif
@@ -84,7 +84,7 @@ endif
 
 let python_highlight_all = 1
 
-" set list
+set list
 " set diffopt+=iwhite                  " Ignore white space diff
 " }}
 
@@ -278,10 +278,6 @@ if has("autocmd")
         autocmd FileType c set omnifunc=ccomplete#Complete
 		autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
 
-        " Cursor line only on active window
-        autocmd WinEnter * setlocal cursorline
-        autocmd WinLeave * setlocal nocursorline
-
         autocmd BufWritePre * :mark `|%s/\s\+$//e|normal! ``
 
         " Spell check commit messages
@@ -358,7 +354,6 @@ endfunction
 if &diff
     nnoremap e :qa<CR>
     nnoremap w :wa<CR>
-    set nocursorline
     set nonu
     set nornu
 endif
@@ -370,7 +365,9 @@ set tags=./tags;/   " ctags path, search upwards till tags file is found
 
 " Colorscheme {{
 set background=dark
-colorscheme dracula
+let g:one_allow_italics = 1
+colorscheme one
+hi LineNr guibg=#1a1f28
 " }}
 
 " Vim-Airline {{
@@ -386,7 +383,7 @@ let g:airline#extensions#tagbar#enabled                       = 0
 let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#whitespace#enabled       = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'dracula'
+let g:airline_theme                               = 'one'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype'])
@@ -491,7 +488,9 @@ let g:jedi#completions_enabled = 0
 " }
 
 " Indentline {{
+let g:indentLine_setColors = 0
 let g:indentLine_leadingSpaceChar = '·'
+let g:indentLine_char = '│'
 " }
 
 " quick-scope {{
@@ -543,10 +542,6 @@ nmap K <plug>(Vman)
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
 nmap s <Plug>(easymotion-s2)
-" }}
-
-" vim-oblique {{
-let g:oblique#incsearch_highlight_all = 1
 " }}
 
 " quickr-cscope.vim {{
