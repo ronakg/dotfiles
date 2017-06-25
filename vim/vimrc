@@ -356,6 +356,7 @@ if &diff
     nnoremap w :wa<CR>
     set nonu
     set nornu
+    set nocursorline
 endif
 " }}
 
@@ -368,6 +369,10 @@ set background=dark
 let g:one_allow_italics = 1
 colorscheme one
 hi LineNr guibg=#1a1f28
+hi DiffAdd guibg=#98c379 guifg=black gui=italic
+hi DiffDelete guibg=#e06c75 guifg=black
+hi DiffChange guibg=#61afef guifg=black
+hi DiffText guibg=#e5c07b guifg=black gui=italic
 " }}
 
 " Vim-Airline {{
@@ -383,7 +388,7 @@ let g:airline#extensions#tagbar#enabled                       = 0
 let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#whitespace#enabled       = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'one'
+let g:airline_theme                               = 'base16_default'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype'])
@@ -400,7 +405,6 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 " }}
 
 " FZF {{
-nnoremap <silent> <leader>b :FzfTags<CR>
 nnoremap <silent> <leader>p :FZF --no-reverse<CR>
 let g:fzf_command_prefix = 'Fzf'
 " }}
