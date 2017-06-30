@@ -175,8 +175,8 @@ nnoremap <expr> <silent> <leader>j (&diff ? "]c" : ":cnext\<CR>")
 nnoremap <expr> <silent> <leader>k (&diff ? "[c" : ":cprev\<CR>")
 
 " Quicker save and quit
-nnoremap <silent> e :silent Sayonara<CR>
-nnoremap <silent> w :update<CR>
+nnoremap <silent> <leader>e :silent Sayonara<CR>
+nnoremap <silent> <leader>w :update<CR>
 inoremap <silent> jj <Esc>
 
 " Paste in insert mode
@@ -270,7 +270,6 @@ nmap <leader>c <plug>(quickr_cscope_callers)
 nmap <leader>f <plug>(quickr_cscope_files)
 nmap <leader>i <plug>(quickr_cscope_includes)
 nmap <leader>t <plug>(quickr_cscope_text)
-nmap <leader>e <plug>(quickr_cscope_egrep)
 
 vmap <leader>d <plug>(quickr_cscope_global)
 vmap <leader>s <plug>(quickr_cscope_symbols)
@@ -278,7 +277,6 @@ vmap <leader>c <plug>(quickr_cscope_callers)
 vmap <leader>f <plug>(quickr_cscope_files)
 vmap <leader>i <plug>(quickr_cscope_includes)
 vmap <leader>t <plug>(quickr_cscope_text)
-vmap <leader>e <plug>(quickr_cscope_egrep)
 " }
 
 " Auto commands {{
