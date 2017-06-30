@@ -19,6 +19,7 @@ endif
 " Standard vim options {{
 syntax on
 filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
 set path+=**
 set smartindent
 set autoindent
@@ -30,9 +31,6 @@ set smartcase                        " don't ignore case if capital letters pres
 set infercase                        " ignore case on completion
 set backspace=indent,eol,start       " makes backspace working
 set scrolloff=4                      " keep cursor off screen edges
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
 set expandtab
 set smarttab
 set nostartofline
@@ -60,7 +58,6 @@ set diffopt+=context:5,vertical               " 5 lines of context in diff mode
 set shortmess=atToOIc                 " To avoid the 'Hit Enter' prompts caused by the file messages
 set updatetime=750                   " Vim refresh time
 set linebreak                        " It maintains the whole words when wrapping
-set complete-=i                      " Don't scan included files for completion
 set cpoptions-=m                     " Highlight when CursorMoved.
 set cpoptions+=I
 set matchtime=1
@@ -661,6 +658,18 @@ nnoremap <C-d> :ZoomToggle<CR>:Gdiff<CR>
 
 " ale {{
 let g:ale_lint_on_text_changed = 'never'
+highlight ALEErrorSign guibg=red guifg=yellow
+highlight ALEWarningSign guibg=blue guifg=yellow
+" }}
+
+" java-complete2 {{
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#omni_patterns = {}
+let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
+let g:deoplete#auto_completion_start_length = 2
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = []
+let g:deoplete#file#enable_buffer_path = 1
 " }}
 
 " Modeline and Notes {{

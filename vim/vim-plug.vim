@@ -49,6 +49,7 @@ Plug 'honza/vim-snippets'
 Plug 'tommcdo/vim-lion'
 Plug 'w0rp/ale'
 Plug 'vim-scripts/groovyindent-unix'
+Plug 'tpope/vim-sleuth'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
