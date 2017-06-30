@@ -31,6 +31,7 @@ set smartcase                        " don't ignore case if capital letters pres
 set infercase                        " ignore case on completion
 set backspace=indent,eol,start       " makes backspace working
 set scrolloff=4                      " keep cursor off screen edges
+set tabstop=4
 set expandtab
 set smarttab
 set nostartofline
@@ -68,9 +69,7 @@ set csverb
 set cscopetag
 set previewheight=20
 set conceallevel=2
-set mouse=a
 set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
-set cursorline
 if $TMUX == ''
     set clipboard+=unnamed
 endif
@@ -288,6 +287,7 @@ if has("autocmd")
 
         " Update diff when leaving from insertmode or writing to file
         autocmd BufWritepost * if &diff == 1 | diffupdate | endif
+        autocmd BufRead * if $diff == 1 | set nocursorline | endif
         if g:quickr_cscope_program == "gtags-cscope"
             " Update GLOBAL database after file is written
             autocmd BufWritepost *.c call UpdateGlobalDB()
@@ -353,7 +353,6 @@ if &diff
     nnoremap w :wa<CR>
     set nonu
     set nornu
-    set nocursorline
 endif
 " }}
 
@@ -385,7 +384,7 @@ let g:airline#extensions#tagbar#enabled                       = 0
 let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#whitespace#enabled       = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'base16_default'
+let g:airline_theme                               = 'hybrid'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype'])
@@ -666,10 +665,10 @@ highlight ALEWarningSign guibg=blue guifg=yellow
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
-let g:deoplete#auto_completion_start_length = 2
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
 let g:deoplete#file#enable_buffer_path = 1
+let g:JavaComplete_LibsPath = '/opt/maglev/sw/apps/javacontainer/lib'
 " }}
 
 " Modeline and Notes {{

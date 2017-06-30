@@ -21,6 +21,7 @@ Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
 Plug 'ronakg/quickr-cscope.vim'
+Plug 'tpope/vim-sleuth'
 Plug 'ronakg/quickr-preview.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'wellle/targets.vim'
@@ -49,15 +50,12 @@ Plug 'honza/vim-snippets'
 Plug 'tommcdo/vim-lion'
 Plug 'w0rp/ale'
 Plug 'vim-scripts/groovyindent-unix'
-Plug 'tpope/vim-sleuth'
+Plug 'ekalinin/Dockerfile.vim'
 
 " Colorschemes
-Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'joshdick/onedark.vim'
-Plug 'dracula/vim'
-Plug 'w0ng/vim-hybrid'
 Plug 'rakr/vim-one'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
