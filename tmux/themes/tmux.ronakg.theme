@@ -1,7 +1,7 @@
 #!/bin/bash
 dark_black="#1a1f28"
-black="#282c34"
-light_black="#343944"
+black="#202630"
+light_black="#2b3442"
 blue="#61afef"
 dark_blue="#1a5484"
 yellow="#e5c07b"

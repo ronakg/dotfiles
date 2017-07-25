@@ -19,6 +19,7 @@ endif
 " Standard vim options {{
 syntax on
 filetype plugin indent on
+set hlsearch
 set omnifunc=syntaxcomplete#Complete
 set path+=**
 set smartindent
@@ -119,9 +120,9 @@ nnoremap ]] ]m
 nnoremap G :norm! Gzz<CR>
 
 " vim-fugitive {{
-nmap <Leader>gs :Gstatus<CR><C-n>
-nmap <Leader>gd :Gdiff<CR>
-nmap <Leader>gb :Gblame<CR>
+nmap <C-g>g :Gstatus<CR>gg<C-n>
+nmap <C-g>d :Gdiff<CR>
+nmap <C-g>b :Gblame<CR>
 " }}
 
 " Grep for word under the cursor
@@ -175,8 +176,8 @@ nnoremap <expr> <silent> <leader>j (&diff ? "]c" : ":cnext\<CR>")
 nnoremap <expr> <silent> <leader>k (&diff ? "[c" : ":cprev\<CR>")
 
 " Quicker save and quit
-nnoremap <silent> <leader>e :silent Sayonara<CR>
-nnoremap <silent> <leader>w :update<CR>
+nnoremap <silent> e :silent Sayonara<CR>
+nnoremap <silent> w :update<CR>
 inoremap <silent> jj <Esc>
 
 " Paste in insert mode
@@ -216,19 +217,6 @@ nnoremap <silent> P [p`]
 vnoremap <silent> P [p`]
 " }}
 
-" :h g:incsearch#auto_nohlsearch
-set hlsearch
-let g:incsearch#auto_nohlsearch = 1
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)N
-map #  <Plug>(incsearch-nohl-#)n
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-
 " Commit and push {{
 function! s:CommitPush(...)
     if a:0 > 0
@@ -263,20 +251,6 @@ endfunction
 let g:quickr_cscope_autoload_db = 1
 let g:quickr_cscope_use_qf_g = 1
 let g:quickr_cscope_debug_mode = 0
-let g:quickr_cscope_keymaps = 0
-nmap <leader>d <plug>(quickr_cscope_global)
-nmap <leader>s <plug>(quickr_cscope_symbols)
-nmap <leader>c <plug>(quickr_cscope_callers)
-nmap <leader>f <plug>(quickr_cscope_files)
-nmap <leader>i <plug>(quickr_cscope_includes)
-nmap <leader>t <plug>(quickr_cscope_text)
-
-vmap <leader>d <plug>(quickr_cscope_global)
-vmap <leader>s <plug>(quickr_cscope_symbols)
-vmap <leader>c <plug>(quickr_cscope_callers)
-vmap <leader>f <plug>(quickr_cscope_files)
-vmap <leader>i <plug>(quickr_cscope_includes)
-vmap <leader>t <plug>(quickr_cscope_text)
 " }
 
 " Auto commands {{
@@ -297,6 +271,8 @@ if has("autocmd")
 		autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
 
         autocmd BufWritePre * execute "normal! mY:%s/\s\+$//e\<CR>`Y"
+
+        "autocmd! BufWritePost * Neomake
 
         " Spell check commit messages
         autocmd BufRead COMMIT_EDITMSG setlocal spell!
@@ -424,8 +400,8 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 
 " FZF {{
 nnoremap <silent> <leader>p :FZF --no-reverse<CR>
-let g:fzf_command_prefix = 'Fzf'
 " }}
+
 
 " Change cursor shape based on mode.
 " https://gist.github.com/andyfowler/1195581
@@ -681,6 +657,11 @@ let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
 let g:deoplete#file#enable_buffer_path = 1
 let g:JavaComplete_LibsPath = '/opt/maglev/sw/apps/javacontainer/lib'
+" }}
+
+" gen_tags.vim {{
+let g:loaded_gentags#ctags = 1
+let g:gen_tags#gtags_auto_gen = 1
 " }}
 
 " Modeline and Notes {{
