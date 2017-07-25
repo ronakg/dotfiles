@@ -7,7 +7,6 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'will133/vim-dirdiff'
 Plug 'tpope/vim-eunuch'     "Vim sugar for the UNIX shell commands that need it the most
 Plug 'bling/vim-airline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
