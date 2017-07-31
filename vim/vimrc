@@ -1,12 +1,11 @@
-" Vim-Plug {{
+" ======================================================================================
+" vim-plug
+" ======================================================================================
 try
     source ~/.vim/vim-plug.vim
 catch
-    " It's okay
 endtry
-" }}
 
-" Check for OS {{
 if !exists("g:os")
     if has("win64") || has("win32") || has("win16")
         let g:os = "Windows"
@@ -14,11 +13,14 @@ if !exists("g:os")
         let g:os = substitute(system('uname'), '\n', '', '')
     endif
 endif
-" }}
 
-" Standard vim options {{
+" ======================================================================================
+" Standard vim options
+" ======================================================================================
 syntax on
 filetype plugin indent on
+set binary                                    " Enable binary support
+set title
 set hlsearch
 set omnifunc=syntaxcomplete#Complete
 set path+=**
@@ -26,51 +28,59 @@ set smartindent
 set autoindent
 set termencoding=utf-8
 set encoding=utf-8
-set incsearch                        " incremental search
-set ignorecase                       " ignore case in searching
-set smartcase                        " don't ignore case if capital letters present
-set infercase                        " ignore case on completion
-set backspace=indent,eol,start       " makes backspace working
-set scrolloff=4                      " keep cursor off screen edges
-set tabstop=4
-set expandtab
-set smarttab
+
+" Search
+set incsearch                                 " incremental search
+set ignorecase                                " ignore case in searching
+set smartcase                                 " don't ignore case if capital letters present
+set infercase                                 " ignore case on completion
+
+set backspace=indent,eol,start                " makes backspace working
+
+set sidescrolloff=3                           " Keep at least 3 lines left/right
+set scrolloff=3                               " Keep at least 3 lines above/below
+
 set nostartofline
 set ttyfast
 set lazyredraw
-set gdefault                         " search/replace globally (on a line) by default
-set splitright                       " Open split on right, not left
-set splitbelow                       " Open split below, not above
+set gdefault                                  " search/replace globally (on a line) by default
+set splitright                                " Open split on right, not left
+set splitbelow                                " Open split below, not above
 set wildmenu
 set wildmode=longest:full,list:full
 set completeopt=longest,menuone
-set noshowmode                       " Airline shows mode, so hide default mode
-set nobackup                         " Don't need backup and swap files
+set noshowmode                                " Airline shows mode, so hide default mode
+set nobackup                                  " Don't need backup and swap files
 set noswapfile
-set pumheight=15                     " Completion menu height
-set number                           " line numbers
-set laststatus=2                     " Always show status line
-set shiftround                       " Round off shift width when using >
+set pumheight=15                              " Completion menu height
+set number                                    " line numbers
+set laststatus=2                              " Always show status line
+set shiftround                                " Round off shift width when using >
 set timeout timeoutlen=1000 ttimeoutlen=100
 set wrapscan
-set autoread                         " automatically reload files changed outside of Vim
+set autoread                                  " automatically reload files changed outside of Vim
 set showcmd
 set nohidden
 set diffopt+=context:5,vertical               " 5 lines of context in diff mode
-set shortmess=atToOIc                 " To avoid the 'Hit Enter' prompts caused by the file messages
-set updatetime=750                   " Vim refresh time
-set linebreak                        " It maintains the whole words when wrapping
-set cpoptions-=m                     " Highlight when CursorMoved.
+set shortmess=atToOIc                         " To avoid the 'Hit Enter' prompts caused by the file messages
+set updatetime=750                            " Vim refresh time
+set linebreak                                 " It maintains the whole words when wrapping
+set cpoptions-=m                              " Highlight when CursorMoved.
 set cpoptions+=I
 set matchtime=1
-set visualbell t_vb=                 " Disable bells
+set visualbell t_vb=                          " Disable bells
 set shell=bash
 set fileformats="unix,dos,mac"
 set csverb
 set cscopetag
 set previewheight=20
 set conceallevel=2
-set listchars=tab:▸\ ,trail:■,extends:»,precedes:«
+set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵
+
+" Joining
+set nojoinspaces                " Only one space when joining lines
+set formatoptions+=j            " Remove comment leader when joining lines
+
 if $TMUX == ''
     set clipboard+=unnamed
 endif
@@ -82,8 +92,6 @@ endif
 let python_highlight_all = 1
 
 set list
-" set diffopt+=iwhite                  " Ignore white space diff
-" }}
 
 if exists("&wildignorecase")
     set wildignorecase
@@ -93,25 +101,15 @@ if exists("&relativenumber")
     set relativenumber
 endif
 
-" Italics support
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
-" True 24 bit colors
 if has('termguicolors')
-    " set t_8f=[[38;2;%lu;%lu;%lum
-    " set t_8b=[[48;2;%lu;%lu;%lum
     set termguicolors
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
-" Key remaps {{
-
-" Space is my leader, don't assign leader to space - that causes latency
-" issues
 let g:mapleader = "\<Space>"
-
-nnoremap <Leader>m :%s/\<<C-r><C-w>\>/
 
 " Jump to start of function
 nnoremap ]] ]m
@@ -119,11 +117,9 @@ nnoremap ]] ]m
 
 nnoremap G :norm! Gzz<CR>
 
-" vim-fugitive {{
 nmap <C-g>g :Gstatus<CR>gg<C-n>
 nmap <C-g>d :Gdiff<CR>
 nmap <C-g>b :Gblame<CR>
-" }}
 
 " Grep for word under the cursor
 " Otherwise search all subdirectories
@@ -159,17 +155,8 @@ nnoremap c "_c
 noremap ' `
 noremap ` '
 
-" Make arrow key do something useful, resize the view ports accordingly
-"nnoremap <Left> :vertical resize +2<CR>
-"nnoremap <Right> :vertical resize -2<CR>
-"nnoremap <Up> :resize -2<CR>
-"nnoremap <Down> :resize +2<CR>
-
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
-
-" Easier splits switching
-nnoremap b <C-w>w
 
 " Next/prev quick-fix results
 nnoremap <expr> <silent> <leader>j (&diff ? "]c" : ":cnext\<CR>")
@@ -206,9 +193,6 @@ nnoremap <leader>l :call NumberToggle()<CR>
 nnoremap <leader>= yypVr=<Esc>==
 nnoremap <leader>- yypVr-<Esc>==
 
-" Poor man's autopair
-inoremap {<CR> {<CR>}<Esc>O
-
 " Go to end of yanked/pasted text
 vnoremap <silent> y y`]
 nnoremap <silent> p ]p`]
@@ -229,15 +213,15 @@ function! s:CommitPush(...)
 endfunction
 
 command! -nargs=? CommitPush call s:CommitPush(<f-args>)
-" }}
 
-" quickr-cscope.vim {{
+" quickr-cscope.vim
 let g:quickr_cscope_program = "gtags-cscope"
 let g:quickr_cscope_db_file = "GTAGS"
 
-" UpdateGlobalDB() {{
-"
+" ======================================================================================
+" UpdateGlobalDB()
 " Incrementally update the database generated by GNU GLOBAL
+" ======================================================================================
 function! UpdateGlobalDB()
     if g:quickr_cscope_program == "gtags-cscope"
         try
@@ -246,19 +230,33 @@ function! UpdateGlobalDB()
         endtry
     endif
 endfunction
-" }}
 
 let g:quickr_cscope_autoload_db = 1
 let g:quickr_cscope_use_qf_g = 1
 let g:quickr_cscope_debug_mode = 0
-" }
 
-" Auto commands {{
-if has("autocmd")
+" ======================================================================================
+" Strip trailing whitespaces
+" ======================================================================================
+function! StripTrailingWhite()
+    let l:winview = winsaveview()
+    silent! %s/\s\+$//
+    call winrestview(l:winview)
+endfunction
+
+" ======================================================================================
+" Auto commands
+" ======================================================================================
+if has("autocmd")"
+    " Enable spell checking
+    autocmd FileType gitcommit setlocal spell
+    autocmd FileType markdown setlocal spell
+    autocmd FileType text setlocal spell
+    autocmd FileType rst setlocal spell
+
     augroup mycommands
         autocmd!
-        autocmd VimEnter * redraw!
-        autocmd FocusGained * silent! checktime
+        autocmd BufWritePre * call StripTrailingWhite()
 
         " omnifuncs
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -268,14 +266,7 @@ if has("autocmd")
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
         autocmd FileType c set omnifunc=ccomplete#Complete
-		autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
-
-        autocmd BufWritePre * execute "normal! mY:%s/\s\+$//e\<CR>`Y"
-
-        "autocmd! BufWritePost * Neomake
-
-        " Spell check commit messages
-        autocmd BufRead COMMIT_EDITMSG setlocal spell!
+        autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
 
         " Remember cursor position between vim sessions
         autocmd BufReadPost *
@@ -285,7 +276,6 @@ if has("autocmd")
 
         " Update diff when leaving from insertmode or writing to file
         autocmd BufWritepost * if &diff == 1 | diffupdate | endif
-        autocmd BufRead * if $diff == 1 | set nocursorline | endif
         if g:quickr_cscope_program == "gtags-cscope"
             " Update GLOBAL database after file is written
             autocmd BufWritepost *.c call UpdateGlobalDB()
@@ -294,7 +284,7 @@ if has("autocmd")
             autocmd User QfReplacementBufWritePost doautocmd BufWritePost
         endif
 
-        au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+        autocmd BufWritePost $MYVIMRC,vimrc source $MYVIMRC
 
         " Use shell syntax for .conf files
         autocmd BufRead,BufNewFile *.conf set syntax=sh
@@ -305,32 +295,13 @@ if has("autocmd")
         " Open help in vertical split
         autocmd FileType help wincmd L
 
-        autocmd FileType c,cpp,h call FormatUsingClang()
-
         if has('nvim')
             au BufEnter * if &buftype == 'terminal' | :startinsert | endif
         endif
 
     augroup END
 endif
-" }}
 
-" FormatUsingClang {{
-function! FormatUsingClang()
-    if !empty(glob('.clang-format'))
-        ClangFormatAutoEnable
-    endif
-endfunction
-" }
-
-" Compile_C {{
-function! Compile_C()
-    setlocal makeprg='gcc -g -Wall %'
-    Make!
-endfunction
-" }}
-
-" Line Numbers {{
 function! NumberToggle()
     if(&relativenumber == 1 && &number == 1)
         set number
@@ -343,22 +314,16 @@ function! NumberToggle()
         set relativenumber
     endif
 endfunction
-" }}
 
-" Diff {{
 if &diff
     nnoremap e :qa<CR>
     nnoremap w :wa<CR>
     set nonu
     set nornu
 endif
-" }}
 
 set tags=./tags;/   " ctags path, search upwards till tags file is found
 
-" }}
-
-" Colorscheme {{
 set background=dark
 let g:one_allow_italics = 1
 colorscheme one
@@ -367,10 +332,7 @@ hi DiffAdd guibg=#98c379 guifg=black gui=italic
 hi DiffDelete guibg=#e06c75 guifg=black
 hi DiffChange guibg=#61afef guifg=black
 hi DiffText guibg=#e5c07b guifg=black gui=italic
-" }}
 
-" Vim-Airline {{
-" Enable the list of buffers
 let g:airline#extensions#tabline#enabled                      = 1
 let g:airline#extensions#tabline#buffer_min_count             = 1
 let g:airline#extensions#tabline#tab_min_count                = 1
@@ -396,11 +358,8 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
-" }}
 
-" FZF {{
 nnoremap <silent> <leader>p :FZF --no-reverse<CR>
-" }}
 
 
 " Change cursor shape based on mode.
@@ -418,17 +377,12 @@ else
         let &t_EI = "\<Esc>]50;CursorShape=0\x7"
     endif
 endif
-" }}
 
-" WORK {{
 try
     source ~/.vimrc_work
 catch
-    " No such file? No problem; just ignore it.
 endtry
-" }}
 
-" Startify {{
 let g:startify_list_order = [['Most recently used files in current directory:'], 'dir',
             \                ['Most recently used file on the system:'], 'files',
             \                ['Sessions:'], 'sessions',
@@ -437,22 +391,18 @@ let g:startify_change_to_dir = 0
 let g:startify_files_number = 7
 let g:startify_enable_unsafe = 1
 let g:startify_skiplist = [
-                \ '.CC',
-                \ ]
-" }}
+            \ '.CC',
+            \ ]
 
-" Ack.vim {{
 let g:ackprg = 'ag --vimgrep --smart-case --ignore=tags'
 let g:ack_apply_qmappings = 0
 let g:ack_apply_lmappings = 0
-" }}
 
 if filereadable(".vim.custom")
     so .vim.custom
 endif
 
-" Zoom / Restore window {{
-function! s:ZoomToggle() abort
+function! ZoomToggle() abort
     if exists('t:zoomed') && t:zoomed
         execute t:zoom_winrestcmd
         let t:zoomed = 0
@@ -463,11 +413,8 @@ function! s:ZoomToggle() abort
         let t:zoomed = 1
     endif
 endfunction
-command! ZoomToggle call s:ZoomToggle()
-nnoremap <silent> <C-a> :ZoomToggle<CR>
-" }}
+nnoremap <silent> <C-a> :call ZoomToggle()<CR>
 
-" UndoTree {{
 if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
@@ -478,25 +425,16 @@ endif
 let g:undotree_SetFocusWhenToggle = 1
 " relative timestamp
 let g:undotree_RelativeTimestamp = 1
-" }}
 
-" Jedi.vim {{
 let g:jedi#use_splits_not_buffers = "right"
 let g:jedi#completions_enabled = 0
-" }
 
-" Indentline {{
 let g:indentLine_setColors = 0
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_char = '│'
-" }
 
-" quick-scope {{
-" Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-" }
 
-" python-mode {{
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 let g:pymode_folding = 0
@@ -506,50 +444,32 @@ let g:pymode_lint_cwindow = 1
 let g:pymode_virtualenv = 1
 let g:pymode_options_colorcolumn = 0
 let g:pymode_lint_cwindow = 0
-" }}
 
-" Clever-f {{
 let g:clever_f_ignore_case = 1
 let g:clever_f_smart_case = 1
 let g:clever_f_fix_key_direction = 1
-" }}
 
-" NERDCommenter {{
 let g:NERDCreateDefaultMappings = 0
 let g:NERDRemoveExtraSpaces = 0
 nmap gc <plug>NERDCommenterToggle
 vmap gc <plug>NERDCommenterSexy
 map gx <plug>NERDCommenterToggle
-" }}
 
 command! -nargs=+ Silent
-\ | execute ':silent !'.<q-args>
-\ | execute ':redraw!'
+            \ | execute ':silent !'.<q-args>
+            \ | execute ':redraw!'
 
 nnoremap <C-s> :Silent bash<CR>
 
-" vim-man {{
 nmap K <plug>(Vman)
-" }}
 
-" VimCompletesMe {{
-"let g:vcm_direction = 'p'
-" }}
-
-" EasyMotion {{
-" Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
 nmap s <Plug>(easymotion-s2)
-" }}
 
-" vim-markdown {{
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
-" }
 
-" vim-json {{
 let g:vim_json_syntax_conceal = 0
-" }
 
 if has('nvim')
     " Use deoplete.
@@ -595,20 +515,18 @@ if has('nvim')
 endif
 
 command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
+            \ call fzf#vim#ag(<q-args>,
+            \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+            \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \                 <bang>0)
 
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
 
-" UtilSnips {{
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -616,40 +534,33 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:SuperTabDefaultCompletionType = "<c-n>"
-" }}
 
-" Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
 
-" Neoformat {{
 let g:neoformat_enabled_python = ['autopep8']
 let g:neoformat_try_formatprg = 1
 let g:neoformat_only_msg_on_error = 1
 au FileType python setlocal formatprg=autopep8\ -
-" }}
 
 function! s:lost()
-  " https://git.savannah.gnu.org/cgit/diffutils.git/tree/src/diff.c?id=eaa2a24#n464
-  let found = search('\v^[[:alpha:]$_]', "bn", 1, 100)
-  if found > 0
-     let line = getline(found)
-     echom line
-  else
-     echom '?'
-  endif
+    " https://git.savannah.gnu.org/cgit/diffutils.git/tree/src/diff.c?id=eaa2a24#n464
+    let found = search('\v^[[:alpha:]$_]', "bn", 1, 100)
+    if found > 0
+        let line = getline(found)
+        echom line
+    else
+        echom '?'
+    endif
 endfunction
 command! -bar Lost call s:lost()
 
 nnoremap <silent> gL :Lost<Cr>
 nnoremap <C-d> :ZoomToggle<CR>:Gdiff<CR>
 
-" ale {{
 let g:ale_lint_on_text_changed = 'never'
 highlight ALEErrorSign guibg=red guifg=yellow
 highlight ALEWarningSign guibg=blue guifg=yellow
-" }}
 
-" java-complete2 {{
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
@@ -657,13 +568,16 @@ let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
 let g:deoplete#file#enable_buffer_path = 1
 let g:JavaComplete_LibsPath = '/opt/maglev/sw/apps/javacontainer/lib'
-" }}
 
-" gen_tags.vim {{
 let g:loaded_gentags#ctags = 1
 let g:gen_tags#gtags_auto_gen = 1
-" }}
 
-" Modeline and Notes {{
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{,}} foldlevel=10 foldlevelstart=10 foldmethod=marker:
-" }}
+" ======================================================================================
+" vim-signify
+" ======================================================================================
+let g:signify_sign_delete            = '-'
+
+" ======================================================================================
+" vim-clang-format
+" ======================================================================================
+let g:clang_format#auto_format = 1
