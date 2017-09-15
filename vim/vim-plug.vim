@@ -53,11 +53,13 @@ Plug 'tommcdo/vim-lion'
 Plug 'w0rp/ale'
 Plug 'vim-scripts/groovyindent-unix'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'sheerun/vim-polyglot'
 
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-one'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
+Plug 'morhetz/gruvbox'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

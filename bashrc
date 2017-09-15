@@ -1,3 +1,6 @@
+export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+
 # Where are my dotfiles
 export DOTFILES=~/dotfiles
 

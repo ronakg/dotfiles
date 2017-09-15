@@ -507,9 +507,9 @@ if has('nvim')
         let g:deoplete#sources#clang#clang_header = "/usr/local/Cellar/llvm/4.0.0_1/lib/clang"
         let g:chromatica#libclang_path="/usr/local/cellar/llvm/4.0.0_1/lib/libclang.dylib"
     else
-        let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-3.8/lib/libclang.so"
+        let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-3.8/lib/libclang.so.1"
         let g:deoplete#sources#clang#clang_header = "/usr/lib/llvm-3.8/lib/clang"
-        let g:chromatica#libclang_path="/usr/lib/llvm-3.8/lib/libclang.so"
+        let g:chromatica#libclang_path="/usr/lib/llvm-3.8/lib/libclang.so.1"
     endif
     " }}
 endif

@@ -17,3 +17,7 @@ vim/session/**
 vim/vim
 tmux/tmux
 vim/init.vim
+GPATH
+GRTAGS
+GSYMS
+GTAGS
