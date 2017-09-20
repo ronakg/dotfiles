@@ -24,11 +24,6 @@ stty -ixon 2>/dev/null
 [ -f $DOTFILES/bash_prompt ] && . $DOTFILES/bash_prompt
 [ -f ~/.bashrc_work ] && . ~/.bashrc_work
 
-# Bash completion
-if [ -f /usr/local/etc/bash_completion ]; then
-    . /usr/local/etc/bash_completion
-fi
-
 # FZF
 if [ -f ~/.fzf.bash ]; then
    . ~/.fzf.bash
