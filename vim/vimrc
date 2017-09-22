@@ -325,8 +325,10 @@ endif
 set tags=./tags;/   " ctags path, search upwards till tags file is found
 
 set background=dark
-let g:one_allow_italics = 1
-colorscheme one
+"let g:one_allow_italics = 1
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+colorscheme OceanicNext
 hi LineNr guibg=#1a1f28
 hi DiffAdd guibg=#98c379 guifg=black gui=italic
 hi DiffDelete guibg=#e06c75 guifg=black
@@ -344,7 +346,7 @@ let g:airline#extensions#tagbar#enabled                       = 0
 let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#whitespace#enabled       = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'hybrid'
+let g:airline_theme                               = 'oceanicnext'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype'])

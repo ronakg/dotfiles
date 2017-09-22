@@ -18,7 +18,7 @@ Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Yggdroot/indentLine'
+"Plug 'Yggdroot/indentLine'
 Plug 'jsfaint/gen_tags.vim'
 Plug 'ronakg/quickr-cscope.vim'
 Plug 'tpope/vim-sleuth'
@@ -61,6 +61,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-one'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
+Plug 'mhartington/oceanic-next'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

@@ -1,0 +1,81 @@
+#!/bin/bash
+dark_black="#1a1f28"
+black="#202630"
+light_black="#2b3442"
+blue="#61afef"
+dark_blue="#1a5484"
+yellow="#e5c07b"
+red="#e06c75"
+white="#aab2bf"
+green="#98c379"
+visual_grey="#3e4452"
+comment_grey="#5c6370"
+
+window_active_bg=$black
+window_inactive_bg=$light_black
+
+status_bar_bg=$dark_black
+status_bar_fg=$green
+
+pane_active_fg=$red
+
+message_fg=$yellow
+
+status_edge_bg=$status_bar_fg
+status_edge_fg=$dark_black
+
+inactive_title_bg=$light_black
+inactive_no_bg=$dark_black
+inactive_title_fg=$white
+inactive_no_fg=$blue
+
+active_title_bg=$blue
+active_no_bg=$dark_blue
+active_title_fg=$dark_black
+active_no_fg=$white
+
+left_sep=''
+right_sep=''
+
+set-option -g status "on"
+
+# default statusbar colors
+set-option -g status-bg $status_bar_bg
+set-option -g status-fg $status_bar_fg
+
+# set inactive/active window styles
+set -g window-style "bg=$window_inactive_bg"
+set -g window-active-style "bg=$window_active_bg"
+
+# pane border
+set-option -g pane-active-border-fg $pane_active_fg
+set-option -g pane-active-border-bg $window_active_bg
+set-option -g pane-border-fg $pane_active_fg
+set-option -g pane-border-bg $window_inactive_bg
+
+# message infos
+set-option -g message-bg $status_bar_bg
+set-option -g message-fg $message_fg
+
+# writting commands inactive
+set-option -g message-command-bg $status_bar_bg
+set-option -g message-command-fg $message_fg
+
+## Theme settings mixed with colors (unfortunately, but there is no cleaner way)
+set-option -g status-attr "none"
+set-option -g status-justify "left"
+set-option -g status-left-attr "none"
+set-option -g status-left-length "80"
+set-option -g status-right-attr "none"
+set-option -g status-right-length "80"
+set-window-option -g window-status-activity-attr "none"
+set-window-option -g window-status-attr "none"
+set-window-option -g window-status-separator " "
+
+set-option -g status-left "#[fg=$status_edge_fg, bg=$status_edge_bg] #S #[fg=$status_edge_bg, bg=$status_bar_bg]$right_sep "
+
+set-option -g status-right "#[fg=$inactive_title_bg,bg=$status_bar_bg]$left_sep#[fg=$status_edge_bg,bg=$inactive_title_bg] %Y-%m-%d • %H:%M #[fg=$status_edge_bg, bg=$inactive_title_bg]$left_sep#[fg=$status_edge_fg, bg=$status_edge_bg] #h "
+
+set-window-option -g window-status-current-format "#[fg=$status_bar_bg, bg=$active_no_bg]$right_sep#[fg=$active_no_fg, bg=$active_no_bg] #I #[fg=$active_no_bg, bg=$active_title_bg]$right_sep#[fg=$active_title_fg, bg=$active_title_bg] #W #[fg=$active_title_bg, bg=$status_bar_bg]$right_sep"
+
+set-window-option -g window-status-format "#[fg=$status_bar_bg,bg=$inactive_no_bg]$right_sep#[fg=$inactive_no_fg,bg=$inactive_no_bg] #I#[fg=$inactive_no_bg,bg=$inactive_title_bg]$right_sep#[fg=$inactive_title_fg, bg=$inactive_title_bg] #W #[fg=$inactive_title_bg, bg=$status_bar_bg]$right_sep"
