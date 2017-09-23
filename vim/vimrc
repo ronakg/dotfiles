@@ -247,6 +247,13 @@ endfunction
 " ======================================================================================
 " Auto commands
 " ======================================================================================
+
+"augroup CursorLineOnlyInActiveWindow
+  "autocmd!
+  "autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  "autocmd WinLeave * setlocal nocursorline
+"augroup END
+
 if has("autocmd")"
     " Enable spell checking
     autocmd FileType gitcommit setlocal spell
@@ -324,18 +331,23 @@ endif
 
 set tags=./tags;/   " ctags path, search upwards till tags file is found
 
+"================= Colorscheme =============================
+
 set background=dark
 let g:gruvbox_italic = 1
 let g:gruvbox_bold = 1
 let g:gruvbox_underline = 1
 let g:gruvbox_undercurl = 1
-let g:gruvbox_contrast_dark = 'soft'
+let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_invert_selection = 0
 colorscheme gruvbox
-hi LineNr guibg=#1a1f28
-hi DiffAdd guibg=#98c379 guifg=black gui=italic
-hi DiffDelete guibg=#e06c75 guifg=black
-hi DiffChange guibg=#61afef guifg=black
-hi DiffText guibg=#e5c07b guifg=black gui=italic
+"hi CursorLine guibg=#1d2021
+"hi CursorLineNr guibg=#1d2021
+hi LineNr guibg=#1d2021
+"hi DiffAdd guibg=#98c379 guifg=black gui=italic
+"hi DiffDelete guibg=#e06c75 guifg=black
+"hi DiffChange guibg=#61afef guifg=black
+"hi DiffText guibg=#e5c07b guifg=black gui=italic
 
 let g:airline#extensions#tabline#enabled                      = 1
 let g:airline#extensions#tabline#buffer_min_count             = 1
@@ -348,7 +360,7 @@ let g:airline#extensions#tagbar#enabled                       = 0
 let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#whitespace#enabled       = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'base16_default'
+let g:airline_theme                               = 'gruvbox'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype'])
@@ -367,9 +379,8 @@ nnoremap <silent> <leader>p :FZF --no-reverse<CR>
 
 
 " Change cursor shape based on mode.
-" https://gist.github.com/andyfowler/1195581
 if has('nvim')
-    set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+    "set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 else
     set t_ut=
     set gcr=a:blinkon0
