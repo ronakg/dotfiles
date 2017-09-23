@@ -325,10 +325,12 @@ endif
 set tags=./tags;/   " ctags path, search upwards till tags file is found
 
 set background=dark
-"let g:one_allow_italics = 1
-let g:oceanic_next_terminal_bold = 1
-let g:oceanic_next_terminal_italic = 1
-colorscheme OceanicNext
+let g:gruvbox_italic = 1
+let g:gruvbox_bold = 1
+let g:gruvbox_underline = 1
+let g:gruvbox_undercurl = 1
+let g:gruvbox_contrast_dark = 'soft'
+colorscheme gruvbox
 hi LineNr guibg=#1a1f28
 hi DiffAdd guibg=#98c379 guifg=black gui=italic
 hi DiffDelete guibg=#e06c75 guifg=black
@@ -346,7 +348,7 @@ let g:airline#extensions#tagbar#enabled                       = 0
 let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#whitespace#enabled       = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'oceanicnext'
+let g:airline_theme                               = 'base16_default'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype'])
@@ -431,7 +433,7 @@ let g:undotree_RelativeTimestamp = 1
 let g:jedi#use_splits_not_buffers = "right"
 let g:jedi#completions_enabled = 0
 
-let g:indentLine_setColors = 0
+let g:indentLine_setColors = 1
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_char = '│'
 
