@@ -340,8 +340,8 @@ let g:gruvbox_underline = 1
 let g:gruvbox_undercurl = 1
 let g:gruvbox_contrast_dark = 'medium'
 let g:gruvbox_invert_selection = 0
-let g:gruvbox_improved_strings = 1
-let g:gruvbox_improved_warnings = 1
+"let g:gruvbox_improved_strings = 1
+"let g:gruvbox_improved_warnings = 1
 colorscheme gruvbox
 "hi CursorLine guibg=#1d2021
 "hi CursorLineNr guibg=#1d2021
