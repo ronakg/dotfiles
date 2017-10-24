@@ -6,7 +6,7 @@ export LC_CTYPE="en_US.UTF-8"
 
 # Check if a command exists
 command_exists () {
-    type $1 &> /dev/null
+    command -v $1 &> /dev/null
 }
 
 export TERM=xterm-256color

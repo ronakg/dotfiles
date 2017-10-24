@@ -16,15 +16,16 @@ HISTCONTROL=ignoredups:erasedups
 set -o vi
 bind -m vi-insert '"jj": vi-movement-mode'
 
+# FZF
+[ -f ~/.fzf.bash ] && . ~/.fzf.bash
+
 [ -f $DOTFILES/environment.sh ] && . $DOTFILES/environment.sh
 
 # Don't care about Ctrl-s
 bind -r '\C-s'
-stty -ixon 2>/dev/null
-[ -f $DOTFILES/bash_prompt ] && . $DOTFILES/bash_prompt
-[ -f ~/.bashrc_work ] && . ~/.bashrc_work
 
-# FZF
-if [ -f ~/.fzf.bash ]; then
-   . ~/.fzf.bash
-fi
+stty -ixon 2>/dev/null
+
+[ -f $DOTFILES/bash_prompt ] && . $DOTFILES/bash_prompt
+
+[ -f ~/.bashrc_work ] && . ~/.bashrc_work || true
