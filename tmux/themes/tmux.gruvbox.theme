@@ -24,7 +24,7 @@ message_fg=$yellow
 status_edge_bg=$status_bar_fg
 status_edge_fg=$dark_black
 
-inactive_title_bg=$black
+inactive_title_bg="#4c4948"     # brown
 inactive_no_bg=$dark_black
 inactive_title_fg=$white
 inactive_no_fg=$blue
@@ -78,4 +78,4 @@ set-option -g status-right "#[fg=$inactive_title_bg,bg=$status_bar_bg]$left_sep#
 
 set-window-option -g window-status-current-format "#[fg=$status_bar_bg, bg=$active_no_bg]$right_sep#[fg=$active_no_fg, bg=$active_no_bg] #I #[fg=$active_no_bg, bg=$active_title_bg]$right_sep#[fg=$active_title_fg, bg=$active_title_bg] #W #[fg=$active_title_bg, bg=$status_bar_bg]$right_sep"
 
-set-window-option -g window-status-format "#[fg=$status_bar_bg,bg=$inactive_no_bg]$right_sep#[fg=$inactive_no_fg,bg=$inactive_no_bg] #I#[fg=$inactive_no_bg,bg=$inactive_title_bg]$right_sep#[fg=$inactive_title_fg, bg=$inactive_title_bg] #W #[fg=$inactive_title_bg, bg=$status_bar_bg]$right_sep"
+set-window-option -g window-status-format "#[fg=$status_bar_bg,bg=$inactive_title_bg]$right_sep#[fg=$inactive_title_fg,bg=$inactive_title_bg] #I#[fg=$inactive_title_bg,bg=$inactive_title_bg]$right_sep#[fg=$inactive_title_fg, bg=$inactive_title_bg]#W #[fg=$inactive_title_bg, bg=$status_bar_bg]$right_sep"

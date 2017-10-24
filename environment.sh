@@ -38,10 +38,12 @@ else
 fi
 
 # FZF
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
-export FZF_DEFAULT_OPTS='--reverse --color=fg+:221,hl+:1,hl:202'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-bind -x '"\C-p": vim $(fzf);'
+if command_exists fzf and command_exists ag; then
+  export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
+  export FZF_DEFAULT_OPTS='--reverse --color=fg+:221,hl+:1,hl:202'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  bind -x '"\C-p": vim $(fzf);'
+fi
 
 # cdf - change directory to selected file
 cdf() {
