@@ -38,11 +38,19 @@ else
 fi
 
 # FZF
-if command_exists fzf and command_exists ag; then
-  export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
-  export FZF_DEFAULT_OPTS='--reverse --color=fg+:221,hl+:1,hl:202'
-  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+if command_exists fzf; then
+  if command_exists rg; then
+    # --files: List files that would be searched but do not search
+    # --no-ignore: Do not respect .gitignore, etc...
+    # --hidden: Search hidden files and folders
+    # --follow: Follow symlinks
+    # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+  elif command_exists ag; then
+    export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
+  fi
   bind -x '"\C-p": vim $(fzf);'
+  export FZF_DEFAULT_OPTS='--reverse --color=fg+:221,hl+:1,hl:202'
 fi
 
 # cdf - change directory to selected file
