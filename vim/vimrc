@@ -143,8 +143,8 @@ vnoremap < <gv
 " Don't add a newline when preview window is visible
 inoremap <silent><expr> <CR> pumvisible() ? "<C-y>" : "<C-g>u<CR>"
 
-" Make Y behave like other motion characters
-nnoremap Y y$
+map y <Plug>(operator-flashy)
+nmap Y <Plug>(operator-flashy)$
 
 " Backspace in normal mode switches to last buffer
 nnoremap <BS> :buffer #<CR>
@@ -622,3 +622,11 @@ let g:clang_format#auto_format = 0
 nnoremap <leader>n :Buffers<CR>
 
 set grepprg=rg\ --vimgrep
+
+map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
+map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
+
+map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
+map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
+map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
+map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
