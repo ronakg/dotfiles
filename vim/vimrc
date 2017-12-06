@@ -1,3 +1,6 @@
+" Author: Ronak Gandhi <me@ronakg.com>
+" Source: https://github.com/ronakg/dotfiles
+"
 " ======================================================================================
 " vim-plug
 " ======================================================================================
@@ -24,7 +27,6 @@ set title
 set hlsearch
 set omnifunc=syntaxcomplete#Complete
 set path+=**
-set smartindent
 set autoindent
 set termencoding=utf-8
 set encoding=utf-8
@@ -470,16 +472,6 @@ let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_char = '│'
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_folding = 0
-let g:pymode_options_max_line_length = 119
-let g:pymode_rope = 0
-let g:pymode_lint_cwindow = 1
-let g:pymode_virtualenv = 1
-let g:pymode_options_colorcolumn = 0
-let g:pymode_lint_cwindow = 0
 
 let g:clever_f_ignore_case = 1
 let g:clever_f_smart_case = 1

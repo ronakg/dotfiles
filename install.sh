@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#
+# Author: Ronak Gandhi <me@ronakg.com>
+# Source: https://github.com/ronakg/dotfiles
 
 command_exists() {
     type "$1" > /dev/null 2>&1
