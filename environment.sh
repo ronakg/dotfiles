@@ -52,19 +52,3 @@ if command_exists fzf; then
   bind -x '"\C-p": vim $(fzf);'
   export FZF_DEFAULT_OPTS='--reverse --color=fg+:221,hl+:1,hl:202'
 fi
-
-# cdf - change directory to selected file
-cdf() {
-   local file
-   local dir
-   file=$(fzf --reverse --height=50 -q "$1") && dir=$(if [ -d $file ]; then
-   echo $file; else echo `dirname $file`; fi) && cd "$dir"
-}
-
-tm() {
-  local session
-  newsession=${1:-$(basename $(pwd))}
-  session=$(tmux list-sessions -F "#{session_name}" | \
-    fzf --query="$1" --select-1 --exit-0) &&
-    tmux attach-session -t "$session" || tmux new-session -s $newsession
-}

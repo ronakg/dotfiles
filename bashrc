@@ -21,11 +21,6 @@ bind -m vi-insert '"jj": vi-movement-mode'
 
 [ -f $DOTFILES/environment.sh ] && . $DOTFILES/environment.sh
 
-# Don't care about Ctrl-s
-bind -r '\C-s'
-
-stty -ixon 2>/dev/null
-
 [ -f $DOTFILES/bash_prompt ] && . $DOTFILES/bash_prompt
 
 [ -f ~/.bashrc_work ] && . ~/.bashrc_work || true

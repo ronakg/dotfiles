@@ -123,11 +123,11 @@ nmap <C-g>d :Gdiff<CR>
 nmap <C-g>b :Gblame<CR>
 
 if executable("rg")
-  let g:ackprg = 'rg --vimgrep --no-heading'
+  let g:ackprg = 'rg --vimgrep'
 elseif executable("ag")
   let g:ackprg = 'ag --vimgrep --smart-case --ignore=tags'
 endif
-let g:ack_apply_qmappings = 0
+let g:ack_apply_qmappings = 1
 let g:ack_apply_lmappings = 0
 " Grep for word under the cursor
 " Otherwise search all subdirectories
@@ -178,7 +178,7 @@ function! QuitBuffer()
   let l:nbuf = len(getbufinfo({'buflisted':1}))
 
   if l:nbuf > 2
-    BD
+    bp | bd #
   elseif l:nbuf == 2
     bd
   else
@@ -533,13 +533,10 @@ if has('nvim')
     if g:os == "Darwin"
         let g:deoplete#sources#clang#libclang_path = "/usr/local/cellar/llvm/4.0.0_1/lib/libclang.dylib"
         let g:deoplete#sources#clang#clang_header = "/usr/local/Cellar/llvm/4.0.0_1/lib/clang"
-        let g:chromatica#libclang_path="/usr/local/cellar/llvm/4.0.0_1/lib/libclang.dylib"
     else
-        let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-3.8/lib/libclang.so.1"
-        let g:deoplete#sources#clang#clang_header = "/usr/lib/llvm-3.8/lib/clang"
-        let g:chromatica#libclang_path="/usr/lib/llvm-3.8/lib/libclang.so.1"
+        let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang.so.1"
+        let g:deoplete#sources#clang#clang_header = "/usr/lib/llvm-3.4/include/clang/"
     endif
-    let g:deoplete#sources#clang#sort_algo = 'priority'
     " }}
 endif
 
@@ -587,8 +584,9 @@ nnoremap <silent> gL :Lost<Cr>
 nnoremap <C-d> :ZoomToggle<CR>:Gdiff<CR>
 
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_linters = { 'c': ['clang'], }
 highlight ALEErrorSign guibg=red guifg=yellow
-highlight ALEWarningSign guibg=blue guifg=yellow
+highlight ALEWarningSign guibg=yellow guifg=black
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni_patterns = {}
@@ -622,3 +620,12 @@ map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
 map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
 map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
 map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
+
+inoremap (<CR> (<CR>)<Esc>O
+inoremap (; ();<Esc>hi
+inoremap {<CR> {<CR>}<Esc>O
+inoremap {; {<CR>};<Esc>O
+inoremap {, {<CR>},<Esc>O
+inoremap [<CR> [<CR>]<Esc>O
+inoremap [; [<CR>];<Esc>O
+inoremap [, [<CR>],<Esc>O
