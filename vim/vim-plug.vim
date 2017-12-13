@@ -18,7 +18,7 @@ Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
 Plug 'ronakg/quickr-cscope.vim'
-"Plug 'tpope/vim-sleuth'         " set vim buffer options for tabs/spaces
+Plug 'tpope/vim-sleuth'         " set vim buffer options for tabs/spaces
 Plug 'ronakg/quickr-preview.vim'
 Plug 'rhysd/vim-clang-format', { 'for': [ 'c', 'cpp', 'h' ]}
 Plug 'wellle/targets.vim'
@@ -32,7 +32,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'plasticboy/vim-markdown'
 Plug 'mzlogin/vim-markdown-toc'
 "Plug 'elzr/vim-json'
-Plug 'mileszs/ack.vim'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 "Plug 'sickill/vim-pasta'

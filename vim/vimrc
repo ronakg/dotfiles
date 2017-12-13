@@ -23,11 +23,8 @@ endif
 syntax on
 filetype plugin indent on
 set binary                                    " Enable binary support
-set title
 set hlsearch
-set omnifunc=syntaxcomplete#Complete
 set path+=**
-set autoindent
 set termencoding=utf-8
 set encoding=utf-8
 
@@ -42,8 +39,6 @@ set sidescrolloff=3                           " Keep at least 3 lines left/right
 set scrolloff=3                               " Keep at least 3 lines above/below
 
 set nostartofline
-set ttyfast
-set lazyredraw
 set gdefault                                  " search/replace globally (on a line) by default
 set splitright                                " Open split on right, not left
 set splitbelow                                " Open split below, not above
@@ -57,7 +52,6 @@ set pumheight=15                              " Completion menu height
 set number                                    " line numbers
 set laststatus=2                              " Always show status line
 set shiftround                                " Round off shift width when using >
-set timeout timeoutlen=1000 ttimeoutlen=100
 set wrapscan
 set autoread                                  " automatically reload files changed outside of Vim
 set showcmd
@@ -122,21 +116,40 @@ nmap <C-g>g :Gstatus<CR>gg<C-n>
 nmap <C-g>d :Gdiff<CR>
 nmap <C-g>b :Gblame<CR>
 
-if executable("rg")
-  let g:ackprg = 'rg --vimgrep'
-elseif executable("ag")
-  let g:ackprg = 'ag --vimgrep --smart-case --ignore=tags'
-endif
-let g:ack_apply_qmappings = 1
-let g:ack_apply_lmappings = 0
 " Grep for word under the cursor
-" Otherwise search all subdirectories
-nnoremap <Leader>VV yiw:silent Ack! <cword><CR>:/<C-R>0<CR>
-vnoremap <Leader>VV y:silent Ack! "<C-R>0"<CR>:/<C-R>0<CR>
+if executable("rg")
+  set grepprg=rg\ --vimgrep
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
 
-" Specific search: whole words only
-nnoremap <Leader>vv yiw:silent Ack! -w <cword><CR>:/<C-R>0<CR>
-vnoremap <Leader>vv y:silent Ack! -w "<C-R>0"<CR>:/<C-R>0<CR>
+  " --column: Show column number
+  " --line-number: Show line number
+  " --no-heading: Do not show file headings in results
+  " --fixed-strings: Search term as a literal string
+  " --ignore-case: Case insensitive search
+  " --no-ignore: Do not respect .gitignore, etc...
+  " --hidden: Search hidden files and folders
+  " --follow: Follow symlinks
+  " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+  " --color: Search color options
+  command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+elseif executable("ag")
+  set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+function! Search(pattern, flags)
+    execute "silent grep! " . a:flags . " " . a:pattern
+    botright copen
+    execute "normal /" . a:pattern
+endfunction
+
+nnoremap <leader>vv :call Search(expand("<cword>"), "-w -s")<CR>
+nnoremap <leader>vi :call Search(expand("<cword>"), "-w")<CR>
+nnoremap <leader>VV :call Search(expand("<cword>"), "-s")<CR>
+nnoremap <leader>VI :call Search(expand("<cword>"), "")<CR>
+nnoremap <leader>vp :call Search(input("Enter search term: "), "-w -s")<CR>
+nnoremap <leader>VP :call Search(input("Enter search term: "), "-s")<CR>
 
 " Easier movement in visual mode
 vnoremap > >gv
@@ -611,8 +624,6 @@ let g:clang_format#auto_format = 0
 
 nnoremap <leader>n :Buffers<CR>
 
-set grepprg=rg\ --vimgrep
-
 map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
 map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
 
@@ -621,11 +632,8 @@ map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
 map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
 map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 
-inoremap (<CR> (<CR>)<Esc>O
 inoremap (; ();<Esc>hi
 inoremap {<CR> {<CR>}<Esc>O
 inoremap {; {<CR>};<Esc>O
-inoremap {, {<CR>},<Esc>O
-inoremap [<CR> [<CR>]<Esc>O
-inoremap [; [<CR>];<Esc>O
-inoremap [, [<CR>],<Esc>O
+
+" vim: ts=4:sw=4
