@@ -183,7 +183,8 @@ nnoremap <expr> <silent> <leader>j (&diff ? "]c" : ":cnext\<CR>")
 nnoremap <expr> <silent> <leader>k (&diff ? "[c" : ":cprev\<CR>")
 
 function! QuitBuffer()
-  if &buftype == 'quickfix'
+  let l:buffer_types = ['quickfix', 'nofile', 'help', 'terminal']
+  if index(l:buffer_types, &buftype) >= 0
     q
     return
   endif
@@ -292,13 +293,14 @@ endfunction
 
 if has("autocmd")"
     " Enable spell checking
-    autocmd FileType gitcommit setlocal spell
-    autocmd FileType markdown setlocal spell
-    autocmd FileType text setlocal spell
-    autocmd FileType rst setlocal spell
 
     augroup mycommands
         autocmd!
+        autocmd FileType gitcommit setlocal spell
+        autocmd FileType markdown setlocal spell
+        autocmd FileType text setlocal spell
+        autocmd FileType rst setlocal spell
+
         autocmd BufWritePre * call StripTrailingWhite()
 
         " omnifuncs
@@ -549,6 +551,7 @@ if has('nvim')
     else
         let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang.so.1"
         let g:deoplete#sources#clang#clang_header = "/usr/lib/llvm-3.4/include/clang/"
+	let g:clamp_libclang_file = '/usr/lib/x86_64-linux-gnu/libclang.so.1'
     endif
     " }}
 endif
@@ -636,4 +639,4 @@ inoremap (; ();<Esc>hi
 inoremap {<CR> {<CR>}<Esc>O
 inoremap {; {<CR>};<Esc>O
 
-" vim: ts=4:sw=4
+" vim: set ts=4:sw=4
