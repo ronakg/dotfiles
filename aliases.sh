@@ -46,7 +46,7 @@ alias commit='git commit'
 alias checkout='git checkout'
 alias branch='git branch'
 alias review='git review'
-alias diff='git difftool'
+alias diff='git difftool HEAD'
 alias apply='git apply'
 alias push='git push'
 alias pull='git pull'
@@ -56,6 +56,10 @@ alias confemail='git config user.email'
 alias confname='git config user.name "Ronak Gandhi"'
 alias cdgitroot='cd $(git rev-parse --show-toplevel)'
 
-alias please='sudo $( history -p !! )'
-alias fuck='sudo $( history -p !! )'
-alias fucking='sudo'
+alias please='sudo -EH $( history -p !! )'
+alias fuck='sudo -EH $( history -p !! )'
+alias fucking='sudo -EH'
+
+cd() {
+  builtin cd "$@" && ls
+}

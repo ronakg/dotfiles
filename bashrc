@@ -1,5 +1,5 @@
 export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+[ -f ~/.bashrc_work ] && . ~/.bashrc_work || true
 
 # Return if not interactive
 [[ $- != *i* ]] && return
@@ -20,10 +20,9 @@ set -o vi
 bind -m vi-insert '"jj": vi-movement-mode'
 
 # FZF
-[ -f ~/.fzf.bash ] && . ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 [ -f $DOTFILES/environment.sh ] && . $DOTFILES/environment.sh
 
 [ -f $DOTFILES/bash_prompt ] && . $DOTFILES/bash_prompt
 
-[ -f ~/.bashrc_work ] && . ~/.bashrc_work || true

@@ -545,14 +545,14 @@ if has('nvim')
     tnoremap <esc><esc> <C-\><C-n>
 
     " deoplete-clang {{
-    if g:os == "Darwin"
-        let g:deoplete#sources#clang#libclang_path = "/usr/local/cellar/llvm/4.0.0_1/lib/libclang.dylib"
-        let g:deoplete#sources#clang#clang_header = "/usr/local/Cellar/llvm/4.0.0_1/lib/clang"
-    else
-        let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang.so.1"
-        let g:deoplete#sources#clang#clang_header = "/usr/lib/llvm-3.4/include/clang/"
-	let g:clamp_libclang_file = '/usr/lib/x86_64-linux-gnu/libclang.so.1'
-    endif
+    "if g:os == "Darwin"
+        "let g:deoplete#sources#clang#libclang_path = "/usr/local/cellar/llvm/4.0.0_1/lib/libclang.dylib"
+        "let g:deoplete#sources#clang#clang_header = "/usr/local/Cellar/llvm/4.0.0_1/lib/clang"
+    "else
+        "let g:deoplete#sources#clang#libclang_path = "/ws/rogandhi-sjc/tools/lib/libclang.so"
+        "let g:deoplete#sources#clang#clang_header = "/ws/rogandhi-sjc/tools/include/clang"
+    "endif
+    "let g:deoplete#sources#clang#sort_algo = 'priority'
     " }}
 endif
 
@@ -574,8 +574,8 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
-let g:SuperTabDefaultCompletionType = "<c-n>"
+"let g:SuperTabContextDefaultCompletionType = "<c-n>"
+"let g:SuperTabDefaultCompletionType = "<c-n>"
 
 let g:tmux_navigator_disable_when_zoomed = 1
 
@@ -584,20 +584,7 @@ let g:neoformat_try_formatprg = 1
 let g:neoformat_only_msg_on_error = 1
 au FileType python setlocal formatprg=autopep8\ -
 
-function! s:lost()
-    " https://git.savannah.gnu.org/cgit/diffutils.git/tree/src/diff.c?id=eaa2a24#n464
-    let found = search('\v^[[:alpha:]$_]', "bn", 1, 100)
-    if found > 0
-        let line = getline(found)
-        echom line
-    else
-        echom '?'
-    endif
-endfunction
-command! -bar Lost call s:lost()
-
-nnoremap <silent> gL :Lost<Cr>
-nnoremap <C-d> :ZoomToggle<CR>:Gdiff<CR>
+nnoremap <C-d> :call ZoomToggle()<CR>:Gdiff<CR>
 
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = { 'c': ['clang'], }
@@ -610,7 +597,6 @@ let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
 let g:deoplete#file#enable_buffer_path = 1
-let g:JavaComplete_LibsPath = '/opt/maglev/sw/apps/javacontainer/lib'
 
 let g:loaded_gentags#ctags = 1
 let g:gen_tags#gtags_auto_gen = 1
@@ -635,8 +621,12 @@ map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
 map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
 map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 
-inoremap (; ();<Esc>hi
 inoremap {<CR> {<CR>}<Esc>O
-inoremap {; {<CR>};<Esc>O
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+
+let g:echodoc_enable_at_startup = 1
 
 " vim: set ts=4:sw=4

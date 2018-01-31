@@ -25,10 +25,6 @@ git config --global diff.tool vimdiff
 git config --global merge.tool vimdiff
 git config --global difftool.prompt false
 
-cd() {
-  builtin cd "$@" && ls -a
-}
-
 # Extract stuff from any filetype
 extract() {
   if [ -z ${1} ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then

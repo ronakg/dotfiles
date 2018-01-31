@@ -25,7 +25,7 @@ Plug 'wellle/targets.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'rhysd/clever-f.vim'
 Plug 'vim-utils/vim-man'
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'plasticboy/vim-markdown'
@@ -39,19 +39,21 @@ Plug 'osyo-manga/vim-anzu'
 Plug 'haya14busa/vim-operator-flashy'
 Plug 'haya14busa/is.vim'
 Plug 'haya14busa/vim-asterisk'
+"Plug 'maralla/completor.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi', { 'for' : [ 'python' ] }
 Plug 'tweekmonster/deoplete-clang2'
 Plug 'Shougo/neoinclude.vim'
 Plug 'sbdchd/neoformat'
+Plug 'Shougo/echodoc.vim'
 
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 
 if !has('nvim')
-      Plug 'roxma/nvim-yarp'
-      Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 " Add plugins to &runtimepath
