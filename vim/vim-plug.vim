@@ -46,6 +46,7 @@ Plug 'tweekmonster/deoplete-clang2'
 Plug 'Shougo/neoinclude.vim'
 Plug 'sbdchd/neoformat'
 Plug 'Shougo/echodoc.vim'
+Plug 'junegunn/gv.vim'
 
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'

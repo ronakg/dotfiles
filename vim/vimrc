@@ -183,22 +183,41 @@ nnoremap <expr> <silent> <leader>j (&diff ? "]c" : ":cnext\<CR>")
 nnoremap <expr> <silent> <leader>k (&diff ? "[c" : ":cprev\<CR>")
 
 function! QuitBuffer()
+  " Just quit for this special buffers
   let l:buffer_types = ['quickfix', 'nofile', 'help', 'terminal']
   if index(l:buffer_types, &buftype) >= 0
     q
     return
   endif
 
-  let l:nbuf = len(getbufinfo({'buflisted':1}))
+  " If the bufhidden is set to delete, just jump back to
+  " previous buffer, this buffer gets deleted on its own
+  let l:hidden = &bufhidden
+  if l:hidden == 'delete'
+    b #
+    return
+  endif
 
+  " number of buffers
+  if v:version >= 800
+    let l:nbuf = len(getbufinfo({'buflisted':1}))
+  else
+    let l:nbuf = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+  endif
+
+  " Jump to previous buffer and then delete this buffer, so that
+  " we're back to where we were before
   if l:nbuf > 2
-    bp | bd #
+    b # | bd #
+
+  " delete the buffer if there are exactly 2 buffers
   elseif l:nbuf == 2
     bd
+
+  " quit if this is the last buffer
   else
     q
   endif
-
 endfunction
 
 " Quicker save and quit
