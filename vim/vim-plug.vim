@@ -42,7 +42,8 @@ Plug 'haya14busa/vim-asterisk'
 "Plug 'maralla/completor.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi', { 'for' : [ 'python' ] }
-Plug 'tweekmonster/deoplete-clang2'
+Plug 'zchee/deoplete-clang'
+"Plug 'tweekmonster/deoplete-clang2'
 Plug 'Shougo/neoinclude.vim'
 Plug 'sbdchd/neoformat'
 Plug 'Shougo/echodoc.vim'

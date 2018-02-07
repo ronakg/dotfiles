@@ -139,9 +139,14 @@ elseif executable("ag")
 endif
 
 function! Search(pattern, flags)
-    execute "silent grep! " . a:flags . " " . a:pattern
+    if strlen(a:pattern) <= 2
+      let search_pattern = input("Enter search term: ")
+    else
+      let search_pattern = a:pattern
+    endif
+    execute "silent grep! " . a:flags . " \"" . search_pattern . "\""
     botright copen
-    execute "normal /" . a:pattern
+    execute "normal /" . search_pattern
 endfunction
 
 nnoremap <leader>vv :call Search(expand("<cword>"), "-w -s")<CR>
@@ -183,21 +188,6 @@ nnoremap <expr> <silent> <leader>j (&diff ? "]c" : ":cnext\<CR>")
 nnoremap <expr> <silent> <leader>k (&diff ? "[c" : ":cprev\<CR>")
 
 function! QuitBuffer()
-  " Just quit for this special buffers
-  let l:buffer_types = ['quickfix', 'nofile', 'help', 'terminal']
-  if index(l:buffer_types, &buftype) >= 0
-    q
-    return
-  endif
-
-  " If the bufhidden is set to delete, just jump back to
-  " previous buffer, this buffer gets deleted on its own
-  let l:hidden = &bufhidden
-  if l:hidden == 'delete'
-    b #
-    return
-  endif
-
   " number of buffers
   if v:version >= 800
     let l:nbuf = len(getbufinfo({'buflisted':1}))
@@ -205,18 +195,39 @@ function! QuitBuffer()
     let l:nbuf = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
   endif
 
+  " Just quit for this special buffers
+  let l:buffer_types = ['quickfix', 'nofile', 'help', 'terminal']
+  if index(l:buffer_types, &buftype) >= 0 || l:nbuf == 1
+    quit
+    return
+  endif
+
+  " If the bufhidden is set to delete, just jump back to
+  " previous buffer, this buffer gets deleted on its own
+  let l:hidden = &bufhidden
+  if l:hidden == 'delete'
+    quit
+    return
+  endif
+
+  " total number of splits
+  let l:nsplit = winnr('$')
+
   " Jump to previous buffer and then delete this buffer, so that
   " we're back to where we were before
   if l:nbuf > 2
-    b # | bd #
+    buffer # | bdelete #
 
-  " delete the buffer if there are exactly 2 buffers
+  elseif l:nbuf < l:nsplit
+    quit
+
+  " delete the buffer if number of open splits is same as buffers
   elseif l:nbuf == 2
-    bd
+    bdelete
 
   " quit if this is the last buffer
   else
-    q
+    quit
   endif
 endfunction
 
@@ -290,6 +301,7 @@ endfunction
 let g:quickr_cscope_autoload_db = 1
 let g:quickr_cscope_use_qf_g = 1
 let g:quickr_cscope_debug_mode = 0
+nmap <leader>h <Plug>(quickr_cscope_global_split)
 
 " ======================================================================================
 " Strip trailing whitespaces
@@ -562,18 +574,13 @@ if has('nvim')
         call s:mapMoveToWindowInDirection(dir)
     endfor
     tnoremap <esc><esc> <C-\><C-n>
-
-    " deoplete-clang {{
-    "if g:os == "Darwin"
-        "let g:deoplete#sources#clang#libclang_path = "/usr/local/cellar/llvm/4.0.0_1/lib/libclang.dylib"
-        "let g:deoplete#sources#clang#clang_header = "/usr/local/Cellar/llvm/4.0.0_1/lib/clang"
-    "else
-        "let g:deoplete#sources#clang#libclang_path = "/ws/rogandhi-sjc/tools/lib/libclang.so"
-        "let g:deoplete#sources#clang#clang_header = "/ws/rogandhi-sjc/tools/include/clang"
-    "endif
-    "let g:deoplete#sources#clang#sort_algo = 'priority'
-    " }}
 endif
+
+" deoplete-clang {{
+let g:deoplete#sources#clang#libclang_path = $MY_LIBCLANG_PATH
+let g:deoplete#sources#clang#clang_header = $MY_CLANGHEADER_PATH
+let g:deoplete#sources#clang#sort_algo = 'priority'
+" }}
 
 command! -bang -nargs=* Ag
             \ call fzf#vim#ag(<q-args>,
@@ -611,10 +618,6 @@ highlight ALEErrorSign guibg=red guifg=yellow
 highlight ALEWarningSign guibg=yellow guifg=black
 
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
-let g:deoplete#sources = {}
-let g:deoplete#sources._ = []
 let g:deoplete#file#enable_buffer_path = 1
 
 let g:loaded_gentags#ctags = 1
