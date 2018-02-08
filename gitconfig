@@ -45,3 +45,5 @@
 	tool = vimdiff
 [mergetool "vimdiff"]
 	path = nvim
+[pull]
+	rebase = true
