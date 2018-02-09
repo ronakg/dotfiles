@@ -1,4 +1,4 @@
-export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
+export PATH="$PATH:/usr/local/bin:$HOME/.local/bin"
 [ -f ~/.bashrc_work ] && . ~/.bashrc_work || true
 
 # Return if not interactive
