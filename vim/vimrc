@@ -204,7 +204,7 @@ function! Quit()
 
   " If the bufhidden is set to delete, just jump back to
   " previous buffer, this buffer gets deleted on its own
-  if &bufhidden == 'delete'
+  if &bufhidden == 'delete' || &bufhidden == 'wipe'
     quit
     return
   endif
@@ -216,7 +216,6 @@ function! Quit()
     " delete the buffer if number of open splits is same as buffers
     bdelete
   elseif l:nbuf > 2
-
     " Jump to previous buffer and then delete this buffer, so that
     " we're back to where we were before
     buffer # | bdelete #
