@@ -20,23 +20,10 @@ alias ag='ag --noheading --nobreak'
 alias tmux='tmux -2 -u'
 alias newtmux='tmux new -s ${PWD##*/}'
 
-# ssh with normal terminal
-alias myssh="TERM=xterm ssh"
-
-# Create cscope and ctags database
-alias create_tags_db="~/dotfiles/create_tags_db.sh"
-
 # fzf vim
 alias fvim='vim $(fzf -x)'
 
-# Select which Java to use, see dir /Library/Java/JavaVirtualMachines/ for more options
-alias setJdk6='export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)'
-alias setJdk7='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)'
-alias setJdk8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)'
-
-alias actvenv='. /nobackup/rogandhi/icsp/venv/bin/activate'
-
-alias histfix='history -n && history | sort -k2 -k1nr | uniq -f1 | sort -n | cut -c8- > ~/.tmp$$ && history -c && history -r ~/.tmp$$ && history -w && rm ~/.tmp$$'
+alias histfix='history -n && history -w && history -c && history -r'
 
 # Git aliases
 alias stash='git stash'

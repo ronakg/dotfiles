@@ -204,7 +204,8 @@ function! Quit()
 
   " If the bufhidden is set to delete, just jump back to
   " previous buffer, this buffer gets deleted on its own
-  if &bufhidden == 'delete' || &bufhidden == 'wipe'
+  let bufhid = &bufhidden
+  if bufhid == 'delete' || bufhid == 'wipe'
     quit
     return
   endif
@@ -219,9 +220,6 @@ function! Quit()
     " Jump to previous buffer and then delete this buffer, so that
     " we're back to where we were before
     buffer # | bdelete #
-  elseif l:nbuf < l:nsplit
-    " same buffer is open in another split
-    quit
   else
     " quit if this is the last buffer
     quit

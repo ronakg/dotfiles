@@ -12,8 +12,8 @@ shopt -s expand_aliases
 shopt -s checkwinsize
 
 ### Append to the history file
+HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
-HISTCONTROL=ignoredups:erasedups
 
 # vi mode for readline
 set -o vi
@@ -26,3 +26,4 @@ bind -m vi-insert '"jj": vi-movement-mode'
 
 [ -f $DOTFILES/bash_prompt ] && . $DOTFILES/bash_prompt
 
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
