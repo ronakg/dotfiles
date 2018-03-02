@@ -26,4 +26,4 @@ bind -m vi-insert '"jj": vi-movement-mode'
 
 [ -f $DOTFILES/bash_prompt ] && . $DOTFILES/bash_prompt
 
-PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+#PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"

@@ -56,7 +56,7 @@ set wrapscan
 set autoread                                  " automatically reload files changed outside of Vim
 set showcmd
 set hidden
-set diffopt+=context:5,vertical               " 5 lines of context in diff mode
+set diffopt+=context:5,vertical,iwhite        " 5 lines of context in diff mode, ignore trailing whitespaces
 set shortmess=atToOIc                         " To avoid the 'Hit Enter' prompts caused by the file messages
 set updatetime=750                            " Vim refresh time
 set linebreak                                 " It maintains the whole words when wrapping
@@ -307,15 +307,15 @@ function! StripTrailingWhite()
     call winrestview(l:winview)
 endfunction
 
-" ======================================================================================
+function! SetTerminal()
+  wincmd L
+  startinsert
+  set nonumber
+  set norelativenumber
+endfunction
+
 " Auto commands
 " ======================================================================================
-
-"augroup CursorLineOnlyInActiveWindow
-  "autocmd!
-  "autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  "autocmd WinLeave * setlocal nocursorline
-"augroup END
 
 if has("autocmd")"
     " Enable spell checking
@@ -367,7 +367,7 @@ if has("autocmd")"
         autocmd FileType help wincmd L
 
         if has('nvim')
-            au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+            au BufEnter * if &buftype == 'terminal' | :call SetTerminal() | endif
         endif
 
     augroup END
@@ -404,16 +404,8 @@ let g:gruvbox_underline = 1
 let g:gruvbox_undercurl = 1
 let g:gruvbox_contrast_dark = 'medium'
 let g:gruvbox_invert_selection = 0
-"let g:gruvbox_improved_strings = 1
-"let g:gruvbox_improved_warnings = 1
 colorscheme gruvbox
-"hi CursorLine guibg=#1d2021
-"hi CursorLineNr guibg=#1d2021
 hi LineNr guibg=#1d2021
-"hi DiffAdd guibg=#98c379 guifg=black gui=italic
-"hi DiffDelete guibg=#e06c75 guifg=black
-"hi DiffChange guibg=#61afef guifg=black
-"hi DiffText guibg=#e5c07b guifg=black gui=italic
 
 let g:airline#extensions#tabline#enabled                      = 1
 let g:airline#extensions#tabline#buffer_min_count             = 1
@@ -528,8 +520,6 @@ command! -nargs=+ Silent
             \ | execute ':silent !'.<q-args>
             \ | execute ':redraw!'
 
-nnoremap <C-s> :Silent bash<CR>
-
 nmap K <plug>(Vman)
 
 let g:EasyMotion_smartcase = 1
@@ -544,7 +534,7 @@ if has('nvim')
     " Use deoplete.
     let g:deoplete#enable_at_startup = 1
 
-    nnoremap <C-b> :vs term://bash<CR>
+    nnoremap <C-b> :vsplit term://bash<CR>
 
     " Window navigation function
     " Make ctrl-h/j/k/l move between windows and auto-insert in terminals
