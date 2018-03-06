@@ -71,6 +71,7 @@ set cscopetag
 set previewheight=20
 set conceallevel=2
 set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵
+set expandtab
 
 " Joining
 set nojoinspaces                " Only one space when joining lines
@@ -108,7 +109,7 @@ let g:mapleader = "\<Space>"
 nnoremap ,/ :nohlsearch<CR>
 " Jump to start of function
 nnoremap ]] ]m
-nnoremap ]] ]m
+nnoremap [[ [m
 
 nnoremap G :norm! Gzz<CR>
 
@@ -118,43 +119,68 @@ nmap <C-g>b :Gblame<CR>
 
 " Grep for word under the cursor
 if executable("rg")
-  set grepprg=rg\ --vimgrep
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
+    set grepprg=rg\ --vimgrep
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
 
-  " --column: Show column number
-  " --line-number: Show line number
-  " --no-heading: Do not show file headings in results
-  " --fixed-strings: Search term as a literal string
-  " --ignore-case: Case insensitive search
-  " --no-ignore: Do not respect .gitignore, etc...
-  " --hidden: Search hidden files and folders
-  " --follow: Follow symlinks
-  " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-  " --color: Search color options
-  command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+    " --column: Show column number
+    " --line-number: Show line number
+    " --no-heading: Do not show file headings in results
+    " --fixed-strings: Search term as a literal string
+    " --ignore-case: Case insensitive search
+    " --no-ignore: Do not respect .gitignore, etc...
+    " --hidden: Search hidden files and folders
+    " --follow: Follow symlinks
+    " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+    " --color: Search color options
+    command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 elseif executable("ag")
-  set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
+    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
+
+function! GetVisualSelection()
+    " https://stackoverflow.com/a/6271254/777247
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+    if len(lines) == 0
+        return ''
+    endif
+    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+    return join(lines, "\n")
+endfunction
 
 function! Search(pattern, flags)
     if strlen(a:pattern) <= 2
-      let search_pattern = input("Enter search term: ")
+        let search_pattern = input("Enter search term: ")
     else
-      let search_pattern = a:pattern
+        let search_pattern = a:pattern
     endif
     execute "silent grep! " . a:flags . " \"" . search_pattern . "\""
     botright copen
     execute "normal /" . search_pattern
 endfunction
 
-nnoremap <leader>vv :call Search(expand("<cword>"), "-w -s")<CR>
-nnoremap <leader>vi :call Search(expand("<cword>"), "-w")<CR>
-nnoremap <leader>VV :call Search(expand("<cword>"), "-s")<CR>
-nnoremap <leader>VI :call Search(expand("<cword>"), "")<CR>
-nnoremap <leader>vp :call Search(input("Enter search term: "), "-w -s")<CR>
-nnoremap <leader>VP :call Search(input("Enter search term: "), "-s")<CR>
+" whole word, smart case
+nnoremap <leader>vv :call Search(expand("<cword>"), "-w -S -F")<CR>
+" whole word, ignore case
+nnoremap <leader>vi :call Search(expand("<cword>"), "-w -i -F")<CR>
+" any part of word, smart case
+nnoremap <leader>VV :call Search(expand("<cword>"), "-S -F")<CR>
+" open search
+nnoremap <leader>VI :call Search(expand("<cword>"), "-i -F")<CR>
+
+" Visual mode mappings
+vnoremap <leader>vv :call Search(GetVisualSelection(), "-w -S -F")<CR>
+vnoremap <leader>vi :call Search(GetVisualSelection(), "-w -i -F")<CR>
+vnoremap <leader>VV :call Search(GetVisualSelection(), "-S -F")<CR>
+vnoremap <leader>VI :call Search(GetVisualSelection(), "-i -F")<CR>
+
+" Prompt for search text
+nnoremap <leader>vp :call Search(input("Enter search term: "), "-w -S")<CR>
+nnoremap <leader>VP :call Search(input("Enter search term: "), "-S")<CR>
 
 " Easier movement in visual mode
 vnoremap > >gv
@@ -188,42 +214,61 @@ nnoremap <expr> <silent> <leader>j (&diff ? "]c" : ":cnext\<CR>")
 nnoremap <expr> <silent> <leader>k (&diff ? "[c" : ":cprev\<CR>")
 
 function! Quit()
-  " number of listed buffers
-  if v:version >= 800
-    let l:nbuf = len(getbufinfo({'buflisted':1}))
-  else
-    let l:nbuf = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-  endif
+    let debug = 0
+    if debug
+        echom 'Entering Quit(), current buffer is: ' . bufname('%')
+        echom 'Previous buffer is: ' . bufname('#')
+    endif
 
-  " Just quit for this special buffers
-  let l:buffer_types = ['quickfix', 'nofile', 'help', 'terminal']
-  if index(l:buffer_types, &buftype) >= 0 || l:nbuf == 1
-    quit
-    return
-  endif
+    " number of listed buffers
+    if v:version >= 800
+        let l:nbuf = len(getbufinfo({'buflisted':1}))
+    else
+        let l:nbuf = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+    endif
 
-  " If the bufhidden is set to delete, just jump back to
-  " previous buffer, this buffer gets deleted on its own
-  let bufhid = &bufhidden
-  if bufhid == 'delete' || bufhid == 'wipe'
-    quit
-    return
-  endif
+    if debug
+        echom 'Number of buffers: ' . l:nbuf
+    endif
 
-  " total number of splits
-  let l:nsplit = winnr('$')
+    " Just quit for this special buffers
+    let l:buffer_types = ['quickfix', 'nofile', 'help', 'terminal']
+    if index(l:buffer_types, &buftype) >= 0 || l:nbuf == 1
+        quit
+        return
+    endif
 
-  if l:nbuf == l:nsplit
-    " delete the buffer if number of open splits is same as buffers
-    bdelete
-  elseif l:nbuf > 2
-    " Jump to previous buffer and then delete this buffer, so that
-    " we're back to where we were before
-    buffer # | bdelete #
-  else
-    " quit if this is the last buffer
-    quit
-  endif
+    " If the bufhidden is set to delete, just jump back to
+    " previous buffer, this buffer gets deleted on its own
+    let bufhid = &bufhidden
+    if bufhid == 'delete' || bufhid == 'wipe'
+        if debug
+            echom 'Quitting because bufhid is ' . bufhid
+        endif
+        quit
+        return
+    endif
+
+    " total number of splits
+    let l:nsplit = winnr('$')
+    let l:cur_bufnr = bufnr('%')
+
+    if debug
+        echom 'No of splits: ' . l:nsplit . ', Current buffer: ' . l:cur_bufnr
+        echom 'Previous buffer: ' . bufnr('#')
+    endif
+
+    if l:nbuf == l:nsplit
+        " delete the buffer if number of open splits is same as buffers
+        bdelete
+    elseif l:nbuf > 1
+        " Jump to previous buffer and then delete this buffer, so that
+        " we're back to where we were before
+        bprevious | execute 'bdelete ' . l:cur_bufnr
+    else
+        " quit if this is the last buffer
+        quit
+    endif
 endfunction
 
 " Quicker save and quit
@@ -242,7 +287,8 @@ vnoremap ; :
 inoremap <C-d> <C-o>x
 
 " Jump to start and end of line using the home row keys
-nmap 0 ^
+nnoremap 0 ^
+nnoremap ^ 0
 
 " Move by 'display lines' rather than 'logical lines' if no v:count was
 " provided.  When a v:count is provided, move by logical lines.
@@ -287,10 +333,10 @@ let g:quickr_cscope_db_file = "GTAGS"
 " Incrementally update the database generated by GNU GLOBAL
 " ======================================================================================
 function! UpdateGlobalDB()
-      try
-          silent! execute '!gtags -i &'
-      catch
-      endtry
+    try
+        silent! execute '!gtags -i &'
+    catch
+    endtry
 endfunction
 
 let g:quickr_cscope_autoload_db = 1
@@ -308,10 +354,13 @@ function! StripTrailingWhite()
 endfunction
 
 function! SetTerminal()
-  wincmd L
-  startinsert
-  set nonumber
-  set norelativenumber
+    wincmd L
+    startinsert
+    setlocal nonumber
+    setlocal norelativenumber
+    if exists(':IndentLinesDisable')
+        IndentLinesDisable
+    endif
 endfunction
 
 " Auto commands
@@ -330,14 +379,14 @@ if has("autocmd")"
         autocmd BufWritePre * call StripTrailingWhite()
 
         " omnifuncs
-        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        autocmd FileType java setlocal omnifunc=javacomplete#Complete
-        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        "autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        "autocmd FileType java setlocal omnifunc=javacomplete#Complete
+        "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
         autocmd FileType c set omnifunc=ccomplete#Complete
-        autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
+        "autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
 
         " Remember cursor position between vim sessions
         autocmd BufReadPost *
@@ -359,9 +408,6 @@ if has("autocmd")"
 
         " Use shell syntax for .conf files
         autocmd BufRead,BufNewFile *.conf set syntax=sh
-
-        " Open the result from quickfix window and close the quickfix window
-        autocmd FileType qf nnoremap <buffer> o <CR>:cclose<CR>
 
         " Open help in vertical split
         autocmd FileType help wincmd L
@@ -459,15 +505,10 @@ catch
 endtry
 
 let g:startify_list_order = [['Most recently used files in current directory:'], 'dir',
-            \                ['Most recently used file on the system:'], 'files',
-            \                ['Sessions:'], 'sessions',
             \                ['Bookmarks:'], 'bookmarks']
 let g:startify_change_to_dir = 0
-let g:startify_files_number = 7
-let g:startify_enable_unsafe = 1
-let g:startify_skiplist = [
-            \ '.CC',
-            \ ]
+let g:startify_files_number = 10
+let g:startify_bookmarks = [ {'c': '~/.vim/vimrc'}, {'d': '~/.vim/vim-plug.vim'} ]
 
 if filereadable(".vim.custom")
     so .vim.custom
@@ -580,13 +621,8 @@ command! -bang -nargs=* Rg
             \           : fzf#vim#with_preview('right:50%:hidden', '?'),
             \   <bang>0)
 
-let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips"
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsEditSplit="vertical"
-"let g:SuperTabContextDefaultCompletionType = "<c-n>"
-"let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 let g:tmux_navigator_disable_when_zoomed = 1
 
@@ -630,10 +666,6 @@ map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 
 inoremap {<CR> {<CR>}<Esc>O
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
-
 let g:echodoc_enable_at_startup = 1
 
-" vim: set ts=4:sw=4
+"vim:set:ts=4:sw=4:

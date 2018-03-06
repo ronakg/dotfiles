@@ -21,7 +21,7 @@ alias tmux='tmux -2 -u'
 alias newtmux='tmux new -s ${PWD##*/}'
 
 # fzf vim
-alias fvim='vim $(fzf -x)'
+alias vip='vim +FZF'
 
 alias histfix='history -n && history -w && history -c && history -r'
 
