@@ -45,7 +45,6 @@ set splitbelow                                " Open split below, not above
 set wildmenu
 set wildmode=longest:full,list:full
 set completeopt=longest,menuone
-set noshowmode                                " Airline shows mode, so hide default mode
 set nobackup                                  " Don't need backup and swap files
 set noswapfile
 set pumheight=15                              " Completion menu height
@@ -72,6 +71,7 @@ set previewheight=20
 set conceallevel=2
 set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵
 set expandtab
+set noshowmode
 
 " Joining
 set nojoinspaces                " Only one space when joining lines
@@ -120,7 +120,6 @@ nmap <C-g>b :Gblame<CR>
 " Grep for word under the cursor
 if executable("rg")
     set grepprg=rg\ --vimgrep
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
 
     " --column: Show column number
     " --line-number: Show line number
@@ -136,8 +135,8 @@ if executable("rg")
 
 elseif executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
+set grepformat=%f:%l:%c:%m,%f:%l:%m
 
 function! GetVisualSelection()
     " https://stackoverflow.com/a/6271254/777247
@@ -245,7 +244,7 @@ function! Quit()
         if debug
             echom 'Quitting because bufhid is ' . bufhid
         endif
-        quit
+        bprevious
         return
     endif
 
@@ -342,7 +341,7 @@ endfunction
 let g:quickr_cscope_autoload_db = 1
 let g:quickr_cscope_use_qf_g = 1
 let g:quickr_cscope_debug_mode = 0
-nmap <leader>h <Plug>(quickr_cscope_global_split)
+nmap <leader>h <Plug>(quickr_cscope_global_verticle_split)
 
 " ======================================================================================
 " Strip trailing whitespaces
@@ -383,7 +382,7 @@ if has("autocmd")"
         "autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
         "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
         "autocmd FileType java setlocal omnifunc=javacomplete#Complete
-        "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
         "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
         autocmd FileType c set omnifunc=ccomplete#Complete
         "autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
@@ -404,7 +403,7 @@ if has("autocmd")"
             autocmd User QfReplacementBufWritePost doautocmd BufWritePost
         endif
 
-        autocmd BufWritePost $MYVIMRC,vimrc source $MYVIMRC | AirlineRefresh
+        "autocmd BufWritePost $MYVIMRC,vimrc source $MYVIMRC | AirlineRefresh
 
         " Use shell syntax for .conf files
         autocmd BufRead,BufNewFile *.conf set syntax=sh
@@ -435,6 +434,7 @@ endfunction
 if &diff
     nnoremap e :qa<CR>
     nnoremap w :wa<CR>
+    nnoremap W :wa!<CR>
     set nonu
     set nornu
 endif
@@ -452,6 +452,10 @@ let g:gruvbox_contrast_dark = 'medium'
 let g:gruvbox_invert_selection = 0
 colorscheme gruvbox
 hi LineNr guibg=#1d2021
+
+"let g:lightline = {
+      "\ 'colorscheme': 'PaperColor',
+      "\ }
 
 let g:airline#extensions#tabline#enabled                      = 1
 let g:airline#extensions#tabline#buffer_min_count             = 1
@@ -516,12 +520,11 @@ endif
 
 function! ZoomToggle() abort
     if exists('t:zoomed') && t:zoomed
-        execute t:zoom_winrestcmd
+        execute 'source ./temp.vim'
         let t:zoomed = 0
     else
-        let t:zoom_winrestcmd = winrestcmd()
-        resize
-        vertical resize
+        execute 'mksession! temp.vim'
+        only
         let t:zoomed = 1
     endif
 endfunction
@@ -667,5 +670,8 @@ map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 inoremap {<CR> {<CR>}<Esc>O
 
 let g:echodoc_enable_at_startup = 1
+
+let g:completor_clang_binary = "/ws/rogandhi-sjc/tools/bin/clang"
+let g:completor_python_binary = "/usr/cisco/bin/python3"
 
 "vim:set:ts=4:sw=4:
