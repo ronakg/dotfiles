@@ -47,6 +47,8 @@ Plug 'sbdchd/neoformat'
 Plug 'Shougo/echodoc.vim'
 Plug 'junegunn/gv.vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'rust-lang/rust.vim', { 'for' : [ 'rs' ] }
+Plug 'racer-rust/vim-racer', { 'for' : [ 'rs' ] }
 
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'
