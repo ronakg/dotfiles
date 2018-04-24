@@ -55,6 +55,7 @@ find_virtualenv() {
 }
 
 # Highlight the user name when logged in as root.
+USER=$(whoami)
 if [[ "$USER" != "rogandhi" ]]; then
     user="${italic}$red\u${reset}${_sep}";
 else

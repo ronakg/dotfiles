@@ -173,6 +173,7 @@ endfunction
 
 " Quicker save and quit
 nnoremap <silent> e :call Quit()<CR>
+nnoremap <silent> E :q<CR>
 nnoremap <silent> w :update<CR>
 inoremap <silent> jj <Esc>
 
@@ -276,7 +277,7 @@ if has("autocmd")"
         autocmd FileType text setlocal spell
         autocmd FileType rst setlocal spell
 
-        autocmd BufWritePre * call StripTrailingWhite()
+        "autocmd BufWritePre * call StripTrailingWhite()
 
         " omnifuncs
         "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
