@@ -1,115 +1,16 @@
 " Author: Ronak Gandhi <me@ronakg.com>
 " Source: https://github.com/ronakg/dotfiles
 "
-" ======================================================================================
-" vim-plug
-" ======================================================================================
-try
-    source ~/.vim/vim-plug.vim
-catch
-endtry
-
-if !exists("g:os")
-    if has("win64") || has("win32") || has("win16")
-        let g:os = "Windows"
-    else
-        let g:os = substitute(system('uname'), '\n', '', '')
-    endif
-endif
-
-" ======================================================================================
-" Standard vim options
-" ======================================================================================
-syntax on
-filetype plugin indent on
-set binary                                    " Enable binary support
-set hlsearch
-set path+=**
-set termencoding=utf-8
-set encoding=utf-8
-
-" Search
-set incsearch                                 " incremental search
-set ignorecase                                " ignore case in searching
-set smartcase                                 " don't ignore case if capital letters present
-
-set backspace=indent,eol,start                " makes backspace working
-
-set sidescrolloff=3                           " Keep at least 3 lines left/right
-set scrolloff=3                               " Keep at least 3 lines above/below
-
-set nostartofline
-set gdefault                                  " search/replace globally (on a line) by default
-set splitright                                " Open split on right, not left
-set splitbelow                                " Open split below, not above
-set wildmenu
-set wildmode=longest:full,list:full
-set completeopt=longest,menuone
-set noshowmode                                " Airline shows mode, so hide default mode
-set nobackup                                  " Don't need backup and swap files
-set noswapfile
-set pumheight=15                              " Completion menu height
-set number                                    " line numbers
-set laststatus=2                              " Always show status line
-set shiftround                                " Round off shift width when using >
-set wrapscan
-set autoread                                  " automatically reload files changed outside of Vim
-set showcmd
-set hidden
-set diffopt+=context:5,vertical,iwhite        " 5 lines of context in diff mode, ignore trailing whitespaces
-set shortmess=atToOIc                         " To avoid the 'Hit Enter' prompts caused by the file messages
-set updatetime=750                            " Vim refresh time
-set linebreak                                 " It maintains the whole words when wrapping
-set cpoptions-=m                              " Highlight when CursorMoved.
-set cpoptions+=I
-set matchtime=1
-set visualbell t_vb=                          " Disable bells
-set shell=bash
-set fileformats="unix,dos,mac"
-set csverb
-set cscopetag
-set previewheight=20
-set conceallevel=2
-set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵
-set expandtab
-
-" Joining
-set nojoinspaces                " Only one space when joining lines
-set formatoptions+=j            " Remove comment leader when joining lines
-
-if $TMUX == ''
-    set clipboard+=unnamed
-endif
-
-if has('nvim')
-    set inccommand=nosplit
-endif
-
-set list
-set mouse=a
-
-if exists("&wildignorecase")
-    set wildignorecase
-endif
-
-if exists("&relativenumber")
-    set relativenumber
-endif
-
-let &t_ZH="\e[3m"
-let &t_ZR="\e[23m"
-
-if has('termguicolors')
-    set termguicolors
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
+" Keep all the sane settings in following file
+source ~/.vim/sane_vimrc
 
 let g:mapleader = "\<Space>"
 
 nnoremap ,/ :nohlsearch<CR>
+
 " Jump to start of function
-nnoremap ]] ]m
-nnoremap [[ [m
+nnoremap [[ ?{<CR>w99[{:nohlsearch<CR>
+nnoremap ]] j0[[%/{<CR>:nohlsearch<CR>
 
 nnoremap G :norm! Gzz<CR>
 
@@ -441,18 +342,6 @@ endif
 
 set tags=./tags;/   " ctags path, search upwards till tags file is found
 
-"================= Colorscheme =============================
-
-set background=dark
-let g:gruvbox_italic = 1
-let g:gruvbox_bold = 0
-let g:gruvbox_underline = 1
-let g:gruvbox_undercurl = 1
-let g:gruvbox_contrast_dark = 'medium'
-let g:gruvbox_invert_selection = 0
-colorscheme gruvbox
-hi LineNr guibg=#1d2021
-
 let g:airline#extensions#tabline#enabled                      = 1
 let g:airline#extensions#tabline#buffer_min_count             = 1
 let g:airline#extensions#tabline#tab_min_count                = 1
@@ -499,11 +388,6 @@ else
     endif
 endif
 
-try
-    source ~/.vimrc_work
-catch
-endtry
-
 let g:startify_list_order = [['Most recently used files in current directory:'], 'dir',
             \                ['Bookmarks:'], 'bookmarks']
 let g:startify_change_to_dir = 0
@@ -526,17 +410,6 @@ function! ZoomToggle() abort
     endif
 endfunction
 nnoremap <silent> <C-a> :call ZoomToggle()<CR>
-
-if has("persistent_undo")
-    set undodir=~/.undodir/
-    set undofile
-    set undolevels=1000
-    set undoreload=10000
-endif
-" focus when open
-let g:undotree_SetFocusWhenToggle = 1
-" relative timestamp
-let g:undotree_RelativeTimestamp = 1
 
 let g:jedi#use_splits_not_buffers = "right"
 let g:jedi#completions_enabled = 0
@@ -571,36 +444,34 @@ let g:vim_markdown_conceal = 0
 
 let g:vim_json_syntax_conceal = 0
 
-if has('nvim')
-    " Use deoplete.
-    let g:deoplete#enable_at_startup = 1
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 
-    nnoremap <C-b> :vsplit term://bash<CR>
+nnoremap <C-b> :vsplit term://bash<CR>
 
-    " Window navigation function
-    " Make ctrl-h/j/k/l move between windows and auto-insert in terminals
-    func! s:mapMoveToWindowInDirection(direction)
-        func! s:maybeInsertMode(direction)
-            stopinsert
-            execute "wincmd" a:direction
+" Window navigation function
+" Make ctrl-h/j/k/l move between windows and auto-insert in terminals
+func! s:mapMoveToWindowInDirection(direction)
+func! s:maybeInsertMode(direction)
+        stopinsert
+        execute "wincmd" a:direction
 
-            if &buftype == 'terminal'
-                startinsert!
-            endif
-        endfunc
+        if &buftype == 'terminal'
+        startinsert!
+        endif
+endfunc
 
-        execute "tnoremap" "<silent>" "<C-" . a:direction . ">"
-                    \ "<C-\\><C-n>"
-                    \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
-        execute "nnoremap" "<silent>" "<C-" . a:direction . ">"
-                    \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
-    endfunc
+execute "tnoremap" "<silent>" "<C-" . a:direction . ">"
+                \ "<C-\\><C-n>"
+                \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
+execute "nnoremap" "<silent>" "<C-" . a:direction . ">"
+                \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
+endfunc
 
-    for dir in ["h", "j", "l", "k"]
-        call s:mapMoveToWindowInDirection(dir)
-    endfor
-    tnoremap <esc><esc> <C-\><C-n>
-endif
+for dir in ["h", "j", "l", "k"]
+call s:mapMoveToWindowInDirection(dir)
+endfor
+tnoremap <esc><esc> <C-\><C-n>
 
 " deoplete-clang {{
 let g:deoplete#sources#clang#libclang_path = $MY_LIBCLANG_PATH
@@ -629,6 +500,7 @@ let g:tmux_navigator_disable_when_zoomed = 1
 let g:neoformat_enabled_python = ['autopep8']
 let g:neoformat_try_formatprg = 1
 let g:neoformat_only_msg_on_error = 1
+
 au FileType python setlocal formatprg=autopep8\ -
 
 nnoremap <C-d> :call ZoomToggle()<CR>:Gdiff<CR>
@@ -654,8 +526,6 @@ let g:signify_sign_delete            = '-'
 " ======================================================================================
 let g:clang_format#auto_format = 0
 
-nnoremap <leader>n :Buffers<CR>
-
 map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
 map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
 
@@ -667,5 +537,31 @@ map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 inoremap {<CR> {<CR>}<Esc>O
 
 let g:echodoc_enable_at_startup = 1
+
+if has('nvim')
+        " Eclim support
+        " See https://www.reddit.com/r/vim/comments/5xspok/trouble_with_eclim_and_deoplete/
+        let g:deoplete#omni#input_patterns = {}
+        let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
+
+        " Autoclose preview windows
+        " https://github.com/Shougo/deoplete.nvim/issues/115
+        autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+        " https://github.com/Shougo/deoplete.nvim/issues/100
+        " use tab to forward cycle
+        inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+        " use tab to backward cycle
+        inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+        " Lazy load Deoplete to reduce statuptime
+        " See manpage
+        " Enable deoplete when InsertEnter.
+        let g:deoplete#enable_at_startup = 0
+        autocmd InsertEnter * call deoplete#enable()
+endif
+
+let g:EclimJavaSearchSingleResult = 'edit'
+let g:EclimCompletionMethod = 'omnifunc'
 
 "vim:set:ts=4:sw=4:

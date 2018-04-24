@@ -1,6 +1,6 @@
 [user]
 	name = Ronak Gandhi
-	email = ronak.gandhi@viptela.com
+        email = me@ronakg.com
 [github]
     user = ronakg
 [diff]
@@ -40,13 +40,11 @@
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
-    required = true
+	required = true
 	process = git-lfs filter-process
 [show]
 	tool = vimdiff
 [mergetool "vimdiff"]
 	path = nvim
-[pull]
-	rebase = true
 [push]
 	default = simple

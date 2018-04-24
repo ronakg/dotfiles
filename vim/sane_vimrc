@@ -1,0 +1,131 @@
+" Author: Ronak Gandhi <me@ronakg.com>
+" Source: https://github.com/ronakg/dotfiles
+
+" ======================================================================================
+" vim-plug
+" ======================================================================================
+try
+    source ~/.vim/vim-plug.vim
+catch
+endtry
+
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
+
+" ======================================================================================
+" Standard vim options
+" ======================================================================================
+syntax on
+filetype plugin indent on
+set binary                                    " Enable binary support
+set hlsearch
+set path+=**
+set termencoding=utf-8
+set encoding=utf-8
+
+" Search
+set incsearch                                 " incremental search
+set ignorecase                                " ignore case in searching
+set smartcase                                 " don't ignore case if capital letters present
+
+set backspace=indent,eol,start                " makes backspace working
+
+set sidescrolloff=3                           " Keep at least 3 lines left/right
+set scrolloff=3                               " Keep at least 3 lines above/below
+
+set nostartofline
+set gdefault                                  " search/replace globally (on a line) by default
+set splitright                                " Open split on right, not left
+set splitbelow                                " Open split below, not above
+set wildmenu
+set wildmode=longest:full,list:full
+set completeopt=longest,menuone
+set noshowmode                                " Airline shows mode, so hide default mode
+set nobackup                                  " Don't need backup and swap files
+set noswapfile
+set pumheight=15                              " Completion menu height
+set number                                    " line numbers
+set laststatus=2                              " Always show status line
+set shiftround                                " Round off shift width when using >
+set wrapscan
+set autoread                                  " automatically reload files changed outside of Vim
+set showcmd
+set hidden
+set diffopt+=context:5,vertical,iwhite        " 5 lines of context in diff mode, ignore trailing whitespaces
+set shortmess=atToOIc                         " To avoid the 'Hit Enter' prompts caused by the file messages
+set updatetime=750                            " Vim refresh time
+set linebreak                                 " It maintains the whole words when wrapping
+set cpoptions-=m                              " Highlight when CursorMoved.
+set cpoptions+=I
+set matchtime=1
+set visualbell t_vb=                          " Disable bells
+set shell=bash
+set fileformats="unix,dos,mac"
+set csverb
+set cscopetag
+set previewheight=20
+set conceallevel=2
+set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵
+set expandtab
+
+" Joining
+set nojoinspaces                " Only one space when joining lines
+set formatoptions+=j            " Remove comment leader when joining lines
+
+set list
+set mouse=a
+
+if $TMUX == ''
+    set clipboard+=unnamed
+endif
+
+if has('nvim')
+    set inccommand=nosplit
+endif
+
+if exists("&wildignorecase")
+    set wildignorecase
+endif
+
+if exists("&relativenumber")
+    set relativenumber
+endif
+
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+
+if has('termguicolors')
+    set termguicolors
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
+"================= Colorscheme =============================
+
+set background=dark
+let g:gruvbox_italic = 1
+let g:gruvbox_bold = 0
+let g:gruvbox_underline = 1
+let g:gruvbox_undercurl = 1
+let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_invert_selection = 0
+colorscheme gruvbox
+hi LineNr guibg=#1d2021
+
+try
+    source ~/.vimrc_work
+catch
+endtry
+
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+    set undolevels=1000
+    set undoreload=10000
+endif
+
+"vim:set:ts=4:sw=4:
