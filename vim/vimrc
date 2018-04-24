@@ -21,7 +21,6 @@ nmap <C-g>b :Gblame<CR>
 " Grep for word under the cursor
 if executable("rg")
     set grepprg=rg\ --vimgrep
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
 
     " --column: Show column number
     " --line-number: Show line number
@@ -37,8 +36,8 @@ if executable("rg")
 
 elseif executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
+set grepformat=%f:%l:%c:%m,%f:%l:%m
 
 function! GetVisualSelection()
     " https://stackoverflow.com/a/6271254/777247
@@ -146,7 +145,7 @@ function! Quit()
         if debug
             echom 'Quitting because bufhid is ' . bufhid
         endif
-        quit
+        bprevious
         return
     endif
 
@@ -243,7 +242,7 @@ endfunction
 let g:quickr_cscope_autoload_db = 1
 let g:quickr_cscope_use_qf_g = 1
 let g:quickr_cscope_debug_mode = 0
-nmap <leader>h <Plug>(quickr_cscope_global_split)
+nmap <leader>h <Plug>(quickr_cscope_global_verticle_split)
 
 " ======================================================================================
 " Strip trailing whitespaces
@@ -284,7 +283,7 @@ if has("autocmd")"
         "autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
         "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
         "autocmd FileType java setlocal omnifunc=javacomplete#Complete
-        "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
         "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
         autocmd FileType c set omnifunc=ccomplete#Complete
         "autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
@@ -305,7 +304,7 @@ if has("autocmd")"
             autocmd User QfReplacementBufWritePost doautocmd BufWritePost
         endif
 
-        autocmd BufWritePost $MYVIMRC,vimrc source $MYVIMRC | AirlineRefresh
+        "autocmd BufWritePost $MYVIMRC,vimrc source $MYVIMRC | AirlineRefresh
 
         " Use shell syntax for .conf files
         autocmd BufRead,BufNewFile *.conf set syntax=sh
@@ -336,6 +335,7 @@ endfunction
 if &diff
     nnoremap e :qa<CR>
     nnoremap w :wa<CR>
+    nnoremap W :wa!<CR>
     set nonu
     set nornu
 endif

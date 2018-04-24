@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-eunuch'     "Vim sugar for the UNIX shell commands that need it the most
 Plug 'bling/vim-airline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'tpope/vim-dispatch'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
