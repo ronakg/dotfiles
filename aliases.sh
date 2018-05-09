@@ -11,8 +11,7 @@ if command_exists nvim; then
     alias vim=nvim;
 fi
 
-alias vi=vim
-alias svim='vim -u ~/.vim/sane_vimrc'
+alias vi='vim -u ~/.vim/sane_vimrc'
 
 # silver searcher
 alias ag='ag --noheading --nobreak'

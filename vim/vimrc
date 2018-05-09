@@ -138,6 +138,10 @@ function! Quit()
         return
     endif
 
+    " total number of splits
+    let l:nsplit = winnr('$')
+    let l:cur_bufnr = bufnr('%')
+
     " If the bufhidden is set to delete, just jump back to
     " previous buffer, this buffer gets deleted on its own
     let bufhid = &bufhidden
@@ -145,13 +149,15 @@ function! Quit()
         if debug
             echom 'Quitting because bufhid is ' . bufhid
         endif
-        bprevious
+
+        if l:nbuf == l:nsplit
+            quit
+        else
+            bprevious
+        endif
+
         return
     endif
-
-    " total number of splits
-    let l:nsplit = winnr('$')
-    let l:cur_bufnr = bufnr('%')
 
     if debug
         echom 'No of splits: ' . l:nsplit . ', Current buffer: ' . l:cur_bufnr
@@ -511,7 +517,6 @@ let g:ale_linters = { 'c': ['clang'], }
 highlight ALEErrorSign guibg=red guifg=yellow
 highlight ALEWarningSign guibg=yellow guifg=black
 
-let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
 
 let g:loaded_gentags#ctags = 1
@@ -539,30 +544,24 @@ inoremap {<CR> {<CR>}<Esc>O
 
 let g:echodoc_enable_at_startup = 1
 
-if has('nvim')
-        " Eclim support
-        " See https://www.reddit.com/r/vim/comments/5xspok/trouble_with_eclim_and_deoplete/
-        let g:deoplete#omni#input_patterns = {}
-        let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
+" Eclim support
+" See https://www.reddit.com/r/vim/comments/5xspok/trouble_with_eclim_and_deoplete/
+let g:deoplete#omni#input_patterns = {}
+let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
 
-        " Autoclose preview windows
-        " https://github.com/Shougo/deoplete.nvim/issues/115
-        autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" Autoclose preview windows
+" https://github.com/Shougo/deoplete.nvim/issues/115
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-        " https://github.com/Shougo/deoplete.nvim/issues/100
-        " use tab to forward cycle
-        inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-        " use tab to backward cycle
-        inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-
-        " Lazy load Deoplete to reduce statuptime
-        " See manpage
-        " Enable deoplete when InsertEnter.
-        let g:deoplete#enable_at_startup = 0
-        autocmd InsertEnter * call deoplete#enable()
-endif
+" https://github.com/Shougo/deoplete.nvim/issues/100
+" use tab to forward cycle
+inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" use tab to backward cycle
+inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 let g:EclimJavaSearchSingleResult = 'edit'
 let g:EclimCompletionMethod = 'omnifunc'
+nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
+nnoremap <silent> <leader>c :echo "Opening call hierarchy..."<CR>:JavaCallHierarchy<CR>
 
 "vim:set:ts=4:sw=4:
