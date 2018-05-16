@@ -20,7 +20,7 @@ nmap <C-g>b :Gblame<CR>
 
 " Grep for word under the cursor
 if executable("rg")
-    set grepprg=rg\ --vimgrep
+    set grepprg=rg\ --vimgrep\ -g\ '!tags'
 
     " --column: Show column number
     " --line-number: Show line number
@@ -79,8 +79,8 @@ vnoremap <leader>VV :call Search(GetVisualSelection(), "-S -F")<CR>
 vnoremap <leader>VI :call Search(GetVisualSelection(), "-i -F")<CR>
 
 " Prompt for search text
-nnoremap <leader>vp :call Search(input("Enter search term: "), "-w -S")<CR>
-nnoremap <leader>VP :call Search(input("Enter search term: "), "-S")<CR>
+nnoremap <leader>vp :call Search("", "-w -S")<CR>
+nnoremap <leader>VP :call Search("", "-S")<CR>
 
 " Easier movement in visual mode
 vnoremap > >gv
@@ -101,10 +101,6 @@ nnoremap <BS> :buffer #<CR>
 " Don't let x and c to spoil the yank register
 nnoremap x "_x
 nnoremap c "_c
-
-" back tick is more powerful, but harder to reach
-noremap ' `
-noremap ` '
 
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
@@ -486,19 +482,6 @@ let g:deoplete#sources#clang#clang_header = $MY_CLANGHEADER_PATH
 let g:deoplete#sources#clang#sort_algo = 'priority'
 " }}
 
-command! -bang -nargs=* Ag
-            \ call fzf#vim#ag(<q-args>,
-            \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-            \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \                 <bang>0)
-
-command! -bang -nargs=* Rg
-            \ call fzf#vim#grep(
-            \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
@@ -561,7 +544,22 @@ inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 let g:EclimJavaSearchSingleResult = 'edit'
 let g:EclimCompletionMethod = 'omnifunc'
+let g:EclimLocateFileScope = 'workspace'
+
+function! MyJavaSearch(pattern, type)
+    if strlen(a:pattern) <= 2
+        let search_pattern = input("Enter search term: ")
+    else
+        let search_pattern = a:pattern
+    endif
+
+    execute "JavaSearch -p " . search_pattern . " -t all -x " . a:type
+endfunction
+
 nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
 nnoremap <silent> <leader>c :echo "Opening call hierarchy..."<CR>:JavaCallHierarchy<CR>
+nnoremap <silent> <leader>ss :call MyJavaSearch(expand("<cword>"), "all")<CR>
+nnoremap <silent> <leader>sr :call MyJavaSearch(expand("<cword>"), "references")<CR>
+nnoremap <silent> <leader>sp :call MyJavaSearch(expand("<cword>"), "implementation")<CR>
 
 "vim:set:ts=4:sw=4:
