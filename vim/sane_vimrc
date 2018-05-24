@@ -101,7 +101,7 @@ let &t_ZR="\e[23m"
 
 if has('termguicolors')
     set termguicolors
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 endif
 
 "================= Colorscheme =============================

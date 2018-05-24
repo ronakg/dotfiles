@@ -6,7 +6,7 @@ source ~/.vim/sane_vimrc
 
 let g:mapleader = "\<Space>"
 
-nnoremap ,/ :nohlsearch<CR>
+nnoremap \ :nohlsearch<CR>
 
 " Jump to start of function
 nnoremap [[ ?{<CR>w99[{:nohlsearch<CR>
@@ -105,15 +105,18 @@ nnoremap c "_c
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
-" Next/prev quick-fix results
-nnoremap <expr> <silent> <leader>j (&diff ? "]c" : ":cnext\<CR>")
-nnoremap <expr> <silent> <leader>k (&diff ? "[c" : ":cprev\<CR>")
-
 function! Quit()
     let debug = 0
     if debug
         echom 'Entering Quit(), current buffer is: ' . bufname('%')
         echom 'Previous buffer is: ' . bufname('#')
+    endif
+
+    let buflisted = &buflisted
+    if !buflisted
+        echom 'Quitting because buffer is not listed'
+        quit
+        return
     endif
 
     " number of listed buffers
@@ -141,6 +144,7 @@ function! Quit()
     " If the bufhidden is set to delete, just jump back to
     " previous buffer, this buffer gets deleted on its own
     let bufhid = &bufhidden
+
     if bufhid == 'delete' || bufhid == 'wipe'
         if debug
             echom 'Quitting because bufhid is ' . bufhid
@@ -193,13 +197,6 @@ inoremap <C-d> <C-o>x
 nnoremap 0 ^
 nnoremap ^ 0
 
-" Move by 'display lines' rather than 'logical lines' if no v:count was
-" provided.  When a v:count is provided, move by logical lines.
-nnoremap <expr> j v:count > 0 ? 'j' : 'gj'
-xnoremap <expr> j v:count > 0 ? 'j' : 'gj'
-nnoremap <expr> k v:count > 0 ? 'k' : 'gk'
-xnoremap <expr> k v:count > 0 ? 'k' : 'gk'
-
 nnoremap <leader>l :call NumberToggle()<CR>
 
 " Add a heading/subheading to current line
@@ -226,6 +223,8 @@ function! s:CommitPush(...)
 endfunction
 
 command! -nargs=? CommitPush call s:CommitPush(<f-args>)
+
+let g:quickr_preview_position = 'right'
 
 " quickr-cscope.vim
 let g:quickr_cscope_program = "gtags-cscope"
@@ -266,6 +265,7 @@ function! SetTerminal()
     endif
 endfunction
 
+
 " Auto commands
 " ======================================================================================
 
@@ -278,6 +278,9 @@ if has("autocmd")"
         autocmd FileType markdown setlocal spell
         autocmd FileType text setlocal spell
         autocmd FileType rst setlocal spell
+
+        "autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+        "autocmd WinLeave * setlocal nocursorline
 
         "autocmd BufWritePre * call StripTrailingWhite()
 
@@ -299,6 +302,7 @@ if has("autocmd")"
 
         " Update diff when leaving from insertmode or writing to file
         autocmd BufWritepost * if &diff == 1 | diffupdate | endif
+
         if g:quickr_cscope_program == "gtags-cscope"
             " Update GLOBAL database after file is written
             autocmd BufWritePost *.c call UpdateGlobalDB()
@@ -339,8 +343,8 @@ if &diff
     nnoremap e :qa<CR>
     nnoremap w :wa<CR>
     nnoremap W :wa!<CR>
-    set nonu
-    set nornu
+    set number
+    set norelativenumber
 endif
 
 set tags=./tags;/   " ctags path, search upwards till tags file is found
@@ -352,7 +356,7 @@ let g:airline#extensions#tabline#buffer_idx_mode              = 1
 let g:airline#extensions#tabline#buffer_nr_show               = 0
 let g:airline#extensions#tabline#show_buffers                 = 1
 let g:airline#extensions#branch#enabled                       = 1
-let g:airline#extensions#tagbar#enabled                       = 0
+let g:airline#extensions#tagbar#enabled                       = 1
 let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#whitespace#enabled       = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
@@ -374,7 +378,6 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nnoremap <silent> <leader>p :FZF --no-reverse<CR>
 nnoremap <silent> <leader>b :Tags<CR>
 nnoremap b :Buffers<CR>
-
 
 " Change cursor shape based on mode.
 if has('nvim')
@@ -502,9 +505,6 @@ highlight ALEWarningSign guibg=yellow guifg=black
 
 let g:deoplete#file#enable_buffer_path = 1
 
-let g:loaded_gentags#ctags = 1
-let g:gen_tags#gtags_auto_gen = 1
-
 " ======================================================================================
 " vim-signify
 " ======================================================================================
@@ -561,5 +561,12 @@ nnoremap <silent> <leader>c :echo "Opening call hierarchy..."<CR>:JavaCallHierar
 nnoremap <silent> <leader>ss :call MyJavaSearch(expand("<cword>"), "all")<CR>
 nnoremap <silent> <leader>sr :call MyJavaSearch(expand("<cword>"), "references")<CR>
 nnoremap <silent> <leader>sp :call MyJavaSearch(expand("<cword>"), "implementation")<CR>
+let g:EclimJavaSearchSingleResult = 'edit'
+let g:EclimLoggingDisabled = 1
 
-"vim:set:ts=4:sw=4:
+let java_highlight_all = 1
+let java_highlight_java_lang_ids = 1
+let java_comment_strings = 1
+let java_highlight_functions = 1
+let java_highlight_debug = 1
+let java_mark_braces_in_parens_as_errors = 1
