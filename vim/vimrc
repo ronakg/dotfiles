@@ -93,7 +93,7 @@ map y <Plug>(operator-flashy)
 nmap Y <Plug>(operator-flashy)$
 
 " Backspace in normal mode switches to last buffer
-nnoremap <BS> :buffer #<CR>
+nnoremap <BS> <C-o>
 
 " Expand matching braces only when pressing Enter
 " inoremap {<CR> {<CR>}<Esc>==ko
@@ -190,9 +190,6 @@ inoremap <C-p> <C-r>0
 nnoremap ; :
 vnoremap ; :
 
-" x in Insert mode
-inoremap <C-d> <C-o>x
-
 " Jump to start and end of line using the home row keys
 nnoremap 0 ^
 nnoremap ^ 0
@@ -205,10 +202,6 @@ nnoremap <leader>- yypVr-<Esc>==
 
 " Go to end of yanked/pasted text
 vnoremap <silent> y y`]
-nnoremap <silent> p ]p`]
-vnoremap <silent> p ]p`]
-nnoremap <silent> P [p`]
-vnoremap <silent> P [p`]
 " }}
 
 " Commit and push {{
@@ -404,7 +397,7 @@ if filereadable(".vim.custom")
     so .vim.custom
 endif
 
-function! ZoomToggle() abort
+function! ZoomToggle()
     if exists('t:zoomed') && t:zoomed
         execute t:zoom_winrestcmd
         let t:zoomed = 0
@@ -515,9 +508,6 @@ let g:signify_sign_delete            = '-'
 " ======================================================================================
 let g:clang_format#auto_format = 0
 
-map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
-map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
-
 map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
 map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
 map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
@@ -563,6 +553,8 @@ nnoremap <silent> <leader>sr :call MyJavaSearch(expand("<cword>"), "references")
 nnoremap <silent> <leader>sp :call MyJavaSearch(expand("<cword>"), "implementation")<CR>
 let g:EclimJavaSearchSingleResult = 'edit'
 let g:EclimLoggingDisabled = 1
+let g:EclimBuffersDefaultAction = 'edit'
+"let g:EclimMakeLCD = 1
 
 let java_highlight_all = 1
 let java_highlight_java_lang_ids = 1
@@ -570,3 +562,5 @@ let java_comment_strings = 1
 let java_highlight_functions = 1
 let java_highlight_debug = 1
 let java_mark_braces_in_parens_as_errors = 1
+
+let g:jedi#show_call_signatures = "1"

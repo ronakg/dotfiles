@@ -8,6 +8,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 "Plug 'tpope/vim-eunuch'     "Vim sugar for the UNIX shell commands that need it the most
+"Plug 'python-mode/python-mode', { 'for': [ 'python'], 'branch': 'develop' }
 Plug 'bling/vim-airline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -40,7 +41,7 @@ Plug 'haya14busa/is.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'luochen1990/rainbow'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi', { 'for': [ 'python' ] }
+"Plug 'zchee/deoplete-jedi', { 'for': [ 'python' ] }
 Plug 'zchee/deoplete-clang', { 'for': [ 'c', 'cpp', 'h' ] }
 "Plug 'Shougo/neoinclude.vim'
 "Plug 'junegunn/gv.vim'
@@ -48,6 +49,7 @@ Plug 'zchee/deoplete-clang', { 'for': [ 'c', 'cpp', 'h' ] }
 Plug 'majutsushi/tagbar', { 'for': [ 'java' ] }
 Plug 'sheerun/vim-polyglot'
 Plug 'sickill/vim-pasta'
+Plug 'davidhalter/jedi-vim', { 'for': [ 'python' ] }
 
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'
@@ -56,8 +58,6 @@ Plug 'morhetz/gruvbox'
 if !has('nvim')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
-else
-    Plug 'mhinz/neovim-remote'
 endif
 
 " Add plugins to &runtimepath
