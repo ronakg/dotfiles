@@ -1,52 +1,60 @@
 [user]
-	name = Ronak Gandhi
-        email = me@ronakg.com
+        name = Ronak Gandhi
 [github]
-    user = ronakg
+        user = ronakg
 [diff]
 	tool = vimdiff
 [merge]
 	tool = vimdiff
 [difftool]
 	prompt = false
-
 [color]
-    branch = auto
-    diff = auto
-    status = auto
-    grep = auto
+        branch = auto
+        diff = auto
+        status = auto
+        grep = auto
 
 [color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
+        current = yellow reverse
+        local = yellow
+        remote = green
 
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+        meta = yellow bold
+        frag = magenta bold
+        old = red bold
+        new = green bold
 
 [color "status"]
-    added = green
-    changed = yellow
-    untracked = cyan
+        added = green
+        changed = yellow
+        untracked = cyan
 
 [log]
-    date = relative
+        date = short
 
 [alias]
-    s = status -s
+        s = status -s
+	graph = log --pretty=format:\"%C(yellow)%h %ar %C(auto)%d %Creset %s , %Cblue%cn\" --graph --all
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
-	process = git-lfs filter-process
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        required = true
+        process = git-lfs filter-process
 [show]
-	tool = vimdiff
+        tool = vimdiff
+[mergetool]
+        prompt = true
 [mergetool "vimdiff"]
+        cmd = nvim -d $REMOTE $LOCAL -c 'wincmd L'
 	path = nvim
 [push]
-	default = simple
+        default = simple
 [credential]
-	helper = cache
+        helper = cache
+[pull]
+        rebase = true
+[rebase]
+        autoStash = true
+[format]
+        pretty = format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s

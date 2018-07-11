@@ -28,6 +28,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'rhysd/clever-f.vim'
 Plug 'vim-utils/vim-man'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 "Plug 'christoomey/vim-tmux-navigator'
 Plug 'plasticboy/vim-markdown', { 'for': [ 'md' ] }
 Plug 'mzlogin/vim-markdown-toc', { 'for': [ 'md' ] }

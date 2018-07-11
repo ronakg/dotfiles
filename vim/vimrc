@@ -179,7 +179,7 @@ endfunction
 
 " Quicker save and quit
 nnoremap <silent> e :call Quit()<CR>
-nnoremap <silent> E :q<CR>
+nnoremap <silent> <C-e> :q<CR>
 nnoremap <silent> w :update<CR>
 inoremap <silent> jj <Esc>
 
@@ -411,7 +411,7 @@ endfunction
 nnoremap <silent> <C-a> :call ZoomToggle()<CR>
 
 let g:jedi#use_splits_not_buffers = "right"
-let g:jedi#completions_enabled = 0
+let g:jedi#completions_enabled = 1
 
 let g:indentLine_setColors = 1
 let g:indentLine_leadingSpaceChar = '·'
@@ -564,3 +564,9 @@ let java_highlight_debug = 1
 let java_mark_braces_in_parens_as_errors = 1
 
 let g:jedi#show_call_signatures = "1"
+
+nnoremap gf <C-w>f<C-w>L
+
+let g:vem_tabline_show = 2
+let g:vem_tabline_left_arrow = '◀'
+let g:vem_tabline_right_arrow = '▶'

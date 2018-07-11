@@ -44,7 +44,11 @@ set splitright                                " Open split on right, not left
 set splitbelow                                " Open split below, not above
 set wildmenu
 set wildmode=longest:full,list:full
-set completeopt=longest,menuone
+set completeopt+=menuone
+set completeopt+=noselect
+set completeopt+=noinsert
+set shortmess+=c   " Shut off completion messages
+set belloff+=ctrlg " If Vim beeps during completion
 set noshowmode                                " Airline shows mode, so hide default mode
 set nobackup                                  " Don't need backup and swap files
 set noswapfile
@@ -57,7 +61,6 @@ set autoread                                  " automatically reload files chang
 set showcmd
 set hidden
 set diffopt+=context:5,vertical,iwhite        " 5 lines of context in diff mode, ignore trailing whitespaces
-set shortmess=atToOIc                         " To avoid the 'Hit Enter' prompts caused by the file messages
 set updatetime=750                            " Vim refresh time
 set linebreak                                 " It maintains the whole words when wrapping
 set cpoptions-=m                              " Highlight when CursorMoved.
