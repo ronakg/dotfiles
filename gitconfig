@@ -3,11 +3,11 @@
 [github]
         user = ronakg
 [diff]
-	tool = vimdiff
+        tool = vimdiff
 [merge]
-	tool = vimdiff
+        tool = vimdiff
 [difftool]
-	prompt = false
+        prompt = false
 [color]
         branch = auto
         diff = auto
@@ -35,7 +35,7 @@
 
 [alias]
         s = status -s
-	graph = log --pretty=format:\"%C(yellow)%h %ar %C(auto)%d %Creset %s , %Cblue%cn\" --graph --all
+        graph = log --pretty=format:\"%C(yellow)%h %ar %C(auto)%d %Creset %s , %Cblue%cn\" --graph --all
 [filter "lfs"]
         clean = git-lfs clean -- %f
         smudge = git-lfs smudge -- %f
@@ -47,7 +47,7 @@
         prompt = true
 [mergetool "vimdiff"]
         cmd = nvim -d $REMOTE $LOCAL -c 'wincmd L'
-	path = nvim
+        path = nvim
 [push]
         default = simple
 [credential]
