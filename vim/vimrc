@@ -218,6 +218,7 @@ endfunction
 command! -nargs=? CommitPush call s:CommitPush(<f-args>)
 
 let g:quickr_preview_position = 'right'
+let g:quickr_preview_on_cursor = 1
 
 " quickr-cscope.vim
 let g:quickr_cscope_program = "gtags-cscope"
@@ -410,7 +411,7 @@ function! ZoomToggle()
 endfunction
 nnoremap <silent> <C-a> :call ZoomToggle()<CR>
 
-let g:jedi#use_splits_not_buffers = "right"
+"let g:jedi#use_splits_not_buffers = "right"
 let g:jedi#completions_enabled = 1
 
 let g:indentLine_setColors = 1
@@ -445,6 +446,8 @@ let g:vim_json_syntax_conceal = 0
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#file#enable_buffer_path = 1
+let g:deoplete#auto_complete_start_length = 2
 
 nnoremap <C-b> :vsplit term://bash<CR>
 
@@ -495,8 +498,6 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = { 'c': ['clang'], }
 highlight ALEErrorSign guibg=red guifg=yellow
 highlight ALEWarningSign guibg=yellow guifg=black
-
-let g:deoplete#file#enable_buffer_path = 1
 
 " ======================================================================================
 " vim-signify
