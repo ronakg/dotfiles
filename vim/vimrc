@@ -518,11 +518,6 @@ inoremap {<CR> {<CR>}<Esc>O
 
 let g:echodoc_enable_at_startup = 1
 
-" Eclim support
-" See https://www.reddit.com/r/vim/comments/5xspok/trouble_with_eclim_and_deoplete/
-let g:deoplete#omni#input_patterns = {}
-let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
-
 " Autoclose preview windows
 " https://github.com/Shougo/deoplete.nvim/issues/115
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -532,10 +527,6 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " use tab to backward cycle
 inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-
-let g:EclimJavaSearchSingleResult = 'edit'
-let g:EclimCompletionMethod = 'omnifunc'
-let g:EclimLocateFileScope = 'workspace'
 
 function! MyJavaSearch(pattern, type)
     if strlen(a:pattern) <= 2
@@ -552,10 +543,6 @@ nnoremap <silent> <leader>c :echo "Opening call hierarchy..."<CR>:JavaCallHierar
 nnoremap <silent> <leader>ss :call MyJavaSearch(expand("<cword>"), "all")<CR>
 nnoremap <silent> <leader>sr :call MyJavaSearch(expand("<cword>"), "references")<CR>
 nnoremap <silent> <leader>sp :call MyJavaSearch(expand("<cword>"), "implementation")<CR>
-let g:EclimJavaSearchSingleResult = 'edit'
-let g:EclimLoggingDisabled = 1
-let g:EclimBuffersDefaultAction = 'edit'
-"let g:EclimMakeLCD = 1
 
 let java_highlight_all = 1
 let java_highlight_java_lang_ids = 1

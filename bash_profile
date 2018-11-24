@@ -14,3 +14,6 @@ fi
 TZ='America/Los_Angeles'; export TZ
 
 source ~/.git-completion.bash
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+

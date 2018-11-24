@@ -1,5 +1,6 @@
 [user]
-        name = Ronak Gandhi
+	name = Ronak Gandhi
+	email = rogandhi@cisco.com
 [github]
         user = ronakg
 [diff]
@@ -36,6 +37,12 @@
 [alias]
         s = status -s
         graph = log --pretty=format:\"%C(yellow)%h %ar %C(auto)%d %Creset %s , %Cblue%cn\" --graph --all
+        ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+        ll = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --numstat
+        lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+        hide = update-index --assume-unchanged
+        unhide = update-index --no-assume-unchanged
+        showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
 [show]
         tool = vimdiff
 [mergetool]

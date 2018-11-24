@@ -75,6 +75,8 @@ set previewheight=20
 set conceallevel=2
 set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵
 set expandtab
+set tabstop=4
+set shiftwidth=4
 
 " Joining
 set nojoinspaces                " Only one space when joining lines
