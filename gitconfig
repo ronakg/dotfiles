@@ -47,13 +47,8 @@
         tool = vimdiff
 [mergetool]
         prompt = true
-[mergetool "vimdiff"]
-        cmd = nvim -d $REMOTE $LOCAL -c 'wincmd L'
-	path = nvim
-[push]
-        default = simple
 [credential]
-        helper = cache
+	helper = store
 [pull]
         rebase = true
 [rebase]
@@ -69,3 +64,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[lfs]
+	cachecredentials = 1

@@ -1,6 +1,3 @@
-export PATH="$PATH:/usr/local/bin:$HOME/.local/bin"
-[ -f ~/.bashrc_work ] && . ~/.bashrc_work || true
-
 # Return if not interactive
 [[ $- != *i* ]] && return
 
@@ -25,3 +22,5 @@ bind -m vi-insert '"jj": vi-movement-mode'
 [ -f $DOTFILES/environment.sh ] && . $DOTFILES/environment.sh
 
 [ -f $DOTFILES/bash_prompt ] && . $DOTFILES/bash_prompt
+
+export PATH=/usr/local/bin:$PATH
