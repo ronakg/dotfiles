@@ -279,14 +279,8 @@ if has("autocmd")"
         "autocmd BufWritePre * call StripTrailingWhite()
 
         " omnifuncs
-        "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        "autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        "autocmd FileType java setlocal omnifunc=javacomplete#Complete
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
         autocmd FileType c set omnifunc=ccomplete#Complete
-        "autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
 
         " Remember cursor position between vim sessions
         autocmd BufReadPost *
@@ -516,45 +510,14 @@ map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 
 inoremap {<CR> {<CR>}<Esc>O
 
-let g:echodoc_enable_at_startup = 1
-
 " Autoclose preview windows
 " https://github.com/Shougo/deoplete.nvim/issues/115
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" https://github.com/Shougo/deoplete.nvim/issues/100
-" use tab to forward cycle
-inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" use tab to backward cycle
-inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! MyJavaSearch(pattern, type)
-    if strlen(a:pattern) <= 2
-        let search_pattern = input("Enter search term: ")
-    else
-        let search_pattern = a:pattern
-    endif
-
-    execute "JavaSearch -p " . search_pattern . " -t all -x " . a:type
-endfunction
-
-nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
-nnoremap <silent> <leader>c :echo "Opening call hierarchy..."<CR>:JavaCallHierarchy<CR>
-nnoremap <silent> <leader>ss :call MyJavaSearch(expand("<cword>"), "all")<CR>
-nnoremap <silent> <leader>sr :call MyJavaSearch(expand("<cword>"), "references")<CR>
-nnoremap <silent> <leader>sp :call MyJavaSearch(expand("<cword>"), "implementation")<CR>
-
-let java_highlight_all = 1
-let java_highlight_java_lang_ids = 1
-let java_comment_strings = 1
-let java_highlight_functions = 1
-let java_highlight_debug = 1
-let java_mark_braces_in_parens_as_errors = 1
 
 let g:jedi#show_call_signatures = "1"
 
 nnoremap gf <C-w>f<C-w>L
-
-let g:vem_tabline_show = 2
-let g:vem_tabline_left_arrow = '◀'
-let g:vem_tabline_right_arrow = '▶'

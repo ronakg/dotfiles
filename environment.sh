@@ -65,6 +65,8 @@ else
     export CSCOPE_EDITOR=vim
 fi
 
+export HOMEBREW_INSTALL_CLEANUP=1
+
 # FZF
 if command_exists fzf; then
   if command_exists rg; then
