@@ -9,6 +9,14 @@ command_exists () {
     command -v $1 &> /dev/null
 }
 
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    [ -f $DOTFILES/linux-gnu.sh ] && . $DOTFILES/linux-gnu.sh
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    [ -f $DOTFILES/macos.sh ] && . $DOTFILES/macos.sh
+else
+    echo "New OS Found"
+fi
+
 export TERM=xterm-256color
 
 # Aliases
