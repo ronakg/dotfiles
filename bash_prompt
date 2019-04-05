@@ -20,8 +20,8 @@ fi;
 
 
 _sep="${gray} \[•\] ${reset}"
-_dir="${cyan}\w${reset}"
-_host="${italic}${orange}\H${reset}${_sep}";
+_dir="${red}\w${reset}"
+_host="${italic}${blue}\H${reset}${_sep}";
 
 find_git_branch() {
   # Based on: http://stackoverflow.com/a/13003854/170413
@@ -30,7 +30,7 @@ find_git_branch() {
     if [[ "$branch" == "HEAD" ]]; then
       branch='detached*'
     fi
-    echo "${yellow}(${branch})${reset} "
+    echo "${green}(${branch})${reset} "
   else
     echo ""
   fi
@@ -56,10 +56,10 @@ find_virtualenv() {
 
 # Highlight the user name when logged in as root.
 USER=$(whoami)
-if [[ "$USER" != "rogandhi" ]]; then
-    user="${italic}$red\u${reset}${_sep}";
+if [[ "$USER" == "root" ]]; then
+    user="${italic}${bold}$red\u${reset}${_sep}";
 else
-    user="";
+    user="$yellow\u${reset}${_sep}";
 fi;
 
 function prompt_command {

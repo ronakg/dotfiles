@@ -24,3 +24,5 @@ bind -m vi-insert '"jj": vi-movement-mode'
 [ -f $DOTFILES/bash_prompt ] && . $DOTFILES/bash_prompt
 
 export PATH=/usr/local/bin:$PATH
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

@@ -348,7 +348,7 @@ let g:airline#extensions#tagbar#enabled                       = 1
 let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#whitespace#enabled       = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'hybrid'
+let g:airline_theme                               = 'onedark'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype'])
@@ -493,16 +493,6 @@ let g:ale_linters = { 'c': ['clang'], }
 highlight ALEErrorSign guibg=red guifg=yellow
 highlight ALEWarningSign guibg=yellow guifg=black
 
-" ======================================================================================
-" vim-signify
-" ======================================================================================
-let g:signify_sign_delete            = '-'
-
-" ======================================================================================
-" vim-clang-format
-" ======================================================================================
-let g:clang_format#auto_format = 0
-
 map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
 map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
 map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
@@ -521,3 +511,5 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 let g:jedi#show_call_signatures = "1"
 
 nnoremap gf <C-w>f<C-w>L
+
+let g:java_highlight_functions = 1

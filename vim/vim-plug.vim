@@ -7,6 +7,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'fatih/vim-go'
 Plug 'bling/vim-airline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -26,10 +27,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'vim-utils/vim-man'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
-Plug 'plasticboy/vim-markdown', { 'for': [ 'md' ] }
-Plug 'mzlogin/vim-markdown-toc', { 'for': [ 'md' ] }
 Plug 'roxma/vim-tmux-clipboard'
-Plug 'nathanalderson/yang.vim', { 'for': [ 'yang' ] }
 Plug 'kana/vim-operator-user'
 Plug 'haya14busa/vim-operator-flashy'
 Plug 'haya14busa/is.vim'
@@ -39,12 +37,12 @@ Plug 'sickill/vim-pasta'
 
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'
+Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
 Plug 'morhetz/gruvbox'
 
-if !has('nvim')
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
 " Add plugins to &runtimepath
 call plug#end()
