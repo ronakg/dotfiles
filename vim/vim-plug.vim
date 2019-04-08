@@ -36,10 +36,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'sickill/vim-pasta'
 
 " Colorschemes
-Plug 'vim-airline/vim-airline-themes'
 Plug 'joshdick/onedark.vim'
-Plug 'rakr/vim-one'
-Plug 'morhetz/gruvbox'
 
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
