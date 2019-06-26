@@ -33,3 +33,5 @@ setopt COMPLETE_ALIASES
 if [ -f ~/.fzf.zsh ]; then
    . ~/.fzf.zsh
 fi
+
+fpath=(/usr/local/share/zsh-completions $fpath)

@@ -17,8 +17,6 @@ else
     echo "New OS Found"
 fi
 
-export TERM=xterm-256color
-
 # Aliases
 [ -f $DOTFILES/aliases.sh ] && . $DOTFILES/aliases.sh
 
@@ -66,7 +64,6 @@ if command_exists nvim; then
     export EDITOR=nvim
     export VISUAL=nvim
     export CSCOPE_EDITOR=nvim
-    git config --global mergetool.vimdiff.path nvim
 else
     export EDITOR=vim
     export VISUAL=vim
@@ -87,6 +84,6 @@ if command_exists fzf; then
   elif command_exists ag; then
     export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
   fi
-  bind -x '"\C-p": vim $(fzf);'
+  #bind -x '"\C-p": vim $(fzf);'
   export FZF_DEFAULT_OPTS='--reverse --color=fg+:221,hl+:1,hl:202'
 fi
