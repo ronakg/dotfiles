@@ -3034,11 +3034,11 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>220 72 606 469 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>393 622 918 423 0 0 1920 1057 </string>
+	<string>309 593 918 423 0 0 1680 1027 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>2075 473 592 584 1920 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>39 0 1881 1057 0 0 1920 1057 </string>
+	<string>39 0 1641 1027 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>47 675 665 502 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -3063,7 +3063,7 @@
 			<key>ASCII Anti Aliased</key>
 			<true/>
 			<key>ASCII Ligatures</key>
-			<false/>
+			<true/>
 			<key>Allow Title Reporting</key>
 			<true/>
 			<key>Ambiguous Double Width</key>
@@ -3320,7 +3320,7 @@
 			<key>Guid</key>
 			<string>28C5D854-86B0-4C9C-8837-8A8BC1D6D56C</string>
 			<key>Horizontal Spacing</key>
-			<real>1</real>
+			<real>0.9974232868975903</real>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Jobs to Ignore</key>
@@ -3772,7 +3772,7 @@
 			<key>Non-ASCII Ligatures</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FiraCode-Retina 13</string>
+			<string>FiraCode-Retina 14</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -3842,7 +3842,7 @@
 			<key>Use Non-ASCII Font</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>1</real>
+			<real>1.1112575301204819</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
@@ -3951,7 +3951,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-06-24T18:44:07Z</date>
+	<date>2019-07-03T17:56:11Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
