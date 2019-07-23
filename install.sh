@@ -80,5 +80,9 @@ echo -e "\nSourcing ~/.bashrc"
 # Create undodir for vim persistent undo
 mkdir -p ~/.undodir
 
+# Install packages
+
+npm i -g bash-language-server
+
 # Hurray...
 echo -e "\n...done"

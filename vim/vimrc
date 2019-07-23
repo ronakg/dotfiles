@@ -4,6 +4,8 @@
 " Keep all the sane settings in following file
 source ~/.vim/sane_vimrc
 
+let g:coc_global_extensions = ['coc-python', 'coc-java', 'coc-git', 'coc-json', 'coc-tsserver', 'coc-eslint', 'coc-xml', 'coc-sh', 'coc-pairs']
+
 let g:mapleader = "\<Space>"
 
 nnoremap \ :nohlsearch<CR>
@@ -352,6 +354,7 @@ let g:airline_theme                               = 'onedark'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype'])
+let g:airline_section_z                           = '%{coc#status()}'
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -405,9 +408,6 @@ function! ZoomToggle()
 endfunction
 nnoremap <silent> <C-a> :call ZoomToggle()<CR>
 
-"let g:jedi#use_splits_not_buffers = "right"
-let g:jedi#completions_enabled = 1
-
 let g:indentLine_setColors = 1
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_char = '│'
@@ -427,21 +427,6 @@ map gx <plug>NERDCommenterToggle
 command! -nargs=+ Silent
             \ | execute ':silent !'.<q-args>
             \ | execute ':redraw!'
-
-nmap K <plug>(Vman)
-
-let g:EasyMotion_smartcase = 1
-nmap s <Plug>(easymotion-s2)
-
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_conceal = 0
-
-let g:vim_json_syntax_conceal = 0
-
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#auto_complete_start_length = 2
 
 nnoremap <C-b> :vsplit term://bash<CR>
 
@@ -469,50 +454,18 @@ call s:mapMoveToWindowInDirection(dir)
 endfor
 tnoremap <esc><esc> <C-\><C-n>
 
-" deoplete-clang {{
-let g:deoplete#sources#clang#libclang_path = $MY_LIBCLANG_PATH
-let g:deoplete#sources#clang#clang_header = $MY_CLANGHEADER_PATH
-let g:deoplete#sources#clang#sort_algo = 'priority'
-" }}
-
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
 let g:tmux_navigator_disable_when_zoomed = 1
-
-let g:neoformat_enabled_python = ['autopep8']
-let g:neoformat_try_formatprg = 1
-let g:neoformat_only_msg_on_error = 1
 
 au FileType python setlocal formatprg=autopep8\ -
 
 nnoremap <C-d> :call ZoomToggle()<CR>:Gdiff<CR>
-
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_linters = { 'c': ['clang'], }
-highlight ALEErrorSign guibg=red guifg=yellow
-highlight ALEWarningSign guibg=yellow guifg=black
 
 map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
 map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
 map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
 map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 
-inoremap {<CR> {<CR>}<Esc>O
-
-" Autoclose preview windows
-" https://github.com/Shougo/deoplete.nvim/issues/115
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-
-let g:jedi#show_call_signatures = "1"
-
 nnoremap gf <C-w>f<C-w>L
-
-let g:java_highlight_functions = 1
 
 " if hidden is not set, TextEdit might fail.
 set hidden
@@ -598,8 +551,4 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-" Use `:Format` for format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` for fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+nmap gs <Plug>(coc-git-chunkinfo)

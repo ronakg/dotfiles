@@ -20,7 +20,6 @@ endif
 " ======================================================================================
 " Standard vim options
 " ======================================================================================
-filetype plugin indent on
 set binary                                    " Enable binary support
 set hlsearch
 set path+=**
@@ -32,6 +31,7 @@ set incsearch                                 " incremental search
 set ignorecase                                " ignore case in searching
 set smartcase                                 " don't ignore case if capital letters present
 
+filetype plugin indent on
 set backspace=indent,eol,start                " makes backspace working
 
 set sidescrolloff=3                           " Keep at least 3 lines left/right
@@ -59,7 +59,7 @@ set wrapscan
 set autoread                                  " automatically reload files changed outside of Vim
 set showcmd
 set hidden
-set diffopt+=context:5,vertical,iwhite        " 5 lines of context in diff mode, ignore trailing whitespaces
+set diffopt+=context:5,vertical        " 5 lines of context in diff mode, ignore trailing whitespaces
 set updatetime=300                            " Vim refresh time
 set linebreak                                 " It maintains the whole words when wrapping
 set cpoptions-=m                              " Highlight when CursorMoved.
@@ -74,8 +74,8 @@ set previewheight=20
 set conceallevel=2
 set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵
 set expandtab
-set tabstop=4
 set shiftwidth=4
+set tabstop=4
 
 " Joining
 set nojoinspaces                " Only one space when joining lines
@@ -118,6 +118,7 @@ endif
 "================= Colorscheme =============================
 let g:onedark_terminal_italics = 1
 let g:one_allow_italics = 1
+let java_highlight_all = 1
 syntax on
 set background=dark
 colorscheme onedark

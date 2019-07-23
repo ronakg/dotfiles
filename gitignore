@@ -2,6 +2,8 @@
 .settings/
 .classpath
 .project
+.metadata/
+.vscode/
 
 # IntelliJ IDEA
 .idea/

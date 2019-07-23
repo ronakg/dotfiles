@@ -23,7 +23,7 @@ bind -m vi-insert '"jj": vi-movement-mode'
 
 [ -f $DOTFILES/bash_prompt ] && . $DOTFILES/bash_prompt
 
-export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"

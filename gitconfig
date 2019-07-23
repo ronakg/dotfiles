@@ -9,6 +9,7 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+        trustExitCode = true
 [color]
         branch = auto
         diff = auto
@@ -47,12 +48,9 @@
         tool = vimdiff
 [mergetool]
         prompt = true
+	trustExitCode = true
 [credential]
 	helper = store
-[pull]
-        rebase = true
-[rebase]
-        autoStash = true
 [format]
         pretty = format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s
 [status]
@@ -67,7 +65,12 @@
 	required = true
 [alias]
     parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//' #"
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
 [lfs]
 	cachecredentials = 1
-[mergetool "vimdiff"]
-	path = nvim
