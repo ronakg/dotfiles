@@ -76,6 +76,7 @@ set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵
 set expandtab
 set shiftwidth=4
 set tabstop=4
+set cursorline
 
 " Joining
 set nojoinspaces                " Only one space when joining lines
@@ -90,10 +91,6 @@ endif
 
 if exists("&wildignorecase")
     set wildignorecase
-endif
-
-if exists("&relativenumber")
-    set relativenumber
 endif
 
 let &t_ZH="\e[3m"
@@ -120,8 +117,17 @@ let g:onedark_terminal_italics = 1
 let g:one_allow_italics = 1
 let java_highlight_all = 1
 syntax on
-set background=dark
-colorscheme onedark
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default': {
+  \       'transparent_background': 0,
+  \       'allow_bold': 1,
+  \       'allow_italic': 1,
+  \     }
+  \   }
+  \ }
+set background=light
+colorscheme PaperColor
 
 try
     source ~/.vimrc_work

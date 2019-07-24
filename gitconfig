@@ -29,7 +29,7 @@
 
 [color "status"]
         added = green
-        changed = yellow
+        changed = red
         untracked = cyan
 
 [log]

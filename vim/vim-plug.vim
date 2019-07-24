@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'fatih/vim-go'
 Plug 'bling/vim-airline'
+Plug 'edkolev/tmuxline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
@@ -37,9 +38,8 @@ Plug 'tpope/vim-sleuth'
 Plug 'ronakg/java-syntax.vim'
 
 " Colorschemes
-Plug 'joshdick/onedark.vim'
-Plug 'w0ng/vim-hybrid'
-Plug 'chriskempson/base16-vim'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'NLKNguyen/papercolor-theme'
 
 " Add plugins to &runtimepath
 call plug#end()

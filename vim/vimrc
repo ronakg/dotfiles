@@ -350,7 +350,7 @@ let g:airline#extensions#tagbar#enabled                       = 1
 let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#whitespace#enabled       = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'onedark'
+let g:airline_theme                               = 'zenburn'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype'])
@@ -369,6 +369,16 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nnoremap <silent> <leader>p :FZF --no-reverse<CR>
 nnoremap <silent> <leader>b :Tags<CR>
 nnoremap b :Buffers<CR>
+
+let g:tmuxline_powerline_separators = 1
+
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'win'  : ['#I', '#W'],
+      \'cwin' : ['#I', '#W'],
+      \'y'    : '#(date "+%Y-%b-%d %H:%M")',
+      \'z'    : '#H',
+      \'options' : {'status-justify' : 'left'}}
 
 " Change cursor shape based on mode.
 if has('nvim')
