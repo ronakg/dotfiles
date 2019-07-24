@@ -84,6 +84,5 @@ if command_exists fzf; then
   elif command_exists ag; then
     export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
   fi
-  #bind -x '"\C-p": vim $(fzf);'
-  export FZF_DEFAULT_OPTS='--reverse --color=fg+:221,hl+:1,hl:202'
+  export FZF_DEFAULT_OPTS='--reverse --color light'
 fi
