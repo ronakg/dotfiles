@@ -13,7 +13,7 @@ echo "Initializing submodule(s)"
 git submodule update --init --recursive
 
 # List of files to be installed
-files="zshrc bashrc bash_profile vim tmux tmux.conf screenrc gitconfig gitignore inputrc idlerc"
+files="zshrc bashrc bash_profile vim tmux tmux.conf screenrc gitconfig gitignore inputrc idlerc tmux.conf.colors"
 
 # Directories to install from and backup to
 DOTFILES=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
@@ -79,10 +79,6 @@ echo -e "\nSourcing ~/.bashrc"
 
 # Create undodir for vim persistent undo
 mkdir -p ~/.undodir
-
-# Install packages
-
-npm i -g bash-language-server
 
 # Hurray...
 echo -e "\n...done"
