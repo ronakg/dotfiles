@@ -15,10 +15,6 @@ export HISTFILESIZE=10000
 export HISTIGNORE="exit"
 PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
-# vi mode for readline
-set -o vi
-bind -m vi-insert '"jj": vi-movement-mode'
-
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
