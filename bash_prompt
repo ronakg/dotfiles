@@ -81,5 +81,5 @@ function prompt_command {
     PS1="\n${user}${_host}${_dir}\n${vim}$(find_virtualenv)$(find_git_branch)${ret_str}"
 }
 
-export PROMPT_COMMAND="prompt_command;history -a;history -c;history -r"
+export PROMPT_COMMAND="history -n; history -w; history -c; history -r;prompt_command"
 export PS2="${blue}.... ${reset}"

@@ -4,7 +4,7 @@
 " Keep all the sane settings in following file
 source ~/.vim/sane_vimrc
 
-let g:coc_global_extensions = ['coc-python', 'coc-java', 'coc-git', 'coc-json', 'coc-tsserver', 'coc-eslint', 'coc-xml', 'coc-sh', 'coc-pairs']
+let g:coc_global_extensions = ['coc-python', 'coc-java', 'coc-git', 'coc-json', 'coc-tsserver', 'coc-eslint', 'coc-xml', 'coc-sh', 'coc-pairs', 'coc-diagnostic']
 
 let g:mapleader = "\<Space>"
 
@@ -335,6 +335,7 @@ if &diff
     nnoremap W :wa!<CR>
     set number
     set norelativenumber
+    let b:coc_enabled = 0
 endif
 
 set tags=./tags;/   " ctags path, search upwards till tags file is found
@@ -347,14 +348,21 @@ let g:airline#extensions#tabline#buffer_nr_show               = 0
 let g:airline#extensions#tabline#show_buffers                 = 1
 let g:airline#extensions#branch#enabled                       = 1
 let g:airline#extensions#tagbar#enabled                       = 1
+let g:airline#extensions#tabline#left_sep                     = ''
+let g:airline#extensions#tabline#left_alt_sep                 = '|'
+let g:airline#extensions#tabline#right_sep                    = ''
+let g:airline#extensions#tabline#right_alt_sep                = '|'
+let g:airline_left_sep                                        = ''
+let g:airline_left_alt_sep                                    = '|'
+let g:airline_right_sep                                       = ''
+let g:airline_right_alt_sep                                   = '|'
 let g:airline_powerline_fonts                                 = 1
-let g:airline#extensions#whitespace#enabled       = 0
-let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'zenburn'
-let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
-let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
-let g:airline_section_y                           = airline#section#create(['filetype'])
-let g:airline_section_z                           = '%{coc#status()}'
+let g:airline#extensions#tabline#fnamemod                     = ':t'
+let g:airline_theme                                           = 'zenburn'
+let g:airline_section_c                                       = '%{fnamemodify(expand("%"), ":~:.")}'
+let g:airline_section_x                                       = '%{fnamemodify(getcwd(), ":t")}'
+let g:airline_section_y                                       = airline#section#create(['filetype'])
+let g:airline_section_z                                       = '%{coc#status()}'
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -372,6 +380,10 @@ nnoremap b :Buffers<CR>
 
 let g:tmuxline_powerline_separators = 1
 
+let g:tmuxline_theme = {
+    \   'bg'   : [ 244, 236 ],
+    \ }
+
 let g:tmuxline_preset = {
       \'a'    : '#S',
       \'win'  : ['#I', '#W'],
@@ -379,6 +391,13 @@ let g:tmuxline_preset = {
       \'y'    : '#(date "+%Y-%b-%d %H:%M")',
       \'z'    : '#H',
       \'options' : {'status-justify' : 'left'}}
+
+let g:tmuxline_separators = {
+    \ 'left' : '',
+    \ 'left_alt': '|',
+    \ 'right' : '',
+    \ 'right_alt' : '|',
+    \ 'space' : ' '}
 
 " Change cursor shape based on mode.
 if has('nvim')
@@ -399,7 +418,7 @@ let g:startify_list_order = [['Most recently used files in current directory:'],
             \                ['Bookmarks:'], 'bookmarks']
 let g:startify_change_to_dir = 0
 let g:startify_files_number = 10
-let g:startify_bookmarks = [ {'c': '~/.vim/vimrc'}, {'d': '~/.vim/vim-plug.vim'} ]
+let g:startify_bookmarks = [ {'a': '~/.vim/vimrc'}, {'b': '~/.vim/vim-plug.vim'}, {'c': '~/.vim/sane_vimrc'} ]
 
 if filereadable(".vim.custom")
     so .vim.custom

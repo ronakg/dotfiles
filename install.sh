@@ -74,6 +74,8 @@ git submodule update --init --recursive
 echo -e "\nInstalling vim plugins..."
 vim -u NONE ./vim/vim-plug.vim +source\ % +PlugUpdate +UpdateRemotePlugins +qall
 
+wget -q https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -O $DOTFILES/git-completion.bash
+
 echo -e "\nSourcing ~/.bashrc"
 . ~/.bashrc
 

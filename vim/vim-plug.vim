@@ -40,6 +40,8 @@ Plug 'ronakg/java-syntax.vim'
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'chriskempson/base16-vim'
+Plug 'rakr/vim-one'
 
 " Add plugins to &runtimepath
 call plug#end()

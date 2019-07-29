@@ -23,8 +23,6 @@ alias newtmux='tmux new -s ${PWD##*/}'
 # fzf vim
 alias vip='vim +FZF'
 
-alias histfix='history -n && history -w && history -c && history -r'
-
 # Git aliases
 alias gs='git status '
 alias ga='git add '
@@ -41,8 +39,8 @@ alias gname='git config user.name'
 alias groot='cd $(git rev-parse --show-toplevel)'
 
 alias please='sudo -EH $( history -p !! )'
-alias fuck='sudo -EH $( history -p !! )'
-alias fucking='sudo -EH'
+
+alias histfix='history -n && history | sort -k2 -k1nr | uniq -f1 | sort -n | cut -c8- > ~/.tmp$$ && history -c && history -r ~/.tmp$$ && history -w && rm ~/.tmp$$'  
 
 cd() {
   builtin cd "$@" && ls
