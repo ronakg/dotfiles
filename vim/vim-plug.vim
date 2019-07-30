@@ -36,12 +36,12 @@ Plug 'sheerun/vim-polyglot'
 Plug 'sickill/vim-pasta'
 Plug 'tpope/vim-sleuth'
 Plug 'ronakg/java-syntax.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'chriskempson/base16-vim'
-Plug 'rakr/vim-one'
+Plug 'ayu-theme/ayu-vim'
 
 " Add plugins to &runtimepath
 call plug#end()

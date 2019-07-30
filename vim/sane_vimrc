@@ -144,7 +144,7 @@ let g:PaperColor_Theme_Options = {
       \   }
       \ }
 
-colorscheme papercolor
+colorscheme PaperColor
 
 try
     source ~/.vimrc_work

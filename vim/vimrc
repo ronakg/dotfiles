@@ -358,7 +358,7 @@ let g:airline_right_sep                                       = ''
 let g:airline_right_alt_sep                                   = '|'
 let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#tabline#fnamemod                     = ':t'
-let g:airline_theme                                           = 'zenburn'
+let g:airline_theme                                           = 'atomic'
 let g:airline_section_c                                       = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                                       = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                                       = airline#section#create(['filetype'])
@@ -378,12 +378,12 @@ nnoremap <silent> <leader>p :FZF --no-reverse<CR>
 nnoremap <silent> <leader>b :Tags<CR>
 nnoremap b :Buffers<CR>
 
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
 let g:tmuxline_powerline_separators = 1
-
 let g:tmuxline_theme = {
     \   'bg'   : [ 244, 236 ],
     \ }
-
 let g:tmuxline_preset = {
       \'a'    : '#S',
       \'win'  : ['#I', '#W'],
@@ -391,7 +391,6 @@ let g:tmuxline_preset = {
       \'y'    : '#(date "+%Y-%b-%d %H:%M")',
       \'z'    : '#H',
       \'options' : {'status-justify' : 'left'}}
-
 let g:tmuxline_separators = {
     \ 'left' : '',
     \ 'left_alt': '|',
