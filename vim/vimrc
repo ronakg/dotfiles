@@ -336,6 +336,7 @@ if &diff
     set number
     set norelativenumber
     let b:coc_enabled = 0
+    colorscheme onedark
 endif
 
 set tags=./tags;/   " ctags path, search upwards till tags file is found
@@ -358,7 +359,7 @@ let g:airline_right_sep                                       = ''
 let g:airline_right_alt_sep                                   = '|'
 let g:airline_powerline_fonts                                 = 1
 let g:airline#extensions#tabline#fnamemod                     = ':t'
-let g:airline_theme                                           = 'atomic'
+let g:airline_theme                                           = 'ayu_mirage'
 let g:airline_section_c                                       = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                                       = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                                       = airline#section#create(['filetype'])

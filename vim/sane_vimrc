@@ -116,35 +116,14 @@ set termguicolors
 
 "================= Colorscheme =============================
 syntax on
-set background=light
-let g:PaperColor_Theme_Options = {
-      \   'theme': {
-      \     'default': {
-      \       'transparent_background': 0,
-      \       'allow_bold': 1,
-      \       'allow_italic': 1,
-      \     },
-      \     'default.light': {
-      \       'override': {
-      \         'color00': ['#f8f9f8', '255'],
-      \         'cursorline': ['#F5F5F5', '255']
-      \       }
-      \     }
-      \   },
-      \   'language': {
-      \     'python': {
-      \       'highlight_builtins' : 1
-      \     },
-      \     'cpp': {
-      \       'highlight_standard_library': 1
-      \     },
-      \     'c': {
-      \       'highlight_builtins' : 1
-      \     }
-      \   }
-      \ }
+set background=dark
 
-colorscheme PaperColor
+let ayucolor="mirage" " for mirage version of theme
+colorscheme ayu
+
+if has('nvim-0.3.2') || has("patch-8.1.0360")
+    set diffopt+=internal,algorithm:patience
+endif
 
 try
     source ~/.vimrc_work

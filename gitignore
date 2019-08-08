@@ -6,8 +6,12 @@
 .vscode/
 
 # IntelliJ IDEA
-.idea/
+**/.idea/*
 *.iml
 
 # Maven
-target/
+**/target/*
+
+.DS_Store
+*.iws
+*.ipr

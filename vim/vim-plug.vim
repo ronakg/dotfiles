@@ -34,7 +34,7 @@ Plug 'haya14busa/is.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'sheerun/vim-polyglot'
 Plug 'sickill/vim-pasta'
-Plug 'tpope/vim-sleuth'
+"Plug 'tpope/vim-sleuth'
 Plug 'ronakg/java-syntax.vim'
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -42,6 +42,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'ayu-theme/ayu-vim'
+Plug 'joshdick/onedark.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
