@@ -13,9 +13,6 @@ set completion-ignore-case on
 # treat hyphens (`-') and underscores (`_') as equivalent when performing case-insensitive filename matching
 set completion-map-case on
 
-# common prefixes longer than this value are replaced with an ellipsis when displaying possible completions. 
-set completion-prefix-display-length 2
-
 #  words which have more than one possible completion cause the matches to be listed immediately
 set show-all-if-ambiguous on
 
