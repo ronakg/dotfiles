@@ -275,15 +275,6 @@ if has("autocmd")"
         autocmd FileType text setlocal spell
         autocmd FileType rst setlocal spell
 
-        "autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-        "autocmd WinLeave * setlocal nocursorline
-
-        "autocmd BufWritePre * call StripTrailingWhite()
-
-        " omnifuncs
-        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd FileType c set omnifunc=ccomplete#Complete
-
         " Remember cursor position between vim sessions
         autocmd BufReadPost *
                     \ if line("'\"") > 1 && line("'\"") <= line("$") |
@@ -291,20 +282,9 @@ if has("autocmd")"
                     \ endif
 
         " Update diff when leaving from insertmode or writing to file
-        autocmd BufWritepost * if &diff == 1 | diffupdate | endif
+        autocmd BufWritepost * if &diff | diffupdate | endif
+        autocmd BufEnter,BufNew * if &diff | colorscheme onedark | endif
 
-        if g:quickr_cscope_program == "gtags-cscope"
-            " Update GLOBAL database after file is written
-            autocmd BufWritePost *.c call UpdateGlobalDB()
-            autocmd BufWritePost *.cpp call UpdateGlobalDB()
-            autocmd BufWritePost *.h call UpdateGlobalDB()
-            autocmd User QfReplacementBufWritePost doautocmd BufWritePost
-        endif
-
-        "autocmd BufWritePost $MYVIMRC,vimrc source $MYVIMRC | AirlineRefresh
-
-        " Use shell syntax for .conf files
-        autocmd BufRead,BufNewFile *.conf set syntax=sh
 
         " Open help in vertical split
         autocmd FileType help wincmd L
@@ -336,7 +316,6 @@ if &diff
     set number
     set norelativenumber
     let b:coc_enabled = 0
-    colorscheme onedark
 endif
 
 set tags=./tags;/   " ctags path, search upwards till tags file is found
@@ -382,9 +361,7 @@ nnoremap b :Buffers<CR>
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
 let g:tmuxline_powerline_separators = 1
-let g:tmuxline_theme = {
-    \   'bg'   : [ 244, 236 ],
-    \ }
+let g:airline#extensions#tmuxline#enabled                     = 0
 let g:tmuxline_preset = {
       \'a'    : '#S',
       \'win'  : ['#I', '#W'],
@@ -571,13 +548,6 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-vmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
 nmap gs <Plug>(coc-git-chunkinfo)
+
+let g:python_highlight_all = 1
