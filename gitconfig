@@ -1,76 +1,80 @@
 [user]
-	name = Ronak Gandhi
-	email = rogandhi@cisco.com
+    name = Ronak Gandhi
+    email = rogandhi@cisco.com
 [github]
-        user = ronakg
-[diff]
-	tool = vimdiff
-[merge]
-	tool = vimdiff
+    user = ronakg
 [difftool]
 	prompt = false
-        trustExitCode = true
+    trustExitCode = true
 [color]
-        branch = auto
-        diff = auto
-        status = auto
-        grep = auto
+    branch = auto
+    diff = auto
+    status = auto
+    grep = auto
 
 [color "branch"]
-        current = yellow reverse
-        local = yellow
-        remote = green
+    current = yellow reverse
+    local = yellow
+    remote = green
 
 [color "diff"]
-        meta = yellow bold
-        frag = magenta bold
-        old = red bold
-        new = green bold
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
 
 [color "status"]
-        added = green
-        changed = red
-        untracked = cyan
+    added = green
+    changed = red
+    untracked = cyan
 
 [log]
-        date = short
+    date = short
 
 [alias]
-        s = status -s
-        graph = log --pretty=format:\"%C(yellow)%h %ar %C(auto)%d %Creset %s , %Cblue%cn\" --graph --all
-        ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
-        ll = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --numstat
-        lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
-        hide = update-index --assume-unchanged
-        unhide = update-index --no-assume-unchanged
-        showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
+    s = status -s
+    graph = log --pretty=format:\"%C(yellow)%h %ar %C(auto)%d %Creset %s , %Cblue%cn\" --graph --all
+    ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    ll = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --numstat
+    lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+    hide = update-index --assume-unchanged
+    unhide = update-index --no-assume-unchanged
+    showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
 [show]
-        tool = vimdiff
+    tool = vimdiff
 [mergetool]
-        prompt = true
-	trustExitCode = true
+    prompt = true
+    trustExitCode = true
 [credential]
-	helper = store
+    helper = store
 [format]
-        pretty = format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s
+    pretty = format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s
 [status]
-	showUntrackedFiles = no
+    showUntrackedFiles = no
 [core]
-	autocrlf = false
-	excludesfile = ~/.gitignore
+    autocrlf = false
+    excludesfile = ~/.gitignore
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 [alias]
     parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//' #"
-	co = checkout
-	ci = commit
-	st = status
-	br = branch
-	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-	type = cat-file -t
-	dump = cat-file -p
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
 [lfs]
-	cachecredentials = 1
+    cachecredentials = 1
+[diff]
+	tool = vimdiff
+[difftool "vimdiff"]
+    path = nvim
+[merge]
+	tool = vimdiff
+[mergetool "vimdiff"]
+    path = nvim

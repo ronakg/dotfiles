@@ -120,6 +120,7 @@ set background=dark
 
 let ayucolor="mirage" " for mirage version of theme
 colorscheme ayu
+highlight Comment cterm=italic gui=italic
 
 if has('nvim-0.3.2') || has("patch-8.1.0360")
     set diffopt+=internal,algorithm:patience

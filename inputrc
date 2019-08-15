@@ -20,9 +20,6 @@ set show-all-if-ambiguous on
 # cause the matches to be listed immediately instead of ringing the bell
 set show-all-if-unmodified on
 
-# a character denoting a file's type is appended to the filename when listing possible completions
-set visible-stats on
-
 # match files whose names begin with a `.' (hidden files) 
 set match-hidden-files on
 
