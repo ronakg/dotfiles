@@ -4,7 +4,18 @@
 " Keep all the sane settings in following file
 source ~/.vim/sane_vimrc
 
-let g:coc_global_extensions = ['coc-python', 'coc-java', 'coc-git', 'coc-json', 'coc-tsserver', 'coc-eslint', 'coc-xml', 'coc-sh', 'coc-pairs', 'coc-diagnostic']
+let g:coc_global_extensions = [
+            \ 'coc-python',
+            \'coc-java',
+            \'coc-git',
+            \'coc-json',
+            \'coc-tsserver',
+            \'coc-eslint',
+            \'coc-xml',
+            \'coc-sh',
+            \'coc-pairs',
+            \'coc-highlight'
+            \ ]
 
 let g:mapleader = "\<Space>"
 
