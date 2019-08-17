@@ -1,0 +1,82 @@
+let mapleader = " "
+let maplocalleader = ','
+
+set surround
+
+set ignorecase
+set smartcase
+set scrolloff=3         " 3 lines above/below cursor when scrolling
+set incsearch
+set number
+set showmode
+set gdefault
+
+" Use the OS clipboard by default
+if has('clipboard')
+  if has('unnamedplus')
+    set clipboard=unnamed,unnamedplus
+  else
+    set clipboard=unnamed
+  endif
+endif
+
+" Enable native idea paste action for put operations
+set clipboard+=ideaput
+
+inoremap jj <Esc>`^
+nnoremap <C-c> <Esc>
+nnoremap w :w<CR>
+nnoremap e :action CloseContent<CR>
+
+nnoremap S :action FindInPath<CR>
+nnoremap s :action Find<CR>
+vnoremap S :action FindInPath<CR>
+vnoremap s :action Find<CR>
+
+nmap <leader>p :action GotoFile<CR>
+nnoremap <CR>  :action GotoImplementation<CR>
+nmap gd :action GotoDefinition<CR>
+nmap gu :action FindUsages<CR>
+nmap gf :action FileStructurePopup<CR>
+nmap gs :action GotoSymbol<CR>
+nmap rn :action RenameElement<CR>
+nmap K :action QuickJavaDoc<CR>
+nmap ; :
+
+nmap <Leader>1 :action GoToTab1<CR>
+nmap <Leader>2 :action GoToTab2<CR>
+nmap <Leader>3 :action GoToTab3<CR>
+nmap <Leader>4 :action GoToTab4<CR>
+nmap <Leader>5 :action GoToTab5<CR>
+nmap <Leader>6 :action GoToTab6<CR>
+nmap <Leader>7 :action GoToTab7<CR>
+nmap <Leader>8 :action GoToTab8<CR>
+nmap <Leader>9 :action GoToTab9<CR>
+
+noremap <leader>y "*y
+noremap <leader>yy "*Y
+
+" Copy until the end of the line
+noremap Y y$
+
+" Indent selection in visual mode
+vnoremap <Space>i =
+
+nnoremap <BS> :action Back<CR>
+nnoremap <C-i> :action Forward<CR>
+
+nmap <C-h> <c-w>h
+nmap <C-l> <c-w>l
+nmap <C-k> <c-w>k
+nmap <C-j> <c-w>j
+
+" Moving blocks of text in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
+noremap <C-w>v              :vsplit<cr><C-w>W<C-w><space>
+noremap <C-w><Space>        :action MoveEditorToOppositeTabGroup<cr>
+
+set multiple-cursors
+set visualbell
+set noerrorbells
