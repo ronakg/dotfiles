@@ -230,8 +230,9 @@ endfunction
 
 command! -nargs=? CommitPush call s:CommitPush(<f-args>)
 
-let g:quickr_preview_position = 'right'
+let g:quickr_preview_position = 'top'
 let g:quickr_preview_on_cursor = 1
+let g:quickr_preview_exit_on_enter = 1
 
 " quickr-cscope.vim
 let g:quickr_cscope_program = "gtags-cscope"

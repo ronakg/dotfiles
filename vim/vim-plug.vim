@@ -19,7 +19,7 @@ Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
 "Plug 'ronakg/quickr-cscope.vim', { 'for': [ 'c', 'cpp', 'h' ] }
-"Plug 'ronakg/quickr-preview.vim'
+Plug 'ronakg/quickr-preview.vim'
 Plug 'rhysd/vim-clang-format', { 'for': [ 'c', 'cpp', 'h' ] }
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-unimpaired'
