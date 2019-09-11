@@ -14,7 +14,8 @@ let g:coc_global_extensions = [
             \'coc-xml',
             \'coc-sh',
             \'coc-pairs',
-            \'coc-highlight'
+            \'coc-highlight',
+            \'coc-go',
             \ ]
 
 let g:mapleader = "\<Space>"
@@ -192,7 +193,7 @@ endfunction
 
 " Quicker save and quit
 nnoremap <silent> e :call Quit()<CR>
-nnoremap <silent> <C-e> :q<CR>
+nnoremap <silent> E :q<CR>
 nnoremap <silent> w :update<CR>
 inoremap <silent> jj <Esc>
 
@@ -285,7 +286,7 @@ if has("autocmd")"
         autocmd FileType markdown setlocal spell
         autocmd FileType text setlocal spell
         autocmd FileType rst setlocal spell
-
+,
         " Remember cursor position between vim sessions
         autocmd BufReadPost *
                     \ if line("'\"") > 1 && line("'\"") <= line("$") |
@@ -295,7 +296,6 @@ if has("autocmd")"
         " Update diff when leaving from insertmode or writing to file
         autocmd BufWritepost * if &diff | diffupdate | endif
         autocmd BufEnter,BufNew * if &diff | colorscheme onedark | endif
-
 
         " Open help in vertical split
         autocmd FileType help wincmd L
@@ -338,7 +338,6 @@ let g:airline#extensions#tabline#buffer_idx_mode              = 1
 let g:airline#extensions#tabline#buffer_nr_show               = 0
 let g:airline#extensions#tabline#show_buffers                 = 1
 let g:airline#extensions#branch#enabled                       = 1
-let g:airline#extensions#tagbar#enabled                       = 1
 let g:airline#extensions#tabline#left_sep                     = ''
 let g:airline#extensions#tabline#left_alt_sep                 = '|'
 let g:airline#extensions#tabline#right_sep                    = ''
@@ -561,4 +560,27 @@ augroup end
 
 nmap gs <Plug>(coc-git-chunkinfo)
 
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+
 let g:python_highlight_all = 1
+
+let g:vista_default_executive = 'coc'
+let g:vista#renderer#enable_icon = 0
+
+let g:go_fmt_command = "goimports"    " Run goimports along gofmt on each save
+let g:go_auto_type_info = 1           " Automatically get signature/type info for object under cursor
+let g:go_def_mapping_enabled = 0

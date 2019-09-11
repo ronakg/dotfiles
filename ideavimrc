@@ -80,3 +80,4 @@ noremap <C-w><Space>        :action MoveEditorToOppositeTabGroup<cr>
 set multiple-cursors
 set visualbell
 set noerrorbells
+set ideajoin

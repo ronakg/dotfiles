@@ -35,3 +35,7 @@ if [ -f ~/.fzf.zsh ]; then
 fi
 
 fpath=(/usr/local/share/zsh-completions $fpath)
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/rogandhi/.sdkman"
+[[ -s "/Users/rogandhi/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/rogandhi/.sdkman/bin/sdkman-init.sh"

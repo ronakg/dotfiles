@@ -9,22 +9,19 @@ try
 catch
 endtry
 
-if !exists("g:os")
-    if has("win64") || has("win32") || has("win16")
-        let g:os = "Windows"
-    else
-        let g:os = substitute(system('uname'), '\n', '', '')
-    endif
-endif
+"if !exists("g:os")
+    "if has("win64") || has("win32") || has("win16")
+        "let g:os = "Windows"
+    "else
+        "let g:os = substitute(system('uname'), '\n', '', '')
+    "endif
+"endif
 
 " ======================================================================================
 " Standard vim options
 " ======================================================================================
-set binary                                    " Enable binary support
 set hlsearch
 set path+=**
-set termencoding=utf-8
-set encoding=utf-8
 
 " Search
 set incsearch                                 " incremental search
@@ -47,7 +44,6 @@ set completeopt+=menuone
 set completeopt+=noselect
 set completeopt+=noinsert
 set shortmess+=c   " Shut off completion messages
-set belloff+=ctrlg " If Vim beeps during completion
 set noshowmode                                " Airline shows mode, so hide default mode
 set nobackup                                  " Don't need backup and swap files
 set noswapfile
@@ -60,13 +56,11 @@ set autoread                                  " automatically reload files chang
 set showcmd
 set hidden
 set diffopt+=context:5,vertical        " 5 lines of context in diff mode, ignore trailing whitespaces
-set updatetime=300                            " Vim refresh time
 set linebreak                                 " It maintains the whole words when wrapping
 set cpoptions-=m                              " Highlight when CursorMoved.
 set cpoptions+=I
 set matchtime=1
 set visualbell t_vb=                          " Disable bells
-set shell=bash
 set fileformats="unix,dos,mac"
 set csverb
 set cscopetag

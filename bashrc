@@ -27,5 +27,6 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+eval "$(rbenv init -)"
 
 eval "$(thefuck --alias)"

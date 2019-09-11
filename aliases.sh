@@ -2,7 +2,7 @@
 ls --color &> /dev/null && alias ls="ls -Fh --color" || alias ls="ls -GFh"
 
 # grep doesn't support --color every where either
-if grep --color "a" <<<"a" &>/dev/null; then
+if [ grep --color "a" <<<"a" &>/dev/null ]; then
     alias grep='grep --color=auto'
 fi
 
@@ -13,12 +13,13 @@ fi
 
 alias vi='vim -u ~/.vim/sane_vimrc'
 
-# silver searcher
-alias ag='ag --noheading --nobreak'
-
 # Shortcut to create new tmux with pwd as session name
 alias tmux='tmux -2 -u'
 alias newtmux='tmux new -s ${PWD##*/}'
+
+alias mkdir='mkdir -pv'
+alias reload="source ~/.bash_profile"
+alias gr='rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --hidden --glob "!.git/*" --color "always"'
 
 # fzf vim
 alias vip='vim +FZF'

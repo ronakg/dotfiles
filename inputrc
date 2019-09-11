@@ -13,7 +13,7 @@ set completion-ignore-case on
 # treat hyphens (`-') and underscores (`_') as equivalent when performing case-insensitive filename matching
 set completion-map-case on
 
-#  words which have more than one possible completion cause the matches to be listed immediately
+# words which have more than one possible completion cause the matches to be listed immediately
 set show-all-if-ambiguous on
 
 # words which have more than one possible completion without any possible partial completion
