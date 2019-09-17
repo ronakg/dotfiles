@@ -1,5 +1,3 @@
-export HISTCONTROL=ignoreboth:erasedups
-
 if [ -f ~/.bash_profile_work ]
 then
     . ~/.bash_profile_work
@@ -9,4 +7,3 @@ if [ -f ~/.bashrc ]
 then
     . ~/.bashrc
 fi
-

@@ -4,14 +4,14 @@
 [github]
     user = ronakg
 [difftool]
-	prompt = false
+    prompt = false
     trustExitCode = true
 [color]
     branch = auto
     diff = auto
     status = auto
     grep = auto
-	ui = true
+    ui = true
 
 [color "branch"]
     current = yellow reverse
@@ -19,12 +19,12 @@
     remote = green
 
 [color "diff"]
-	meta = 11
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	commit = yellow bold
-	whitespace = red reverse
+    meta = 11
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    commit = yellow bold
+    whitespace = red reverse
 
 [color "status"]
     added = green
@@ -57,7 +57,8 @@
 [core]
     autocrlf = false
     excludesfile = ~/.gitignore
-	pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = /usr/local/share/contrib/diff-highlight/diff-highlight | less -rx1,5
+
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
@@ -75,15 +76,15 @@
 [lfs]
     cachecredentials = 1
 [diff]
-	tool = vimdiff
+    tool = vimdiff
 [difftool "vimdiff"]
     path = nvim
 [merge]
-	tool = vimdiff
+    tool = vimdiff
 [mergetool "vimdiff"]
     path = nvim
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22

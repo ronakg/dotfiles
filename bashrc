@@ -4,21 +4,33 @@
 # Where are my dotfiles
 export DOTFILES=~/dotfiles
 
-# Device specific settings should be in .bashrc_local
-[ -f ~/.bashrc_local ] && . ~/.bashrc_local
-
-# Work related settings should be in .bashrc_work
-[ -f ~/.bashrc_work ] && . ~/.bashrc_work
-
 # Setup environment, common to both bash and zsh
 shopt -s expand_aliases
+# Check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+# Use case-insensitive filename globbing.
+shopt -s nocaseglob
+# Autocorrect typos in path names when using "cd".
+shopt -s cdspell
 
 ### Append to the history file
 export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 export HISTIGNORE="exit"
+
+# LANG
+export LANG="C"
+export LC_COLLATE="C"
+export LC_CTYPE="C"
+export LC_MESSAGES="C"
+export LC_MONETARY="C"
+export LC_NUMERIC="C"
+export LC_TIME="C"
+export LC_ALL="C"
+
+export BREW_PREFIX=$(brew --prefix)
 
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -27,15 +39,19 @@ export HISTIGNORE="exit"
 [ -f $DOTFILES/bash_prompt ] && . $DOTFILES/bash_prompt
 [ -f $DOTFILES/git-completion.bash ] && . $DOTFILES/git-completion.bash
 
-export GOPATH="/rogandhi/go"
-export PATH=$PATH:$GOPATH/bin
+export GOPATH="$HOME/work/go"
+export PATH=/usr/local/bin:/usr/local/sbin:$HOME/.pyenv/bin:$HOME/.rbenv/bin:$PATH:$GOPATH/bin
 
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-
-export PATH="$HOME/.pyenv/bin:$HOME/.rbenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(rbenv init -)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh" || true
+
+# Device specific settings should be in .bashrc_local
+[ -f ~/.bashrc_local ] && . ~/.bashrc_local
+
+# Work related settings should be in .bashrc_work
+[ -f ~/.bashrc_work ] && . ~/.bashrc_work
+

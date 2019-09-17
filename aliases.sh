@@ -1,11 +1,6 @@
 # --color=auto is not available everywhere
 ls --color &> /dev/null && alias ls="ls -Fh --color" || alias ls="ls -GFh"
 
-# grep doesn't support --color every where either
-if [ grep --color "a" <<<"a" &>/dev/null ]; then
-    alias grep='grep --color=auto'
-fi
-
 # Use neovim if available
 if command_exists nvim; then
     alias vim=nvim;

@@ -55,12 +55,12 @@ if command_exists nvim; then
     export EDITOR=nvim
     export VISUAL=nvim
     export CSCOPE_EDITOR=nvim
-    export MANPAGER='nvim +Man!'
+    export MANPAGER="nvim +Man! -c ':set signcolumn='"
 else
     export EDITOR=vim
     export VISUAL=vim
     export CSCOPE_EDITOR=vim
-    export MANPAGER="/bin/sh -c \"col -bx | vim -c ':set ft=man nomod nonu nolist noma' -R -\""
+    export MANPAGER="/bin/sh -c \"col -bx | vim -c ':set ft=man nomod nonu nolist noma signcolumn=' -R -\""
 fi
 
 export HOMEBREW_INSTALL_CLEANUP=1
@@ -73,7 +73,7 @@ if command_exists fzf; then
         # --hidden: Search hidden files and folders
         # --follow: Follow symlinks
         # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-        export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+        export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
     elif command_exists ag; then
         export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
     fi
@@ -96,12 +96,11 @@ if command_exists fzf; then
         local color0E='#9a70a4'
         local color0F='#5CCFE6'
 
-        export FZF_DEFAULT_OPTS=" --reverse
+        export FZF_DEFAULT_OPTS=" --reverse --exact
         --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D
         --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C
         --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0F
         "
-
     }
 
 _gen_fzf_default_opts
