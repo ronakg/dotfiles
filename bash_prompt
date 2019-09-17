@@ -62,7 +62,7 @@ else
     user="$yellow\u${reset}${_sep}";
 fi;
 
-function prompt_command {
+prompt_command() {
     ret_code=$?
     # Are we running in a shell invoked from Vim?
     if [[ "$VIM" ]]; then

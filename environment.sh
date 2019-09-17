@@ -22,12 +22,6 @@ fi
 # Aliases
 [ -f $DOTFILES/aliases.sh ] && . $DOTFILES/aliases.sh
 
-# Device specific settings should be in .bashrc_local
-[ -f ~/.bashrc_local ] && . ~/.bashrc_local
-
-# Work related settings should be in .bashrc_work
-[ -f ~/.bashrc_work ] && . ~/.bashrc_work
-
 # Extract stuff from any filetype
 extract() {
     if [ -z ${1} ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
