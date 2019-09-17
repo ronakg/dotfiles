@@ -30,8 +30,6 @@ export LC_NUMERIC="C"
 export LC_TIME="C"
 export LC_ALL="C"
 
-export BREW_PREFIX=$(brew --prefix)
-
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
