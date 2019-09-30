@@ -13,7 +13,6 @@ let g:coc_global_extensions = [
             \'coc-eslint',
             \'coc-xml',
             \'coc-sh',
-            \'coc-pairs',
             \'coc-highlight',
             \'coc-go',
             \ ]
@@ -46,7 +45,7 @@ if executable("rg")
     " --follow: Follow symlinks
     " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
     " --color: Search color options
-    command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+    command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 elseif executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
@@ -72,7 +71,7 @@ function! Search(pattern, flags)
     else
         let search_pattern = a:pattern
     endif
-    execute "silent grep! " . a:flags . " \"" . search_pattern . "\""
+    execute "silent grep! " . a:flags . " '" . search_pattern . "'"
     botright copen
     execute "normal /" . search_pattern
 endfunction
@@ -332,28 +331,28 @@ endif
 
 set tags=./tags;/   " ctags path, search upwards till tags file is found
 
-let g:airline#extensions#tabline#enabled                      = 1
-let g:airline#extensions#tabline#buffer_min_count             = 1
-let g:airline#extensions#tabline#tab_min_count                = 1
-let g:airline#extensions#tabline#buffer_idx_mode              = 1
-let g:airline#extensions#tabline#buffer_nr_show               = 0
-let g:airline#extensions#tabline#show_buffers                 = 1
-let g:airline#extensions#branch#enabled                       = 1
-let g:airline#extensions#tabline#left_sep                     = ''
-let g:airline#extensions#tabline#left_alt_sep                 = '|'
-let g:airline#extensions#tabline#right_sep                    = ''
-let g:airline#extensions#tabline#right_alt_sep                = '|'
-let g:airline_left_sep                                        = ''
-let g:airline_left_alt_sep                                    = '|'
-let g:airline_right_sep                                       = ''
-let g:airline_right_alt_sep                                   = '|'
-let g:airline_powerline_fonts                                 = 1
-let g:airline#extensions#tabline#fnamemod                     = ':t'
-let g:airline_theme                                           = 'ayu_mirage'
-let g:airline_section_c                                       = '%{fnamemodify(expand("%"), ":~:.")}'
-let g:airline_section_x                                       = '%{fnamemodify(getcwd(), ":t")}'
-let g:airline_section_y                                       = airline#section#create(['filetype'])
-let g:airline_section_z                                       = '%{coc#status()}'
+let g:airline#extensions#tabline#enabled          = 1
+let g:airline#extensions#tabline#buffer_min_count = 1
+let g:airline#extensions#tabline#tab_min_count    = 1
+let g:airline#extensions#tabline#buffer_idx_mode  = 1
+let g:airline#extensions#tabline#buffer_nr_show   = 0
+let g:airline#extensions#tabline#show_buffers     = 1
+let g:airline#extensions#branch#enabled           = 1
+let g:airline#extensions#tabline#left_sep         = ''
+let g:airline#extensions#tabline#left_alt_sep     = '|'
+let g:airline#extensions#tabline#right_sep        = ''
+let g:airline#extensions#tabline#right_alt_sep    = '|'
+let g:airline_left_sep                            = ''
+let g:airline_left_alt_sep                        = '|'
+let g:airline_right_sep                           = ''
+let g:airline_right_alt_sep                       = '|'
+let g:airline_powerline_fonts                     = 1
+let g:airline#extensions#tabline#fnamemod         = ':t'
+let g:airline_theme                               = 'ayu_mirage'
+let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
+let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
+let g:airline_section_y                           = airline#section#create(['filetype'])
+let g:airline_section_z                           = '%{coc#status()}'
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -365,7 +364,7 @@ nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
-nnoremap <silent> <leader>p :FZF --no-reverse<CR>
+nnoremap <silent> <leader>p :FZF<CR>
 nnoremap <silent> <leader>b :Tags<CR>
 nnoremap b :Buffers<CR>
 
@@ -423,7 +422,7 @@ function! ZoomToggle()
         let t:zoomed = 1
     endif
 endfunction
-nnoremap <silent> <C-a> :call ZoomToggle()<CR>
+nnoremap <silent> <C-A> :call ZoomToggle()<CR>
 
 let g:indentLine_setColors = 1
 let g:indentLine_leadingSpaceChar = '·'
@@ -585,3 +584,34 @@ let g:vista#renderer#enable_icon = 0
 let g:go_fmt_command = "goimports"    " Run goimports along gofmt on each save
 let g:go_auto_type_info = 1           " Automatically get signature/type info for object under cursor
 let g:go_def_mapping_enabled = 0
+
+if has('nvim')
+    let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
+
+    function! OpenFloatingWin()
+        let height = &lines - 3
+        let width = float2nr(&columns - (&columns * 2 / 10))
+        let col = float2nr((&columns - width) / 2)
+
+        let opts = {
+                    \ 'relative': 'editor',
+                    \ 'row': height * 0.3,
+                    \ 'col': col + 30,
+                    \ 'width': width * 2 / 3,
+                    \ 'height': height / 2
+                    \ }
+
+        let buf = nvim_create_buf(v:false, v:true)
+        let win = nvim_open_win(buf, v:true, opts)
+
+        call setwinvar(win, '&winhl', 'Normal:Pmenu')
+
+        setlocal
+                \ buftype=nofile
+                \ nobuflisted
+                \ bufhidden=hide
+                \ nonumber
+                \ norelativenumber
+                \ signcolumn=no
+    endfunction
+endif

@@ -38,7 +38,7 @@ export LC_ALL="C"
 [ -f $DOTFILES/git-completion.bash ] && . $DOTFILES/git-completion.bash
 
 export GOPATH="$HOME/work/go"
-export PATH=/usr/local/bin:/usr/local/sbin:$HOME/.pyenv/bin:$HOME/.rbenv/bin:$PATH:$GOPATH/bin
+export PATH=/usr/local/bin:/usr/local/sbin:$HOME/.pyenv/bin:$HOME/.pyenv/shims:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH:$GOPATH/bin
 
 eval "$(pyenv init -)"
 eval "$(rbenv init -)"

@@ -35,7 +35,6 @@ set sidescrolloff=3                           " Keep at least 3 lines left/right
 set scrolloff=3                               " Keep at least 3 lines above/below
 
 set nostartofline
-set gdefault                                  " search/replace globally (on a line) by default
 set splitright                                " Open split on right, not left
 set splitbelow                                " Open split below, not above
 set wildmenu

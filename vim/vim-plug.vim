@@ -13,7 +13,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
-"Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
@@ -38,6 +38,8 @@ Plug 'liuchengxu/vista.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
 Plug 'kkoomen/vim-doge'
+Plug 'jiangmiao/auto-pairs'
+Plug 'uarun/vim-protobuf', { 'for': ['proto'] }
 
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'

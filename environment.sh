@@ -96,7 +96,7 @@ if command_exists fzf; then
         local color0E='#9a70a4'
         local color0F='#5CCFE6'
 
-        export FZF_DEFAULT_OPTS=" --reverse --exact
+        export FZF_DEFAULT_OPTS="--reverse --exact
         --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D
         --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C
         --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0F
