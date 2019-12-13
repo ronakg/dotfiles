@@ -1,18 +1,17 @@
+set ignorecase
+set smartcase
+set incsearch
+nnoremap ,/ :nohlsearch<CR>
+
 imap jj <esc>
 nnoremap ; :
 nnoremap : ;
 nnoremap w :w<CR>
 
-set incsearch
-set ignorecase                       " ignore case in searching
-set smartcase                        " don't ignore case if capital letters present
 set scrolloff=4                      " keep cursor off screen edges
 set hlsearch
 set number
 set relativenumber
-
-" Backspace in normal mode switches to last buffer
-nnoremap <BS> :buffer #<CR>
 
 " Don't let x and c to spoil the yank register
 nnoremap x "_x
@@ -31,3 +30,44 @@ nnoremap <silent> p p`]
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+eclipseaction eclipsefindref org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace
+nnoremap gr :eclipsefindref<cr>
+
+eclipseuiaction eclipsegotoimpl org.eclipse.jdt.ui.edit.text.java.open.implementation
+nnoremap gI :eclipsegotoimpl<cr>
+
+" show documentation for current symbol
+eclipseuiaction eclipseshowdoc org.eclipse.ui.edit.text.showInformation
+nnoremap K   :eclipseshowdoc<cr>
+
+"show refactor menu
+eclipseaction eclipserefactormenu org.eclipse.jdt.ui.edit.text.java.refactor.quickMenu
+nnoremap crr        :eclipserefactormenu<cr>
+vnoremap <c-r><c-r> :eclipserefactormenu<cr>gv
+
+" rename current symbol
+eclipseaction eclipserename org.eclipse.jdt.ui.edit.text.java.rename.element
+au "Dart Editor" eclipseaction eclipserename com.google.dart.tools.ui.edit.text.dart.rename.element
+nnoremap crn :eclipserename<cr>
+
+"show quickfix menu
+eclipseuiaction eclipsequickfix org.eclipse.jdt.ui.edit.text.java.correction.assist.proposals
+au "Dart Editor" eclipseuiaction eclipsequickfix com.google.dart.tools.ui.specific_content_assist.command
+nnoremap <backspace> :eclipsequickfix<cr>
+vnoremap <backspace> :eclipsequickfix<cr>
+
+" amazing 'omnibox' that searches buffers, commands, views, menus, preferences, etc.
+eclipseaction eclipsecmdsearch org.eclipse.ui.window.quickAccess
+nnoremap <space> :eclipsecmdsearch<cr>
+
+" open file manager here (requires Eclipse 4.4/Luna)
+eclipseaction openfmhere org.eclipse.ui.ide.showInSystemExplorer
+nnoremap gof :openfmhere<cr>
+
+" open terminal here
+eclipseaction opentermhere com.tetrade.eclipse.plugins.easyshell.command.shellOpen
+nnoremap got :opentermhere<cr>
+
+eclipseaction eclipseopenresource org.eclipse.ui.navigate.openResource
+nnoremap <c-p> :eclipseopenresource<cr>
