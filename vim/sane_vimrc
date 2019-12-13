@@ -93,11 +93,11 @@ set termguicolors
 
 "================= Colorscheme =============================
 syntax on
-set background=dark
-
-let ayucolor="mirage" " for mirage version of theme
-colorscheme ayu
-highlight Comment cterm=italic gui=italic
+let g:dracula_bold = 1
+let g:dracula_italic = 1
+let g:dracula_colorterm = 1
+autocmd ColorScheme dracula hi CursorLine cterm=underline term=underline
+colorscheme dracula
 
 if has('nvim-0.3.2') || has("patch-8.1.0360")
     set diffopt+=internal,algorithm:patience

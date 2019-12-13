@@ -1,5 +1,8 @@
-# vi mode for readline
+# set up/down arrow keys to honor already entered text
+"\e[A": history-search-backward
+"\e[B": history-search-forward
 
+# vi mode for readline
 set keymap vi
 set editing-mode vi
 set show-mode-in-prompt on

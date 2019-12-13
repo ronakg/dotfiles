@@ -3,13 +3,15 @@ let maplocalleader = ','
 
 set surround
 
+set iskeyword
 set ignorecase
+set incsearch
 set smartcase
 set scrolloff=3         " 3 lines above/below cursor when scrolling
-set incsearch
 set number
 set showmode
 set gdefault
+set matchpairs
 
 " Use the OS clipboard by default
 if has('clipboard')
@@ -34,12 +36,11 @@ vnoremap S :action FindInPath<CR>
 vnoremap s :action Find<CR>
 
 nmap <leader>p :action GotoFile<CR>
-nnoremap <CR>  :action GotoImplementation<CR>
-nmap gd :action GotoDefinition<CR>
+nmap gd :action GotoImplementation<CR>
 nmap gu :action FindUsages<CR>
 nmap gf :action FileStructurePopup<CR>
 nmap gs :action GotoSymbol<CR>
-nmap rn :action RenameElement<CR>
+nmap <leader>r :action RenameElement<CR>
 nmap K :action QuickJavaDoc<CR>
 nmap ; :
 

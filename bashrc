@@ -18,7 +18,7 @@ shopt -s cdspell
 export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=10000
 export HISTFILESIZE=10000
-export HISTIGNORE="exit"
+export HISTIGNORE="exit:history:ls"
 
 # LANG
 export LANG="C"
@@ -37,8 +37,7 @@ export LC_ALL="C"
 [ -f $DOTFILES/bash_prompt ] && . $DOTFILES/bash_prompt
 [ -f $DOTFILES/git-completion.bash ] && . $DOTFILES/git-completion.bash
 
-export GOPATH="$HOME/work/go"
-export PATH=/usr/local/bin:/usr/local/sbin:$HOME/.pyenv/bin:$HOME/.pyenv/shims:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH:$GOPATH/bin
+export PATH=$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$HOME/.pyenv/bin:$HOME/.pyenv/shims:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH:$GOPATH/bin
 
 eval "$(pyenv init -)"
 eval "$(rbenv init -)"

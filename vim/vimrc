@@ -4,19 +4,6 @@
 " Keep all the sane settings in following file
 source ~/.vim/sane_vimrc
 
-let g:coc_global_extensions = [
-            \ 'coc-python',
-            \'coc-java',
-            \'coc-git',
-            \'coc-json',
-            \'coc-tsserver',
-            \'coc-eslint',
-            \'coc-xml',
-            \'coc-sh',
-            \'coc-highlight',
-            \'coc-go',
-            \ ]
-
 let g:mapleader = "\<Space>"
 
 nnoremap \ :nohlsearch<CR>
@@ -27,9 +14,9 @@ nnoremap ]] j0[[%/{<CR>:nohlsearch<CR>
 
 nnoremap G :norm! Gzz<CR>
 
-nmap <C-g>g :Gstatus<CR>gg<C-n>
-nmap <C-g>d :Gdiff<CR>
-nmap <C-g>b :Gblame<CR>
+nnoremap <C-g>g :Gstatus<CR>gg<C-n>
+nnoremap <C-g>d :call ZoomToggle()<CR>:Gdiff<CR>
+nnoremap <C-g>b :Gblame<CR>
 
 " Grep for word under the cursor
 if executable("rg")
@@ -45,7 +32,12 @@ if executable("rg")
     " --follow: Follow symlinks
     " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
     " --color: Search color options
-    command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+    command! -bang -nargs=* Rg
+                \ call fzf#vim#grep(
+                \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+                \   <bang>0 ? fzf#vim#with_preview()
+                \           : fzf#vim#with_preview(),
+                \   <bang>0)
 
 elseif executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
@@ -107,9 +99,6 @@ nmap Y <Plug>(operator-flashy)$
 
 " Backspace in normal mode switches to last buffer
 nnoremap <BS> <C-o>
-
-" Expand matching braces only when pressing Enter
-" inoremap {<CR> {<CR>}<Esc>==ko
 
 " Don't let x and c to spoil the yank register
 nnoremap x "_x
@@ -194,7 +183,7 @@ endfunction
 nnoremap <silent> e :call Quit()<CR>
 nnoremap <silent> E :q<CR>
 nnoremap <silent> w :update<CR>
-inoremap <silent> jj <Esc>
+imap <silent> jj <Esc>
 
 " Paste in insert mode
 inoremap <C-p> <C-r>0
@@ -208,10 +197,6 @@ nnoremap 0 ^
 nnoremap ^ 0
 
 nnoremap <leader>l :call NumberToggle()<CR>
-
-" Add a heading/subheading to current line
-nnoremap <leader>= yypVr=<Esc>==
-nnoremap <leader>- yypVr-<Esc>==
 
 " Go to end of yanked/pasted text
 vnoremap <silent> y y`]
@@ -273,10 +258,24 @@ function! SetTerminal()
     endif
 endfunction
 
+function! DiffEnter()
+    nnoremap <buffer> e :qa<CR>
+    nnoremap <buffer> w :wa!<CR>
+    setlocal number
+    setlocal norelativenumber
+    let b:coc_enabled = 0
+    setlocal nocursorline
+    IndentLinesDisable
+    colorscheme onedark
+endfunction
+
+function! DiffExit()
+    colorscheme ayu_mirage
+    IndentLinesEnable
+endfunction
 
 " Auto commands
 " ======================================================================================
-
 if has("autocmd")"
     " Enable spell checking
 
@@ -295,7 +294,8 @@ if has("autocmd")"
 
         " Update diff when leaving from insertmode or writing to file
         autocmd BufWritepost * if &diff | diffupdate | endif
-        autocmd BufEnter,BufNew * if &diff | colorscheme onedark | endif
+        autocmd BufEnter,BufNew * if &diff | :call DiffEnter() | endif
+        autocmd BufLeave if &diff | :call DiffExit() | endif
 
         " Open help in vertical split
         autocmd FileType help wincmd L
@@ -319,17 +319,6 @@ function! NumberToggle()
         set relativenumber
     endif
 endfunction
-
-if &diff
-    nnoremap e :qa<CR>
-    nnoremap w :wa<CR>
-    nnoremap W :wa!<CR>
-    set number
-    set norelativenumber
-    let b:coc_enabled = 0
-endif
-
-set tags=./tags;/   " ctags path, search upwards till tags file is found
 
 let g:airline#extensions#tabline#enabled          = 1
 let g:airline#extensions#tabline#buffer_min_count = 1
@@ -364,7 +353,7 @@ nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
-nnoremap <silent> <leader>p :FZF<CR>
+nnoremap <silent> <leader>p :Files<CR>
 nnoremap <silent> <leader>b :Tags<CR>
 nnoremap b :Buffers<CR>
 
@@ -474,7 +463,6 @@ let g:tmux_navigator_disable_when_zoomed = 1
 
 au FileType python setlocal formatprg=autopep8\ -
 
-nnoremap <C-d> :call ZoomToggle()<CR>:Gdiff<CR>
 
 map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
 map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
@@ -483,122 +471,35 @@ map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 
 nnoremap gf <C-w>f<C-w>L
 
-" if hidden is not set, TextEdit might fail.
-set hidden
-
-" Some server have issues with backup files, see #649
-set nobackup
-set nowritebackup
-
-" Better display for messages
-set cmdheight=2
-
-" Smaller updatetime for CursorHold & CursorHoldI
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> for trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[c` and `]c` for navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-nmap gs <Plug>(coc-git-chunkinfo)
-
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-
-let g:python_highlight_all = 1
-
-let g:vista_default_executive = 'coc'
-let g:vista#renderer#enable_icon = 0
-
 let g:go_fmt_command = "goimports"    " Run goimports along gofmt on each save
 let g:go_auto_type_info = 1           " Automatically get signature/type info for object under cursor
 let g:go_def_mapping_enabled = 0
+let g:go_addtags_transform = "camelcase"
+let g:go_fmt_fail_silently = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_doc_popup_window = 1
 
 if has('nvim')
     let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
 
     function! OpenFloatingWin()
-        let height = &lines - 3
-        let width = float2nr(&columns - (&columns * 2 / 10))
-        let col = float2nr((&columns - width) / 2)
+        let height = &lines
+        let width = &columns
 
         let opts = {
                     \ 'relative': 'editor',
-                    \ 'row': height * 0.3,
-                    \ 'col': col + 30,
-                    \ 'width': width * 2 / 3,
-                    \ 'height': height / 2
+                    \ 'row': float2nr(height * 0.1),
+                    \ 'col': float2nr(width * 0.05),
+                    \ 'width': float2nr(width * 0.9),
+                    \ 'height': float2nr(height * 0.8)
                     \ }
 
         let buf = nvim_create_buf(v:false, v:true)
@@ -615,3 +516,19 @@ if has('nvim')
                 \ signcolumn=no
     endfunction
 endif
+
+" Smart pairs are disabled by default:
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
+
+let g:pear_tree_repeatable_expand = 0
+
+" Likewise, Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+source ~/.vim/coc.vim
+
+autocmd FileType go nmap <leader>bb  <Plug>(go-build)
+autocmd FileType go nmap <leader>rr  <Plug>(go-run)
