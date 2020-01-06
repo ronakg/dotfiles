@@ -39,10 +39,6 @@ set splitright                                " Open split on right, not left
 set splitbelow                                " Open split below, not above
 set wildmenu
 set wildmode=longest:full,list:full
-set completeopt+=menuone
-set completeopt+=noselect
-set completeopt+=noinsert
-set shortmess+=c   " Shut off completion messages
 set noshowmode                                " Airline shows mode, so hide default mode
 set nobackup                                  " Don't need backup and swap files
 set noswapfile
@@ -70,6 +66,7 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 set cursorline
+set autowrite
 
 " Joining
 set nojoinspaces                " Only one space when joining lines
@@ -92,12 +89,15 @@ let &t_ZR="\e[23m"
 set termguicolors
 
 "================= Colorscheme =============================
+set bg=dark
+let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_italicize_comments = 1
+let g:gruvbox_invert_signs = 1
+let g:gruvbox_invert_tabline = 1
+let g:gruvbox_improved_warnings = 1
+colorscheme gruvbox
 syntax on
-let g:dracula_bold = 1
-let g:dracula_italic = 1
-let g:dracula_colorterm = 1
-autocmd ColorScheme dracula hi CursorLine cterm=underline term=underline
-colorscheme dracula
+hi Comment gui=italic cterm=italic
 
 if has('nvim-0.3.2') || has("patch-8.1.0360")
     set diffopt+=internal,algorithm:patience

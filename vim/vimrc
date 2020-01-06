@@ -266,12 +266,6 @@ function! DiffEnter()
     let b:coc_enabled = 0
     setlocal nocursorline
     IndentLinesDisable
-    colorscheme onedark
-endfunction
-
-function! DiffExit()
-    colorscheme ayu_mirage
-    IndentLinesEnable
 endfunction
 
 " Auto commands
@@ -285,7 +279,7 @@ if has("autocmd")"
         autocmd FileType markdown setlocal spell
         autocmd FileType text setlocal spell
         autocmd FileType rst setlocal spell
-,
+        ,
         " Remember cursor position between vim sessions
         autocmd BufReadPost *
                     \ if line("'\"") > 1 && line("'\"") <= line("$") |
@@ -295,7 +289,6 @@ if has("autocmd")"
         " Update diff when leaving from insertmode or writing to file
         autocmd BufWritepost * if &diff | diffupdate | endif
         autocmd BufEnter,BufNew * if &diff | :call DiffEnter() | endif
-        autocmd BufLeave if &diff | :call DiffExit() | endif
 
         " Open help in vertical split
         autocmd FileType help wincmd L
@@ -303,7 +296,6 @@ if has("autocmd")"
         if has('nvim')
             au BufEnter * if &buftype == 'terminal' | :call SetTerminal() | endif
         endif
-
     augroup END
 endif
 
@@ -327,17 +319,17 @@ let g:airline#extensions#tabline#buffer_idx_mode  = 1
 let g:airline#extensions#tabline#buffer_nr_show   = 0
 let g:airline#extensions#tabline#show_buffers     = 1
 let g:airline#extensions#branch#enabled           = 1
-let g:airline#extensions#tabline#left_sep         = ''
-let g:airline#extensions#tabline#left_alt_sep     = '|'
-let g:airline#extensions#tabline#right_sep        = ''
-let g:airline#extensions#tabline#right_alt_sep    = '|'
-let g:airline_left_sep                            = ''
-let g:airline_left_alt_sep                        = '|'
-let g:airline_right_sep                           = ''
-let g:airline_right_alt_sep                       = '|'
+"let g:airline#extensions#tabline#left_sep         = ''
+"let g:airline#extensions#tabline#left_alt_sep     = '|'
+"let g:airline#extensions#tabline#right_sep        = ''
+"let g:airline#extensions#tabline#right_alt_sep    = '|'
+"let g:airline_left_sep                            = ''
+"let g:airline_left_alt_sep                        = '|'
+"let g:airline_right_sep                           = ''
+"let g:airline_right_alt_sep                       = '|'
 let g:airline_powerline_fonts                     = 1
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'ayu_mirage'
+let g:airline_theme                               = 'base16_gruvbox_dark_hard'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype'])
@@ -360,20 +352,20 @@ nnoremap b :Buffers<CR>
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
 let g:tmuxline_powerline_separators = 1
-let g:airline#extensions#tmuxline#enabled                     = 0
+let g:airline#extensions#tmuxline#enabled                     = 1
 let g:tmuxline_preset = {
-      \'a'    : '#S',
-      \'win'  : ['#I', '#W'],
-      \'cwin' : ['#I', '#W'],
-      \'y'    : '#(date "+%Y-%b-%d %H:%M")',
-      \'z'    : '#H',
-      \'options' : {'status-justify' : 'left'}}
-let g:tmuxline_separators = {
-    \ 'left' : '',
-    \ 'left_alt': '|',
-    \ 'right' : '',
-    \ 'right_alt' : '|',
-    \ 'space' : ' '}
+            \'a'    : '#S',
+            \'win'  : ['#I', '#W'],
+            \'cwin' : ['#I', '#W'],
+            \'y'    : '#(date "+%Y-%b-%d %H:%M")',
+            \'z'    : '#H',
+            \'options' : {'status-justify' : 'left'}}
+"let g:tmuxline_separators = {
+            "\ 'left' : '',
+            "\ 'left_alt': '|',
+            "\ 'right' : '',
+            "\ 'right_alt' : '|',
+            "\ 'space' : ' '}
 
 " Change cursor shape based on mode.
 if has('nvim')
@@ -394,7 +386,7 @@ let g:startify_list_order = [['Most recently used files in current directory:'],
             \                ['Bookmarks:'], 'bookmarks']
 let g:startify_change_to_dir = 0
 let g:startify_files_number = 10
-let g:startify_bookmarks = [ {'a': '~/.vim/vimrc'}, {'b': '~/.vim/vim-plug.vim'}, {'c': '~/.vim/sane_vimrc'} ]
+let g:startify_bookmarks = [ {'a': '~/.vim/vimrc'}, {'b': '~/.vim/vim-plug.vim'}, {'c': '~/.vim/sane_vimrc'}, {'d': '~/.vim/coc.vim'} ]
 
 if filereadable(".vim.custom")
     so .vim.custom
@@ -438,31 +430,28 @@ nnoremap <C-b> :vsplit term://bash<CR>
 " Window navigation function
 " Make ctrl-h/j/k/l move between windows and auto-insert in terminals
 func! s:mapMoveToWindowInDirection(direction)
-func! s:maybeInsertMode(direction)
+    func! s:maybeInsertMode(direction)
         stopinsert
         execute "wincmd" a:direction
 
         if &buftype == 'terminal'
-        startinsert!
+            startinsert!
         endif
-endfunc
+    endfunc
 
-execute "tnoremap" "<silent>" "<C-" . a:direction . ">"
+    execute "tnoremap" "<silent>" "<C-" . a:direction . ">"
                 \ "<C-\\><C-n>"
                 \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
-execute "nnoremap" "<silent>" "<C-" . a:direction . ">"
+    execute "nnoremap" "<silent>" "<C-" . a:direction . ">"
                 \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
 endfunc
 
 for dir in ["h", "j", "l", "k"]
-call s:mapMoveToWindowInDirection(dir)
+    call s:mapMoveToWindowInDirection(dir)
 endfor
 tnoremap <esc><esc> <C-\><C-n>
 
 let g:tmux_navigator_disable_when_zoomed = 1
-
-au FileType python setlocal formatprg=autopep8\ -
-
 
 map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
 map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
@@ -490,16 +479,20 @@ let g:go_doc_popup_window = 1
 if has('nvim')
     let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
 
-    function! OpenFloatingWin()
-        let height = &lines
-        let width = &columns
+    " Open a centered floating window
+    function! OpenFloatingWin(...)
+        let height_per = get(a:, 1, 80)     " Default height is 80%
+        let width_per = get(a:, 2, 80)      " Default width is 80%
+
+        let lines = &lines
+        let columns = &columns
 
         let opts = {
                     \ 'relative': 'editor',
-                    \ 'row': float2nr(height * 0.1),
-                    \ 'col': float2nr(width * 0.05),
-                    \ 'width': float2nr(width * 0.9),
-                    \ 'height': float2nr(height * 0.8)
+                    \ 'height': float2nr(lines * height_per/100),
+                    \ 'width': float2nr(columns * width_per/100),
+                    \ 'row': float2nr(lines * (100-height_per)/200),
+                    \ 'col': float2nr(columns * (100-width_per)/200),
                     \ }
 
         let buf = nvim_create_buf(v:false, v:true)
@@ -508,27 +501,47 @@ if has('nvim')
         call setwinvar(win, '&winhl', 'Normal:Pmenu')
 
         setlocal
-                \ buftype=nofile
-                \ nobuflisted
-                \ bufhidden=hide
-                \ nonumber
-                \ norelativenumber
-                \ signcolumn=no
+                    \ buftype=nofile
+                    \ nobuflisted
+                    \ bufhidden=hide
+                    \ nonumber
+                    \ norelativenumber
+                    \ signcolumn=no
+    endfunction
+
+    " Open a terminal in a centered floating window
+    function! OpenTerm(cmd)
+        call OpenFloatingWin()
+        call termopen(a:cmd, { 'on_exit': function('OnTermExit') })
+    endfunction
+
+    function! OnTermExit(job_id, code, event) dict
+        if a:code == 0
+            bd!
+        endif
     endfunction
 endif
 
-" Smart pairs are disabled by default:
-let g:pear_tree_smart_openers = 1
-let g:pear_tree_smart_closers = 1
-let g:pear_tree_smart_backspace = 1
-
-let g:pear_tree_repeatable_expand = 0
-
 " Likewise, Files command with preview window
 command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 source ~/.vim/coc.vim
 
 autocmd FileType go nmap <leader>bb  <Plug>(go-build)
 autocmd FileType go nmap <leader>rr  <Plug>(go-run)
+
+if exists('g:started_by_firenvim')
+    set laststatus=0
+    let g:airline#extensions#tabline#enabled          = 0
+    let g:airline#extensions#tabline#left_sep         = ''
+    let g:airline#extensions#tabline#left_alt_sep     = '|'
+    let g:airline#extensions#tabline#right_sep        = ''
+    let g:airline#extensions#tabline#right_alt_sep    = '|'
+    let g:airline_left_sep                            = ''
+    let g:airline_left_alt_sep                        = '|'
+    let g:airline_right_sep                           = ''
+    let g:airline_right_alt_sep                       = '|'
+    au BufEnter leetcode.com_*.txt set filetype=go
+    au BufEnter github.com_*.txt set filetype=markdown
+endif
