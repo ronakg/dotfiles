@@ -329,7 +329,7 @@ let g:airline#extensions#branch#enabled           = 1
 "let g:airline_right_alt_sep                       = '|'
 let g:airline_powerline_fonts                     = 1
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'base16_gruvbox_dark_hard'
+let g:airline_theme                               = 'base16'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype'])
@@ -545,3 +545,9 @@ if exists('g:started_by_firenvim')
     au BufEnter leetcode.com_*.txt set filetype=go
     au BufEnter github.com_*.txt set filetype=markdown
 endif
+
+" Smart pairs are disabled by default:
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
+let g:pear_tree_repeatable_expand = 0
