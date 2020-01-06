@@ -184,8 +184,13 @@ function! s:define_commands()
   endif
   if !has('nvim')
     \ && (has('win32') || has('win32unix'))
+<<<<<<< HEAD
     \ && !has('multi_byte')
     return s:err('Vim needs +multi_byte feature on Windows to run shell commands. Enable +iconv for best results.')
+=======
+    \ && (!has('multi_byte') || !has('iconv'))
+    return s:err('Vim needs +iconv, +multi_byte features on Windows to run shell commands.')
+>>>>>>> a12acbfdfea4957ef93511fcd029a2cb32319264
   endif
   command! -nargs=* -bar -bang -complete=customlist,s:names PlugInstall call s:install(<bang>0, [<f-args>])
   command! -nargs=* -bar -bang -complete=customlist,s:names PlugUpdate  call s:update(<bang>0, [<f-args>])
@@ -400,7 +405,9 @@ if s:is_win
   endfunction
 
   " Copied from fzf
+  let s:codepage = libcallnr('kernel32.dll', 'GetACP', 0)
   function! s:wrap_cmds(cmds)
+<<<<<<< HEAD
     let cmds = [
       \ '@echo off',
       \ 'setlocal enabledelayedexpansion']
@@ -413,6 +420,14 @@ if s:is_win
       return map(cmds, printf('iconv(v:val."\r", "%s", "cp%d")', &encoding, s:codepage))
     endif
     return map(cmds, 'v:val."\r"')
+=======
+    return map([
+      \ '@echo off',
+      \ 'setlocal enabledelayedexpansion']
+    \ + (type(a:cmds) == type([]) ? a:cmds : [a:cmds])
+    \ + ['endlocal'],
+    \ printf('iconv(v:val."\r", "%s", "cp%d")', &encoding, s:codepage))
+>>>>>>> a12acbfdfea4957ef93511fcd029a2cb32319264
   endfunction
 
   function! s:batchfile(cmd)
