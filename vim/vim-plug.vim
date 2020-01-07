@@ -35,7 +35,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'kkoomen/vim-doge'
 Plug 'uarun/vim-protobuf', { 'for': ['proto'] }
 Plug 'rhysd/git-messenger.vim'
-Plug 'tmsvg/pear-tree'
+"Plug 'tmsvg/pear-tree'
 Plug 'machakann/vim-sandwich'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 

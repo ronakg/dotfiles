@@ -1,0 +1,19 @@
+{
+    "java.jdt.ls.vmargs": "-noverify -Xmx2G -XX:+UseG1GC -XX:+UseStringDeduplication",
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "java.completion.guessMethodArguments": true,
+    "tslint.jsEnable": true,
+    "suggest.maxCompleteItemCount": 10,
+    "suggest.minTriggerInputLength": 2,
+    "explorer.icon.enableNerdfont": true,
+    "go.goplsOptions": {
+        "deepCompletion": true,
+        "completeUnimported": true,
+        "completionDocumentation": true
+    },
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.locationlist": false,
+    "snippets.autoTrigger": true,
+    "suggest.noselect": false,
+    "snippets.shortcut": "~"
+}
