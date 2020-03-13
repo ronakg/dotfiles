@@ -78,11 +78,11 @@
 [diff]
     tool = vimdiff
 [difftool "vimdiff"]
-    path = nvim
+    ;path = nvim
 [merge]
     tool = vimdiff
 [mergetool "vimdiff"]
-    path = nvim
+    ;path = nvim
 [color "diff-highlight"]
     oldNormal = red bold
     oldHighlight = red bold 52

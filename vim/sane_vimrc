@@ -31,18 +31,17 @@ set smartcase                                 " don't ignore case if capital let
 filetype plugin indent on
 set backspace=indent,eol,start                " makes backspace working
 
-set sidescrolloff=3                           " Keep at least 3 lines left/right
+set sidescrolloff=5                           " Keep at least 5 lines left/right
 set scrolloff=3                               " Keep at least 3 lines above/below
 
 set nostartofline
 set splitright                                " Open split on right, not left
 set splitbelow                                " Open split below, not above
 set wildmenu
-set wildmode=longest:full,list:full
 set noshowmode                                " Airline shows mode, so hide default mode
 set nobackup                                  " Don't need backup and swap files
 set noswapfile
-set pumheight=15                              " Completion menu height
+"set pumheight=15                              " Completion menu height
 set number                                    " line numbers
 set laststatus=2                              " Always show status line
 set shiftround                                " Round off shift width when using >
@@ -50,7 +49,7 @@ set wrapscan
 set autoread                                  " automatically reload files changed outside of Vim
 set showcmd
 set hidden
-set diffopt+=context:5,vertical        " 5 lines of context in diff mode, ignore trailing whitespaces
+set diffopt+=context:5,vertical               " 5 lines of context in diff mode, ignore trailing whitespaces
 set linebreak                                 " It maintains the whole words when wrapping
 set cpoptions-=m                              " Highlight when CursorMoved.
 set cpoptions+=I
@@ -61,43 +60,40 @@ set csverb
 set cscopetag
 set previewheight=20
 set conceallevel=2
-set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵
+set list
+set listchars=tab:▸\ ,trail:·,extends:>,precedes:<,nbsp:⎵
 set expandtab
 set shiftwidth=4
 set tabstop=4
 set cursorline
 set autowrite
+set display+=lastline
+set noerrorbells
 
 " Joining
 set nojoinspaces                " Only one space when joining lines
 set formatoptions+=j            " Remove comment leader when joining lines
 
-set list
 set mouse=a
 
-if $TMUX == ''
-    set clipboard+=unnamed
-endif
-
-if exists("&wildignorecase")
-    set wildignorecase
-endif
+set clipboard=unnamedplus
 
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
 set termguicolors
+syntax on
 
 "================= Colorscheme =============================
 set bg=dark
-let g:gruvbox_contrast_dark = 'medium'
-let g:gruvbox_italicize_comments = 1
-let g:gruvbox_invert_signs = 1
-let g:gruvbox_invert_tabline = 1
-let g:gruvbox_improved_warnings = 1
-colorscheme gruvbox
-syntax on
-hi Comment gui=italic cterm=italic
+let g:gruvbox_material_background = 'medium'
+let g:gruvbox_material_enable_italic = 1
+let g:indentLine_setColors = 0
+let g:nightflyCursorColor = 1
+let ayucolor="mirage"
+let g:gruvbox_material_palette = 'original'
+colorscheme gruvbox-material
+highlight Comment cterm=italic gui=italic
 
 if has('nvim-0.3.2') || has("patch-8.1.0360")
     set diffopt+=internal,algorithm:patience

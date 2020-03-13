@@ -8,8 +8,7 @@
     "explorer.icon.enableNerdfont": true,
     "go.goplsOptions": {
         "deepCompletion": true,
-        "completeUnimported": true,
-        "completionDocumentation": true
+        "completeUnimported": true
     },
     "diagnostic.checkCurrentLine": true,
     "diagnostic.locationlist": false,

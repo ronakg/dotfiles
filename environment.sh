@@ -67,7 +67,9 @@ export HOMEBREW_INSTALL_CLEANUP=1
 
 # FZF
 if command_exists fzf; then
-    if command_exists rg; then
+    if command_exists fd; then
+        export FZF_DEFAULT_COMMAND='fd'
+    elif command_exists rg; then
         # --files: List files that would be searched but do not search
         # --no-ignore: Do not respect .gitignore, etc...
         # --hidden: Search hidden files and folders
@@ -79,28 +81,24 @@ if command_exists fzf; then
     fi
 
     _gen_fzf_default_opts() {
-        local color01='#2D3B4D'
-        local color00='#1F2430'
-        local color02='#517F8D'
-        local color03='#6C8B91'
-        local color04='#CBCCC6'
-        local color05='#a1a19a'
-        local color06='#e6e6dc'
-        local color07='#fafaf8'
-        local color08='#ff5a67'
-        local color09='#f08e48'
-        local color0A='#BAE67E'
-        local color0B='#7fc06e'
-        local color0C='#F28779'
-        local color0D='#FFCC66'
-        local color0E='#9a70a4'
-        local color0F='#5CCFE6'
+        #local color01='#2D3B4D'
+        #local color00='#1F2430'
+        #local color02='#517F8D'
+        #local color03='#6C8B91'
+        #local color04='#CBCCC6'
+        #local color05='#a1a19a'
+        #local color06='#e6e6dc'
+        #local color07='#fafaf8'
+        #local color08='#ff5a67'
+        #local color09='#f08e48'
+        #local color0A='#BAE67E'
+        #local color0B='#7fc06e'
+        #local color0C='#F28779'
+        #local color0D='#FFCC66'
+        #local color0E='#9a70a4'
+        #local color0F='#5CCFE6'
 
-        export FZF_DEFAULT_OPTS="--reverse --exact
-        --color=bg+:$color00,bg:$color00,spinner:$color0C,hl:$color0D
-        --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C
-        --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0F
-        "
+        export FZF_DEFAULT_OPTS="--info=hidden --reverse --exact --preview-window right:wrap --keep-right"
     }
 
 _gen_fzf_default_opts

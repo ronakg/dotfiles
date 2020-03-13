@@ -7,8 +7,33 @@ set keymap vi
 set editing-mode vi
 set show-mode-in-prompt on
 
-set vi-ins-mode-string \1\e[5 q\2
-set vi-cmd-mode-string \1\e[2 q\2
+#set vi-ins-mode-string \1\e[5 q\2
+#set vi-cmd-mode-string \1\e[2 q\2
+
+# The following is a little hard to understand
+# a full example omiting the wrapping \1 and \2
+#
+# \e[     (open sequence: ESC CSI)
+# 48;5;   (specifies 256 bg)
+# 46      (bg color)
+# m       (end)
+# 1;      (bold)
+# 38;5;   (specifies 256 fg)
+# 21      (fg color)
+# m       (end)
+# COMMAND (some text to display)
+# \e[     (open sequence)
+# 0       (reset)
+# m       (end)
+# \e[     (open sequence)
+# 0       (cursor type)
+# q       (end)
+
+# Configures the cmd mode display
+set vi-cmd-mode-string "\1\e[0 q\2"
+
+# Configures the ins mode display
+set vi-ins-mode-string "\1\e[6 q\2"
 
 #  filename matching and completion in a case-insensitive fashion
 set completion-ignore-case on
@@ -27,4 +52,4 @@ set show-all-if-unmodified on
 set match-hidden-files on
 
 set keymap vi-insert
-   "jj": vi-movement-mode
+    "jj": vi-movement-mode

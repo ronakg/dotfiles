@@ -6,6 +6,8 @@ if command_exists nvim; then
     alias vim=nvim;
 fi
 
+alias ..='cd ..'
+
 alias vi='vim -u ~/.vim/sane_vimrc'
 
 # Shortcut to create new tmux with pwd as session name
