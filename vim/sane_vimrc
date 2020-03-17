@@ -69,6 +69,7 @@ set cursorline
 set autowrite
 set display+=lastline
 set noerrorbells
+set signcolumn=yes
 
 " Joining
 set nojoinspaces                " Only one space when joining lines
