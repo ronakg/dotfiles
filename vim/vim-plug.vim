@@ -43,9 +43,9 @@ Plug 'farmergreg/vim-lastplace'                         " open files at the last
 Plug 'romainl/vim-cool'                                 " disable hl until another search is performed
 "Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
-Plug 'voldikss/vim-floaterm'
 Plug 'pechorin/any-jump.vim'
 Plug 'gabrielelana/vim-markdown'
+Plug 'liuchengxu/vista.vim'
 
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'

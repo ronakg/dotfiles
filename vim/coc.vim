@@ -1,6 +1,5 @@
 let g:coc_global_extensions = [
             \'coc-python',
-            \'coc-java',
             \'coc-git',
             \'coc-json',
             \'coc-tsserver',
@@ -11,7 +10,8 @@ let g:coc_global_extensions = [
             \'coc-go',
             \'coc-snippets',
             \'coc-lists',
-            \'coc-pairs'
+            \'coc-pairs',
+            \'coc-java'
             \ ]
 
 "\'coc-highlight',

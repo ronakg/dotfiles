@@ -13,6 +13,6 @@
     "diagnostic.checkCurrentLine": true,
     "diagnostic.locationlist": false,
     "snippets.autoTrigger": true,
-    "suggest.noselect": false,
+    "suggest.noselect": true,
     "snippets.shortcut": "~"
 }
