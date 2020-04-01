@@ -46,20 +46,12 @@ Plug 'camspiers/lens.vim'
 Plug 'pechorin/any-jump.vim'
 Plug 'gabrielelana/vim-markdown'
 Plug 'liuchengxu/vista.vim'
+Plug 'junkblocker/git-time-lapse'
 
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sainnhe/gruvbox-material'
-Plug 'chriskempson/base16-vim'
-Plug 'ayu-theme/ayu-vim'
-Plug 'AlessandroYorba/Despacio'
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
-Plug 'manasthakur/papercolor-theme'
-Plug 'bluz71/vim-nightfly-guicolors'
-Plug 'hzchirs/vim-material'
-Plug 'arzg/vim-colors-xcode'
-Plug 'jacoborus/tender.vim'
-Plug 'tomasr/molokai'
+Plug 'sainnhe/sonokai'
 
 " Add plugins to &runtimepath
 call plug#end()

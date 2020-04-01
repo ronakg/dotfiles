@@ -9,14 +9,6 @@ try
 catch
 endtry
 
-"if !exists("g:os")
-    "if has("win64") || has("win32") || has("win16")
-        "let g:os = "Windows"
-    "else
-        "let g:os = substitute(system('uname'), '\n', '', '')
-    "endif
-"endif
-
 " ======================================================================================
 " Standard vim options
 " ======================================================================================
@@ -87,14 +79,18 @@ syntax on
 
 "================= Colorscheme =============================
 set bg=dark
-let g:gruvbox_material_background = 'medium'
-let g:gruvbox_material_enable_italic = 1
-let g:indentLine_setColors = 0
-let g:nightflyCursorColor = 1
-let ayucolor="mirage"
-let g:gruvbox_material_palette = 'original'
-colorscheme gruvbox-material
-highlight Comment cterm=italic gui=italic
+"let g:gruvbox_material_background = 'medium'
+"let g:gruvbox_material_enable_italic = 1
+"let g:indentLine_setColors = 0
+"let g:gruvbox_material_palette = 'original'
+"colorscheme gruvbox-material
+"highlight Comment cterm=italic gui=italic
+" the configuration options should be placed before `colorscheme sonokai`
+let g:sonokai_style = 'andromeda'
+let g:sonokai_enable_italic = 1
+
+colorscheme sonokai
+highlight link Delimeter Comment
 
 if has('nvim-0.3.2') || has("patch-8.1.0360")
     set diffopt+=internal,algorithm:patience
@@ -111,3 +107,5 @@ if has("persistent_undo")
     set undolevels=1000
     set undoreload=10000
 endif
+
+let b:coc_enabled = 0

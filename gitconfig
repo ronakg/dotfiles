@@ -1,8 +1,3 @@
-[user]
-    name = Ronak Gandhi
-    email = rogandhi@cisco.com
-[github]
-    user = ronakg
 [difftool]
     prompt = false
     trustExitCode = true
@@ -58,6 +53,7 @@
     autocrlf = false
     excludesfile = ~/.gitignore
     pager = /usr/local/share/contrib/diff-highlight/diff-highlight | less -rx1,5
+	commentChar = ";"
 
 [filter "lfs"]
     clean = git-lfs clean -- %f
@@ -88,3 +84,9 @@
     oldHighlight = red bold 52
     newNormal = green bold
     newHighlight = green bold 22
+[user]
+	useConfigOnly = true
+[push]
+	default = current
+[commit]
+	template = /Users/rogandhi/dotfiles/git/commitmsg.template
