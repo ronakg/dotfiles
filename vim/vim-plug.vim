@@ -52,6 +52,7 @@ Plug 'junkblocker/git-time-lapse'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/sonokai'
+Plug 'jacoborus/tender.vim'
 
 " Add plugins to &runtimepath
 call plug#end()

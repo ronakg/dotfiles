@@ -282,8 +282,12 @@ if has("autocmd")"
         if has('nvim')
             autocmd BufEnter * if &buftype == 'terminal' | :call SetTerminal() | endif
         endif
+
+        autocmd! Syntax * :syntax match Parens /[\[\](){}]/
     augroup END
 endif
+
+hi def link Parens NonText
 
 function! NumberToggle()
     if(&relativenumber == 1 && &number == 1)
@@ -519,12 +523,6 @@ if has('nvim')
     endfunction
 endif
 
-" Likewise, Files command with preview window
-command! -bang -nargs=? -complete=dir Files
-            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-"command! -bang -nargs=? -complete=dir Buffers
-    "\ call fzf#vim#buffers(<q-args>, {'options': ['--preview']}, <bang>0)
 nnoremap b :Buffers<CR>
 
 source ~/.vim/coc.vim

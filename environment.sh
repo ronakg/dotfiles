@@ -68,7 +68,7 @@ export HOMEBREW_INSTALL_CLEANUP=1
 # FZF
 if command_exists fzf; then
     if command_exists fd; then
-        export FZF_DEFAULT_COMMAND='fd'
+        export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude '.git' --exclude 'node_modules'"
     elif command_exists rg; then
         # --files: List files that would be searched but do not search
         # --no-ignore: Do not respect .gitignore, etc...
@@ -80,28 +80,26 @@ if command_exists fzf; then
         export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
     fi
 
-    _gen_fzf_default_opts() {
-        #local color01='#2D3B4D'
-        #local color00='#1F2430'
-        #local color02='#517F8D'
-        #local color03='#6C8B91'
-        #local color04='#CBCCC6'
-        #local color05='#a1a19a'
-        #local color06='#e6e6dc'
-        #local color07='#fafaf8'
-        #local color08='#ff5a67'
-        #local color09='#f08e48'
-        #local color0A='#BAE67E'
-        #local color0B='#7fc06e'
-        #local color0C='#F28779'
-        #local color0D='#FFCC66'
-        #local color0E='#9a70a4'
-        #local color0F='#5CCFE6'
+    export FZF_DEFAULT_OPTS="
+    --layout=reverse
+    --info=inline
+    --height=80%
+    --multi
+    --exact
+    --preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+    --color=fg:#ebdbb2,bg:#282828,hl:#8ec07c
+    --color=fg+:#b8bb26,bg+:#1d2021,hl+:#fb4934
+    --color=info:#afaf87,prompt:#fe9019,pointer:#fb4934
+    --color=marker:#b8bb26,spinner:#fe9019,header:#87afaf
+    --prompt='∼ ' --pointer='▶' --marker='✓'
+    --bind '?:toggle-preview'
+    --bind 'ctrl-a:select-all'
+    --bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
+    --bind 'ctrl-e:execute(echo {+} | xargs -o vim)'
+    --bind 'ctrl-v:execute(code {+})'
+    "
 
-        export FZF_DEFAULT_OPTS="--info=hidden --reverse --exact --preview-window right:wrap --keep-right"
-    }
-
-_gen_fzf_default_opts
+    export FZF_COMPLETION_TRIGGER='--'
 fi
 
 # Sync from an upstream branch
@@ -123,3 +121,5 @@ gl() {
         --bind "enter:execute:$_viewGitLogLine   | less -R" \
         --bind "alt-y:execute:$_gitLogLineToHash | xclip"
     }
+
+[ -f $DOTFILES/forgit/forgit.plugin.zsh ] && source $DOTFILES/forgit/forgit.plugin.zsh
