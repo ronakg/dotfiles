@@ -328,5 +328,7 @@
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.sideBar.location": "right"
+    "workbench.sideBar.location": "right",
+    "workbench.startupEditor": "welcomePageInEmptyWorkbench",
+    "material-icon-theme.showWelcomeMessage": false
 }

@@ -69,6 +69,10 @@ for file in $files; do
     ln -snfv $DOTFILES/$file ~/.$file
 done
 
+# VSCode symlinks
+ln -snfv $DOTFILES/vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+ln -snfv $DOTFILES/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+
 git submodule update --init --recursive
 
 echo -e "\nInstalling vim plugins..."
