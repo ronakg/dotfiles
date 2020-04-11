@@ -1,11 +1,9 @@
 {
-    "java.jdt.ls.vmargs": "-noverify -Xmx2G -XX:+UseG1GC -XX:+UseStringDeduplication",
-    "java.errors.incompleteClasspath.severity": "ignore",
+    "java.jdt.ls.vmargs": "-noverify -Xms4096m -Xmx5120m -XX:+UseG1GC -XX:+UseStringDeduplication",
+    "java.progressReports.enabled": true,
     "java.completion.guessMethodArguments": true,
-    "tslint.jsEnable": true,
     "suggest.maxCompleteItemCount": 10,
     "suggest.minTriggerInputLength": 2,
-    "explorer.icon.enableNerdfont": true,
     "go.goplsOptions": {
         "deepCompletion": true,
         "completeUnimported": true
@@ -14,5 +12,8 @@
     "diagnostic.locationlist": false,
     "snippets.autoTrigger": true,
     "suggest.noselect": true,
-    "snippets.shortcut": "~"
+    "snippets.shortcut": "~",
+    "yaml.format.enable": true,
+    "yaml.completion": true,
+    "yaml.validate": true
 }

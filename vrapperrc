@@ -7,6 +7,7 @@ imap jj <esc>
 nnoremap ; :
 nnoremap : ;
 nnoremap w :w<CR>
+nnoremap e :q<CR>
 
 set scrolloff=4                      " keep cursor off screen edges
 set hlsearch
@@ -35,7 +36,7 @@ eclipseaction eclipsefindref org.eclipse.jdt.ui.edit.text.java.search.references
 nnoremap gr :eclipsefindref<cr>
 
 eclipseuiaction eclipsegotoimpl org.eclipse.jdt.ui.edit.text.java.open.implementation
-nnoremap gI :eclipsegotoimpl<cr>
+nnoremap <cr> :eclipsegotoimpl<cr>
 
 " show documentation for current symbol
 eclipseuiaction eclipseshowdoc org.eclipse.ui.edit.text.showInformation
@@ -71,3 +72,5 @@ nnoremap got :opentermhere<cr>
 
 eclipseaction eclipseopenresource org.eclipse.ui.navigate.openResource
 nnoremap <c-p> :eclipseopenresource<cr>
+
+" vim: set filetype=vim:

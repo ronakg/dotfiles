@@ -11,7 +11,7 @@ let g:coc_global_extensions = [
             \'coc-snippets',
             \'coc-lists',
             \'coc-pairs',
-            \'coc-java'
+            \'coc-yaml'
             \ ]
 
 "\'coc-highlight',

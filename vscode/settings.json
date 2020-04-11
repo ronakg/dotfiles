@@ -1,0 +1,332 @@
+{
+    "bracket-pair-colorizer-2.colors": [
+        "editor.foreground"
+    ],
+    "bracket-pair-colorizer-2.highlightActiveScope": true,
+    "bracket-pair-colorizer-2.scopeLineCSS": [
+        "borderStyle : solid",
+        "borderWidth : 1px",
+        "borderColor : grey",
+        "opacity: 0.5"
+    ],
+    "bracket-pair-colorizer-2.showBracketsInGutter": false,
+    "bracket-pair-colorizer-2.showHorizontalScopeLine": true,
+    "bracket-pair-colorizer-2.showVerticalScopeLine": true,
+    "breadcrumbs.enabled": true,
+    "cSpell.userWords": [
+        "AUTHZ",
+        "Pxgrid",
+        "Rbac",
+        "dxhub",
+        "itertools",
+        "messageservice",
+        "xgrid",
+        "xmpp"
+    ],
+    "customizeUI.activityBar": "bottom",
+    "customizeUI.titleBar": "inline",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.renderSideBySide": false,
+    "editor.cursorBlinking": "phase",
+    "editor.folding": false,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 13,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "editor.matchBrackets": "near",
+    "editor.minimap.enabled": false,
+    "editor.minimap.renderCharacters": false,
+    "editor.minimap.showSlider": "always",
+    "editor.renderWhitespace": "boundary",
+    "editor.smoothScrolling": true,
+    "editor.suggest.localityBonus": true,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "on",
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "comment",
+                "settings": {
+                    "fontStyle": "italic"
+                }
+            }
+        ]
+    },
+    "editor.wordWrap": "on",
+    "explorer.openEditors.visible": 0,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.factorypath": true,
+        "**/.project": true,
+        "**/.settings": true
+    },
+    "files.insertFinalNewline": true,
+    "files.simpleDialog.enable": true,
+    "files.trimFinalNewlines": true,
+    "git.countBadge": "tracked",
+    "git.ignoreLegacyWarning": true,
+    "gitlens.advanced.maxSearchItems": 100,
+    "gitlens.advanced.telemetry.enabled": false,
+    "gitlens.blame.heatmap.enabled": false,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.codeLens.recentChange.enabled": false,
+    "go.autocompleteUnimportedPackages": true,
+    "go.languageServerExperimentalFeatures": {
+        "autoComplete": true,
+        "diagnostics": true,
+        "documentLink": true,
+        "documentSymbols": true,
+        "findReferences": true,
+        "format": true,
+        "goToDefinition": true,
+        "goToImplementation": true,
+        "goToTypeDefinition": true,
+        "hover": true,
+        "rename": true,
+        "signatureHelp": true,
+        "workspaceSymbols": true
+    },
+    "go.useLanguageServer": true,
+    "gruvboxMaterial.darkContrast": "hard",
+    "gruvboxMaterial.darkWorkbench": "high-contrast",
+    "gruvboxMaterial.italicKeywords": true,
+    "java.codeGeneration.generateComments": true,
+    "java.codeGeneration.useBlocks": true,
+    "java.completion.guessMethodArguments": true,
+    "java.implementationsCodeLens.enabled": true,
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -Xms4096m -Xmx5120m -noverify",
+    "leetcode.hint.commandShortcut": false,
+    "leetcode.hint.configWebviewMarkdown": false,
+    "leetcode.workspaceFolder": "/Users/rogandhi/Google Drive/Projects/leetcode",
+    "materialTheme.accent": "Graphite",
+    "maven.executable.options": "-nsu -DskipTests",
+    "maven.executable.preferMavenWrapper": false,
+    "problems.showCurrentInStatus": true,
+    "python.jediEnabled": false,
+    "search.quickOpen.includeSymbols": true,
+    "sonarlint.connectedMode.connections.sonarqube": [
+        {
+            "serverUrl": "https://engci-sonar-sjc.cisco.com/sonar",
+            "token": "16ce9543236ff33f3d686dd4c8f7a1ee6cd09aa6"
+        }
+    ],
+    "sonarlint.disableTelemetry": true,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "terminal.external.osxExec": "iterm2.app",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.fontSize": 13,
+    "terminal.integrated.fontWeightBold": "normal",
+    "terminal.integrated.scrollback": 5000,
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "timeline.excludeSources": [
+        "git-history"
+    ],
+    "vim.gdefault": true,
+    "vim.highlightedyank.enable": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "after": [
+                "<Esc>"
+            ],
+            "before": [
+                "j",
+                "j"
+            ]
+        }
+    ],
+    "vim.leader": "<space>",
+    "vim.neovimPath": "/usr/local/bin/nvim",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "t"
+            ],
+            "commands": [
+                "workbench.files.action.focusFilesExplorer"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f"
+            ],
+            "commands": [
+                "revealInExplorer"
+            ]
+        },
+        {
+            "before": [
+                "w"
+            ],
+            "commands": [
+                "workbench.action.files.save"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "p",
+                "d"
+            ],
+            "commands": [
+                "editor.action.peekDefinition"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "p",
+                "c"
+            ],
+            "commands": [
+                "editor.showCallHierarchy"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "c"
+            ],
+            "commands": [
+                "references-view.showCallHierarchy"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "r"
+            ],
+            "commands": [
+                "editor.action.referenceSearch.trigger"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "i"
+            ],
+            "commands": [
+                "editor.action.goToImplementation"
+            ]
+        },
+        {
+            "before": [
+                "u"
+            ],
+            "commands": [
+                "undo"
+            ]
+        },
+        {
+            "before": [
+                "<C-r>"
+            ],
+            "commands": [
+                "redo"
+            ]
+        },
+        {
+            "before": [
+                "e"
+            ],
+            "commands": [
+                "workbench.action.closeActiveEditor"
+            ]
+        },
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        },
+        {
+            "after": [
+                "<C-o>"
+            ],
+            "before": [
+                "<BS>"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "r"
+            ],
+            "commands": [
+                "editor.action.referenceSearch.trigger"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "r",
+                "n"
+            ],
+            "commands": [
+                "editor.action.rename"
+            ]
+        },
+        {
+            "before": [
+                ":"
+            ],
+            "commands": [
+                "workbench.action.showCommands"
+            ]
+        }
+    ],
+    "vim.replaceWithRegister": true,
+    "vim.sneak": true,
+    "vim.textwidth": 120,
+    "vim.useSystemClipboard": true,
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+        {
+            "after": [
+                "p",
+                "g",
+                "v",
+                "y"
+            ],
+            "before": [
+                "p"
+            ]
+        }
+    ],
+    "vim.visualstar": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "window.newWindowDimensions": "maximized",
+    "window.openFoldersInNewWindow": "on",
+    "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
+    "window.titleBarStyle": "native",
+    "window.zoomLevel": 0,
+    "workbench.colorCustomizations": {
+        "tab.activeBorder": "#ff0000"
+    },
+    "workbench.colorTheme": "Gruvbox Material Dark",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.sideBar.location": "right"
+}

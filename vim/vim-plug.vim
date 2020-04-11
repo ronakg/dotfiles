@@ -53,6 +53,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/sonokai'
 Plug 'jacoborus/tender.vim'
+Plug 'dracula/vim', { 'name': 'dracula' }
 
 " Add plugins to &runtimepath
 call plug#end()

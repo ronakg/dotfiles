@@ -287,7 +287,7 @@ if has("autocmd")"
     augroup END
 endif
 
-hi def link Parens NonText
+hi def link Parens LineNr
 
 function! NumberToggle()
     if(&relativenumber == 1 && &number == 1)
@@ -317,9 +317,9 @@ let g:airline#extensions#branch#enabled           = 1
 "let g:airline_left_alt_sep                        = '|'
 "let g:airline_right_sep                           = ''
 "let g:airline_right_alt_sep                       = '|'
-let g:airline_powerline_fonts                     = 1
+let g:airline_powerline_fonts                     = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline_theme                               = 'base16_default'
+let g:airline_theme                               = 'base16_tomorrow'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype', '%3p%%'.g:airline_symbols.space, 'linenr', 'maxlinenr', g:airline_symbols.space.':%3v'])
@@ -339,7 +339,7 @@ nnoremap <silent> <leader>p :Files<CR>
 
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
-let g:tmuxline_powerline_separators = 1
+let g:tmuxline_powerline_separators = 0
 let g:airline#extensions#tmuxline#enabled                     = 1
 let g:tmuxline_preset = {
             \'a'    : '#S',
@@ -394,9 +394,9 @@ nnoremap <silent> <C-A> :call ZoomToggle()<CR>
 let g:indentLine_setColors = 0
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_char = '│'
-let g:indentLine_setConceal = 2
-let g:indentLine_concealcursor = ""
-let g:indentLine_defaultGroup = 'Comment'
+"let g:indentLine_setConceal = 2
+"let g:indentLine_concealcursor = ""
+let g:indentLine_defaultGroup = "NonText"
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
@@ -541,3 +541,38 @@ let g:any_jump_list_numbers = 0
 " For simple sizing of splits.
 map - <C-W>-
 map + <C-W>+
+
+
+if has('nvim')
+    let g:pretty_indent_namespace = nvim_create_namespace('pretty_indent')
+
+    function! PrettyIndent()
+        let l:view=winsaveview()
+        call cursor(1, 1)
+        call nvim_buf_clear_namespace(0, g:pretty_indent_namespace, 1, -1)
+        while 1
+            let l:match = search('^$', 'W')
+            if l:match ==# 0
+                break
+            endif
+            let l:indent = cindent(l:match)
+            if l:indent > 0
+                call nvim_buf_set_virtual_text(
+                \   0,
+                \   g:pretty_indent_namespace,
+                \   l:match - 1,
+                \   [[repeat(repeat(' ', &shiftwidth - 1) . '│', l:indent / &shiftwidth), 'NonText']],
+                \   {}
+                \)
+            endif
+        endwhile
+        call winrestview(l:view)
+    endfunction
+
+    augroup PrettyIndent
+        autocmd!
+        autocmd TextChanged * call PrettyIndent()
+        autocmd BufEnter * call PrettyIndent()
+        autocmd InsertLeave * call PrettyIndent()
+    augroup END
+endif
