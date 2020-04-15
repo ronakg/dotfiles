@@ -1,22 +1,17 @@
 {
-    "bracket-pair-colorizer-2.colors": [
-        "editor.foreground"
-    ],
-    "bracket-pair-colorizer-2.highlightActiveScope": true,
-    "bracket-pair-colorizer-2.scopeLineCSS": [
-        "borderStyle : solid",
-        "borderWidth : 1px",
-        "borderColor : grey",
-        "opacity: 0.5"
-    ],
-    "bracket-pair-colorizer-2.showBracketsInGutter": false,
-    "bracket-pair-colorizer-2.showHorizontalScopeLine": true,
-    "bracket-pair-colorizer-2.showVerticalScopeLine": true,
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    },
     "breadcrumbs.enabled": true,
+    "breadcrumbs.symbolSortOrder": "type",
+    "cSpell.diagnosticLevel": "Hint",
     "cSpell.userWords": [
         "AUTHZ",
+        "Gson",
+        "PUBSUB",
         "Pxgrid",
         "Rbac",
+        "Ronak",
         "dxhub",
         "itertools",
         "messageservice",
@@ -26,21 +21,22 @@
     "customizeUI.activityBar": "bottom",
     "customizeUI.titleBar": "inline",
     "diffEditor.ignoreTrimWhitespace": false,
-    "diffEditor.renderSideBySide": false,
+    "diffEditor.renderSideBySide": true,
     "editor.cursorBlinking": "phase",
     "editor.folding": false,
-    "editor.fontFamily": "Fira Code",
+    "editor.fontFamily": "FiraCode-Retina,Fira Code",
     "editor.fontLigatures": true,
-    "editor.fontSize": 13,
     "editor.formatOnPaste": true,
     "editor.formatOnType": true,
     "editor.matchBrackets": "near",
     "editor.minimap.enabled": false,
     "editor.minimap.renderCharacters": false,
     "editor.minimap.showSlider": "always",
-    "editor.renderWhitespace": "boundary",
+    "editor.mouseWheelZoom": true,
+    "editor.renderLineHighlightOnlyWhenFocus": true,
     "editor.smoothScrolling": true,
     "editor.suggest.localityBonus": true,
+    "editor.suggest.shareSuggestSelections": true,
     "editor.suggestSelection": "first",
     "editor.tabCompletion": "on",
     "editor.tokenColorCustomizations": {
@@ -54,6 +50,15 @@
         ]
     },
     "editor.wordWrap": "on",
+    "errorLens.addAnnotationTextPrefixes": true,
+    "errorLens.followCursor": "activeLine",
+    "errorLens.fontStyleItalic": true,
+    "errorLens.gutterIconSet": "defaultOutline",
+    "errorLens.gutterIconSize": "70%",
+    "errorLens.gutterIconsEnabled": true,
+    "errorLens.onSave": true,
+    "errorLens.statusBarColorsEnabled": true,
+    "errorLens.statusBarMessageEnabled": true,
     "explorer.openEditors.visible": 0,
     "files.exclude": {
         "**/.classpath": true,
@@ -61,9 +66,11 @@
         "**/.project": true,
         "**/.settings": true
     },
+    "files.hotExit": "off",
     "files.insertFinalNewline": true,
     "files.simpleDialog.enable": true,
     "files.trimFinalNewlines": true,
+    "git.autofetch": true,
     "git.countBadge": "tracked",
     "git.ignoreLegacyWarning": true,
     "gitlens.advanced.maxSearchItems": 100,
@@ -92,15 +99,23 @@
     "gruvboxMaterial.darkWorkbench": "high-contrast",
     "gruvboxMaterial.italicKeywords": true,
     "java.codeGeneration.generateComments": true,
+    "java.codeGeneration.hashCodeEquals.useInstanceof": true,
+    "java.codeGeneration.toString.codeStyle": "STRING_FORMAT",
     "java.codeGeneration.useBlocks": true,
     "java.completion.guessMethodArguments": true,
+    "java.completion.overwrite": false,
+    "java.dependency.showMembers": true,
+    "java.foldingRange.enabled": false,
+    "java.format.settings.profile": "eclipse-java-formatter",
+    "java.format.settings.url": "file:///Users/rogandhi/dotfiles/java/eclipse-java-formatter.xml",
     "java.implementationsCodeLens.enabled": true,
     "java.jdt.ls.vmargs": "-XX:+UseParallelGC -Xms4096m -Xmx5120m -noverify",
+    "java.signatureHelp.enabled": true,
     "leetcode.hint.commandShortcut": false,
     "leetcode.hint.configWebviewMarkdown": false,
     "leetcode.workspaceFolder": "/Users/rogandhi/Google Drive/Projects/leetcode",
     "materialTheme.accent": "Graphite",
-    "maven.executable.options": "-nsu -DskipTests",
+    "maven.executable.options": "-DskipTests -nsu",
     "maven.executable.preferMavenWrapper": false,
     "problems.showCurrentInStatus": true,
     "python.jediEnabled": false,
@@ -112,14 +127,15 @@
         }
     ],
     "sonarlint.disableTelemetry": true,
+    "sync.gist": "1dbf2301c8f1fe92ec3f7f69c20d444d",
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "terminal.external.osxExec": "iterm2.app",
     "terminal.integrated.cursorBlinking": true,
-    "terminal.integrated.fontSize": 13,
     "terminal.integrated.fontWeightBold": "normal",
     "terminal.integrated.scrollback": 5000,
     "terminal.integrated.shell.linux": "/bin/bash",
+    "terminal.integrated.shell.osx": "/usr/local/bin/bash",
     "timeline.excludeSources": [
         "git-history"
     ],
@@ -147,6 +163,14 @@
             ],
             "commands": [
                 "workbench.files.action.focusFilesExplorer"
+            ]
+        },
+        {
+            "before": [
+                "u"
+            ],
+            "commands": [
+                "undo"
             ]
         },
         {
@@ -215,34 +239,10 @@
         },
         {
             "before": [
-                "u"
-            ],
-            "commands": [
-                "undo"
-            ]
-        },
-        {
-            "before": [
-                "<C-r>"
-            ],
-            "commands": [
-                "redo"
-            ]
-        },
-        {
-            "before": [
                 "e"
             ],
             "commands": [
                 "workbench.action.closeActiveEditor"
-            ]
-        },
-        {
-            "before": [
-                "<C-n>"
-            ],
-            "commands": [
-                ":nohl"
             ]
         },
         {
@@ -316,19 +316,21 @@
     ],
     "vim.visualstar": true,
     "vsicons.dontShowNewVersionMessage": true,
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "window.newWindowDimensions": "maximized",
     "window.openFoldersInNewWindow": "on",
     "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
     "window.titleBarStyle": "native",
-    "window.zoomLevel": 0,
     "workbench.colorCustomizations": {
         "tab.activeBorder": "#ff0000"
     },
     "workbench.colorTheme": "Gruvbox Material Dark",
+    "workbench.editor.centeredLayoutAutoResize": false,
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
-    "workbench.iconTheme": "material-icon-theme",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.iconTheme": "eq-material-theme-icons",
     "workbench.sideBar.location": "right",
     "workbench.startupEditor": "welcomePageInEmptyWorkbench",
-    "material-icon-theme.showWelcomeMessage": false
+    "workbench.fontAliasing": "auto"
 }
