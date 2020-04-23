@@ -3,11 +3,12 @@
         "editor.defaultFormatter": "redhat.vscode-xml"
     },
     "breadcrumbs.enabled": true,
-    "breadcrumbs.symbolSortOrder": "type",
+    "breadcrumbs.symbolPath": "last",
     "cSpell.diagnosticLevel": "Hint",
     "cSpell.userWords": [
         "AUTHZ",
         "Gson",
+        "Mockito",
         "PUBSUB",
         "Pxgrid",
         "Rbac",
@@ -24,16 +25,20 @@
     "diffEditor.renderSideBySide": true,
     "editor.cursorBlinking": "phase",
     "editor.folding": false,
-    "editor.fontFamily": "FiraCode-Retina,Fira Code",
+    "editor.fontFamily": "FiraCode-Retina,Fira Code, Consolas, Menlo",
     "editor.fontLigatures": true,
     "editor.formatOnPaste": true,
     "editor.formatOnType": true,
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.lightbulb.enabled": false,
     "editor.matchBrackets": "near",
     "editor.minimap.enabled": false,
     "editor.minimap.renderCharacters": false,
-    "editor.minimap.showSlider": "always",
     "editor.mouseWheelZoom": true,
+    "editor.overviewRulerBorder": false,
     "editor.renderLineHighlightOnlyWhenFocus": true,
+    "editor.renderWhitespace": "boundary",
+    "editor.scrollbar.verticalScrollbarSize": 0,
     "editor.smoothScrolling": true,
     "editor.suggest.localityBonus": true,
     "editor.suggest.shareSuggestSelections": true,
@@ -68,7 +73,6 @@
     },
     "files.hotExit": "off",
     "files.insertFinalNewline": true,
-    "files.simpleDialog.enable": true,
     "files.trimFinalNewlines": true,
     "git.autofetch": true,
     "git.countBadge": "tracked",
@@ -96,21 +100,27 @@
     },
     "go.useLanguageServer": true,
     "gruvboxMaterial.darkContrast": "hard",
-    "gruvboxMaterial.darkWorkbench": "high-contrast",
+    "gruvboxMaterial.darkWorkbench": "flat",
     "gruvboxMaterial.italicKeywords": true,
+    "gruvboxMaterial.lightContrast": "hard",
+    "gruvboxMaterial.lightWorkbench": "high-contrast",
     "java.codeGeneration.generateComments": true,
     "java.codeGeneration.hashCodeEquals.useInstanceof": true,
     "java.codeGeneration.toString.codeStyle": "STRING_FORMAT",
     "java.codeGeneration.useBlocks": true,
-    "java.completion.guessMethodArguments": true,
-    "java.completion.overwrite": false,
+    "java.debug.settings.console": "internalConsole",
+    "java.debug.settings.forceBuildBeforeLaunch": false,
+    "java.debug.settings.hotCodeReplace": "auto",
+    "java.debug.settings.showQualifiedNames": true,
+    "java.debug.settings.showStaticVariables": true,
     "java.dependency.showMembers": true,
     "java.foldingRange.enabled": false,
-    "java.format.settings.profile": "eclipse-java-formatter",
-    "java.format.settings.url": "file:///Users/rogandhi/dotfiles/java/eclipse-java-formatter.xml",
+    "java.format.settings.url": "file:///Users/rogandhi/work/dev-tools/eclipse-java-formatter.xml",
     "java.implementationsCodeLens.enabled": true,
     "java.jdt.ls.vmargs": "-XX:+UseParallelGC -Xms4096m -Xmx5120m -noverify",
+    "java.requirements.JDK11Warning": false,
     "java.signatureHelp.enabled": true,
+    "java.test.report.showAfterExecution": "never",
     "leetcode.hint.commandShortcut": false,
     "leetcode.hint.configWebviewMarkdown": false,
     "leetcode.workspaceFolder": "/Users/rogandhi/Google Drive/Projects/leetcode",
@@ -127,18 +137,18 @@
         }
     ],
     "sonarlint.disableTelemetry": true,
-    "sync.gist": "1dbf2301c8f1fe92ec3f7f69c20d444d",
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
-    "terminal.external.osxExec": "iterm2.app",
+    "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.cursorBlinking": true,
-    "terminal.integrated.fontWeightBold": "normal",
+    "terminal.integrated.experimentalUseTitleEvent": true,
     "terminal.integrated.scrollback": 5000,
     "terminal.integrated.shell.linux": "/bin/bash",
     "terminal.integrated.shell.osx": "/usr/local/bin/bash",
     "timeline.excludeSources": [
         "git-history"
     ],
+    "vim.enableNeovim": true,
     "vim.gdefault": true,
     "vim.highlightedyank.enable": true,
     "vim.hlsearch": true,
@@ -163,6 +173,14 @@
             ],
             "commands": [
                 "workbench.files.action.focusFilesExplorer"
+            ]
+        },
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                ":nohl"
             ]
         },
         {
@@ -274,10 +292,29 @@
         },
         {
             "before": [
-                ":"
+                "<leader>",
+                "p"
             ],
             "commands": [
-                "workbench.action.showCommands"
+                "workbench.action.gotoSymbol"
+            ]
+        },
+        {
+            "before": [
+                "]",
+                "c"
+            ],
+            "commands": [
+                "editor.action.marker.nextInFiles"
+            ]
+        },
+        {
+            "before": [
+                "[",
+                "c"
+            ],
+            "commands": [
+                "editor.action.marker.prevInFiles"
             ]
         }
     ],
@@ -316,21 +353,18 @@
     ],
     "vim.visualstar": true,
     "vsicons.dontShowNewVersionMessage": true,
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "window.newWindowDimensions": "maximized",
-    "window.openFoldersInNewWindow": "on",
     "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
     "window.titleBarStyle": "native",
     "workbench.colorCustomizations": {
         "tab.activeBorder": "#ff0000"
     },
     "workbench.colorTheme": "Gruvbox Material Dark",
-    "workbench.editor.centeredLayoutAutoResize": false,
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.editor.highlightModifiedTabs": true,
-    "workbench.iconTheme": "eq-material-theme-icons",
+    "workbench.fontAliasing": "auto",
+    "workbench.panel.defaultLocation": "left",
     "workbench.sideBar.location": "right",
-    "workbench.startupEditor": "welcomePageInEmptyWorkbench",
-    "workbench.fontAliasing": "auto"
+    "workbench.startupEditor": "welcomePageInEmptyWorkbench"
 }

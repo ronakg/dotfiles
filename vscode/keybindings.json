@@ -1,11 +1,6 @@
 // Place your key bindings in this file to override the defaults
 [
     {
-        "key": "cmd+w",
-        "command": "-workbench.action.closeWindow",
-        "when": "!editorIsOpen && !multipleEditorGroups"
-    },
-    {
         "key": "tab",
         "command": "selectNextSuggestion",
         "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
@@ -63,5 +58,9 @@
     {
         "key": "shift+cmd+f",
         "command": "search.action.openNewEditor"
+    },
+    {
+        "key": "alt+enter",
+        "command": "editor.action.codeAction"
     },
 ]

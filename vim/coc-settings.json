@@ -15,5 +15,6 @@
     "snippets.shortcut": "~",
     "yaml.format.enable": true,
     "yaml.completion": true,
-    "yaml.validate": true
+    "yaml.validate": true,
+    "python.jediEnabled": false
 }

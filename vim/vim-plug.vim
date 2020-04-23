@@ -27,7 +27,6 @@ Plug 'haya14busa/vim-operator-flashy'
 "Plug 'haya14busa/is.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'sickill/vim-pasta'
-Plug 'tpope/vim-sleuth'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go' }
 Plug 'sheerun/vim-polyglot'
@@ -36,7 +35,9 @@ Plug 'kkoomen/vim-doge'
 Plug 'rhysd/git-messenger.vim'
 "Plug 'tmsvg/pear-tree'
 Plug 'machakann/vim-sandwich'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+if !&diff
+      Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 "Plug 'axelf4/vim-strip-trailing-whitespace'
 Plug 'psliwka/vim-smoothie'
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
@@ -47,6 +48,7 @@ Plug 'pechorin/any-jump.vim'
 Plug 'gabrielelana/vim-markdown'
 Plug 'liuchengxu/vista.vim'
 Plug 'junkblocker/git-time-lapse'
+Plug 'ronakg/vim-sleuth'
 
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'

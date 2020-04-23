@@ -1,8 +1,9 @@
 " Author: Ronak Gandhi <me@ronakg.com>
 " Source: https://github.com/ronakg/dotfiles
-"
+
 " Keep all the sane settings in following file
 source ~/.vim/sane_vimrc
+source ~/.vim/coc.vim
 
 let g:mapleader = "\<Space>"
 
@@ -252,17 +253,12 @@ function! SetTerminal()
 endfunction
 
 function! DiffEnter()
-    let b:coc_enabled = 0
     nnoremap <buffer> e :qa<CR>
     nnoremap <buffer> w :wa!<CR>
     setlocal number
     setlocal norelativenumber
     setlocal nocursorline
     IndentLinesDisable
-endfunction
-
-function! NotDiffEnter()
-    silent CocStart
 endfunction
 
 " Auto commands
@@ -274,7 +270,7 @@ if has("autocmd")"
         autocmd!
         " Update diff when leaving from insertmode or writing to file
         autocmd BufWritepost * if &diff | diffupdate | endif
-        autocmd BufEnter * if &diff | :call DiffEnter() | else | :call NotDiffEnter() | endif
+        autocmd BufEnter * if &diff | :call DiffEnter() | endif
 
         " Open help in vertical split
         autocmd FileType help wincmd L
@@ -282,12 +278,9 @@ if has("autocmd")"
         if has('nvim')
             autocmd BufEnter * if &buftype == 'terminal' | :call SetTerminal() | endif
         endif
-
-        autocmd! Syntax * :syntax match Parens /[\[\](){}]/
     augroup END
 endif
 
-hi def link Parens LineNr
 
 function! NumberToggle()
     if(&relativenumber == 1 && &number == 1)
@@ -323,7 +316,9 @@ let g:airline_theme                               = 'base16_tomorrow'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype', '%3p%%'.g:airline_symbols.space, 'linenr', 'maxlinenr', g:airline_symbols.space.':%3v'])
-let g:airline_section_z                           = '%{coc#status()}'
+if !&diff
+    let g:airline_section_z                           = '%{coc#status()}'
+endif
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -525,8 +520,6 @@ endif
 
 nnoremap b :Buffers<CR>
 
-source ~/.vim/coc.vim
-
 autocmd FileType go nmap <leader>bb  <Plug>(go-build)
 autocmd FileType go nmap <leader>rr  <Plug>(go-run)
 
@@ -541,38 +534,3 @@ let g:any_jump_list_numbers = 0
 " For simple sizing of splits.
 map - <C-W>-
 map + <C-W>+
-
-
-if has('nvim')
-    let g:pretty_indent_namespace = nvim_create_namespace('pretty_indent')
-
-    function! PrettyIndent()
-        let l:view=winsaveview()
-        call cursor(1, 1)
-        call nvim_buf_clear_namespace(0, g:pretty_indent_namespace, 1, -1)
-        while 1
-            let l:match = search('^$', 'W')
-            if l:match ==# 0
-                break
-            endif
-            let l:indent = cindent(l:match)
-            if l:indent > 0
-                call nvim_buf_set_virtual_text(
-                \   0,
-                \   g:pretty_indent_namespace,
-                \   l:match - 1,
-                \   [[repeat(repeat(' ', &shiftwidth - 1) . '│', l:indent / &shiftwidth), 'NonText']],
-                \   {}
-                \)
-            endif
-        endwhile
-        call winrestview(l:view)
-    endfunction
-
-    augroup PrettyIndent
-        autocmd!
-        autocmd TextChanged * call PrettyIndent()
-        autocmd BufEnter * call PrettyIndent()
-        autocmd InsertLeave * call PrettyIndent()
-    augroup END
-endif
