@@ -15,9 +15,9 @@ nnoremap ]] j0[[%/{<CR>:nohlsearch<CR>
 
 nnoremap G :norm! Gzz<CR>
 
-nnoremap <C-g>g :Gstatus<CR>gg<C-n>
-nnoremap <C-g>d :call ZoomToggle()<CR>:Gdiff<CR>
-nnoremap <C-g>b :Gblame<CR>
+nmap <silent><leader>gd :call ZoomToggle()<CR>:Gdiff<CR>
+nmap <silent><leader>gs :Gstatus<cr>
+nmap <silent><leader>gb :Gblame<cr>
 
 " Grep for word under the cursor
 if executable("rg")
@@ -458,6 +458,10 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_doc_popup_window = 1
+
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
 
 if has('nvim')
     let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }

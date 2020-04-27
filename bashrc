@@ -4,6 +4,11 @@
 # Where are my dotfiles
 export DOTFILES=~/dotfiles
 
+# Source bash completion scripts
+for bcfile in $DOTFILES/bash_completion.d/* ; do
+  [ -f "$bcfile" ] && . $bcfile
+done
+
 # Setup environment, common to both bash and zsh
 shopt -s expand_aliases
 # Check the window size after each command and, if necessary,

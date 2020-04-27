@@ -1,12 +1,61 @@
+[core]
+    excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
+    editor = nvim
+
+    # Treat spaces before tabs and all kinds of trailing whitespace as an error
+    # [default] trailing-space: looks for spaces at the end of a line
+    # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+    # Make `git rebase` safer on macOS
+    # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+    trustctime = false
+
+    # Prevent showing files whose names contain non-ASCII symbols as unversioned.
+    # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+    precomposeUnicode = true
+
+    # Speed up commands involving untracked files such as `git status`.
+    # https://git-scm.com/docs/git-update-index#_untracked_cache
+    untrackedCache = true
+
+    autocrlf = false
+    excludesfile = ~/.gitignore
+    commentChar = ";"
 [difftool]
     prompt = false
     trustExitCode = true
 [color]
+    meta = yellow bold
+    commit = green bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+    newMoved = cyan
+    oldMoved = blue
     branch = auto
     diff = auto
     status = auto
     grep = auto
-    ui = true
+    ui = auto
+
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = "red bold 52"
+    newNormal = "green bold"
+    newHighlight = "green bold 22"
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[pager]
+    # insanely beautiful diffs ==> npm install -g diff-so-fancy
+    diff = diff-so-fancy | less --tabs=4 -RFX
+    show = diff-so-fancy | less --tabs=4 -RFX
 
 [color "branch"]
     current = yellow reverse
@@ -49,12 +98,6 @@
     pretty = format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s
 [status]
     showUntrackedFiles = no
-[core]
-    autocrlf = false
-    excludesfile = ~/.gitignore
-    pager = /usr/local/share/contrib/diff-highlight/diff-highlight | less -rx1,5
-    commentChar = ";"
-
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
@@ -78,15 +121,21 @@
 [merge]
     tool = vimdiff
 [mergetool "vimdiff"]
+    ;cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
     path = nvim
-[color "diff-highlight"]
-    oldNormal = red bold
-    oldHighlight = red bold 52
-    newNormal = green bold
-    newHighlight = green bold 22
+    conflictstyle = diff3
 [user]
     useConfigOnly = true
 [push]
     default = current
+    followTags = true
 [commit]
     template = /Users/rogandhi/dotfiles/git/commitmsg.template
+# correct typos
+[help]
+    autocorrect = 1
+[fetch]
+    prune = true
+
+[stash]
+    showPatch = true

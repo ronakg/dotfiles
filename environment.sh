@@ -120,6 +120,4 @@ gl() {
         --header "enter to view, alt-y to copy hash" \
         --bind "enter:execute:$_viewGitLogLine   | less -R" \
         --bind "alt-y:execute:$_gitLogLineToHash | xclip"
-    }
-
-[ -f $DOTFILES/forgit/forgit.plugin.zsh ] && source $DOTFILES/forgit/forgit.plugin.zsh
+}

@@ -30,6 +30,8 @@ set nostartofline
 set splitright                                " Open split on right, not left
 set splitbelow                                " Open split below, not above
 set wildmenu
+set wildmode=list:longest                     " complete files like a shell
+set showbreak=…                               " show ellipsis at breaking
 set noshowmode                                " Airline shows mode, so hide default mode
 set nobackup                                  " Don't need backup and swap files
 set noswapfile
@@ -41,7 +43,7 @@ set wrapscan
 set autoread                                  " automatically reload files changed outside of Vim
 set showcmd
 set hidden
-set diffopt+=context:5,vertical               " 5 lines of context in diff mode, ignore trailing whitespaces
+set diffopt+=context:5,internal,algorithm:patience,hiddenoff
 set linebreak                                 " It maintains the whole words when wrapping
 set cpoptions-=m                              " Highlight when CursorMoved.
 set cpoptions+=I
@@ -54,14 +56,19 @@ set previewheight=20
 set conceallevel=2
 set list
 set listchars=tab:▸\ ,trail:·,extends:>,precedes:<,nbsp:⎵
-set expandtab
-set shiftwidth=4
-set tabstop=4
 set cursorline
 set autowrite
 set display+=lastline
 set noerrorbells
 set signcolumn=yes
+
+" Tab control
+set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+set tabstop=4 " the visible width of tabs
+set softtabstop=4 " edit as if the tabs are 4 characters wide
+set shiftwidth=4 " number of spaces to use for indent and unindent
+set shiftround " round indent to a multiple of 'shiftwidth'
+set expandtab
 
 " Joining
 set nojoinspaces                " Only one space when joining lines
@@ -77,15 +84,21 @@ let &t_ZR="\e[23m"
 set termguicolors
 syntax on
 
+" highlight conflicts
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
 "================= Colorscheme =============================
 set bg=dark
 let g:gruvbox_material_background = 'hard'
 let g:gruvbox_material_enable_italic = 1
 let g:indentLine_setColors = 0
-let g:gruvbox_material_palette = 'mix'
+let g:gruvbox_material_palette = 'material'
 
 colorscheme gruvbox-material
-"highlight Comment cterm=italic gui=italic
+
+" make the highlighting of tabs and other non-text less annoying
+highlight SpecialKey ctermfg=19 guifg=#333333
+highlight NonText ctermfg=19 guifg=#333333
 
 " the configuration options should be placed before `colorscheme sonokai`
 "let g:sonokai_style = 'andromeda'
@@ -107,5 +120,3 @@ if has("persistent_undo")
     set undolevels=1000
     set undoreload=10000
 endif
-
-let b:coc_enabled = 0

@@ -13,14 +13,14 @@ echo "Initializing submodule(s)"
 git submodule update --init --recursive
 
 # List of files to be installed
-files="zshrc bashrc bash_profile vim tmux tmux.conf screenrc gitconfig gitignore inputrc idlerc tmux.colors.conf ideavimrc"
+files="zshrc bashrc bash_profile vim tmux tmux.conf screenrc gitconfig gitignore inputrc idlerc tmux.colors.conf ideavimrc wgetrc rgrc"
 
 # Directories to install from and backup to
 DOTFILES=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 OLDDOTFILES=~/.olddotfiles
 
 echo "Setting up NeoVim directories..."
-mkdir ~/.config
+mkdir -p ~/.config
 ln -snfv $DOTFILES/vim ~/.config/nvim
 ln -snfv $DOTFILES/vim/vimrc ~/.config/nvim/init.vim
 

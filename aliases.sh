@@ -20,6 +20,7 @@ alias gr='rg --column --line-number --no-heading --fixed-strings --ignore-case -
 
 # fzf vim
 alias vip='vim +FZF'
+alias vig='vim -c "Git | only | nmap e :q<CR>"'
 
 # Git aliases
 alias gs='git status '
