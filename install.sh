@@ -69,9 +69,11 @@ for file in $files; do
     ln -snfv $DOTFILES/$file ~/.$file
 done
 
-# VSCode symlinks
-ln -snfv $DOTFILES/vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
-ln -snfv $DOTFILES/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+# VSCode symlinks for macOS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    ln -snfv $DOTFILES/vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+    ln -snfv $DOTFILES/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+fi
 
 git submodule update --init --recursive
 

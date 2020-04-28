@@ -16,6 +16,7 @@
         "dxhub",
         "itertools",
         "messageservice",
+        "spog",
         "xgrid",
         "xmpp"
     ],
@@ -102,6 +103,7 @@
         "workspaceSymbols": true
     },
     "go.useLanguageServer": true,
+    "gruvboxMaterial.colorfulSyntax": true,
     "gruvboxMaterial.darkContrast": "hard",
     "gruvboxMaterial.darkWorkbench": "flat",
     "gruvboxMaterial.italicKeywords": true,
