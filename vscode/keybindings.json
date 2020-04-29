@@ -63,4 +63,13 @@
         "key": "alt+enter",
         "command": "editor.action.codeAction"
     },
+    {
+        "key": "shift+cmd+r",
+        "command": "-rerunSearchEditorSearch",
+        "when": "inSearchEditor"
+    },
+    {
+        "key": "shift+cmd+r",
+        "command": "workbench.action.quickOpenRecent"
+    },
 ]
