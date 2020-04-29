@@ -41,34 +41,15 @@
     grep = auto
     ui = auto
 
-[color "diff-highlight"]
-    oldNormal = red bold
-    oldHighlight = "red bold 52"
-    newNormal = "green bold"
-    newHighlight = "green bold 22"
-
 [color "branch"]
     current = yellow reverse
     local = yellow
     remote = green
 
-[pager]
-    # insanely beautiful diffs ==> npm install -g diff-so-fancy
-    diff = diff-so-fancy | less --tabs=4 -RFX
-    show = diff-so-fancy | less --tabs=4 -RFX
-
 [color "branch"]
     current = yellow reverse
     local = yellow
     remote = green
-
-[color "diff"]
-    meta = 11
-    frag = magenta bold
-    old = red bold
-    new = green bold
-    commit = yellow bold
-    whitespace = red reverse
 
 [color "status"]
     added = green
@@ -79,7 +60,6 @@
     date = short
 
 [alias]
-    s = status -s
     graph = log --pretty=format:\"%C(yellow)%h %ar %C(auto)%d %Creset %s , %Cblue%cn\" --graph --all
     ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     ll = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --numstat
@@ -87,8 +67,6 @@
     hide = update-index --assume-unchanged
     unhide = update-index --no-assume-unchanged
     showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
-[show]
-    tool = vimdiff
 [mergetool]
     prompt = true
     trustExitCode = true
@@ -121,7 +99,6 @@
 [merge]
     tool = vimdiff
 [mergetool "vimdiff"]
-    ;cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
     path = nvim
     conflictstyle = diff3
 [user]

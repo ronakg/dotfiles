@@ -1,3 +1,6 @@
+# Setup environment, common to both bash and zsh
+shopt -s expand_aliases
+
 # Return if not interactive
 [[ $- != *i* ]] && return
 
@@ -9,15 +12,11 @@ for bcfile in $DOTFILES/bash_completion.d/* ; do
   [ -f "$bcfile" ] && . $bcfile
 done
 
-# Setup environment, common to both bash and zsh
-shopt -s expand_aliases
 # Check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 # Use case-insensitive filename globbing.
 shopt -s nocaseglob
-# Autocorrect typos in path names when using "cd".
-shopt -s cdspell
 
 ### Append to the history file
 export HISTCONTROL=ignoreboth:erasedups
@@ -41,8 +40,6 @@ export LC_ALL="C"
 [ -f $DOTFILES/environment.sh ] && . $DOTFILES/environment.sh
 [ -f $DOTFILES/bash_prompt ] && . $DOTFILES/bash_prompt
 [ -f $DOTFILES/git-completion.bash ] && . $DOTFILES/git-completion.bash
-
-export PATH=/usr/local/opt/go@1.12/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$HOME/.pyenv/bin:$HOME/.pyenv/shims:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH:$GOPATH/bin
 
 eval "$(pyenv init -)"
 eval "$(rbenv init -)"
