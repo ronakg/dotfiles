@@ -66,7 +66,9 @@
     lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
     hide = update-index --assume-unchanged
     unhide = update-index --no-assume-unchanged
-    showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
+    showtool = "!f() { git difftool ${1:-HEAD}^ ${1:-HEAD}; }; f"
+[show]
+    tool = vimdiff
 [mergetool]
     prompt = true
     trustExitCode = true
@@ -107,7 +109,7 @@
     default = current
     followTags = true
 [commit]
-    template = /Users/rogandhi/dotfiles/git/commitmsg.template
+    template = ~/dotfiles/git/commitmsg.template
 # correct typos
 [help]
     autocorrect = 1
