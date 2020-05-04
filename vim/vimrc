@@ -312,12 +312,13 @@ let g:airline#extensions#branch#enabled           = 1
 "let g:airline_right_alt_sep                       = '|'
 let g:airline_powerline_fonts                     = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
+let g:airline#extensions#tmuxline#enabled         = 1
 let g:airline_theme                               = 'base16_tomorrow'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype', '%3p%%'.g:airline_symbols.space, 'linenr', 'maxlinenr', g:airline_symbols.space.':%3v'])
 if !&diff
-    let g:airline_section_z                           = '%{coc#status()}'
+    let g:airline_section_z                       = '%{coc#status()}'
 endif
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -335,7 +336,6 @@ nnoremap <silent> <leader>p :Files<CR>
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
 let g:tmuxline_powerline_separators = 0
-let g:airline#extensions#tmuxline#enabled                     = 1
 let g:tmuxline_preset = {
             \'a'    : '#S',
             \'win'  : ['#I', '#W'],

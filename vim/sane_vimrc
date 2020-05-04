@@ -30,7 +30,7 @@ set nostartofline
 set splitright                                " Open split on right, not left
 set splitbelow                                " Open split below, not above
 set wildmenu
-set wildmode=list:longest                     " complete files like a shell
+"set wildmode=list:longest                     " complete files like a shell
 set showbreak=…                               " show ellipsis at breaking
 set noshowmode                                " Airline shows mode, so hide default mode
 set nobackup                                  " Don't need backup and swap files
@@ -99,11 +99,6 @@ colorscheme gruvbox-material
 " make the highlighting of tabs and other non-text less annoying
 highlight SpecialKey ctermfg=19 guifg=#333333
 highlight NonText ctermfg=19 guifg=#333333
-
-" the configuration options should be placed before `colorscheme sonokai`
-"let g:sonokai_style = 'andromeda'
-"let g:sonokai_enable_italic = 1
-"colorscheme tender
 
 if has('nvim-0.3.2') || has("patch-8.1.0360")
     set diffopt+=internal,algorithm:patience

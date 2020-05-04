@@ -7,7 +7,9 @@
     "cSpell.diagnosticLevel": "Hint",
     "cSpell.userWords": [
         "AUTHZ",
+        "Autowired",
         "CSDL",
+        "DNAC",
         "Gson",
         "Mockito",
         "PUBSUB",
@@ -15,6 +17,7 @@
         "Rbac",
         "Ronak",
         "dxhub",
+        "fqdn",
         "itertools",
         "messageservice",
         "spog",
@@ -82,10 +85,9 @@
     "git.autofetch": true,
     "git.countBadge": "tracked",
     "git.ignoreLegacyWarning": true,
-    "gitlens.advanced.maxSearchItems": 100,
     "gitlens.advanced.telemetry.enabled": false,
     "gitlens.blame.heatmap.enabled": false,
-    "gitlens.codeLens.enabled": false,
+    "gitlens.codeLens.authors.enabled": false,
     "gitlens.codeLens.recentChange.enabled": false,
     "go.autocompleteUnimportedPackages": true,
     "go.languageServerExperimentalFeatures": {
@@ -104,7 +106,6 @@
         "workspaceSymbols": true
     },
     "go.useLanguageServer": true,
-    "gruvboxMaterial.colorfulSyntax": true,
     "gruvboxMaterial.darkContrast": "hard",
     "gruvboxMaterial.darkWorkbench": "flat",
     "gruvboxMaterial.italicKeywords": true,
@@ -125,6 +126,7 @@
     "java.implementationsCodeLens.enabled": true,
     "java.jdt.ls.vmargs": "-XX:+UseParallelGC -Xms4096m -Xmx5120m -noverify",
     "java.requirements.JDK11Warning": false,
+    "java.semanticHighlighting.enabled": true,
     "java.signatureHelp.enabled": true,
     "java.test.report.showAfterExecution": "never",
     "leetcode.hint.commandShortcut": false,
@@ -133,14 +135,16 @@
     "maven.executable.options": "-DskipTests -nsu",
     "maven.executable.preferMavenWrapper": false,
     "problems.showCurrentInStatus": true,
+    "python.experiments.enabled": false,
     "python.jediEnabled": false,
-    "search.quickOpen.includeSymbols": true,
-    "sonarlint.connectedMode.connections.sonarqube": [
+    "rsp-ui.enableStartServerOnActivation": [
         {
-            "serverUrl": "https://engci-sonar-sjc.cisco.com/sonar",
-            "token": "16ce9543236ff33f3d686dd4c8f7a1ee6cd09aa6"
+            "id": "redhat.vscode-community-server-connector",
+            "name": "Community Server Connector",
+            "startOnActivation": true
         }
     ],
+    "search.quickOpen.includeSymbols": true,
     "sonarlint.disableTelemetry": true,
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
@@ -171,6 +175,14 @@
     "vim.leader": "<space>",
     "vim.neovimPath": "/usr/local/bin/nvim",
     "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "b"
+            ],
+            "commands": [
+                "workbench.action.showAllEditorsByMostRecentlyUsed"
+            ]
+        },
         {
             "before": [
                 "<leader>",
@@ -359,6 +371,7 @@
     "vim.visualstar": true,
     "vsicons.dontShowNewVersionMessage": true,
     "window.newWindowDimensions": "maximized",
+    "window.restoreWindows": "none",
     "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
     "window.titleBarStyle": "native",
     "workbench.colorCustomizations": {
