@@ -20,7 +20,7 @@ alias gr='rg --column --line-number --no-heading --fixed-strings --ignore-case -
 
 # fzf vim
 alias vip='vim +FZF'
-alias vig='vim -c "Git | only | nmap e :q<CR>"'
+alias vig='vim -c "Gstatus | only | nmap e :q<CR>"'
 
 # Git aliases
 alias gs='git status '
@@ -43,4 +43,11 @@ alias histfix='history -n && history | sort -k2 -k1nr | uniq -f1 | sort -n | cut
 
 cd() {
   builtin cd "$@" && ls
+}
+
+cover() {
+    local t=$(mktemp -t cover)
+    go test -coverprofile=$t $@ \
+        && go tool cover -func=$t \
+        && unlink $t
 }

@@ -72,4 +72,16 @@
         "key": "shift+cmd+r",
         "command": "workbench.action.quickOpenRecent"
     },
+    {
+        "key": "cmd+n",
+        "command": "explorer.newFile"
+    },
+    {
+        "key": "cmd+n",
+        "command": "-workbench.action.files.newUntitledFile"
+    },
+    {
+        "key": "cmd+n",
+        "command": "explorer.newFile"
+    },
 ]

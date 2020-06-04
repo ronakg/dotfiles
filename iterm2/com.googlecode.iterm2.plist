@@ -7413,7 +7413,7 @@
 			<key>Non-ASCII Ligatures</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FiraCode-Retina 12</string>
+			<string>Iosevka-SS04 14</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<true/>
 			<key>Option Key Sends</key>
@@ -7471,7 +7471,7 @@
 			<key>Silence Bell</key>
 			<true/>
 			<key>Smart Cursor Color</key>
-			<false/>
+			<true/>
 			<key>Space</key>
 			<integer>0</integer>
 			<key>Status Bar Layout</key>
@@ -7584,7 +7584,7 @@
 			<key>Use Bold Font</key>
 			<false/>
 			<key>Use Bright Bold</key>
-			<false/>
+			<true/>
 			<key>Use Cursor Guide</key>
 			<false/>
 			<key>Use HFS Plus Mapping</key>
@@ -7624,10 +7624,10 @@
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
+		<string>Iosevka SS04</string>
+		<string>Iosevka SS08</string>
 		<string>Fira Code</string>
 		<string>Iosevka</string>
-		<string>Input</string>
-		<string>IosevkaCC</string>
 	</array>
 	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
 	<true/>
@@ -7646,16 +7646,18 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1920, 1080}}</string>
 		<key>topLeft</key>
-		<string>{284, 748}</string>
+		<string>{341, 825}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
+	<true/>
+	<key>NoSyncHaveUsedCopyMode</key>
 	<true/>
 	<key>NoSyncHaveWarnedAboutIncompatibleSoftware</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>7712432C-F180-427F-B9FE-7CD3D6692FF1</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>211</integer>
+	<integer>251</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -8446,7 +8448,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-04-20T00:45:54Z</date>
+	<date>2020-06-04T05:09:15Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>

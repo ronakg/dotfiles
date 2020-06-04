@@ -118,3 +118,5 @@
 
 [stash]
     showPatch = true
+[pull]
+	rebase = false

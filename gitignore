@@ -12,6 +12,16 @@
 # Maven
 **/target/*
 
+# Gradle
+.gradle/
+
+# Java
+*.class
+
+# VS Code
+.vscode
+*.code-workspace
+
 .DS_Store
 *.iws
 *.ipr

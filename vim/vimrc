@@ -5,6 +5,9 @@
 source ~/.vim/sane_vimrc
 source ~/.vim/coc.vim
 
+let g:indentLine_char = '│'
+let g:indentLine_defaultGroup = "NonText"
+
 let g:mapleader = "\<Space>"
 
 nnoremap \ :nohlsearch<CR>
@@ -258,7 +261,9 @@ function! DiffEnter()
     setlocal number
     setlocal norelativenumber
     setlocal nocursorline
-    IndentLinesDisable
+    if exists(':IndentLinesDisable')
+        IndentLinesDisable
+    endif
 endfunction
 
 " Auto commands
@@ -385,13 +390,6 @@ function! ZoomToggle()
     endif
 endfunction
 nnoremap <silent> <C-A> :call ZoomToggle()<CR>
-
-let g:indentLine_setColors = 0
-let g:indentLine_leadingSpaceChar = '·'
-let g:indentLine_char = '│'
-"let g:indentLine_setConceal = 2
-"let g:indentLine_concealcursor = ""
-let g:indentLine_defaultGroup = "NonText"
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 

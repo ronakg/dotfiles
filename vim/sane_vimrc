@@ -54,8 +54,8 @@ set csverb
 set cscopetag
 set previewheight=20
 set conceallevel=2
-set list
-set listchars=tab:▸\ ,trail:·,extends:>,precedes:<,nbsp:⎵
+set showbreak=↪\ 
+set list listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set cursorline
 set autowrite
 set display+=lastline
