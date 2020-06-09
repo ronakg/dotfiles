@@ -441,22 +441,6 @@ map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 
 nnoremap gf <C-w>f<C-w>L
 
-let g:go_fmt_command = "goimports"    " Run goimports along gofmt on each save
-let g:go_auto_type_info = 1           " Automatically get signature/type info for object under cursor
-let g:go_def_mapping_enabled = 0
-let g:go_addtags_transform = "camelcase"
-let g:go_fmt_fail_silently = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_doc_popup_window = 1
-
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
@@ -536,3 +520,24 @@ let g:any_jump_list_numbers = 0
 " For simple sizing of splits.
 map - <C-W>-
 map + <C-W>+
+
+" vim-go options/mappings
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+let g:go_def_mapping_enabled = 0
+let g:go_addtags_transform = "camelcase"
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_doc_popup_window = 1
+

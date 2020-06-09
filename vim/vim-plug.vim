@@ -27,7 +27,9 @@ Plug 'haya14busa/vim-operator-flashy'
 Plug 'haya14busa/vim-asterisk'
 Plug 'sickill/vim-pasta'
 Plug 'sunaku/tmux-navigate'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'SirVer/ultisnips'
 Plug 'sheerun/vim-polyglot'
 Plug 'kkoomen/vim-doge'
 "Plug 'uarun/vim-protobuf', { 'for': ['proto'] }

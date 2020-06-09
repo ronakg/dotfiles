@@ -8,11 +8,11 @@ if !&diff
               \'coc-xml',
               \'coc-sh',
               \'coc-explorer',
-              \'coc-go',
               \'coc-snippets',
               \'coc-lists',
               \'coc-pairs',
               \'coc-yaml',
+              \'coc-go',
               \ ]
 
   "\'coc-highlight',
