@@ -7,7 +7,7 @@
 	<key>AboutToPasteTabsWithCancel_selection</key>
 	<integer>2</integer>
 	<key>AdjustWindowForFontSizeChange</key>
-	<false/>
+	<true/>
 	<key>AllowClipboardAccess</key>
 	<true/>
 	<key>AlternateMouseScroll</key>
@@ -6379,7 +6379,7 @@
 	<key>Default Bookmark Guid</key>
 	<string>28C5D854-86B0-4C9C-8837-8A8BC1D6D56C</string>
 	<key>DimBackgroundWindows</key>
-	<true/>
+	<false/>
 	<key>DimOnlyText</key>
 	<true/>
 	<key>DisableFullscreenTransparency</key>
@@ -6573,9 +6573,9 @@
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
 	<string>560 456 799 448 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>650 289 700 601 0 0 1920 1057 </string>
+	<string>490 319 700 601 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1920 1057 0 0 1920 1057 </string>
+	<string>0 0 1680 1027 0 0 1680 1027 </string>
 	<key>NeverWarnAboutShortLivedSessions_28C5D854-86B0-4C9C-8837-8A8BC1D6D56C</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_28C5D854-86B0-4C9C-8837-8A8BC1D6D56C_selection</key>
@@ -6918,7 +6918,7 @@
 			<key>Disable Window Resizing</key>
 			<true/>
 			<key>Draw Powerline Glyphs</key>
-			<false/>
+			<true/>
 			<key>Flashing Bell</key>
 			<false/>
 			<key>Foreground Color</key>
@@ -7574,7 +7574,7 @@
 			<key>Use Non-ASCII Font</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>1.1000000000000001</real>
+			<real>1.1499999999999999</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
@@ -7588,22 +7588,28 @@
 		<string>3.3.11</string>
 		<string>3.3.10</string>
 	</array>
+	<key>NoSyncBFPFavorites</key>
+	<array>
+		<string>Fira Code</string>
+	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
+		<string>FiraCode Nerd Font</string>
+		<string>Input</string>
 		<string>Fira Code</string>
 		<string>Iosevka SS04</string>
 	</array>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {1920, 1080}}</string>
+		<string>{{0, 0}, {1680, 1050}}</string>
 		<key>topLeft</key>
-		<string>{372, 840}</string>
+		<string>{260, 963}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>E73E7111-DC21-4CF3-B47C-2BB244704C80</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>16</integer>
+	<integer>41</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -7996,6 +8002,14 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
+				<string>currentTab.window</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
 				<string>id</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -8176,6 +8190,14 @@
 				<true/>
 				<key>name</key>
 				<string>currentSession.name</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>window</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -8372,11 +8394,13 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-06-08T20:22:56Z</date>
+	<date>2020-07-02T19:49:26Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
+	<key>SUUpdateGroupIdentifier</key>
+	<integer>3607647012</integer>
 	<key>SUUpdateRelaunchingMarker</key>
-	<false/>
+	<true/>
 	<key>SeparateWindowTitlePerTab</key>
 	<false/>
 	<key>ShowBookmarkName</key>

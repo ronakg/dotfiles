@@ -13,6 +13,7 @@ alias vi='vim -u ~/.vim/sane_vimrc'
 # Shortcut to create new tmux with pwd as session name
 alias tmux='tmux -2 -u'
 alias newtmux='tmux new -s ${PWD##*/}'
+alias e='tmux split-window -h vim $@'
 
 alias mkdir='mkdir -pv'
 alias reload="source ~/.bash_profile"

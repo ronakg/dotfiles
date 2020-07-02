@@ -29,7 +29,6 @@ Plug 'sickill/vim-pasta'
 Plug 'sunaku/tmux-navigate'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'SirVer/ultisnips'
 Plug 'sheerun/vim-polyglot'
 Plug 'kkoomen/vim-doge'
 "Plug 'uarun/vim-protobuf', { 'for': ['proto'] }
@@ -46,6 +45,7 @@ Plug 'romainl/vim-cool'                                 " disable hl until anoth
 "Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 "Plug 'pechorin/any-jump.vim'
+Plug 'godlygeek/tabular'
 Plug 'gabrielelana/vim-markdown'
 "Plug 'liuchengxu/vista.vim'
 "Plug 'junkblocker/git-time-lapse'

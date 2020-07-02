@@ -87,6 +87,7 @@ if command_exists fzf; then
     --multi
     --exact
     --preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+    --preview-window :wrap
     --color=fg:#ebdbb2,bg:#282828,hl:#8ec07c
     --color=fg+:#b8bb26,bg+:#1d2021,hl+:#fb4934
     --color=info:#afaf87,prompt:#fe9019,pointer:#fb4934
