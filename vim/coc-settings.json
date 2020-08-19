@@ -11,7 +11,7 @@
     "diagnostic.warningSign": "⚠",
     "diagnostic.infoSign": "●",
     "diagnostic.hintSign": "○",
-    "java.jdt.ls.vmargs": "-noverify -Xms4096m -Xmx5120m -XX:+UseG1GC -XX:+UseStringDeduplication",
+    "java.jdt.ls.vmargs": "-noverify -Xmx5120m -XX:+UseG1GC -XX:+UseStringDeduplication",
     "java.progressReports.enabled": true,
     "java.completion.guessMethodArguments": true,
     "suggest.maxCompleteItemCount": 10,

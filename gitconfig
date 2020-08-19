@@ -105,6 +105,7 @@
     conflictstyle = diff3
 [user]
     useConfigOnly = true
+	name = Ronak Gandhi
 [push]
     default = current
     followTags = true

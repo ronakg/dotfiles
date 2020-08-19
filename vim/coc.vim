@@ -8,7 +8,6 @@ if !&diff
               \'coc-xml',
               \'coc-sh',
               \'coc-explorer',
-              \'coc-snippets',
               \'coc-lists',
               \'coc-pairs',
               \'coc-yaml',

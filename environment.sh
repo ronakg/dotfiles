@@ -55,7 +55,7 @@ if command_exists nvim; then
     export EDITOR=nvim
     export VISUAL=nvim
     export CSCOPE_EDITOR=nvim
-    export MANPAGER="nvim +Man! -c ':set signcolumn='"
+    export MANPAGER="nvim +Man! -c ':set signcolumn= | IndentLinesDisable'"
 else
     export EDITOR=vim
     export VISUAL=vim
@@ -122,3 +122,5 @@ gl() {
         --bind "enter:execute:$_viewGitLogLine   | less -R" \
         --bind "alt-y:execute:$_gitLogLineToHash | xclip"
 }
+
+export HOMEBREW_AUTO_UPDATE_SECS=86400

@@ -51,15 +51,6 @@
         "command": "-workbench.action.findInFiles"
     },
     {
-        "key": "shift+cmd+f",
-        "command": "workbench.view.search",
-        "when": "!searchViewletVisible"
-    },
-    {
-        "key": "shift+cmd+f",
-        "command": "search.action.openNewEditor"
-    },
-    {
         "key": "alt+enter",
         "command": "editor.action.codeAction"
     },
@@ -75,4 +66,25 @@
         "key": "cmd+r",
         "command": "workbench.action.reloadWindow"
     },
+    {
+        "key": "alt+g",
+        "command": "git.openChange"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.quickOpenPreviousRecentlyUsedEditor"
+    },
+    {
+        "key": "shift+enter",
+        "command": "colonize.hold",
+        "when": "editorTextFocus && vim.active && vim.mode == 'Insert'"
+    },
+    {
+        "key": "shift+cmd+f",
+        "command": "search.action.openEditor"
+    }
 ]

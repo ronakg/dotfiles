@@ -6575,7 +6575,7 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>490 319 700 601 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1680 1027 0 0 1680 1027 </string>
+	<string>349 -1 2048 1130 0 0 2048 1129 </string>
 	<key>NeverWarnAboutShortLivedSessions_28C5D854-86B0-4C9C-8837-8A8BC1D6D56C</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_28C5D854-86B0-4C9C-8837-8A8BC1D6D56C_selection</key>
@@ -6897,13 +6897,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>1</real>
+				<real>0.20000000000000001</real>
 				<key>Color Space</key>
-				<string>Calibrated</string>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>1</real>
+				<real>0.20000000000000001</real>
 				<key>Red Component</key>
-				<real>1</real>
+				<real>0.20000000000000001</real>
 			</dict>
 			<key>Cursor Type</key>
 			<integer>2</integer>
@@ -7451,7 +7451,7 @@
 			<key>Silence Bell</key>
 			<true/>
 			<key>Smart Cursor Color</key>
-			<true/>
+			<false/>
 			<key>Space</key>
 			<integer>0</integer>
 			<key>Status Bar Layout</key>
@@ -7585,6 +7585,7 @@
 	</array>
 	<key>NoSyncAllAppVersions</key>
 	<array>
+		<string>3.3.12</string>
 		<string>3.3.11</string>
 		<string>3.3.10</string>
 	</array>
@@ -7594,22 +7595,22 @@
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
-		<string>FiraCode Nerd Font</string>
-		<string>Input</string>
 		<string>Fira Code</string>
-		<string>Iosevka SS04</string>
+		<string>Hack</string>
+		<string>Input Mono</string>
+		<string>FiraCode Nerd Font</string>
 	</array>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {1680, 1050}}</string>
+		<string>{{0, 0}, {2048, 1152}}</string>
 		<key>topLeft</key>
-		<string>{260, 963}</string>
+		<string>{283, 805}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>E73E7111-DC21-4CF3-B47C-2BB244704C80</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>41</integer>
+	<integer>54</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -8394,19 +8395,19 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-07-02T19:49:26Z</date>
+	<date>2020-07-13T21:41:06Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
 	<integer>3607647012</integer>
 	<key>SUUpdateRelaunchingMarker</key>
-	<true/>
+	<false/>
 	<key>SeparateWindowTitlePerTab</key>
 	<false/>
 	<key>ShowBookmarkName</key>
 	<true/>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>ShowNewOutputIndicator</key>
 	<true/>
 	<key>ShowPaneTitles</key>
@@ -8454,7 +8455,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.3.11</string>
+	<string>3.3.12</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>7</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

@@ -16,11 +16,16 @@
     "Debugf",
     "Errorw",
     "RBAC",
+    "XMPP",
     "bodyf",
     "fqdn",
+    "gson",
+    "javassist",
     "maglev",
+    "protobuf",
     "pxgrid",
     "resty",
+    "rogandhi",
     "ronak"
   ],
   "codeui.targetingMode": "general",
@@ -28,7 +33,7 @@
   "customizeUI.titleBar": "inline",
   "debug.console.fontFamily": "FiraCode-Retina",
   "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.renderSideBySide": true,
+  "diffEditor.renderSideBySide": false,
   "editor.acceptSuggestionOnEnter": "smart",
   "editor.cursorBlinking": "smooth",
   "editor.cursorSurroundingLines": 4,
@@ -45,10 +50,10 @@
   "editor.renderLineHighlightOnlyWhenFocus": true,
   "editor.renderWhitespace": "boundary",
   "editor.scrollbar.verticalScrollbarSize": 0,
+  "editor.semanticHighlighting.enabled": true,
   "editor.smoothScrolling": true,
   "editor.suggest.localityBonus": true,
   "editor.suggestSelection": "first",
-  "editor.wrappingIndent": "none",
   "errorLens.addAnnotationTextPrefixes": true,
   "errorLens.followCursor": "activeLine",
   "errorLens.fontStyleItalic": true,
@@ -76,6 +81,7 @@
   "git.autofetch": true,
   "git.countBadge": "tracked",
   "git.enableSmartCommit": true,
+  "git.ignoreLegacyWarning": true,
   "git.ignoreLimitWarning": true,
   "git.showCommitInput": false,
   "git.smartCommitChanges": "tracked",
@@ -114,6 +120,17 @@
   "java.codeGeneration.toString.codeStyle": "STRING_FORMAT",
   "java.codeGeneration.useBlocks": true,
   "java.completion.guessMethodArguments": true,
+  "java.configuration.runtimes": [
+    {
+      "default": true,
+      "name": "JavaSE-1.8",
+      "path": "/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
+    },
+    {
+      "name": "JavaSE-11",
+      "path": "/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"
+    }
+  ],
   "java.debug.settings.console": "internalConsole",
   "java.debug.settings.forceBuildBeforeLaunch": false,
   "java.debug.settings.hotCodeReplace": "auto",
@@ -121,21 +138,32 @@
   "java.debug.settings.showStaticVariables": true,
   "java.dependency.showMembers": true,
   "java.format.settings.url": "file:///Users/rogandhi/work/dev-tools/eclipse-java-formatter.xml",
-  "java.implementationsCodeLens.enabled": true,
-  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -Xms5120m -Xmx5120m -noverify",
-  "java.requirements.JDK11Warning": false,
+  "java.home": "/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home",
+  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -noverify",
+  "java.project.importOnFirstTimeStartup": "automatic",
   "java.semanticHighlighting.enabled": true,
   "java.signatureHelp.enabled": true,
   "java.test.report.showAfterExecution": "never",
   "leetcode.hint.commandShortcut": false,
   "leetcode.hint.configWebviewMarkdown": false,
   "leetcode.workspaceFolder": "/Users/rogandhi/Google Drive/Projects/leetcode",
-  "maven.executable.options": "-DskipTests",
+  "maven.executable.options": "-DskipTests -nsu",
   "problems.showCurrentInStatus": true,
   "python.experiments.enabled": false,
-  "python.languageServer": "Microsoft",
+  "python.languageServer": "Pylance",
+  "scm.defaultViewMode": "tree",
   "scm.inputFontFamily": "editor",
+  "search.smartCase": true,
   "search.useGlobalIgnoreFiles": true,
+  "sonarlint.connectedMode.connections.sonarqube": [
+    {
+      "serverUrl": "https://engci-sonar-sjc.cisco.com/sonar",
+      "token": ""
+    }
+  ],
+  "sonarlint.connectedMode.project": {
+    "projectKey": "ise-cpm"
+  },
   "sonarlint.disableTelemetry": true,
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
@@ -165,8 +193,16 @@
     }
   ],
   "vim.leader": "<space>",
-  "vim.neovimPath": "/usr/local/bin/nvim",
   "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "after": [
+        "*",
+        "N"
+      ],
+      "before": [
+        "*"
+      ]
+    },
     {
       "before": [
         "s"
@@ -262,12 +298,22 @@
       ]
     },
     {
+      "after": [
+        "g",
+        "r"
+      ],
+      "before": [
+        "g",
+        "p"
+      ]
+    },
+    {
       "before": [
         "g",
         "r"
       ],
       "commands": [
-        "editor.action.referenceSearch.trigger"
+        "editor.action.goToReferences"
       ]
     },
     {
@@ -324,11 +370,49 @@
     },
     {
       "before": [
+        "<leader>",
+        "g",
+        "d"
+      ],
+      "commands": [
+        "git.openChange"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "D"
+      ],
+      "commands": [
+        "git.timeline.openDiff"
+      ]
+    },
+    {
+      "before": [
         "[",
         "c"
       ],
       "commands": [
         "editor.action.marker.prevInFiles"
+      ]
+    },
+    {
+      "before": [
+        "]",
+        "d"
+      ],
+      "commands": [
+        "editor.action.diffReview.next"
+      ]
+    },
+    {
+      "before": [
+        "[",
+        "d"
+      ],
+      "commands": [
+        "editor.action.diffReview.prev"
       ]
     }
   ],
@@ -368,7 +452,6 @@
   ],
   "vim.visualstar": true,
   "vim.whichwrap": "h,l,<,>,[,]",
-  "vsicons.dontShowNewVersionMessage": true,
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.newWindowDimensions": "maximized",
   "window.restoreWindows": "none",
@@ -376,15 +459,18 @@
   "window.titleBarStyle": "native",
   "window.zoomLevel": 0,
   "workbench.colorCustomizations": {
-    "tab.activeBorder": "#ff0000"
+    "tab.activeBorder": "#bd6f3e",
+    "tab.activeForeground": "#d8a657"
   },
   "workbench.colorTheme": "Gruvbox Material Dark",
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.highlightModifiedTabs": true,
-  "workbench.fontAliasing": "antialiased",
+  "workbench.iconTheme": "helium-icon-theme",
   "workbench.list.smoothScrolling": true,
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "welcomePageInEmptyWorkbench",
-  "workbench.statusBar.visible": true
+  "workbench.statusBar.visible": true,
+  "java.refactor.renameFromFileExplorer": "autoApply",
+  "scm.alwaysShowRepositories": true
 }

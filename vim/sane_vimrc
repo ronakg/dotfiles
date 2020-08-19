@@ -53,7 +53,7 @@ set fileformats="unix,dos,mac"
 set csverb
 set cscopetag
 set previewheight=20
-set conceallevel=1
+set conceallevel=0
 set showbreak=↪\ 
 set list listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set cursorline

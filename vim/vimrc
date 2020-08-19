@@ -279,6 +279,7 @@ if has("autocmd")"
 
         " Open help in vertical split
         autocmd FileType help wincmd L
+        autocmd FileType markdown let g:indentLine_setConceal = 0
 
         if has('nvim')
             autocmd BufEnter * if &buftype == 'terminal' | :call SetTerminal() | endif

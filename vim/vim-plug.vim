@@ -35,9 +35,6 @@ Plug 'kkoomen/vim-doge'
 "Plug 'rhysd/git-messenger.vim'
 "Plug 'tmsvg/pear-tree'
 Plug 'machakann/vim-sandwich'
-if !&diff
-      Plug 'neoclide/coc.nvim', {'branch': 'release'}
-endif
 "Plug 'axelf4/vim-strip-trailing-whitespace'
 "Plug 'psliwka/vim-smoothie'
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
@@ -50,6 +47,10 @@ Plug 'gabrielelana/vim-markdown'
 "Plug 'liuchengxu/vista.vim'
 "Plug 'junkblocker/git-time-lapse'
 Plug 'ronakg/vim-sleuth'
+Plug 'neoclide/jsonc.vim'
+if !&diff
+      Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'
