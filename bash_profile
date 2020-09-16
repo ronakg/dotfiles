@@ -14,4 +14,4 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/rogandhi/.sdkman"
-[[ -s "/Users/rogandhi/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/rogandhi/.sdkman/bin/sdkman-init.sh"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"

@@ -49,11 +49,3 @@ eval "$(rbenv init -)"
 
 # Work related settings should be in .bashrc_work
 [ -f ~/.bashrc_work ] && . ~/.bashrc_work
-
-if [[ -z "$TMUX" ]]; then
-    if tmux has-session 2>/dev/null; then
-        exec tmux attach -d
-    else
-        exec tmux new -s default
-    fi
-fi

@@ -3,7 +3,6 @@
 .classpath
 .project
 .metadata/
-.vscode/
 
 # IntelliJ IDEA
 **/.idea/*
@@ -18,9 +17,16 @@
 # Java
 *.class
 
-# VS Code
-.vscode
-*.code-workspace
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+**/.history
 
 .DS_Store
 *.iws
