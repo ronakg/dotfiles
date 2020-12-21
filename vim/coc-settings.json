@@ -11,20 +11,15 @@
     "diagnostic.warningSign": "⚠",
     "diagnostic.infoSign": "●",
     "diagnostic.hintSign": "○",
-    "java.jdt.ls.vmargs": "-noverify -Xmx5120m -XX:+UseG1GC -XX:+UseStringDeduplication",
-    "java.progressReports.enabled": true,
-    "java.completion.guessMethodArguments": true,
     "suggest.maxCompleteItemCount": 10,
     "suggest.minTriggerInputLength": 2,
     "go.goplsOptions": {
         "deepCompletion": true,
-        "completeUnimported": true
+        "completeUnimported": true,
+        "gofumpt": true
     },
     "diagnostic.checkCurrentLine": true,
-    "diagnostic.locationlist": false,
-    "snippets.autoTrigger": true,
     "suggest.noselect": true,
-    "snippets.shortcut": "~",
     "yaml.format.enable": true,
     "yaml.completion": true,
     "yaml.validate": true,

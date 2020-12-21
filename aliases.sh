@@ -40,6 +40,11 @@ alias groot='cd $(git rev-parse --show-toplevel)'
 
 alias please='sudo -EH $( history -p !! )'
 
+alias drunbg='docker run --rm -d -v $PWD:$PWD -w $PWD'
+alias drun='docker run --rm -it -v $PWD:$PWD -w $PWD'
+alias dps='docker ps -a'
+alias dim='docker images'
+
 alias histfix='history -n && history | sort -k2 -k1nr | uniq -f1 | sort -n | cut -c8- > ~/.tmp$$ && history -c && history -r ~/.tmp$$ && history -w && rm ~/.tmp$$'  
 
 psgrep() {

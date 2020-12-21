@@ -86,9 +86,6 @@ nnoremap <leader>VP :call Search("", "-S")<CR>
 vnoremap > >gv
 vnoremap < <gv
 
-" Don't add a newline when preview window is visible
-inoremap <silent><expr> <CR> pumvisible() ? "<C-y>" : "<C-g>u<CR>"
-
 map y <Plug>(operator-flashy)
 nmap Y <Plug>(operator-flashy)$
 
@@ -323,9 +320,9 @@ let g:airline_theme                               = 'base16_tomorrow'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_y                           = airline#section#create(['filetype', '%3p%%'.g:airline_symbols.space, 'linenr', 'maxlinenr', g:airline_symbols.space.':%3v'])
-if !&diff
-    let g:airline_section_z                       = '%{coc#status()}'
-endif
+"if !&diff
+    "let g:airline_section_z                       = '%{coc#status()}'
+"endif
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -527,7 +524,7 @@ autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "gofumpt"
 let g:go_fmt_fail_silently = 1
 let g:go_def_mapping_enabled = 0
 let g:go_addtags_transform = "camelcase"
@@ -541,4 +538,5 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_doc_popup_window = 1
+let g:go_auto_type_info = 1
 

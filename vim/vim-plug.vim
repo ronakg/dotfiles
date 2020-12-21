@@ -5,11 +5,13 @@ if !filereadable(expand('~/.vim/autoload/plug.vim'))
         autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
+" Use system fzf installation
+set rtp+=/usr/local/opt/fzf
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 "Plug 'stefandtw/quickfix-reflector.vim'
@@ -23,33 +25,27 @@ Plug 'rhysd/clever-f.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'kana/vim-operator-user'
 Plug 'haya14busa/vim-operator-flashy'
-"Plug 'haya14busa/is.vim'
+Plug 'haya14busa/is.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'sickill/vim-pasta'
 Plug 'sunaku/tmux-navigate'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'kkoomen/vim-doge'
 "Plug 'uarun/vim-protobuf', { 'for': ['proto'] }
 "Plug 'rhysd/git-messenger.vim'
-"Plug 'tmsvg/pear-tree'
+Plug 'tmsvg/pear-tree'
 Plug 'machakann/vim-sandwich'
-"Plug 'axelf4/vim-strip-trailing-whitespace'
-"Plug 'psliwka/vim-smoothie'
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
 Plug 'romainl/vim-cool'                                 " disable hl until another search is performed
-"Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
-"Plug 'pechorin/any-jump.vim'
 Plug 'godlygeek/tabular'
 Plug 'gabrielelana/vim-markdown'
-"Plug 'liuchengxu/vista.vim'
-"Plug 'junkblocker/git-time-lapse'
 Plug 'ronakg/vim-sleuth'
 Plug 'neoclide/jsonc.vim'
 if !&diff
-      Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neoclide/coc.nvim'
 endif
 
 " Colorschemes
