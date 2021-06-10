@@ -98,6 +98,8 @@ if command_exists fzf; then
     --bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
     --bind 'ctrl-e:execute(echo {+} | xargs -o vim)'
     --bind 'ctrl-v:execute(code {+})'
+    --bind 'btab:up'
+    --bind 'tab:down'
     "
 
     export FZF_COMPLETION_TRIGGER='--'

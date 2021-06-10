@@ -77,10 +77,10 @@
 [format]
     pretty = format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 [alias]
     parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//' #"
     co = checkout
@@ -103,12 +103,11 @@
     conflictstyle = diff3
 [user]
     useConfigOnly = true
-    name = Ronak Gandhi
+	name = Ronak Gandhi
+    email = me@ronakg.com
 [push]
     default = current
     followTags = true
-[commit]
-    template = ~/dotfiles/git/commitmsg.template
 # correct typos
 [help]
     autocorrect = 1
@@ -119,3 +118,5 @@
     showPatch = true
 [pull]
     rebase = false
+[includeIf "gitdir:~/work/"]
+    path = ~/.gitconfig.work

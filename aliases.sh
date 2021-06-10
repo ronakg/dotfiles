@@ -47,6 +47,9 @@ alias dim='docker images'
 
 alias histfix='history -n && history | sort -k2 -k1nr | uniq -f1 | sort -n | cut -c8- > ~/.tmp$$ && history -c && history -r ~/.tmp$$ && history -w && rm ~/.tmp$$'  
 
+alias gout='go test -v -count=1 -coverprofile=cov.out ./...'
+alias gocc='go tool cover -html=cov.out'
+
 psgrep() {
   ps aux | grep $@ | grep -v grep
 }

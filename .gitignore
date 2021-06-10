@@ -11,6 +11,7 @@ Session.vim
 tags
 vim/plugged
 vim/plugged/**
+vim/sessions/**
 vim/spell/**
 plug.vim.old
 vim/session/**
