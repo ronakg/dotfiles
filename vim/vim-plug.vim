@@ -32,9 +32,6 @@ Plug 'sunaku/tmux-navigate'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'kkoomen/vim-doge'
-"Plug 'uarun/vim-protobuf', { 'for': ['proto'] }
-"Plug 'rhysd/git-messenger.vim'
 Plug 'tmsvg/pear-tree'
 Plug 'machakann/vim-sandwich'
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
@@ -51,10 +48,6 @@ endif
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sainnhe/gruvbox-material'
-"Plug 'sainnhe/sonokai'
-"Plug 'jacoborus/tender.vim'
-"Plug 'dracula/vim', { 'name': 'dracula' }
-"Plug 'lifepillar/vim-gruvbox8'
 
 " Add plugins to &runtimepath
 call plug#end()
