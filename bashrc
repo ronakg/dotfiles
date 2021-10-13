@@ -45,7 +45,7 @@ eval "$(pyenv init -)"
 eval "$(rbenv init -)"
 
 # Device specific settings should be in .bashrc_local
-[ -f ~/.bashrc_local ] && . ~/.bashrc_local
+[[ -f ~/.bashrc_local ]] && . ~/.bashrc_local
 
 # Work related settings should be in .bashrc_work
-[ -f ~/.bashrc_work ] && . ~/.bashrc_work
+[[ -f ~/.bashrc_work ]] && . ~/.bashrc_work

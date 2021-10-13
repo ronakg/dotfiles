@@ -42,7 +42,7 @@ Plug 'gabrielelana/vim-markdown'
 Plug 'ronakg/vim-sleuth'
 Plug 'neoclide/jsonc.vim'
 if !&diff
-    Plug 'neoclide/coc.nvim'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
 
 " Colorschemes
