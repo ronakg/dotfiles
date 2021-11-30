@@ -49,3 +49,4 @@ eval "$(rbenv init -)"
 
 # Work related settings should be in .bashrc_work
 [[ -f ~/.bashrc_work ]] && . ~/.bashrc_work
+

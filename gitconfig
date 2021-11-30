@@ -21,7 +21,6 @@
     untrackedCache = true
 
     autocrlf = false
-    excludesfile = ~/.gitignore
     commentChar = ";"
 [difftool]
     prompt = false
@@ -103,7 +102,7 @@
     conflictstyle = diff3
 [user]
     useConfigOnly = true
-	name = Ronak Gandhi
+    name = Ronak Gandhi
     email = me@ronakg.com
 [push]
     default = current
@@ -113,10 +112,11 @@
     autocorrect = 1
 [fetch]
     prune = true
-
 [stash]
     showPatch = true
 [pull]
     rebase = false
 [includeIf "gitdir:~/work/"]
     path = ~/.gitconfig.work
+[url "ssh://git@github.com/ronakg"]
+    insteadOf = https://github.com/ronakg
