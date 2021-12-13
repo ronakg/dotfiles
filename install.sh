@@ -9,9 +9,6 @@ command_exists() {
 
 echo "Installing dotfiles."
 
-echo "Initializing submodule(s)"
-git submodule update --init --recursive
-
 # List of files to be installed
 files="zshrc bashrc bash_profile vim tmux tmux.conf screenrc gitconfig gitignore inputrc idlerc tmux.colors.conf ideavimrc wgetrc rgrc alacritty.yml"
 

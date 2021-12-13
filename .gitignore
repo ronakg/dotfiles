@@ -17,6 +17,8 @@ plug.vim.old
 vim/session/**
 vim/vim
 tmux/tmux
+tmux/plugins/**
+!tmux/plugins/tpm
 vim/init.vim
 GPATH
 GRTAGS

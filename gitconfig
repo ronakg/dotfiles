@@ -120,3 +120,7 @@
     path = ~/.gitconfig.work
 [url "ssh://git@github.com/ronakg"]
     insteadOf = https://github.com/ronakg
+[url "ssh://git@github3.cisco.com/"]
+    insteadOf = https://github3.cisco.com/
+[url "ssh://git@wwwin-github.cisco.com/"]
+    insteadOf = https://wwwin-github.cisco.com/
