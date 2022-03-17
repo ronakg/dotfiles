@@ -3,8 +3,6 @@ if !&diff
               \'coc-python',
               \'coc-git',
               \'coc-json',
-              \'coc-tsserver',
-              \'coc-eslint',
               \'coc-xml',
               \'coc-sh',
               \'coc-explorer',
