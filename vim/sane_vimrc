@@ -37,7 +37,7 @@ set nobackup                                  " Don't need backup and swap files
 set noswapfile
 "set pumheight=15                              " Completion menu height
 set number                                    " line numbers
-set laststatus=2                              " Always show status line
+set laststatus=3                              " Always show status line
 set shiftround                                " Round off shift width when using >
 set wrapscan
 set autoread                                  " automatically reload files changed outside of Vim
