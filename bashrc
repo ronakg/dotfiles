@@ -42,7 +42,7 @@ export LC_ALL="C"
 [ -f $DOTFILES/git-completion.bash ] && . $DOTFILES/git-completion.bash
 
 # Device specific settings should be in .bashrc_local
-[[ -f ~/.bashrc_local ]] && . ~/.bashrc_local
+if [[ -f ~/.bashrc_local ]]; then source ~/.bashrc_local; fi
 
 # Work related settings should be in .bashrc_work
 if [[ -f ~/.bashrc_work ]]; then source ~/.bashrc_work; fi
