@@ -315,7 +315,7 @@ let g:airline#extensions#branch#enabled           = 1
 "let g:airline_right_alt_sep                       = '|'
 let g:airline_powerline_fonts                     = 0
 let g:airline#extensions#tabline#fnamemod         = ':t'
-let g:airline#extensions#tmuxline#enabled         = 1
+let g:airline#extensions#tmuxline#enabled         = 0
 let g:airline_theme                               = 'base16_classic'
 let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
 let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
@@ -541,3 +541,4 @@ let g:go_highlight_structs = 1
 let g:go_doc_popup_window = 1
 let g:go_auto_type_info = 1
 
+let g:DirDiffDynamicDiffText = 1

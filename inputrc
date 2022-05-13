@@ -1,6 +1,9 @@
-# set up/down arrow keys to honor already entered text
+# Use the text that has already been typed as the prefix for searching
+# through commands (i.e. more intelligent Up/Down behavior)
 "\e[A": history-search-backward
+"\eOA": history-search-backward
 "\e[B": history-search-forward
+"\eOB": history-search-forward
 
 # vi mode for readline
 set editing-mode vi
@@ -80,11 +83,10 @@ set keymap vi-insert
 Tab: complete
 $if mode=vi
     set keymap vi-command
-    Control-l: clear-screen
     "#": insert-comment
     ".": "i !*\r"
     "|": "A | "
-    "D":kill-line
+    "D": kill-line
     "C": "Da"
     "dw": kill-word
     "dd": kill-whole-line
@@ -150,7 +152,6 @@ $if mode=vi
     "di:": "lF:lmtf:d`t"
     "ci:": "di:i"
     "ca:": "da:i"
+    "e": "exit\r"
     ?: reverse-search-history
-    set keymap vi-insert
-    Control-l: clear-screen
 $endif

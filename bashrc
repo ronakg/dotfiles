@@ -41,11 +41,8 @@ export LC_ALL="C"
 [ -f $DOTFILES/bash_prompt ] && . $DOTFILES/bash_prompt
 [ -f $DOTFILES/git-completion.bash ] && . $DOTFILES/git-completion.bash
 
-eval "$(pyenv init -)"
-eval "$(rbenv init -)"
-
 # Device specific settings should be in .bashrc_local
 [[ -f ~/.bashrc_local ]] && . ~/.bashrc_local
 
 # Work related settings should be in .bashrc_work
-[[ -f ~/.bashrc_work ]] && . ~/.bashrc_work
+if [[ -f ~/.bashrc_work ]]; then source ~/.bashrc_work; fi

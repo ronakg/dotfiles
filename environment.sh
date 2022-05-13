@@ -81,9 +81,10 @@ if command_exists fzf; then
     fi
 
     export FZF_DEFAULT_OPTS="
+    --ansi
     --layout=reverse
     --info=inline
-    --height=80%
+    --height=60%
     --multi
     --exact
     --preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'

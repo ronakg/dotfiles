@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 Plug 'stefandtw/quickfix-reflector.vim'
@@ -19,7 +20,7 @@ Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
 "Plug 'ronakg/quickr-cscope.vim', { 'for': [ 'c', 'cpp', 'h' ] }
-Plug 'ronakg/quickr-preview.vim'
+"Plug 'ronakg/quickr-preview.vim'
 Plug 'wellle/targets.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'tpope/vim-fugitive'
@@ -39,8 +40,9 @@ Plug 'romainl/vim-cool'                                 " disable hl until anoth
 Plug 'camspiers/lens.vim'
 Plug 'godlygeek/tabular'
 Plug 'gabrielelana/vim-markdown'
-Plug 'ronakg/vim-sleuth'
+"Plug 'ronakg/vim-sleuth'
 Plug 'neoclide/jsonc.vim'
+Plug 'will133/vim-dirdiff'
 if !&diff
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
