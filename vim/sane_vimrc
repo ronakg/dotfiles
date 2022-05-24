@@ -37,7 +37,7 @@ set nobackup                                  " Don't need backup and swap files
 set noswapfile
 "set pumheight=15                              " Completion menu height
 set number                                    " line numbers
-set laststatus=2                              " Always show status line
+set laststatus=3                              " Always show status line
 set shiftround                                " Round off shift width when using >
 set wrapscan
 set autoread                                  " automatically reload files changed outside of Vim
@@ -64,9 +64,9 @@ set signcolumn=yes
 
 " Tab control
 set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-set tabstop=4 " the visible width of tabs
-set softtabstop=4 " edit as if the tabs are 4 characters wide
-set shiftwidth=4 " number of spaces to use for indent and unindent
+set tabstop=2 " the visible width of tabs
+set softtabstop=2 " edit as if the tabs are 4 characters wide
+set shiftwidth=2 " number of spaces to use for indent and unindent
 set shiftround " round indent to a multiple of 'shiftwidth'
 set expandtab
 
@@ -76,7 +76,7 @@ set formatoptions+=j            " Remove comment leader when joining lines
 
 set mouse=a
 
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
@@ -89,10 +89,13 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 "================= Colorscheme =============================
 set bg=dark
+let g:gruvbox_material_better_performance = 1
 let g:gruvbox_material_background = 'hard'
 let g:gruvbox_material_enable_italic = 1
-let g:indentLine_setColors = 0
 let g:gruvbox_material_palette = 'material'
+let g:gruvbox_material_menu_selection_background = 'blue'
+let g:gruvbox_material_diagnostic_text_highlight = 1
+let g:gruvbox_material_diagnostic_virtual_text = 'colored'
 
 colorscheme gruvbox-material
 
