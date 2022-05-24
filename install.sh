@@ -10,7 +10,7 @@ command_exists() {
 echo "Installing dotfiles."
 
 # List of files to be installed
-files="zshrc bashrc bash_profile vim tmux tmux.conf screenrc gitconfig gitignore inputrc idlerc tmux.colors.conf ideavimrc wgetrc rgrc alacritty.yml"
+files="zshrc bashrc bash_profile vim tmux tmux.conf gitconfig gitignore inputrc tmux.colors.conf rgrc alacritty.yml config/kitty"
 
 # Directories to install from and backup to
 DOTFILES=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
