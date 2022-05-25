@@ -5,22 +5,11 @@
 source ~/.vim/sane_vimrc
 source ~/.vim/coc.vim
 
-let g:indentLine_char = '│'
-let g:indentLine_defaultGroup = "NonText"
-
 let g:mapleader = "\<Space>"
 
 nnoremap \ :nohlsearch<CR>
 
-" Jump to start of function
-nnoremap [[ ?{<CR>w99[{:nohlsearch<CR>
-nnoremap ]] j0[[%/{<CR>:nohlsearch<CR>
-
 nnoremap G :norm! Gzz<CR>
-
-nmap <silent><leader>gd :call ZoomToggle()<CR>:Gdiff<CR>
-nmap <silent><leader>gs :Gstatus<cr>
-nmap <silent><leader>gb :Gblame<cr>
 
 " Grep for word under the cursor
 if executable("rg")
@@ -298,31 +287,41 @@ function! NumberToggle()
     endif
 endfunction
 
+function! CocFunc()
+    let currentFunctionSymbol = get(b:, 'coc_current_function', '')
+    return currentFunctionSymbol !=# '' ? "\uf6a6 " .currentFunctionSymbol : ''
+endfunction
+
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#coc#show_coc_status = 1
 let g:airline#extensions#tabline#enabled          = 1
 let g:airline#extensions#tabline#buffer_min_count = 1
 let g:airline#extensions#tabline#tab_min_count    = 1
 let g:airline#extensions#tabline#buffer_idx_mode  = 1
 let g:airline#extensions#tabline#buffer_nr_show   = 0
 let g:airline#extensions#tabline#show_buffers     = 1
-let g:airline#extensions#branch#enabled           = 1
-"let g:airline#extensions#tabline#left_sep         = ''
-"let g:airline#extensions#tabline#left_alt_sep     = '|'
-"let g:airline#extensions#tabline#right_sep        = ''
-"let g:airline#extensions#tabline#right_alt_sep    = '|'
-"let g:airline_left_sep                            = ''
-"let g:airline_left_alt_sep                        = '|'
-"let g:airline_right_sep                           = ''
-"let g:airline_right_alt_sep                       = '|'
-let g:airline_powerline_fonts                     = 0
+let g:airline#extensions#branch#enabled           = 0
+let g:airline#extensions#tabline#left_sep         = ''
+let g:airline#extensions#tabline#left_alt_sep     = ''
+let g:airline#extensions#tabline#right_sep        = ''
+let g:airline#extensions#tabline#right_alt_sep    = ''
+let g:airline_left_sep                            = ''
+let g:airline_left_alt_sep                        = ''
+let g:airline_right_sep                           = ''
+let g:airline_right_alt_sep                       = ''
+let g:airline_powerline_fonts                     = 1
 let g:airline#extensions#tabline#fnamemod         = ':t'
 let g:airline#extensions#tmuxline#enabled         = 0
-let g:airline_theme                               = 'base16_classic'
-let g:airline_section_c                           = '%{fnamemodify(expand("%"), ":~:.")}'
-let g:airline_section_x                           = '%{fnamemodify(getcwd(), ":t")}'
-let g:airline_section_y                           = airline#section#create(['filetype', '%3p%%'.g:airline_symbols.space, 'linenr', 'maxlinenr', g:airline_symbols.space.':%3v'])
-"if !&diff
-    "let g:airline_section_z                       = '%{coc#status()}'
-"endif
+let g:airline_theme                               = 'base16_default'
+let g:airline_section_b                           = '%{fnamemodify(expand("%"), ":~:.")}'
+let g:airline_section_c                           = '%{get(b:, "coc_current_function", "")}'
+let g:airline_section_x                           = ''
+let g:airline_section_y                           = '%{fnamemodify(getcwd(), ":t")}'
+let g:airline_section_z                           = airline#section#create(['linenr', 'maxlinenr'])
+if !&diff
+    let g:airline_section_z                           = airline#section#create(['linenr', 'maxlinenr', '%{coc#status()}'])
+endif
+
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -338,20 +337,6 @@ nnoremap <silent> <leader>p :Files<CR>
 
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
-let g:tmuxline_powerline_separators = 0
-let g:tmuxline_preset = {
-            \'a'    : '#S',
-            \'win'  : ['#I', '#W'],
-            \'cwin' : ['#I', '#W'],
-            \'y'    : '#(date "+%Y-%b-%d %H:%M")',
-            \'z'    : '#H',
-            \'options' : {'status-justify' : 'left'}}
-"let g:tmuxline_separators = {
-            "\ 'left' : '',
-            "\ 'left_alt': '|',
-            "\ 'right' : '',
-            "\ 'right_alt' : '|',
-            "\ 'space' : ' '}
 
 " Change cursor shape based on mode.
 if has('nvim')
@@ -366,8 +351,10 @@ else
     endif
 endif
 
-let g:startify_list_order = [['Most recently used files in current directory:'], 'dir',
-            \                ['Bookmarks:'], 'bookmarks']
+let g:startify_lists = [
+      \ { 'type': 'sessions',  'header': ['   Sessions']       },
+      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+      \ ]
 let g:startify_change_to_dir = 0
 let g:startify_files_number = 10
 let g:startify_bookmarks = [ {'a': '~/.vim/vimrc'}, {'b': '~/.vim/vim-plug.vim'}, {'c': '~/.vim/sane_vimrc'}, {'d': '~/.vim/coc.vim'} ]
@@ -403,8 +390,6 @@ vmap gc <plug>NERDCommenterToggle
 command! -nargs=+ Silent
             \ | execute ':silent !'.<q-args>
             \ | execute ':redraw!'
-
-nnoremap <C-b> :vsplit term://bash<CR>
 
 " Window navigation function
 " Make ctrl-h/j/k/l move between windows and auto-insert in terminals
@@ -488,57 +473,36 @@ if has('nvim')
 
         autocmd BufWipeout <buffer> exe 'bw '.s:buf
     endfunction
-
-    " Open a terminal in a centered floating window
-    function! OpenTerm(cmd)
-        call OpenFloatingWin()
-        call termopen(a:cmd, { 'on_exit': function('OnTermExit') })
-    endfunction
-
-    function! OnTermExit(job_id, code, event) dict
-        if a:code == 0
-            bd!
-        endif
-    endfunction
 endif
 
 nnoremap b :Buffers<CR>
 
-autocmd FileType go nmap <leader>bb  <Plug>(go-build)
-autocmd FileType go nmap <leader>rr  <Plug>(go-run)
-
 let g:git_messenger_always_into_popup = v:true
 
-" Auto group results by filename
-let g:any_jump_grouping_enabled = 1
+" Lua configuration
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = "c", "cpp", "go", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ignore_install = { "" }, -- List of parsers to ignore installing
+    highlight = {
+        enable = true,              -- false will disable the whole extension
+        disable = { },  -- list of language that will be disabled
+        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+        -- Instead of true it can also be a list of languages
+        additional_vim_regex_highlighting = false,
+        },
+    indent = {
+        enable = true,
+        }
+    }
+EOF
 
-" Show line numbers in search rusults
-let g:any_jump_list_numbers = 0
+let g:signify_sign_add = '┃'
+let g:signify_sign_delete = '┃'
+let g:signify_sign_change = '┃'
 
-" For simple sizing of splits.
-map - <C-W>-
-map + <C-W>+
+let g:startify_session_before_save = [ 'call CocAction("hideOutline")' ]
 
-" vim-go options/mappings
-autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-let g:go_fmt_command = "gofumpt"
-let g:go_fmt_command="gopls"
-let g:go_fmt_fail_silently = 1
-let g:go_def_mapping_enabled = 0
-let g:go_addtags_transform = "camelcase"
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_doc_popup_window = 1
-let g:go_auto_type_info = 1
-
-let g:DirDiffDynamicDiffText = 1
+source ~/.vimrc_work

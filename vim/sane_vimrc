@@ -76,7 +76,7 @@ set formatoptions+=j            " Remove comment leader when joining lines
 
 set mouse=a
 
-set clipboard+=unnamedplus
+set clipboard=unnamedplus
 
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"

@@ -54,10 +54,6 @@ psgrep() {
   ps aux | grep $@ | grep -v grep
 }
 
-cd() {
-  builtin cd "$@" && ls
-}
-
 cover() {
     local t=$(mktemp -t cover)
     go test -coverprofile=$t $@ \

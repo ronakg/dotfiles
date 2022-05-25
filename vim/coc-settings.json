@@ -6,7 +6,6 @@
     "git.changedSign.text": "┃",
     "git.changeRemovedSign.text": "┃",
     "git.addGBlameToBufferVar": true,
-    "diagnostic.maxWindowHeight": 20,
     "diagnostic.errorSign": "✖",
     "diagnostic.warningSign": "⚠",
     "diagnostic.infoSign": "●",
@@ -18,6 +17,10 @@
         "completeUnimported": true,
         "gofumpt": true
     },
+    "outline.keepWindow": true,
+    "outline.sortBy": "position",
+    "signature.target": "float",
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "diagnostic.checkCurrentLine": true,
     "suggest.noselect": true,
     "yaml.format.enable": true,

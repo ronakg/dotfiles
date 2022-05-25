@@ -1,18 +1,13 @@
 if !&diff
   let g:coc_global_extensions = [
-              \'coc-python',
-              \'coc-git',
-              \'coc-json',
-              \'coc-xml',
-              \'coc-sh',
-              \'coc-explorer',
-              \'coc-lists',
-              \'coc-pairs',
-              \'coc-yaml',
-              \'coc-go',
-              \ ]
-
-  "\'coc-highlight',
+        \'coc-python',
+        \'coc-json',
+        \'coc-sh',
+        \'coc-explorer',
+        \'coc-lists',
+        \'coc-pairs',
+        \'coc-highlight',
+        \ ]
 
   " if hidden is not set, TextEdit might fail.
   set hidden
@@ -21,39 +16,37 @@ if !&diff
   set nobackup
   set nowritebackup
 
-  " Better display for messages
-  set cmdheight=2
-
   " You will have bad experience for diagnostic messages when it's default 4000.
   set updatetime=250
 
   " don't give |ins-completion-menu| messages.
   set shortmess+=c
 
+  set signcolumn=yes
+
   " Use tab for trigger completion with characters ahead and navigate.
-  " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+  " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+  " other plugin before putting this into your config.
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
+        \ CheckBackspace() ? "\<TAB>" :
         \ coc#refresh()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-  function! s:check_back_space() abort
+  function! CheckBackspace() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
 
-  " coc#_select_confirm() helps select first completion item when necessary and
-  " send <C-y> to vim for confirm completion. \<C-g>u used for break undo chain
-  " at current position. coc#on_enter() notify coc that you have pressed
-  " <enter>, so it can format your code on <enter>.
-  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : 
-                                            \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  " Make <CR> auto-select the first completion item and notify coc.nvim to
+  " format on enter, <cr> could be remapped by other vim plugin
+  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+        \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-  " Use <C-j> for jump to next placeholder, it's default of coc.nvim
+  " Use tab for jump to next placeholder, it's default of coc.nvim
   let g:coc_snippet_next = '<tab>'
 
-  " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+  " Use s-tab for jump to previous placeholder, it's default of coc.nvim
   let g:coc_snippet_prev = '<s-tab>'
 
   " Use `[g` and `]g` to navigate diagnostics
@@ -67,14 +60,14 @@ if !&diff
   nmap <silent> gr <Plug>(coc-references)
   nmap <silent> gh <Plug>(coc-doHover)
 
-  " Use K to show documentation in preview window
-  nnoremap <silent> K :call <SID>show_documentation()<CR>
+  " Use K to show documentation in preview window.
+  nnoremap <silent> K :call ShowDocumentation()<CR>
 
-  function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-      execute 'h '.expand('<cword>')
+  function! ShowDocumentation()
+    if CocAction('hasProvider', 'hover')
+      call CocActionAsync('doHover')
     else
-      call CocAction('doHover')
+      call feedkeys('K', 'in')
     endif
   endfunction
 
@@ -98,7 +91,6 @@ if !&diff
 
   " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
   xmap <leader>a  <Plug>(coc-codeaction-selected)
-  nmap <leader>a  <Plug>(coc-codeaction-selected)
 
   " Remap for do codeAction of current line
   nmap <leader>ac  <Plug>(coc-codeaction)
@@ -114,6 +106,14 @@ if !&diff
   " Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
   nmap <silent> <TAB> <Plug>(coc-range-select)
   xmap <silent> <TAB> <Plug>(coc-range-select)
+
+  " Remap <C-f> and <C-b> for scroll float windows/popups.
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
   " Use `:Format` to format current buffer
   command! -nargs=0 Format :call CocAction('format')
@@ -142,4 +142,5 @@ if !&diff
   nnoremap <silent> <space>j  :<C-u>CocNext<CR>
   " Do default action for previous item.
   nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+
 endif
