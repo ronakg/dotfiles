@@ -505,4 +505,6 @@ let g:signify_sign_change = '┃'
 
 let g:startify_session_before_save = [ 'call CocAction("hideOutline")' ]
 
-source ~/.vimrc_work
+if filereadable(expand('~/.vimrc_work'))
+  source ~/.vimrc_work
+endif
