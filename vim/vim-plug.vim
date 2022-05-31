@@ -13,8 +13,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-obsession'
 "Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
@@ -38,10 +39,9 @@ Plug 'farmergreg/vim-lastplace'                         " open files at the last
 Plug 'gabrielelana/vim-markdown', { 'for': 'md' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'roxma/vim-tmux-clipboard'
-Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 if !&diff
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'ronakg/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 endif
 
 " Colorschemes

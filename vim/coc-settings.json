@@ -10,7 +10,7 @@
     "diagnostic.warningSign": "⚠",
     "diagnostic.infoSign": "●",
     "diagnostic.hintSign": "○",
-    "suggest.maxCompleteItemCount": 10,
+    "suggest.maxCompleteItemCount": 20,
     "suggest.minTriggerInputLength": 2,
     "go.goplsOptions": {
         "deepCompletion": true,
@@ -26,5 +26,10 @@
     "yaml.format.enable": true,
     "yaml.completion": true,
     "yaml.validate": true,
-    "python.jediEnabled": false
+    "python.jediEnabled": false,
+    "outline.autoWidth": true,
+    "outline.showLineNumber": false,
+    "outline.detailAsDescription": false,
+    "semanticTokens.filetypes": ["*"],
+    "coc.preferences.enableMessageDialog": true
 }
