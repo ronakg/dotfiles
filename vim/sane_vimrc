@@ -41,7 +41,7 @@ set laststatus=3                              " Always show status line
 set shiftround                                " Round off shift width when using >
 set wrapscan
 set autoread                                  " automatically reload files changed outside of Vim
-set showcmd
+set noshowcmd
 set hidden
 set diffopt+=context:5,internal,algorithm:patience,hiddenoff
 set linebreak                                 " It maintains the whole words when wrapping
@@ -61,9 +61,11 @@ set autowrite
 set display+=lastline
 set noerrorbells
 set signcolumn=yes
+set completeopt=menu,menuone,noselect
 
 " Tab control
 set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+set smartindent
 set tabstop=2 " the visible width of tabs
 set softtabstop=2 " edit as if the tabs are 4 characters wide
 set shiftwidth=2 " number of spaces to use for indent and unindent

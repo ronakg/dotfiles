@@ -2,53 +2,61 @@
 " Source: https://github.com/ronakg/dotfiles
 
 " Keep all the sane settings in following file
-source ~/.vim/sane_vimrc
-source ~/.vim/coc.vim
-
 let g:mapleader = "\<Space>"
 
+if filereadable(expand('~/.vimrc_work'))
+  source ~/.vimrc_work
+endif
+
+source ~/.vim/sane_vimrc
 nnoremap \ :nohlsearch<CR>
 
+if filereadable(expand('~/.vim/coc.vim'))
+  source ~/.vim/coc.vim
+endif
+
 nnoremap G :norm! Gzz<CR>
+nnoremap <silent> j gj
+nnoremap <silent> k gk
 
 " Grep for word under the cursor
 if executable("rg")
-    set grepprg=rg\ --vimgrep\ -g\ '!tags'
-    command! -bang -nargs=* Rg
-                \ call fzf#vim#grep(
-                \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-                \   fzf#vim#with_preview(), <bang>0)
+  set grepprg=rg\ --vimgrep\ -g\ '!tags'
+  command! -bang -nargs=* Rg
+        \ call fzf#vim#grep(
+        \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+        \   fzf#vim#with_preview(), <bang>0)
 elseif executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+  set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
 endif
 
 function! GetVisualSelection()
-    " https://stackoverflow.com/a/6271254/777247
-    let [line_start, column_start] = getpos("'<")[1:2]
-    let [line_end, column_end] = getpos("'>")[1:2]
-    let lines = getline(line_start, line_end)
-    if len(lines) == 0
-        return ''
-    endif
-    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
-    let lines[0] = lines[0][column_start - 1:]
-    return join(lines, "\n")
+  " https://stackoverflow.com/a/6271254/777247
+  let [line_start, column_start] = getpos("'<")[1:2]
+  let [line_end, column_end] = getpos("'>")[1:2]
+  let lines = getline(line_start, line_end)
+  if len(lines) == 0
+    return ''
+  endif
+  let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][column_start - 1:]
+  return join(lines, "\n")
 endfunction
 
 function! Search(pattern, flags)
-    if strlen(a:pattern) <= 2
-        let search_pattern = input("Enter search term: ")
-    else
-        let search_pattern = a:pattern
-    endif
+  if strlen(a:pattern) <= 2
+    let search_pattern = input("Enter search term: ")
+  else
+    let search_pattern = a:pattern
+  endif
 
-    " ! is needed to prevent grep from opening first result in a buffer
-    execute "silent grep! " . a:flags . " '" . search_pattern . "'"
+  " ! is needed to prevent grep from opening first result in a buffer
+  execute "silent grep! " . a:flags . " '" . search_pattern . "'"
 
-    " Open quickfix window
-    copen
-    let @/ = "'" . l:search_pattern . "'"
-    set hlsearch
+  " Open quickfix window
+  copen
+  let @/ = "'" . l:search_pattern . "'"
+  set hlsearch
 
 endfunction
 
@@ -89,82 +97,91 @@ nnoremap c "_c
 nnoremap J mzJ`z
 
 function! Quit()
-    let debug = 0
+  let debug = 0
+  if debug
+    echom 'Entering Quit(), current buffer is: ' . bufname('%')
+    echom 'Previous buffer is: ' . bufname('#')
+  endif
+
+  let buflisted = &buflisted
+  if !buflisted
     if debug
-        echom 'Entering Quit(), current buffer is: ' . bufname('%')
-        echom 'Previous buffer is: ' . bufname('#')
+      echom 'Quitting because buffer is not listed'
     endif
+    quit
+    return
+  endif
 
-    let buflisted = &buflisted
-    if !buflisted
-        if debug
-            echom 'Quitting because buffer is not listed'
-        endif
-        quit
-        return
-    endif
+  " number of listed buffers
+  if v:version >= 800
+    let l:nbuf = len(getbufinfo({'buflisted':1}))
+  else
+    let l:nbuf = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+  endif
 
-    " number of listed buffers
-    if v:version >= 800
-        let l:nbuf = len(getbufinfo({'buflisted':1}))
-    else
-        let l:nbuf = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-    endif
+  if debug
+    echom 'Number of buffers: ' . l:nbuf
+  endif
 
+  " Just quit for this special buffers
+  let l:buffer_types = ['quickfix', 'nofile', 'help', 'terminal']
+  if index(l:buffer_types, &buftype) >= 0 || l:nbuf == 1
+    quit
+    return
+  endif
+
+  " total number of splits
+  let l:nsplit = winnr('$')
+
+  " If the bufhidden is set to delete, just jump back to
+  " previous buffer, this buffer gets deleted on its own
+  let bufhid = &bufhidden
+
+  if bufhid == 'delete' || bufhid == 'wipe'
     if debug
-        echom 'Number of buffers: ' . l:nbuf
-    endif
-
-    " Just quit for this special buffers
-    let l:buffer_types = ['quickfix', 'nofile', 'help', 'terminal']
-    if index(l:buffer_types, &buftype) >= 0 || l:nbuf == 1
-        quit
-        return
-    endif
-
-    " total number of splits
-    let l:nsplit = winnr('$')
-    let l:cur_bufnr = bufnr('%')
-
-    " If the bufhidden is set to delete, just jump back to
-    " previous buffer, this buffer gets deleted on its own
-    let bufhid = &bufhidden
-
-    if bufhid == 'delete' || bufhid == 'wipe'
-        if debug
-            echom 'Quitting because bufhid is ' . bufhid
-        endif
-
-        if l:nbuf == l:nsplit
-            quit
-        else
-            bprevious
-        endif
-
-        return
-    endif
-
-    if debug
-        echom 'No of splits: ' . l:nsplit . ', Current buffer: ' . l:cur_bufnr
-        echom 'Previous buffer: ' . bufnr('#')
+      echom 'Quitting because bufhid is ' . bufhid
     endif
 
     if l:nbuf == l:nsplit
-        " delete the buffer if number of open splits is same as buffers
-        bdelete
-    elseif l:nbuf > 1
-        " Jump to previous buffer and then delete this buffer, so that
-        " we're back to where we were before
-        bprevious | execute 'bdelete ' . l:cur_bufnr
+      quit
     else
-        " quit if this is the last buffer
-        quit
+      exeucute bufnr('#') . 'b'
     endif
+
+    return
+  endif
+
+  if debug
+    echom 'No of splits: ' . l:nsplit . ', Current buffer: ' . bufnr('%')
+    echom 'Previous buffer: ' . bufnr('#')
+  endif
+
+  if l:nbuf == l:nsplit
+    " delete the buffer if number of open splits is same as buffers
+    bdelete
+  elseif l:nbuf > 1
+    " Jump to previous buffer and then delete this buffer, so that
+    " we're back to where we were before
+    if bufnr('#') > 0
+      execute bufnr('#') . 'b'
+    else
+      blast
+    endif
+
+    if debug
+      echom 'Jumped to buffer ' . bufnr('%') . ' and deleting ' . bufnr('#')
+    endif
+    execute 'bdelete ' . bufnr('#')
+  else
+    " quit if this is the last buffer
+    quit
+  endif
 endfunction
 
 " Quicker save and quit
 nnoremap <silent> e :call Quit()<CR>
 nnoremap <silent> E :q<CR>
+nnoremap <silent> <leader>e :qa<CR>
 nnoremap <silent> w :update<CR>
 imap <silent> jj <Esc>
 
@@ -187,13 +204,13 @@ vnoremap <silent> y y`]
 
 " Commit and push {{
 function! s:CommitPush(...)
-    if a:0 > 0
-        execute "Gcommit -am '" . join(a:000) . "'"
-    else
-        :Gcommit -am "update notes"
-    endif
+  if a:0 > 0
+    execute "Gcommit -am '" . join(a:000) . "'"
+  else
+    :Gcommit -am "update notes"
+  endif
 
-    :Gpush
+  :Gpush
 endfunction
 
 command! -nargs=? CommitPush call s:CommitPush(<f-args>)
@@ -211,10 +228,10 @@ let g:quickr_cscope_db_file = "GTAGS"
 " Incrementally update the database generated by GNU GLOBAL
 " ======================================================================================
 function! UpdateGlobalDB()
-    try
-        silent! execute '!gtags -i &'
-    catch
-    endtry
+  try
+    silent! execute '!gtags -i &'
+  catch
+  endtry
 endfunction
 
 let g:quickr_cscope_autoload_db = 1
@@ -226,76 +243,70 @@ nmap <leader>h <Plug>(quickr_cscope_global_verticle_split)
 " Strip trailing whitespaces
 " ======================================================================================
 function! StripTrailingWhite()
-    let l:winview = winsaveview()
-    silent! %s/\s\+$//
-    call winrestview(l:winview)
+  let l:winview = winsaveview()
+  silent! %s/\s\+$//
+  call winrestview(l:winview)
 endfunction
 
 function! SetTerminal()
-    wincmd L
-    startinsert
-    setlocal nonumber
-    setlocal norelativenumber
-    if exists(':IndentLinesDisable')
-        IndentLinesDisable
-    endif
+  wincmd L
+  startinsert
+  setlocal nonumber
+  setlocal norelativenumber
+  if exists(':IndentLinesDisable')
+    IndentLinesDisable
+  endif
 endfunction
 
 function! DiffEnter()
-    nnoremap <buffer> e :qa<CR>
-    nnoremap <buffer> w :wa!<CR>
-    setlocal number
-    setlocal norelativenumber
-    setlocal nocursorline
-    if exists(':IndentLinesDisable')
-        IndentLinesDisable
-    endif
+  nnoremap <buffer> e :qa<CR>
+  nnoremap <buffer> w :wa!<CR>
+  setlocal number
+  setlocal norelativenumber
+  setlocal nocursorline
+  if exists(':IndentLinesDisable')
+    IndentLinesDisable
+  endif
 endfunction
 
 " Auto commands
 " ======================================================================================
 if has("autocmd")"
-    " Enable spell checking
+  " Enable spell checking
 
-    augroup mycommands
-        autocmd!
-        " Update diff when leaving from insertmode or writing to file
-        autocmd BufWritepost * if &diff | diffupdate | endif
-        autocmd BufEnter * if &diff | :call DiffEnter() | endif
+  augroup mycommands
+    autocmd!
+    " Update diff when leaving from insertmode or writing to file
+    autocmd BufWritepost * if &diff | diffupdate | endif
+    autocmd BufEnter * if &diff | :call DiffEnter() | endif
 
-        " Open help in vertical split
-        autocmd FileType help wincmd L
-        autocmd FileType markdown let g:indentLine_setConceal = 0
-
-        if has('nvim')
-            autocmd BufEnter * if &buftype == 'terminal' | :call SetTerminal() | endif
-        endif
-    augroup END
+    " Open help in vertical split
+    autocmd FileType help wincmd L
+    autocmd FileType markdown let g:indentLine_setConceal = 0
+    autocmd WinEnter * :set cursorline
+    autocmd WinLeave * :set nocursorline
+  augroup END
 endif
 
 
 function! NumberToggle()
-    if(&relativenumber == 1 && &number == 1)
-        set number
-        set norelativenumber
-    elseif (&number == 1 && &relativenumber == 0)
-        set norelativenumber
-        set nonumber
-    else
-        set number
-        set relativenumber
-    endif
+  if(&relativenumber == 1 && &number == 1)
+    set number
+    set norelativenumber
+  elseif (&number == 1 && &relativenumber == 0)
+    set norelativenumber
+    set nonumber
+  else
+    set number
+    set relativenumber
+  endif
 endfunction
 
-function! CocFunc()
-    let currentFunctionSymbol = get(b:, 'coc_current_function', '')
-    return currentFunctionSymbol !=# '' ? "\uf6a6 " .currentFunctionSymbol : ''
-endfunction
 
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#coc#show_coc_status = 1
+let g:airline#extensions#coc#enabled              = 1
+let g:airline#extensions#coc#show_coc_status      = 1
 let g:airline#extensions#tabline#enabled          = 1
-let g:airline#extensions#tabline#buffer_min_count = 1
+let g:airline#extensions#tabline#buffer_min_count = 0
 let g:airline#extensions#tabline#tab_min_count    = 1
 let g:airline#extensions#tabline#buffer_idx_mode  = 1
 let g:airline#extensions#tabline#buffer_nr_show   = 0
@@ -312,15 +323,11 @@ let g:airline_right_alt_sep                       = ''
 let g:airline_powerline_fonts                     = 1
 let g:airline#extensions#tabline#fnamemod         = ':t'
 let g:airline#extensions#tmuxline#enabled         = 0
-let g:airline_theme                               = 'base16_default'
-let g:airline_section_b                           = '%{fnamemodify(expand("%"), ":~:.")}'
-let g:airline_section_c                           = '%{get(b:, "coc_current_function", "")}'
-let g:airline_section_x                           = ''
+let g:airline_theme                               = 'base16_classic'
+let g:airline_section_c                           = airline#section#create(['%{fnamemodify(expand("%"), ":~:.")}'])
+"let g:airline_section_x                           = airline#section#create(['%{coc#status()}'])
 let g:airline_section_y                           = '%{fnamemodify(getcwd(), ":t")}'
-let g:airline_section_z                           = airline#section#create(['linenr', 'maxlinenr'])
-if !&diff
-    let g:airline_section_z                           = airline#section#create(['linenr', 'maxlinenr', '%{coc#status()}'])
-endif
+let g:airline_section_z                           = airline#section#create(['linenr', 'maxlinenr', '%{g:airline_symbols.colnr}%2v'])
 
 " Easier tab/buffer switching
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -332,23 +339,25 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>0 <Plug>AirlineSelectTab0
 
-nnoremap <silent> <leader>p :Files<CR>
+nnoremap <silent> <leader>p <cmd>lua require('fzf-lua').files()<CR>
+nnoremap <silent> b <cmd>lua require('fzf-lua').buffers()<CR>
 
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
 
 " Change cursor shape based on mode.
 if has('nvim')
-    "set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+  "set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 else
-    if exists('$TMUX')
-        let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-        let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-    else
-        let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-        let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-    endif
+  if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  endif
 endif
 
 let g:startify_lists = [
@@ -357,22 +366,23 @@ let g:startify_lists = [
       \ ]
 let g:startify_change_to_dir = 0
 let g:startify_files_number = 10
+let g:startify_session_autoload = 1
 let g:startify_bookmarks = [ {'a': '~/.vim/vimrc'}, {'b': '~/.vim/vim-plug.vim'}, {'c': '~/.vim/sane_vimrc'}, {'d': '~/.vim/coc.vim'} ]
 
 if filereadable(".vim.custom")
-    so .vim.custom
+  so .vim.custom
 endif
 
 function! ZoomToggle()
-    if exists('t:zoomed') && t:zoomed
-        execute t:zoom_winrestcmd
-        let t:zoomed = 0
-    else
-        let t:zoom_winrestcmd = winrestcmd()
-        resize
-        vertical resize
-        let t:zoomed = 1
-    endif
+  if exists('t:zoomed') && t:zoomed
+    execute t:zoom_winrestcmd
+    let t:zoomed = 0
+  else
+    let t:zoom_winrestcmd = winrestcmd()
+    resize
+    vertical resize
+    let t:zoomed = 1
+  endif
 endfunction
 nnoremap <silent> <C-A> :call ZoomToggle()<CR>
 
@@ -388,30 +398,30 @@ nmap gc <plug>NERDCommenterToggle
 vmap gc <plug>NERDCommenterToggle
 
 command! -nargs=+ Silent
-            \ | execute ':silent !'.<q-args>
-            \ | execute ':redraw!'
+      \ | execute ':silent !'.<q-args>
+      \ | execute ':redraw!'
 
 " Window navigation function
 " Make ctrl-h/j/k/l move between windows and auto-insert in terminals
 func! s:mapMoveToWindowInDirection(direction)
-    func! s:maybeInsertMode(direction)
-        stopinsert
-        execute "wincmd" a:direction
+  func! s:maybeInsertMode(direction)
+    stopinsert
+    execute "wincmd" a:direction
 
-        if &buftype == 'terminal'
-            startinsert!
-        endif
-    endfunc
+    if &buftype == 'terminal'
+      startinsert!
+    endif
+  endfunc
 
-    execute "tnoremap" "<silent>" "<C-" . a:direction . ">"
-                \ "<C-\\><C-n>"
-                \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
-    execute "nnoremap" "<silent>" "<C-" . a:direction . ">"
-                \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
+  execute "tnoremap" "<silent>" "<C-" . a:direction . ">"
+        \ "<C-\\><C-n>"
+        \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
+  execute "nnoremap" "<silent>" "<C-" . a:direction . ">"
+        \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
 endfunc
 
 for dir in ["h", "j", "l", "k"]
-    call s:mapMoveToWindowInDirection(dir)
+  call s:mapMoveToWindowInDirection(dir)
 endfor
 tnoremap <esc><esc> <C-\><C-n>
 
@@ -429,82 +439,116 @@ xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 if has('nvim')
-    let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
+  let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
 
-    " Open a centered floating window
-    function! OpenFloatingWin(...)
-        let height_per = get(a:, 1, 80)     " Default height is 80%
-        let width_per = get(a:, 2, 80)      " Default width is 80%
+  " Open a centered floating window
+  function! OpenFloatingWin(...)
+    let height_per = get(a:, 1, 80)     " Default height is 80%
+    let width_per = get(a:, 2, 80)      " Default width is 80%
 
-        let lines = &lines
-        let columns = &columns
+    let lines = &lines
+    let columns = &columns
 
-        let height = float2nr(lines * height_per/100)
-        let width = float2nr(columns * width_per/100)
+    let height = float2nr(lines * height_per/100)
+    let width = float2nr(columns * width_per/100)
 
-        let opts = {
-                    \'relative': 'editor',
-                    \'height': height,
-                    \'width': width,
-                    \'row': float2nr(lines * (100-height_per)/200),
-                    \'col': float2nr(columns * (100-width_per)/200),
-                    \'style': 'minimal'
-                    \ }
+    let opts = {
+          \'relative': 'editor',
+          \'height': height,
+          \'width': width,
+          \'row': float2nr(lines * (100-height_per)/200),
+          \'col': float2nr(columns * (100-width_per)/200),
+          \'style': 'minimal'
+          \ }
 
 
-        let top = "╭" . repeat("─", width - 2) . "╮"
-        let mid = "│" . repeat(" ", width - 2) . "│"
-        let bot = "╰" . repeat("─", width - 2) . "╯"
-        let lines = [top] + repeat([mid], height - 2) + [bot]
+    let top = "╭" . repeat("─", width - 2) . "╮"
+    let mid = "│" . repeat(" ", width - 2) . "│"
+    let bot = "╰" . repeat("─", width - 2) . "╯"
+    let lines = [top] + repeat([mid], height - 2) + [bot]
 
-        let s:buf = nvim_create_buf(v:false, v:true)
-        call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-        let win = nvim_open_win(s:buf, v:true, opts)
+    let s:buf = nvim_create_buf(v:false, v:true)
+    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
+    let win = nvim_open_win(s:buf, v:true, opts)
 
-        call setwinvar(win, '&winhl', 'Normal:Pmenu')
+    call setwinvar(win, '&winhl', 'Normal:Pmenu')
 
-        set winhl=Normal:Floating
-        let opts.row += 1
-        let opts.height -= 2
-        let opts.col += 2
-        let opts.width -= 4
+    set winhl=Normal:Floating
+    let opts.row += 1
+    let opts.height -= 2
+    let opts.col += 2
+    let opts.width -= 4
 
-        call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
 
-        autocmd BufWipeout <buffer> exe 'bw '.s:buf
-    endfunction
+    autocmd BufWipeout <buffer> exe 'bw '.s:buf
+  endfunction
 endif
 
-nnoremap b :Buffers<CR>
-
 let g:git_messenger_always_into_popup = v:true
-
-" Lua configuration
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-    ensure_installed = "c", "cpp", "go", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    ignore_install = { "" }, -- List of parsers to ignore installing
-    highlight = {
-        enable = true,              -- false will disable the whole extension
-        disable = { },  -- list of language that will be disabled
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-        -- Using this option may slow down your editor, and you may see some duplicate highlights.
-        -- Instead of true it can also be a list of languages
-        additional_vim_regex_highlighting = false,
-        },
-    indent = {
-        enable = true,
-        }
-    }
-EOF
 
 let g:signify_sign_add = '┃'
 let g:signify_sign_delete = '┃'
 let g:signify_sign_change = '┃'
 
-let g:startify_session_before_save = [ 'call CocAction("hideOutline")' ]
+highlight! link TSProperty BlueItalic
+highlight! link TSConditional RedItalic
+highlight! link TSKeyword RedItalic
+highlight! link TSRepeat RedItalic
+highlight! link TSKeywordFunction RedItalic
+highlight! link TSNamespace WhiteItalic
+highlight! link TSParameter Purple
+highlight! link TSConstMacro OrangeItalic
 
-if filereadable(expand('~/.vimrc_work'))
-  source ~/.vimrc_work
-endif
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "c", "cpp", "go", "vim", "json", "bash", "comment", "proto", "markdown", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { "" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { },  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+    },
+  indent = {
+    enable = true,
+    }
+  }
+
+require'treesitter-context'.setup{
+  patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+        -- For all filetypes
+        -- Note that setting an entry here replaces all other patterns for this entry.
+        -- By setting the 'default' entry below, you can control which nodes you want to
+        -- appear in the context window.
+        default = {
+            'class',
+            'function',
+            'method',
+            'for',
+            'while',
+            'if',
+            'switch',
+            'case',
+        },
+        -- Example for a specific filetype.
+        -- If a pattern is missing, *open a PR* so everyone can benefit.
+        --   rust = {
+        --       'impl_item',
+        --   },
+    },
+}
+
+EOF
+
+let g:autoresize_width = 85
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+

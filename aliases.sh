@@ -7,6 +7,8 @@ if command_exists nvim; then
 fi
 
 alias ..='cd ..'
+alias ll='ls -lrth'
+alias la='ls -a'
 
 alias vi='vim -u ~/.vim/sane_vimrc'
 

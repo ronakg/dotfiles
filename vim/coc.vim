@@ -1,146 +1,106 @@
-if !&diff
-  let g:coc_global_extensions = [
-        \'coc-python',
-        \'coc-json',
-        \'coc-sh',
-        \'coc-explorer',
-        \'coc-lists',
-        \'coc-pairs',
-        \'coc-highlight',
-        \ ]
+let g:coc_global_extensions = [
+      \'coc-highlight',
+      \ ]
 
-  " if hidden is not set, TextEdit might fail.
-  set hidden
+let g:startify_session_before_save = [ 'echom CocAction("hideOutline")' ]
 
-  " Some servers have issues with backup files, see #649
-  set nobackup
-  set nowritebackup
+" if hidden is not set, TextEdit might fail.
+set hidden
 
-  " You will have bad experience for diagnostic messages when it's default 4000.
-  set updatetime=250
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
 
-  " don't give |ins-completion-menu| messages.
-  set shortmess+=c
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=250
 
-  set signcolumn=yes
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
 
-  " Use tab for trigger completion with characters ahead and navigate.
-  " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-  " other plugin before putting this into your config.
-  inoremap <silent><expr> <TAB>
-        \ pumvisible() ? "\<C-n>" :
-        \ CheckBackspace() ? "\<TAB>" :
-        \ coc#refresh()
-  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+set signcolumn=number
 
-  function! CheckBackspace() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-  endfunction
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-  " Make <CR> auto-select the first completion item and notify coc.nvim to
-  " format on enter, <cr> could be remapped by other vim plugin
-  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-        \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-  " Use tab for jump to next placeholder, it's default of coc.nvim
-  let g:coc_snippet_next = '<tab>'
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-  " Use s-tab for jump to previous placeholder, it's default of coc.nvim
-  let g:coc_snippet_prev = '<s-tab>'
+" Use tab for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<tab>'
 
-  " Use `[g` and `]g` to navigate diagnostics
-  nmap <silent> [g <Plug>(coc-diagnostic-prev)
-  nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" Use s-tab for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<s-tab>'
 
-  "remap keys for gotos
-  nmap <silent> gd <Plug>(coc-definition)
-  nmap <silent> gy <Plug>(coc-type-definition)
-  nmap <silent> gi <Plug>(coc-implementation)
-  nmap <silent> gr <Plug>(coc-references)
-  nmap <silent> gh <Plug>(coc-doHover)
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-  " Use K to show documentation in preview window.
-  nnoremap <silent> K :call ShowDocumentation()<CR>
+"remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gh <Plug>(coc-doHover)
+nmap <silent> <leader>rn <Plug>(coc-rename)
 
-  function! ShowDocumentation()
-    if CocAction('hasProvider', 'hover')
-      call CocActionAsync('doHover')
-    else
-      call feedkeys('K', 'in')
-    endif
-  endfunction
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call ShowDocumentation()<CR>
 
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+
+augroup mygroup
+  autocmd!
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   " Highlight symbol under cursor on CursorHold
   autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup end
 
-  " Remap for rename current word
-  nmap <leader>rn <Plug>(coc-rename)
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a <Plug>(coc-codeaction-selected)
 
-  " Remap for format selected region
-  xmap <leader>f  <Plug>(coc-format-selected)
-  nmap <leader>f  <Plug>(coc-format-selected)
+" Remap for do codeAction of current line
+nmap <leader>ac <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf <Plug>(coc-fix-current)
 
-  augroup mygroup
-    autocmd!
-    " Setup formatexpr specified filetype(s).
-    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-    " Update signature help on jump placeholder
-    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  augroup end
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+nnoremap <nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-f>"
+nnoremap <nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<C-b>"
+inoremap <nowait><expr> <C-j> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 1)\<cr>" : "\<Right>"
+inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<Left>"
 
-  " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-  xmap <leader>a  <Plug>(coc-codeaction-selected)
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
-  " Remap for do codeAction of current line
-  nmap <leader>ac  <Plug>(coc-codeaction)
-  " Fix autofix problem of current line
-  nmap <leader>qf  <Plug>(coc-fix-current)
+" Using CocList
+" Find symbol of current document
+nnoremap <silent> <leader>o  :<C-u>CocList outline<cr>
 
-  " Create mappings for function text object, requires document symbols feature of languageserver.
-  xmap if <Plug>(coc-funcobj-i)
-  xmap af <Plug>(coc-funcobj-a)
-  omap if <Plug>(coc-funcobj-i)
-  omap af <Plug>(coc-funcobj-a)
+let g:coc_max_treeview_width = 40
+let g:coc_default_semantic_highlight_groups = 1
 
-  " Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-  nmap <silent> <TAB> <Plug>(coc-range-select)
-  xmap <silent> <TAB> <Plug>(coc-range-select)
+highlight def link CocTreeSelected InfoFloat
+highlight Pmenu guibg=#303030
 
-  " Remap <C-f> and <C-b> for scroll float windows/popups.
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-
-  " Use `:Format` to format current buffer
-  command! -nargs=0 Format :call CocAction('format')
-
-  " Use `:Fold` to fold current buffer
-  command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-  " use `:OR` for organize import of current buffer
-  command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-  " Add status line support, for integration with other plugin, checkout `:h coc-status`
-  set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-  " Using CocList
-  " Show all diagnostics
-  nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-  " Manage extensions
-  nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-  " Show commands
-  nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-  " Find symbol of current document
-  nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-  " Search workspace symbols
-  nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-  " Do default action for next item.
-  nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-  " Do default action for previous item.
-  nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-
-endif
+let g:coc_borderchars = ['─', '│', '─', '│', '╭', '╮', '╯', '╰']
