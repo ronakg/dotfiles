@@ -5,9 +5,6 @@ if !filereadable(expand('~/.vim/autoload/plug.vim'))
         autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
-" Use system fzf installation
-set rtp+=/usr/local/opt/fzf
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'bling/vim-airline'
@@ -21,7 +18,7 @@ Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 "Plug 'Yggdroot/indentLine'
 "Plug 'ronakg/quickr-cscope.vim', { 'for': [ 'c', 'cpp', 'h' ] }
-"Plug 'ronakg/quickr-preview.vim'
+Plug 'ronakg/quickr-preview.vim'
 Plug 'wellle/targets.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'tpope/vim-fugitive'
@@ -33,16 +30,16 @@ Plug 'haya14busa/vim-asterisk'
 Plug 'sickill/vim-pasta'
 Plug 'sunaku/tmux-navigate'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'tmsvg/pear-tree'
 Plug 'machakann/vim-sandwich'
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
 Plug 'gabrielelana/vim-markdown', { 'for': 'md' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'roxma/vim-tmux-clipboard'
-
-if !&diff
-    Plug 'ronakg/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-endif
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kovetskiy/vim-autoresize'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Colorschemes
 Plug 'vim-airline/vim-airline-themes'

@@ -4,10 +4,16 @@
 " Keep all the sane settings in following file
 let g:mapleader = "\<Space>"
 
-source ~/.vim/sane_vimrc
-source ~/.vim/coc.vim
+if filereadable(expand('~/.vimrc_work'))
+  source ~/.vimrc_work
+endif
 
+source ~/.vim/sane_vimrc
 nnoremap \ :nohlsearch<CR>
+
+if filereadable(expand('~/.vim/coc.vim'))
+  source ~/.vim/coc.vim
+endif
 
 nnoremap G :norm! Gzz<CR>
 nnoremap <silent> j gj
@@ -126,7 +132,6 @@ function! Quit()
 
   " total number of splits
   let l:nsplit = winnr('$')
-  let l:cur_bufnr = bufnr('%')
 
   " If the bufhidden is set to delete, just jump back to
   " previous buffer, this buffer gets deleted on its own
@@ -140,14 +145,14 @@ function! Quit()
     if l:nbuf == l:nsplit
       quit
     else
-      bprevious
+      exeucute bufnr('#') . 'b'
     endif
 
     return
   endif
 
   if debug
-    echom 'No of splits: ' . l:nsplit . ', Current buffer: ' . l:cur_bufnr
+    echom 'No of splits: ' . l:nsplit . ', Current buffer: ' . bufnr('%')
     echom 'Previous buffer: ' . bufnr('#')
   endif
 
@@ -157,7 +162,16 @@ function! Quit()
   elseif l:nbuf > 1
     " Jump to previous buffer and then delete this buffer, so that
     " we're back to where we were before
-    bprevious | execute 'bdelete ' . l:cur_bufnr
+    if bufnr('#') > 0
+      execute bufnr('#') . 'b'
+    else
+      blast
+    endif
+
+    if debug
+      echom 'Jumped to buffer ' . bufnr('%') . ' and deleting ' . bufnr('#')
+    endif
+    execute 'bdelete ' . bufnr('#')
   else
     " quit if this is the last buffer
     quit
@@ -288,10 +302,6 @@ function! NumberToggle()
   endif
 endfunction
 
-function! CocFunc()
-  let currentFunctionSymbol = get(b:, 'coc_current_function', '')
-  return currentFunctionSymbol !=# '' ? "\uf6a6 " .currentFunctionSymbol : ''
-endfunction
 
 let g:airline#extensions#coc#enabled              = 1
 let g:airline#extensions#coc#show_coc_status      = 1
@@ -313,10 +323,9 @@ let g:airline_right_alt_sep                       = ''
 let g:airline_powerline_fonts                     = 1
 let g:airline#extensions#tabline#fnamemod         = ':t'
 let g:airline#extensions#tmuxline#enabled         = 0
-let g:airline_theme                               = 'base16_default'
-let g:airline_section_b                           = '%{fnamemodify(expand("%"), ":~:.")}'
-let g:airline_section_c                           = '%{get(b:, "coc_current_function", "")}'
-let g:airline_section_x                           = ''
+let g:airline_theme                               = 'base16_classic'
+let g:airline_section_c                           = airline#section#create(['%{fnamemodify(expand("%"), ":~:.")}'])
+"let g:airline_section_x                           = airline#section#create(['%{coc#status()}'])
 let g:airline_section_y                           = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_z                           = airline#section#create(['linenr', 'maxlinenr', '%{g:airline_symbols.colnr}%2v'])
 
@@ -358,7 +367,6 @@ let g:startify_lists = [
 let g:startify_change_to_dir = 0
 let g:startify_files_number = 10
 let g:startify_session_autoload = 1
-let g:startify_session_before_save = [ 'echom CocAction("hideOutline")' ]
 let g:startify_bookmarks = [ {'a': '~/.vim/vimrc'}, {'b': '~/.vim/vim-plug.vim'}, {'c': '~/.vim/sane_vimrc'}, {'d': '~/.vim/coc.vim'} ]
 
 if filereadable(".vim.custom")
@@ -509,8 +517,38 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     }
   }
+
+require'treesitter-context'.setup{
+  patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+        -- For all filetypes
+        -- Note that setting an entry here replaces all other patterns for this entry.
+        -- By setting the 'default' entry below, you can control which nodes you want to
+        -- appear in the context window.
+        default = {
+            'class',
+            'function',
+            'method',
+            'for',
+            'while',
+            'if',
+            'switch',
+            'case',
+        },
+        -- Example for a specific filetype.
+        -- If a pattern is missing, *open a PR* so everyone can benefit.
+        --   rust = {
+        --       'impl_item',
+        --   },
+    },
+}
+
 EOF
 
-if filereadable(expand('~/.vimrc_work'))
-  source ~/.vimrc_work
-endif
+let g:autoresize_width = 85
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
