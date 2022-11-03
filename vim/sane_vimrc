@@ -37,13 +37,17 @@ set nobackup                                  " Don't need backup and swap files
 set noswapfile
 "set pumheight=15                              " Completion menu height
 set number                                    " line numbers
-set laststatus=3                              " Always show status line
+if has("nvim")
+  set laststatus=3                              " Always show status line
+else
+  set laststatus=2
+endif
 set shiftround                                " Round off shift width when using >
 set wrapscan
 set autoread                                  " automatically reload files changed outside of Vim
 set noshowcmd
 set hidden
-set diffopt+=context:5,internal,algorithm:patience,hiddenoff
+"set diffopt+=context:5,internal,algorithm:patience,hiddenoff
 set linebreak                                 " It maintains the whole words when wrapping
 set cpoptions-=m                              " Highlight when CursorMoved.
 set cpoptions+=I
@@ -105,7 +109,7 @@ colorscheme gruvbox-material
 highlight SpecialKey ctermfg=19 guifg=#333333
 highlight NonText ctermfg=19 guifg=#333333
 
-if has('nvim-0.3.2') || has("patch-8.1.0360")
+if has('nvim')
     set diffopt+=internal,algorithm:patience
 endif
 

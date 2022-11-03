@@ -341,8 +341,8 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>0 <Plug>AirlineSelectTab0
 
-nnoremap <silent> <leader>p <cmd>lua require('fzf-lua').files()<CR>
-nnoremap <silent> b <cmd>lua require('fzf-lua').buffers()<CR>
+nnoremap <silent> <leader>p :Files<CR>
+nnoremap <silent> b :Buffers<CR>
 
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
@@ -500,6 +500,7 @@ highlight! link TSNamespace WhiteItalic
 highlight! link TSParameter Purple
 highlight! link TSConstMacro OrangeItalic
 
+if has("nvim")
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "c", "cpp", "go", "vim", "json", "bash", "comment", "proto", "markdown", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -543,6 +544,7 @@ require'treesitter-context'.setup{
 }
 
 EOF
+endif
 
 let g:autoresize_width = 85
 nnoremap <A-j> :m .+1<CR>==

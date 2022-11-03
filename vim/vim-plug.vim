@@ -9,8 +9,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-obsession'
 "Plug 'stefandtw/quickfix-reflector.vim'
@@ -33,11 +33,13 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
 Plug 'gabrielelana/vim-markdown', { 'for': 'md' }
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'nvim-treesitter/nvim-treesitter-context'
+if has('nvim')
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+  Plug 'nvim-treesitter/nvim-treesitter-context'
+  Plug 'kyazdani42/nvim-web-devicons'
+endif
 Plug 'roxma/vim-tmux-clipboard'
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kovetskiy/vim-autoresize'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
